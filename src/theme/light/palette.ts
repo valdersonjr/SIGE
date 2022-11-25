@@ -5,6 +5,10 @@ export const palette = {
     shade: '#38618C',
   },
 
+  secondary: {
+    base: '#8FFF5A'
+  },
+
   success: {
     tint: '#9BE0AC',
     base: '#36D75E',

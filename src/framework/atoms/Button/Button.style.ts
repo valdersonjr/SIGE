@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ButtonInternalProps, VariantButtonType, VariantButtonEnum } from './Button.interface';
 
-export const getVariant = (variant: VariantButtonType) => {
+export const getVariant = (variant: VariantButtonType, selected:boolean) => {
   const buttonStyle = (v = variant) => {
     if (
       v === VariantButtonEnum.PRIMARY ||
@@ -21,6 +21,10 @@ export const getVariant = (variant: VariantButtonType) => {
         padding: 2% 0px;
         font-size: 0.8vw;
       `;
+    }
+    else if (v === VariantButtonEnum.GRADIENT_PRIMARY){
+      return css`
+        padding: 12px 16px 12px 0px;`
     }
   };
 
@@ -87,14 +91,31 @@ export const getVariant = (variant: VariantButtonType) => {
         `}
       `;
 
+    case VariantButtonEnum.GRADIENT_PRIMARY:
+      return css`
+        ${({ theme }) => css`
+          ${buttonStyle(variant)}
+          border: none;
+          border-radius: 12px;
+          text-align: start;
+          
+          ${selected ? `
+            background: linear-gradient(90deg, ${theme.palette.primary.base} 2.23%, ${ theme.palette.secondary.base } 103.23%);
+            color: ${theme.palette.light.tint};
+          ` : `
+            background-color: ${theme.palette.light.tint};
+            color: ${theme.palette.dark.shade}
+          `};
+        `}
+      `
     default:
       break;
   }
 };
 
 export const Button = styled.button<ButtonInternalProps>`
-  ${({ variant = VariantButtonEnum.PRIMARY }) => css`
-    ${getVariant(variant)}
+  ${({ variant = VariantButtonEnum.PRIMARY, selected}) => css`
+    ${getVariant(variant, Boolean(selected))}
     font-weight: 600;
     width: 100%;
     cursor: pointer;
