@@ -1,12 +1,16 @@
 import React from "react";
+
 import { useRecoilState } from "recoil";
+
 import { Button, VariantButtonEnum } from "~/framework/atoms";
+
 import { selectedSidebar } from "~/recoil/sidebar/sidebar.atom";
 
-import { sections } from "./SideBar.logic";
-import * as S from "./SideBarSections.style";
+import { sections } from "./Navigation.logic";
 
-export const SideBarSections: React.FC = () => {
+import * as S from "./Navigation.style";
+
+export const Navigation: React.FC = () => {
     const [selectedSection, setSelectedSection] = useRecoilState(selectedSidebar);
 
 

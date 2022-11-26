@@ -1,7 +1,8 @@
 import React from 'react';
-import * as S from './Button.style';
 
 import { ButtonProps, VariantButtonEnum, VariantButtonType } from './Button.interface';
+
+import * as S from './Button.style';
 
 const Button: React.FC<ButtonProps> = ({
   onClick,

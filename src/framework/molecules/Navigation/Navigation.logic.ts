@@ -1,4 +1,4 @@
-import { ISideBarSections } from "./SideBar.interface"
+import { ISideBarSections } from "./Navigation.interface"
 
 export const sections:ISideBarSections[] = [{
     name: 'Início',

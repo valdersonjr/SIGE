@@ -24,12 +24,23 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
     }
     else if (v === VariantButtonEnum.GRADIENT_PRIMARY){
       return css`
-        padding: 12px 16px 12px 0px;`
+        padding: 12px 16px 12px 8px;`
     }
   };
 
   switch (variant) {
     case VariantButtonEnum.PRIMARY:
+      return css`
+        ${({theme}) => css`
+          ${buttonStyle()}
+          
+          padding: 12px 40px;
+          background-color: ${theme.palette.primary.base};
+          color: ${theme.palette.light.tint};
+          border: none;
+          border-radius: 12px;
+        `}
+      `
     case VariantButtonEnum.SMALL_PRIMARY:
       return css`
         ${({ theme }) => css`
@@ -104,7 +115,11 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
             color: ${theme.palette.light.tint};
           ` : `
             background-color: ${theme.palette.light.tint};
-            color: ${theme.palette.dark.shade}
+            color: ${theme.palette.dark.tint};
+            
+            :hover {
+              color: ${theme.palette.dark.shade};
+            }           
           `};
         `}
       `
