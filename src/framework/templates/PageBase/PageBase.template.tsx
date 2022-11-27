@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import { SideBar } from '~/framework/organisms';
+import HomePage from '~/framework/pages/Home/Home.page';
 
 import * as S from './PageBase.style';
 

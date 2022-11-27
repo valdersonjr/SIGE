@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
 
@@ -24,7 +25,9 @@ export const Navigation: React.FC = () => {
                 }
 
                 return (
-                    <Button selected={selected} key={section.key} label={section.name} type="button" variant={VariantButtonEnum.GRADIENT_PRIMARY} onClick={() => setSelectedSection(section.key)} />
+                    <Link to={section.path}>
+                        <Button selected={selected} key={section.key} label={section.name} type="button" variant={VariantButtonEnum.GRADIENT_PRIMARY} onClick={() => setSelectedSection(section.key)} />
+                    </Link>
                 )
             })}
         </S.container>
