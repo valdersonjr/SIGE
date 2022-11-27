@@ -1,7 +1,8 @@
 import React from 'react';
+import { Home } from '~/framework/templates';
 
 const HomePage: React.FC = () => {
-  return <div>Home Page</div>;
+  return <Home />;
 };
 
 export default HomePage;

@@ -6,4 +6,4 @@ const ReportsPage: React.FC = () => {
     )
 }
 
-export default ReportPage;
+export default ReportsPage;

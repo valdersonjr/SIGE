@@ -1,9 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
+
 import HomePage from '~/framework/pages/Home/Home.page';
-import ManagementPage from '~/framework/pages/Management/Management.page';
-import ReportsPage from '~/framework/pages/Report/Report.page';
-import StudentsPage from '~/framework/pages/Students/Students.page';
 import UsersPage from '~/framework/pages/Users/Users.page';
+import ReportsPage from '~/framework/pages/Report/Reports.page';
+import StudentsPage from '~/framework/pages/Students/Students.page';
+import ManagementPage from '~/framework/pages/Management/Management.page';
+
 import PageBase from '~/framework/templates/PageBase/PageBase.template';
 
 export const AuthenticatedRoutes: React.FC = () => {

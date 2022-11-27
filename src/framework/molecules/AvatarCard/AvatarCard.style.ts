@@ -3,19 +3,24 @@ import { theme } from "~/theme";
 
 export const Container = styled.div`
     padding: 16px 16px 16px 16px;
+    
+    border: 1px solid ${theme.palette.light.tint};
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
 `
 
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
+
+    margin-bottom: 12px;
 `
 
 export const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
-
-    margin-bottom: 12px;
 `
 export const Text = styled.div<{ isTitle:boolean }>`
     font-size: ${ ({isTitle}) => isTitle ? "14px" : "12px" };

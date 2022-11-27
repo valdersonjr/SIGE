@@ -25,8 +25,8 @@ export const Navigation: React.FC = () => {
                 }
 
                 return (
-                    <Link to={section.path}>
-                        <Button selected={selected} key={section.key} label={section.name} type="button" variant={VariantButtonEnum.GRADIENT_PRIMARY} onClick={() => setSelectedSection(section.key)} />
+                    <Link key={section.key} to={section.path}>
+                        <Button selected={selected} label={section.name} type="button" variant={VariantButtonEnum.GRADIENT_PRIMARY} onClick={() => setSelectedSection(section.key)} />
                     </Link>
                 )
             })}

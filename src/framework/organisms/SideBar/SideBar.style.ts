@@ -3,7 +3,7 @@ import { theme } from "~/theme";
 
 export const Container = styled.div`
     position: relative;
-    width: 32vh;
+    min-width: 32vh;
     height: 100vh;
 
     display: flex;
@@ -31,17 +31,20 @@ export const Footer = styled.div`
     flex-direction: column;
     align-items: center;
 `
-export const Logout = styled.div`
+export const Logout = styled.button`
+    margin-bottom: 16px;
+    cursor: pointer;
+    border: none;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
 
+    background-color: ${theme.palette.light.tint};
     color: ${theme.palette.dark.tint};
-
-    margin-bottom: 16px;
 `
-export const Text = styled.span`
+export const Text = styled.span` //arrumar
     padding-top: 13px;
     padding-bottom: 13px;
 
