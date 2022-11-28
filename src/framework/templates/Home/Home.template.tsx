@@ -1,4 +1,5 @@
 import React from 'react';
+import { BarChaart } from '~/framework/atoms/BarChaart/BarChaart';
 
 import { Banner } from '~/framework/molecules';
 
@@ -15,6 +16,7 @@ export const Home: React.FC = () => {
             <S.RegistrationsContainer>
                 <S.NewRegistrations>
                     <S.NewRegistrationsTitle>Novas Matrículas</S.NewRegistrationsTitle>
+                    <BarChaart />
                 </S.NewRegistrations>
             </S.RegistrationsContainer>
         </S.Container>

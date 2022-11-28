@@ -19,6 +19,7 @@
     "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "react-tilt": "^0.1.4",
+    "recharts": "^2.1.16",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.5"
   },
