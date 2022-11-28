@@ -3,16 +3,23 @@ import { ButtonInternalProps, VariantButtonType, VariantButtonEnum } from './But
 
 export const getVariant = (variant: VariantButtonType, selected:boolean) => {
   const buttonStyle = (v = variant) => {
-    if (
-      v === VariantButtonEnum.PRIMARY ||
-      v === VariantButtonEnum.SECONDARY ||
-      v === VariantButtonEnum.TEXT
-    ) {
+    if (v === VariantButtonEnum.PRIMARY) {
       return css`
+        font-size: 0.9vw;
+        font-weight: 600;
+        line-height: 110%;
+        padding: 10px 40px;
+      `
+    }
+    else if (
+      v === VariantButtonEnum.SECONDARY ||
+      v === VariantButtonEnum.TEXT){
+        return css`
         padding: 3% 0px;
         font-size: 0.9vw;
       `;
-    } else if (
+      }
+    else if (
       v === VariantButtonEnum.SMALL_PRIMARY ||
       v === VariantButtonEnum.SMALL_SECONDARY ||
       v === VariantButtonEnum.SMALL_TEXT
@@ -32,14 +39,19 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
     case VariantButtonEnum.PRIMARY:
       return css`
         ${({theme}) => css`
-          ${buttonStyle()}
-          
-          padding: 12px 40px;
-          background-color: ${theme.palette.primary.base};
+          ${buttonStyle(VariantButtonEnum.PRIMARY)}
+
           color: ${theme.palette.light.tint};
+          background-color: ${theme.palette.alert.base};
+
+          box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
           border: none;
-          border-radius: 12px;
-        `}
+          border-radius: 20px;
+
+          :hover {
+            background-color: ${theme.palette.alert.shade};
+          }
+        `} 
       `
     case VariantButtonEnum.SMALL_PRIMARY:
       return css`
@@ -63,6 +75,16 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
       `;
 
     case VariantButtonEnum.SECONDARY:
+      return css`
+      ${({theme}) => css`
+        ${buttonStyle()}
+        padding: 12px 40px;
+        background-color: ${theme.palette.alert.base};
+
+        border-radius: 20px;
+
+      `}`
+
     case VariantButtonEnum.SMALL_SECONDARY:
       return css`
         ${({ theme }) => css`

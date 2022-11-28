@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theme } from '~/theme';
 
 export const Container = styled.div`
-    background-color: blue;
+    position: relative;
     width: 94%;
     min-height: 130px;
 
@@ -15,8 +15,17 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     padding-left: 32px;
+    gap: 10px;
 `
+export const BannerIconContainer = styled.div`
+    overflow: hidden;
+    align-self: flex-end;
+    margin-bottom: -4.2px;
+    min-width: 146px;
+`
+
 export const TextContainer = styled.div`
+    min-width: 662px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -32,4 +41,12 @@ export const Text = styled.span`
     font-size: 18px;
     line-height: 110%;
     color: ${theme.palette.medium.tint};
+`
+
+export const ButtonContainer = styled.span`
+    position: absolute;
+    min-width: 154px;
+    height: 50px;
+    margin-right: 32px;
+    right: 0;
 `

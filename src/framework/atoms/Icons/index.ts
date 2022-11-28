@@ -4,3 +4,4 @@ export * from './Teacher.icon';
 export * from './UserTag.icon';
 export * from './Check.icon';
 export * from './Minus.icon';
+export * from './HomePageBanner.icon';

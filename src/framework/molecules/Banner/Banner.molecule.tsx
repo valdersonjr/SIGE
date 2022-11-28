@@ -1,14 +1,27 @@
 import React from "react";
 
+import { BannerProps } from "./Banner.interface";
+
+import { Button, VariantButtonEnum } from "~/framework/atoms";
+
+import { HomePageBanner } from "~/framework/atoms/Icons";
+
+
 import * as S from './Banner.style';
 
-export const Banner: React.FC = () => {
+export const Banner: React.FC<BannerProps> = ({ buttonLabel, title, text, hasButton, onButtonClick }) => {
+
     return (
         <S.Container>
-            <img width="100px" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/134.png" alt="temporario" />
+            <S.BannerIconContainer>
+                <HomePageBanner />
+            </S.BannerIconContainer>
             <S.TextContainer>
-                <S.Title>Plataforma que Simplifica a vida!</S.Title>
-                <S.Text>Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. </S.Text>
+                <S.Title>{title}</S.Title>
+                <S.Text>{text}</S.Text>
             </S.TextContainer>
+            <S.ButtonContainer>
+                <Button label={buttonLabel} type="button" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
+            </S.ButtonContainer>
         </S.Container>)
 }
