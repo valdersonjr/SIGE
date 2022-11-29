@@ -19,9 +19,6 @@ export const RegistrationsContainer = styled.div`
     flex-direction: column;
 `
 
-export const NewRegistrations = styled.div`
-
-`
 export const NewRegistrationsTitle = styled.h2`
     margin-top: 16px;
     margin-left: 16px;
@@ -31,4 +28,32 @@ export const NewRegistrationsTitle = styled.h2`
     font-size: 23px;
     font-weight: 900;
     line-height: 25px;
+`
+
+export const NewRegistrationsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    /* background-color: green; */
+`
+export const ChartContainer = styled.div`
+    border: 1px solid ${theme.palette.light.base};
+    border-radius: 16px;
+    padding: 10px;
+`
+
+export const ChartCardsContainer = styled.div`
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+`
+export const CardsContainer = styled.div`
+    background-color: silver;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
 `
