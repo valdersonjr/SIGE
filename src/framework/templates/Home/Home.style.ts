@@ -12,7 +12,6 @@ export const Container = styled.div`
 `
 
 export const RegistrationsContainer = styled.div`
-    height: 100%;
     width: 94%;
 
     display: flex;

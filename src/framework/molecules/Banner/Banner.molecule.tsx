@@ -7,10 +7,10 @@ import { Button, VariantButtonEnum } from "~/framework/atoms";
 
 import * as S from './Banner.style';
 
-export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, onButtonClick }) => {
+export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, onButtonClick, type }) => {
 
     return (
-        <S.Container>
+        <S.Container type={type} >
             <S.BannerIconContainer>
                 {Icon}
             </S.BannerIconContainer>

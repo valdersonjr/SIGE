@@ -16,7 +16,7 @@ export const Home: React.FC = () => {
 
     return (
         <S.Container>
-            <Banner Icon={<HomePageBanner />} title='Plataforma que Simplifica a vida!' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade." buttonLabel="Novo Aluno" onButtonClick={handleClick} />
+            <Banner type="home" Icon={<HomePageBanner />} title='Plataforma que Simplifica a vida!' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade." buttonLabel="Novo Aluno" onButtonClick={handleClick} />
             <S.RegistrationsContainer>
                 <S.NewRegistrationsTitle>Novas Matrículas</S.NewRegistrationsTitle>
                 <S.NewRegistrationsContainer>

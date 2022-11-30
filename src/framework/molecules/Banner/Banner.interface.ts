@@ -6,7 +6,8 @@ interface BannerButton {
 };
 
 export interface BannerProps extends BannerButton {
-    Icon?: React.ReactNode;
     title:string;
+    type: string;
+    Icon?: React.ReactNode;
     text?:string;
 }

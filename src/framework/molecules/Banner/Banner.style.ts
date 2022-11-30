@@ -1,12 +1,25 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '~/theme';
 
-export const Container = styled.div`
+const getVariant = (type:string) => {
+    if(type === 'home'){
+        return css`
+            background: linear-gradient(90deg, #35A7FF 2.23%, #8FFF5A 103.23%);
+        `
+    }
+    else if (type === 'students') {
+        return css`
+            background: linear-gradient(90.29deg, #35A7FF 0.94%, #0078D5 99.94%);
+        `
+    }
+}
+
+export const Container = styled.div<{ type: string}>`
     position: relative;
     width: 94%;
-    min-height: 130px;
+    height: 110px;
 
-    background: linear-gradient(90deg, #35A7FF 2.23%, #8FFF5A 103.23%);
+    ${({ type }) => getVariant(type)}
     border-bottom: 1px solid #FFFFFF;
     box-shadow: 0px 8px 48px rgba(0, 0, 0, 0.16);
     border-radius: 12px;
