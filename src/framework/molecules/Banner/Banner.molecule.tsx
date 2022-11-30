@@ -4,24 +4,24 @@ import { BannerProps } from "./Banner.interface";
 
 import { Button, VariantButtonEnum } from "~/framework/atoms";
 
-import { HomePageBanner } from "~/framework/atoms/Icons";
-
 
 import * as S from './Banner.style';
 
-export const Banner: React.FC<BannerProps> = ({ buttonLabel, title, text, hasButton, onButtonClick }) => {
+export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, onButtonClick }) => {
 
     return (
         <S.Container>
             <S.BannerIconContainer>
-                <HomePageBanner />
+                {Icon}
             </S.BannerIconContainer>
             <S.TextContainer>
                 <S.Title>{title}</S.Title>
                 <S.Text>{text}</S.Text>
             </S.TextContainer>
-            <S.ButtonContainer>
-                <Button label={buttonLabel} type="button" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
-            </S.ButtonContainer>
+            {buttonLabel ?
+                <S.ButtonContainer>
+                    <Button label={buttonLabel} type="button" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
+                </S.ButtonContainer> : <></>
+            }
         </S.Container>)
 }

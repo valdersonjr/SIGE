@@ -1,10 +1,12 @@
+import React from "react";
+
 interface BannerButton {
-    hasButton?:boolean;
+    buttonLabel?:string;
     onButtonClick?: () => void;
 };
 
 export interface BannerProps extends BannerButton {
+    Icon?: React.ReactNode;
     title:string;
     text?:string;
-    buttonLabel?:string;
 }

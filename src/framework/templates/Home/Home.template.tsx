@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { BarChaart } from '~/framework/atoms';
+import { HomePageBanner } from '~/framework/atoms/Icons';
 
 import { Banner, Card } from '~/framework/molecules';
 
-import { cardsData, regData } from './Home.logic';
+import { cardsData, classesData, regData } from './Home.logic';
 
 import * as S from "./Home.style";
 
@@ -15,7 +16,7 @@ export const Home: React.FC = () => {
 
     return (
         <S.Container>
-            <Banner title='Plataforma que Simplifica a vida!' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade." buttonLabel="Novo Aluno" hasButton={true} onButtonClick={handleClick} />
+            <Banner Icon={<HomePageBanner />} title='Plataforma que Simplifica a vida!' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade." buttonLabel="Novo Aluno" onButtonClick={handleClick} />
             <S.RegistrationsContainer>
                 <S.NewRegistrationsTitle>Novas Matrículas</S.NewRegistrationsTitle>
                 <S.NewRegistrationsContainer>
@@ -30,11 +31,16 @@ export const Home: React.FC = () => {
                 </S.NewRegistrationsContainer>
                 <S.CardsContainer>
                     {cardsData.map((item) => (
-                        <>
-                            {/* <Card key={item.key} label={item.label} value={item.value} /> */}
-                        </>
+                        <Card key={item.key} label={item.label} value={item.value} />
                     ))}
+                    <S.BirthdaysOfMonth>teste</S.BirthdaysOfMonth>
                 </S.CardsContainer>
+                <S.ClassText>Turmas</S.ClassText>
+                <S.ClassCards>
+                    {classesData.map((item) => (
+                        <Card key={item.key} label={item.label} value={item.value} />
+                    ))}
+                </S.ClassCards>
             </S.RegistrationsContainer>
         </S.Container>
     )

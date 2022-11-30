@@ -43,4 +43,26 @@ export const cardsData = [{
     label: 'Card Teste',
     value: 7,
     key: 5
-},]
+},];
+
+
+export const classesData = [{
+    label: 'Card Teste',
+    value: 3,
+    key: 0
+},
+{
+    label: 'Card Teste',
+    value: 3,
+    key: 1
+},
+{
+    label: 'Card Teste',
+    value: 3,
+    key: 2
+},
+{
+    label: 'Card Teste',
+    value: 3,
+    key: 3
+}];

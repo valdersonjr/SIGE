@@ -30,6 +30,7 @@ export const Footer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 `
 export const Logout = styled.button`
     margin-bottom: 16px;

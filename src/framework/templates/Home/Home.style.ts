@@ -8,7 +8,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    margin-top: 32px;
+    margin-top: 4px;
 `
 
 export const RegistrationsContainer = styled.div`
@@ -50,10 +50,34 @@ export const ChartCardsContainer = styled.div`
     justify-content: space-between;
 `
 export const CardsContainer = styled.div`
-    background-color: silver;
-    height: 100%;
+    max-width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 65px;
+    row-gap: 16px;
+`
+export const BirthdaysOfMonth = styled.div`
+    border: 2px solid black;
     width: 100%;
+    height: 100px;
+    width: 2fr;
+`
+
+export const ClassText = styled.h3`
+    color: ${theme.palette.primary.base};
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 110%;
+    margin-bottom: 16px;
+`
+
+export const ClassCards = styled.div`
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 `
