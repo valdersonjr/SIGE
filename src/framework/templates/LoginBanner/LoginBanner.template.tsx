@@ -47,7 +47,7 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
         <Button
           label={buttonRegisterText}
           onClick={handleClickRegisterButton}
-          variant={VariantButtonEnum.SECONDARY}
+          variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
         />
       </S.ButtonContainer>
 

@@ -31,6 +31,7 @@ export const Container = styled.div<{ type: string}>`
     gap: 10px;
 `
 export const BannerIconContainer = styled.div`
+    position: relative;
     overflow: hidden;
     align-self: flex-end;
     margin-bottom: -4.2px;
@@ -57,9 +58,8 @@ export const Text = styled.span`
 `
 
 export const ButtonContainer = styled.span`
-    position: absolute;
+    position: relative;
     min-width: 154px;
-    height: 50px;
     margin-right: 32px;
     right: 0;
 `

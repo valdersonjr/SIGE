@@ -8,7 +8,7 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
         font-size: 0.9vw;
         font-weight: 600;
         line-height: 110%;
-        padding: 10px 40px;
+        padding: 10px;
       `
     }
     else if (
@@ -47,12 +47,29 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
           box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
           border: none;
           border-radius: 20px;
-
+          
           :hover {
             background-color: ${theme.palette.alert.shade};
           }
         `} 
       `
+
+    case VariantButtonEnum.PRIMARY_TRANSPARENT:
+      return css`
+        ${({theme}) => css`
+          ${buttonStyle()}
+          padding: 12px 40px;
+          background-color: transparent;
+          color: ${theme.palette.alert.base};
+          border: 1px solid ${theme.palette.alert.base};
+          border-radius: 20px;
+
+          :hover {
+            color: ${theme.palette.light.tint};
+            background-color: ${theme.palette.alert.base};
+          }
+      `}`
+
     case VariantButtonEnum.SMALL_PRIMARY:
       return css`
         ${({ theme }) => css`
@@ -77,12 +94,28 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
     case VariantButtonEnum.SECONDARY:
       return css`
       ${({theme}) => css`
+        /* ${buttonStyle()}
+        padding: 12px 40px;
+        background-color: transparent;
+        color: ${theme.palette.primary.base};
+        border: 1px solid ${theme.palette.primary.base};
+        border-radius: 20px; */
+      `}`
+
+    case VariantButtonEnum.SECONDARY_TRANSPARENT:
+      return css`
+      ${({theme}) => css`
         ${buttonStyle()}
         padding: 12px 40px;
-        background-color: ${theme.palette.alert.base};
-
+        background-color: transparent;
+        color: ${theme.palette.primary.base};
+        border: 1px solid ${theme.palette.primary.base};
         border-radius: 20px;
 
+        :hover {
+            color: ${theme.palette.light.tint};
+            background-color: ${theme.palette.primary.base};
+          }
       `}`
 
     case VariantButtonEnum.SMALL_SECONDARY:
