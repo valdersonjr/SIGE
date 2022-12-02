@@ -7,9 +7,15 @@ import * as S from './ActionIcons.style';
 export const ActionIcons: React.FC = () => {
     return (
         <S.Container>
-            <ThrashIcon />
-            <EyeIcon />
-            <SwitchOnIcon />
+            <S.Button>
+                <ThrashIcon />
+            </S.Button>
+            <S.Button>
+                <EyeIcon />
+            </S.Button>
+            <S.Button>
+                <SwitchOnIcon />
+            </S.Button>
         </S.Container>
     )
 }

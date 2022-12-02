@@ -9,3 +9,8 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-around;
 `
+
+export const Button = styled.button`
+    cursor: pointer;
+    border: none;
+`

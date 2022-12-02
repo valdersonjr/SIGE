@@ -2,14 +2,21 @@ import styled from "styled-components";
 import { theme } from "~/theme";
 
 export const Container = styled.div`
-    position: relative;
+    position: fixed;
     min-width: 32vh;
     height: 100vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    background-color: ${theme.palette.light.tint};
 `;
+
+export const SideBarSkeleton = styled.div`
+    height: 100vh;
+    min-width: 32vh;
+`
 
 export const SigeLogo = styled.img`
     width: 64px;

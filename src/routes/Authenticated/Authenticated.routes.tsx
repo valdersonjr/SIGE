@@ -7,6 +7,7 @@ import StudentsPage from '~/framework/pages/Students/Students.page';
 import ManagementPage from '~/framework/pages/Management/Management.page';
 
 import PageBase from '~/framework/templates/PageBase/PageBase.template';
+import { RegisterStudent } from '~/framework/templates/RegisterStudent/RegisterStudent.template';
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ export const AuthenticatedRoutes: React.FC = () => {
       <Route path='/' element={<PageBase />}>
         <Route index element={<HomePage />} />
         <Route path='/alunos' element={<StudentsPage />} />
+        <Route path='/alunos/novo-aluno' element={<RegisterStudent />} />
         <Route path='/gestao-escolar' element={<ManagementPage />} />
         <Route path='/usuarios' element={<UsersPage />} />
         <Route path='/relatorios' element={<ReportsPage />} />

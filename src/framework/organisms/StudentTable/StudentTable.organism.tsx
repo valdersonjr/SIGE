@@ -20,6 +20,50 @@ const temp = [{
     periodo: 'Período',
     turma: 'Berçário',
     situacao: 'Ativo'
+},
+{
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+}, {
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+}, {
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+}, {
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
+}, {
+    aluno: 'Maria',
+    periodo: 'Período',
+    turma: 'Berçário',
+    situacao: 'Ativo'
 }];
 
 export const StudentTable: React.FC = () => {
