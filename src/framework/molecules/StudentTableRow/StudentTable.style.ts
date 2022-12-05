@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const situation: { [key: string]: string } = {
+    'Ativo': '#36D75E',
+    'Desativado': '#FF5964',
+    'Pendência': '#F18F01',
+    'Indisponível': '#949494',
+  };
+
 import { theme } from "~/theme";
 
 export const Container = styled.div<{ index:number }>`
@@ -18,9 +25,26 @@ export const RowSection = styled.div`
     height: 100%;
     
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+`
+
+export const SituationContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+`
+
+export const SituationIcon = styled.div<{ flag:string }>`
+    width: 10px;
+    height: 10px;
+
+    border-radius: 100%;
+
+    background: ${({flag}) => situation[flag]};
+    box-shadow: 0px 0px 12px ${({flag}) => situation[flag]};
 `
 
 export const Text = styled.span`

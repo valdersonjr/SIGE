@@ -4,7 +4,7 @@ import { theme } from "~/theme";
 export const Container = styled.div`
     overflow: auto;
     width: 94%;
-    max-height: 350px;
+    max-height: 95%;
     margin-bottom: 10px;
 
     border: 1px solid ${theme.palette.light.base};

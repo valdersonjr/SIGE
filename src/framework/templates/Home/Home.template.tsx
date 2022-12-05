@@ -5,7 +5,7 @@ import { HomePageBanner } from '~/framework/atoms/Icons';
 
 import { Banner, Card } from '~/framework/molecules';
 
-import { cardsData, classesData, regData } from './Home.logic';
+import { cardsDataRow1, cardsDataRow2, classesData, regData } from './Home.logic';
 
 import * as S from "./Home.style";
 
@@ -26,19 +26,44 @@ export const Home: React.FC = () => {
                         ))}
                     </S.ChartCardsContainer>
                 </S.NewRegistrationsContainer>
-                <S.CardsContainer>
-                    {cardsData.map((item) => (
-                        <Card key={item.key} label={item.label} value={item.value} />
-                    ))}
-                    <S.BirthdaysOfMonth>teste</S.BirthdaysOfMonth>
-                </S.CardsContainer>
+
+
+                <S.CardsBody>
+                    <S.CardsBlock>
+                        {cardsDataRow1.map((item) => (
+                            <Card key={item.key} label={item.label} value={item.value} />
+                        ))}
+                    </S.CardsBlock>
+
+                    <S.CardsBirthBlock>
+                        {cardsDataRow2.map((item) => (
+                            <Card key={item.key} label={item.label} value={item.value} />
+                        ))}
+                        <S.BirthDayBanner />
+                    </S.CardsBirthBlock>
+                </S.CardsBody>
+
+
+
                 <S.ClassText>Turmas</S.ClassText>
-                <S.ClassCards>
+                <S.CardsBody>
+                    <S.CardsBlock>
+                        {cardsDataRow2.map((item) => (
+                            <Card key={item.key} label={item.label} value={item.value} />
+                        ))}
+                    </S.CardsBlock>
+                    <S.CardsBirthBlock>
+                        {cardsDataRow2.map((item) => (
+                            <Card key={item.key} label={item.label} value={item.value} />
+                        ))}
+                    </S.CardsBirthBlock>
+                </S.CardsBody>
+                {/* <S.ClassCards>
                     {classesData.map((item) => (
                         <Card key={item.key} label={item.label} value={item.value} />
                     ))}
-                </S.ClassCards>
+                </S.ClassCards> */}
             </S.RegistrationsContainer>
-        </S.Container>
+        </S.Container >
     )
 }

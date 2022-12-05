@@ -7,6 +7,7 @@ export * from './UserTag.icon';
 export * from './Teacher.icon';
 export * from './SwitchOn.icon';
 export * from './Dashboard.icon';
+export * from './ChevronUp.icon';
 export * from './HomePageBanner.icon';
 export * from './ChevronLeftCircle.icon';
 export * from './StudentsPageBanner.icon';

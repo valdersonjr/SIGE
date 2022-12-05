@@ -30,4 +30,17 @@ export const financeDataInputLabel = [{
 {
     label: 'Nome do Pai',
     key: 3
-}]
+}];
+
+export const medicalDataInputLabel = [{
+    label: 'Convênio Médico',
+    key: 0
+},
+{
+    label: 'Documento de Convênio Médico',
+    key: 1
+},
+{
+    label: 'Hospital de Preferência',
+    key: 2
+}];

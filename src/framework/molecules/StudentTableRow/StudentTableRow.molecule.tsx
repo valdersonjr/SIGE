@@ -5,7 +5,7 @@ import { StudentTableRowProps } from "./StudentTableRow.interface";
 import * as S from './StudentTable.style';
 import { ActionIcons } from "../ActionIcons/ActionIcons.molecule";
 
-export const StudentTableRow: React.FC<StudentTableRowProps> = ({ index, title, aluno, periodo, turma, situacao }) => {
+export const StudentTableRow: React.FC<StudentTableRowProps> = ({ index, title, aluno, periodo, turma, situacao, onEyeClick, onSwitchClick, onThrashClick }) => {
     if (title) {
         return (
             <S.Container index={index}>
@@ -39,11 +39,14 @@ export const StudentTableRow: React.FC<StudentTableRowProps> = ({ index, title, 
                 <S.Text>{turma}</S.Text>
             </S.RowSection>
             <S.RowSection>
-                <S.Text>{situacao}</S.Text>
+                <S.SituationContainer>
+                    {situacao ? <S.SituationIcon flag={situacao} /> : ""}
+                    <S.Text>{situacao}</S.Text>
+                </S.SituationContainer>
             </S.RowSection>
             <S.RowSection>
-                <ActionIcons />
+                <ActionIcons onEyeClick={onEyeClick} onSwitchClick={onSwitchClick} onThrashClick={onThrashClick} />
             </S.RowSection>
-        </S.Container>
+        </S.Container >
     )
 }

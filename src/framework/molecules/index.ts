@@ -3,6 +3,7 @@ export * from './Banner/Banner.molecule';
 export * from './Navigation/Navigation.molecule';
 export * from './AvatarCard/AvatarCard.molecule';
 export * from './ActionIcons/ActionIcons.molecule';
+export * from './DropdownHeader/DropdownHeader.molecule';
 export * from './Inputs/InputIcon/InputIcon.molecule';
 export * from './Inputs/InputSelect/InputSelect.molecule';
 export * from './StudentTableRow/StudentTableRow.molecule';

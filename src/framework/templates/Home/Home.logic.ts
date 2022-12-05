@@ -14,7 +14,7 @@ export const regData = [{
     key: 2
 }];
 
-export const cardsData = [{
+export const cardsDataRow1 = [{
     label: 'Card Teste',
     value: 7,
     key: 0
@@ -33,18 +33,18 @@ export const cardsData = [{
     label: 'Card Teste',
     value: 7,
     key: 3
-},
-{
-    label: 'Card Teste',
-    value: 7,
-    key: 4
-},
-{
-    label: 'Card Teste',
-    value: 7,
-    key: 5
-},];
+}];
 
+export const cardsDataRow2 = [{
+    label: 'Card Teste',
+    value: 7,
+    key: 0
+},
+{
+    label: 'Card Teste',
+    value: 7,
+    key: 1
+}];
 
 export const classesData = [{
     label: 'Card Teste',

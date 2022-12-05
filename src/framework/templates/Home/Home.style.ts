@@ -32,7 +32,6 @@ export const NewRegistrationsTitle = styled.h2`
 export const NewRegistrationsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    /* background-color: green; */
 `
 export const ChartContainer = styled.div`
     border: 1px solid ${theme.palette.light.base};
@@ -48,20 +47,33 @@ export const ChartCardsContainer = styled.div`
     align-items: flex-end;
     justify-content: space-between;
 `
-export const CardsContainer = styled.div`
-    max-width: 100%;
 
+export const CardsBody = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    column-gap: 65px;
-    row-gap: 16px;
+    grid-template-columns: 1fr 1fr;
 `
-export const BirthdaysOfMonth = styled.div`
-    border: 2px solid black;
+
+export const CardsBlock = styled.div`
+    display: grid;
     width: 100%;
-    height: 100px;
-    width: 2fr;
+    grid-template-columns: 1fr 1fr;
+
+    justify-items: flex-start;
+`
+
+export const CardsBirthBlock = styled.div`
+    display: grid;
+    /* width: 100%; */
+    grid-template-columns: 1fr 1fr;
+    justify-items: flex-end;
+`
+
+export const BirthDayBanner = styled.div`
+    height: 100%;
+    width: 500px;
+    border: 2px red;
+    background-color: red;
+    grid-column: 1/3;
 `
 
 export const ClassText = styled.h3`

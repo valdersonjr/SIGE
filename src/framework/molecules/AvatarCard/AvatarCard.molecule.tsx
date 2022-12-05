@@ -17,7 +17,7 @@ export const AvatarCard: React.FC = () => {
                     </S.TextContainer>
                 </S.UserInfo>
             </S.UserInfo>
-            <Button type='button' label='Ver meus dados' variant={VariantButtonEnum.SMALL_PRIMARY} />
+            <Button type='button' label='Ver meus dados' variant={VariantButtonEnum.SMALL_SECONDARY} />
         </S.Container>
     )
 }

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { theme } from "~/theme";
 
 export const Container = styled.div`
     width: 100%;
@@ -32,6 +33,8 @@ export const Button = styled.button`
 `
 
 export const Body = styled.div`
+    min-height: 80vh;
+    max-height: 95vh;
     width: 94%;
     box-shadow: 0px -3px 32px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
@@ -48,6 +51,12 @@ export const ImageInputContainer = styled.div`
     margin-bottom: 16px;
 `
 
+export const InputSection = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+`
 export const InputContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -55,4 +64,20 @@ export const InputContainer = styled.div`
     gap: 10px;
 
     padding: 10px;
+`
+
+export const MedicalInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8vw;
+    font-weight: 600; 
+    color: ${theme.palette.dark.tint};
+    width: 100%;
+    gap: 8px;
+`
+export const MedicalInfoInput = styled.textarea`
+    ${theme.components.input}
+    outline: none;
+    resize: none;
+    max-height: 95vh;
 `

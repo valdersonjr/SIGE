@@ -48,7 +48,7 @@ export const FormLogin: React.FC<FormLoginProps> = ({
       </S.InputFormContainer>
 
       <S.ButtonContainer>
-        <Button label={buttonLoginText} variant={VariantButtonEnum.SMALL_PRIMARY} />
+        <Button label={buttonLoginText} variant={VariantButtonEnum.SMALL_SECONDARY} />
       </S.ButtonContainer>
     </S.FormContainer>
   );
