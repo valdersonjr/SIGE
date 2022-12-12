@@ -18,7 +18,7 @@ export const RegistrationsContainer = styled.div`
     flex-direction: column;
 `
 
-export const NewRegistrationsTitle = styled.h2`
+export const PageTitles = styled.h2`
     margin-top: 16px;
     margin-left: 16px;
     margin-bottom: 16px;
@@ -49,39 +49,39 @@ export const ChartCardsContainer = styled.div`
 `
 
 export const CardsBody = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `
 
 export const CardsBlock = styled.div`
     display: grid;
     width: 100%;
+    height: 100%;
     grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
 
+    justify-content: space-between;
     justify-items: flex-start;
 `
 
 export const CardsBirthBlock = styled.div`
-    display: grid;
-    /* width: 100%; */
-    grid-template-columns: 1fr 1fr;
-    justify-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    gap: 16px;
 `
 
 export const BirthDayBanner = styled.div`
     height: 100%;
-    width: 500px;
-    border: 2px red;
-    background-color: red;
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background-color: ${theme.palette.primary.base};
     grid-column: 1/3;
-`
-
-export const ClassText = styled.h3`
-    color: ${theme.palette.primary.base};
-    font-weight: 900;
-    font-size: 23px;
-    line-height: 110%;
-    margin-bottom: 16px;
 `
 
 export const ClassCards = styled.div`
@@ -91,4 +91,5 @@ export const ClassCards = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 20px;
 `

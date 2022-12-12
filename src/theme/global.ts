@@ -24,6 +24,17 @@ export const GlobalStyles = createGlobalStyle`
       body {
         height: 100%;
         width: 100%;
+
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.4);
+          border-radius: 5px;
+        }
       }
 
       footer {

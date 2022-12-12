@@ -15,7 +15,7 @@ export const Home: React.FC = () => {
         <S.Container>
             <Banner type="home" Icon={<HomePageBanner />} title='Plataforma que Simplifica a vida!' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade." />
             <S.RegistrationsContainer>
-                <S.NewRegistrationsTitle>Novas Matrículas</S.NewRegistrationsTitle>
+                <S.PageTitles>Novas Matrículas</S.PageTitles>
                 <S.NewRegistrationsContainer>
                     <S.ChartContainer>
                         <BarChaart />
@@ -34,35 +34,28 @@ export const Home: React.FC = () => {
                             <Card key={item.key} label={item.label} value={item.value} />
                         ))}
                     </S.CardsBlock>
-
                     <S.CardsBirthBlock>
-                        {cardsDataRow2.map((item) => (
-                            <Card key={item.key} label={item.label} value={item.value} />
-                        ))}
-                        <S.BirthDayBanner />
+                        <div style={{"display":"flex", "flexDirection":"row", "justifyContent":"space-between", "gap":"20%"}}>
+                            {cardsDataRow2.map((item) => (
+                                <Card key={item.key} label={item.label} value={item.value} />
+                            ))}
+                        </div>
+                        <S.BirthDayBanner >
+                            <h2 style={{"textAlign":"center", "marginTop":"30px"}}>Banner</h2>
+                        </S.BirthDayBanner>
                     </S.CardsBirthBlock>
                 </S.CardsBody>
 
 
-
-                <S.ClassText>Turmas</S.ClassText>
-                <S.CardsBody>
-                    <S.CardsBlock>
-                        {cardsDataRow2.map((item) => (
-                            <Card key={item.key} label={item.label} value={item.value} />
-                        ))}
-                    </S.CardsBlock>
-                    <S.CardsBirthBlock>
-                        {cardsDataRow2.map((item) => (
-                            <Card key={item.key} label={item.label} value={item.value} />
-                        ))}
-                    </S.CardsBirthBlock>
-                </S.CardsBody>
-                {/* <S.ClassCards>
+                <div style={{"marginTop": "20px"}}>
+                    <S.PageTitles>Turmas</S.PageTitles>
+                </div>
+               
+                <S.ClassCards>
                     {classesData.map((item) => (
                         <Card key={item.key} label={item.label} value={item.value} />
                     ))}
-                </S.ClassCards> */}
+                </S.ClassCards>
             </S.RegistrationsContainer>
         </S.Container >
     )
