@@ -2,6 +2,7 @@ export * from './Title/Title.atom';
 export * from './Input/Input.atom';
 export * from './Button/Button.atom';
 export * from './Select/Select.atom';
+export * from './PostIt/PostIt.atom';
 export * from './BarChaart/BarChaart';
 export * from './BigLogo/BigLogo.atom';
 export * from './Checkbox/Checkbox.atom';

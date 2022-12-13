@@ -100,6 +100,8 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
         color: ${theme.palette.primary.base};
         border: 1px solid ${theme.palette.primary.base};
         border-radius: 20px; */
+
+        
       `}`
 
     case VariantButtonEnum.SECONDARY_TRANSPARENT:

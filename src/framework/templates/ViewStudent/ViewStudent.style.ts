@@ -34,12 +34,11 @@ export const Button = styled.button`
     cursor: pointer;
 `
 
-export const DropdownBody = styled.div`
-    background-color: ${theme.palette.light.base};
-
+export const DropdownContainer = styled.div`
     width: 94%;
 
-    padding: 12px 16px;
-    border: 1px solid #F0F6FA;
-    border-radius: 0px 0px 7px 7px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
 `
