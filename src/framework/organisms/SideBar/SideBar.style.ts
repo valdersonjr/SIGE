@@ -19,8 +19,8 @@ export const SideBarSkeleton = styled.div`
 `
 
 export const SigeLogo = styled.img`
-    width: 64px;
-    height: 72px;
+    width: 95px;
+    height: 102px;
 
     margin-top: 16px;
     margin-bottom: 34px;

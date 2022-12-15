@@ -7,12 +7,17 @@ import { DashboardIcon } from '~/framework/atoms/Icons';
 import { Navigation, AvatarCard } from '~/framework/molecules';
 
 import * as S from "./SideBar.style";
+import { useNavigate } from 'react-router-dom';
 
 export const SideBar: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <S.SideBarSkeleton>
             <S.Container>
-                <S.SigeLogo src="/logo.svg" alt="Logo do SIGE" />
+                <div style={{"display":"inline", "cursor": "pointer"}} onClick={() => navigate("/")} >
+                    <S.SigeLogo src="/logo.svg" alt="Logo do SIGE" />
+                </div>
                 <Navigation />
                 <S.Footer>
                     <AvatarCard />
