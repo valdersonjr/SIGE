@@ -12,3 +12,4 @@ export * from './ChevronUpCircle.icon';
 export * from './ChevronDownCircle.icon';
 export * from './ChevronLeftCircle.icon';
 export * from './StudentsPageBanner.icon';
+export * from './ManagementPageBanner.icon';

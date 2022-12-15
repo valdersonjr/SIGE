@@ -12,6 +12,11 @@ const getVariant = (type:string) => {
             background: linear-gradient(90.29deg, #35A7FF 0.94%, #0078D5 99.94%);
         `
     }
+    else if (type === 'gestao-escolar') {
+        return css`
+            background: linear-gradient(90.27deg, #F18F01 0.94%, #D78003 99.93%);
+        `
+    }
 }
 
 export const Container = styled.div<{ type: string}>`

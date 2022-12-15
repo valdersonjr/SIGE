@@ -4,6 +4,7 @@ import { StudentTableRowProps } from "./StudentTableRow.interface";
 
 import * as S from './StudentTable.style';
 import { ActionIcons } from "../ActionIcons/ActionIcons.molecule";
+import { GlowingCircle } from "~/framework/atoms";
 
 export const StudentTableRow: React.FC<StudentTableRowProps> = ({ index, title, aluno, periodo, turma, situacao, onEyeClick, onSwitchClick, onThrashClick }) => {
     if (title) {
@@ -40,7 +41,7 @@ export const StudentTableRow: React.FC<StudentTableRowProps> = ({ index, title, 
             </S.RowSection>
             <S.RowSection>
                 <S.SituationContainer>
-                    {situacao ? <S.SituationIcon flag={situacao} /> : ""}
+                    {situacao ? <GlowingCircle type={situacao} />  : ""}
                     <S.Text>{situacao}</S.Text>
                 </S.SituationContainer>
             </S.RowSection>

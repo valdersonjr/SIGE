@@ -16,11 +16,13 @@ const ViewStudent: React.FC = () => {
     return (
         <S.Container>
             <S.Header>
-                <S.Button onClick={() => navigate(-1)}>
+                <S.BackButton onClick={() => navigate(-1)}>
                     <ChevronLeftCircle />
-                </S.Button>
+                </S.BackButton>
                 <Title>Visualizar Aluno</Title>
-                <Button label='Editar dados do Aluno' variant={VariantButtonEnum.SECONDARY} />
+                <S.EditDataButton>
+                    <Button label='Editar dados do Aluno' variant={VariantButtonEnum.SECONDARY} />
+                </S.EditDataButton>
             </S.Header>
             <S.DropdownContainer>
                 <Dropdown title='Dados do Aluno' >

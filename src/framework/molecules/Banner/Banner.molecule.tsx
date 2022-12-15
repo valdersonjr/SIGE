@@ -11,9 +11,7 @@ export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, 
 
     return (
         <S.Container type={type} >
-            <S.BannerIconContainer>
-                {Icon}
-            </S.BannerIconContainer>
+            <S.BannerIconContainer>{Icon}</S.BannerIconContainer>
             <S.TextContainer>
                 <S.Title>{title}</S.Title>
                 <S.Text>{text}</S.Text>

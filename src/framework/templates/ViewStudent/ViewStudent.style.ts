@@ -13,6 +13,7 @@ export const Container = styled.div`
 `
 
 export const Header = styled.div`
+    position: relative;
     margin-top: 8px;
     width: 94%;
     padding: 10px;
@@ -28,10 +29,20 @@ export const Header = styled.div`
     gap: 20px;
 `
 
-export const Button = styled.button`
+export const BackButton = styled.button`
     border-radius: 8px;
     border: none;
     cursor: pointer;
+`
+
+export const EditDataButton = styled.button`
+    all: unset;
+    position: absolute;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    right: 0;
+    margin-right: 28px;
 `
 
 export const DropdownContainer = styled.div`

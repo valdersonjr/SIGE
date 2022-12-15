@@ -1,0 +1,5 @@
+export interface ColumnCenterCardProps {
+    label: string;
+    value: number;
+    active?: boolean;
+}

@@ -93,16 +93,22 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
 
     case VariantButtonEnum.SECONDARY:
       return css`
-      ${({theme}) => css`
-        /* ${buttonStyle()}
-        padding: 12px 40px;
-        background-color: transparent;
-        color: ${theme.palette.primary.base};
-        border: 1px solid ${theme.palette.primary.base};
-        border-radius: 20px; */
+        ${({theme}) => css`
+          ${buttonStyle(VariantButtonEnum.PRIMARY)}
 
-        
-      `}`
+          padding: 12px 40px;
+          color: ${theme.palette.light.tint};
+          background-color: ${theme.palette.primary.base};
+
+          box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+          border: none;
+          border-radius: 20px;
+          
+          :hover {
+            background-color: ${theme.palette.primary.shade};
+          }
+        `} 
+      `
 
     case VariantButtonEnum.SECONDARY_TRANSPARENT:
       return css`

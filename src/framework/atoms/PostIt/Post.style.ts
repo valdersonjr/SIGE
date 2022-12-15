@@ -3,7 +3,7 @@ import { theme } from "~/theme";
 
 export const Container = styled.div`
     width: 260px;
-    min-height: 75px;
+    min-height: 150px;
     padding: 12px;
 
     display: flex;

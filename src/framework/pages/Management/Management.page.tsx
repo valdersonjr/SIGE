@@ -1,8 +1,14 @@
 import React from 'react';
 
+import { Management } from '~/framework/templates';
+
+import * as S from './Management.style';
+
 const ManagementPage: React.FC = () => {
     return (
-        <div>Management Page</div>
+        <S.Container>
+            <Management/>
+        </S.Container>
     )
 }
 
