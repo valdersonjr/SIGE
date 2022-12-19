@@ -1,8 +1,9 @@
 import React from "react";
-import { StudentTableRow } from "~/framework/molecules";
 
-export const ClassTable:React.FC = () => {
-    return(
+import { TableRow } from "~/framework/molecules";
+
+export const ClassTable: React.FC = () => {
+    return (
         // <S.Container>
         //     <StudentTableRow index={0} title={true} />
         //     {/* {temp.map((row, index) => (

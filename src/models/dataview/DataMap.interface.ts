@@ -1,4 +1,4 @@
 export interface DataMap {
-    data: string,
     key: number
+    data: string,
 }

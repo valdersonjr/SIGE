@@ -1,12 +1,10 @@
 import styled from "styled-components";
-
 import { theme } from "~/theme";
 
-
-export const Container = styled.div<{ index:number }>`
-    background-color: ${({index})=> index%2 === 0 ? `${theme.palette.light.tint}` : `${theme.palette.medium.base}`};
+export const Container = styled.div`
+    background-color: ${theme.palette.light.tint};
     width: 100%;
-    height: ${({index}) => index === 0 ? "40px" : "54px"};
+    height: 40px;
 
     display: flex;
     flex-direction: row;
@@ -22,13 +20,6 @@ export const RowSection = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-`
-
-export const SituationContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
 `
 
 export const Text = styled.span`

@@ -1,14 +1,10 @@
-interface RowType {
-    title?:boolean;
-}
-
 interface ActionIconsOnClicks {
     onEyeClick?: () => void;
     onThrashClick?: () => void;
     onSwitchClick?: () => void;
 }
 
-export interface StudentTableRowProps extends RowType, ActionIconsOnClicks  {
+export interface TableRowProps extends ActionIconsOnClicks  {
     index:number;
     aluno?: string;
     periodo?: string;
