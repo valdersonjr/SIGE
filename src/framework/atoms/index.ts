@@ -7,5 +7,6 @@ export * from './BarChaart/BarChaart';
 export * from './BigLogo/BigLogo.atom';
 export * from './Checkbox/Checkbox.atom';
 export * from './Paragraph/Paragraph.atom';
+export * from './SelectInLabel/SelectInLabel.atom';
 export * from './GlowingCircle/GlowingCircle.atom';
 export * as Icons from './Icons';
