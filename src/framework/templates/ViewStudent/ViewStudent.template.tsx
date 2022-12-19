@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
-import { ChevronLeftCircle } from '~/framework/atoms/Icons';
-import { Button, PostIt, Title, VariantButtonEnum } from '~/framework/atoms';
+import { PostIt } from '~/framework/atoms';
+import { Header } from '~/framework/molecules';
 import { Dropdown } from '~/framework/organisms';
 
 import { contatosDeEmergenciaSection, dadosCadastraisSection, dadosDoAlunoSection } from './ViewStudent.logic';
@@ -11,18 +9,10 @@ import { contatosDeEmergenciaSection, dadosCadastraisSection, dadosDoAlunoSectio
 import * as S from './ViewStudent.style';
 
 const ViewStudent: React.FC = () => {
-    const navigate = useNavigate();
-
     return (
         <S.Container>
             <S.Header>
-                <S.BackButton onClick={() => navigate(-1)}>
-                    <ChevronLeftCircle />
-                </S.BackButton>
-                <Title>Visualizar Aluno</Title>
-                <S.EditDataButton>
-                    <Button label='Editar dados do Aluno' variant={VariantButtonEnum.SECONDARY} />
-                </S.EditDataButton>
+                <Header title="Visualizar Aluno" onButtonClick={() => console.log("teste")} />
             </S.Header>
             <S.DropdownContainer>
                 <Dropdown title='Dados do Aluno' >

@@ -1,24 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import { Title } from "~/framework/atoms";
-import { ChevronLeftCircle } from "~/framework/atoms/Icons";
-import { InputInLabel } from "~/framework/molecules";
+import { Header, InputInLabel } from "~/framework/molecules";
 
 import { RegisterStudentProps } from "./RegisterStudent.interface";
 import { financeDataInputLabel, medicalDataInputLabel, personalDataInputLabel } from "./RegisterStudent.logic";
 
 import * as S from './RegisterStudent.style';
 
-export const RegisterStudent: React.FC = () => {
-    const navigate = useNavigate();
+export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
     return (
         <S.Container>
             <S.Header>
-                <S.Button onClick={() => navigate(-1)}>
-                    <ChevronLeftCircle />
-                </S.Button>
-                <Title>Novo Aluno</Title>
+                <Header title="Novo Aluno" />
             </S.Header>
             <S.Body>
                 <S.ImageInputContainer>

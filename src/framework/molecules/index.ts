@@ -1,5 +1,6 @@
 export * from './Card/Card.molecule';
 export * from './Banner/Banner.molecule';
+export * from './Header/Header.molecule';
 export * from './Navigation/Navigation.molecule';
 export * from './AvatarCard/AvatarCard.molecule';
 export * from './ActionIcons/ActionIcons.molecule';
