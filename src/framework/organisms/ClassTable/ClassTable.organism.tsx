@@ -1,15 +1,84 @@
 import React from "react";
 
-import { TableRow } from "~/framework/molecules";
+import { useNavigate } from "react-router-dom";
 
-export const ClassTable: React.FC = () => {
+import { TableRow, TableRowTitle } from "~/framework/molecules";
+
+import { ClassTableProps } from "./ClassTable.interface";
+import { titleList } from "./ClassTable.logic";
+import * as S from './ClassTable.style';
+
+const temp = [{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+},
+{
+    aluno: 'Jardim I',
+    periodo: 'Manhã',
+    turma: '08:00 - 12:00',
+    situacao: 'Ativo'
+}];
+
+
+export const ClassTable: React.FC<ClassTableProps> = () => {
+    const navigate = useNavigate();
+
     return (
-        // <S.Container>
-        //     <StudentTableRow index={0} title={true} />
-        //     {/* {temp.map((row, index) => (
-        //         <StudentTableRow index={index + 1} aluno={row.aluno} periodo={row.periodo} turma={row.turma} situacao={row.situacao} onEyeClick={() => navigate('/alunos/visualizar-aluno')} />
-        //     ))} */}
-        // </S.Container>
-        <div></div>
+        <S.Container>
+            <TableRowTitle title={titleList} />
+            {temp.map((row, index) => (
+                <TableRow index={index} aluno={row.aluno} periodo={row.periodo} turma={row.turma} situacao={row.situacao} onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")} />
+            ))}
+        </S.Container>
     )
 }

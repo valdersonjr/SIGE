@@ -3,6 +3,7 @@ export * from './LoginBanner/LoginBanner.template';
 export * from './ViewStudent/ViewStudent.template';
 export * from './ViewClasses/ViewClasses.template';
 export * from './Management/Management.template';
+export * from './ViewClass/ViewClass.template';
 export * from './PageBase/PageBase.template';
 export * from './Students/Students.template';
 export * from './Home/Home.template'

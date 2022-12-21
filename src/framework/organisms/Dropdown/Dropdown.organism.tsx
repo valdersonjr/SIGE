@@ -6,12 +6,10 @@ import { DrodownProps } from './Dropdown.interface';
 
 import * as S from './Dropdown.style';
 
-export const Dropdown:React.FC<DrodownProps> = ({title, children}) => {
+export const Dropdown: React.FC<DrodownProps> = ({ title, children }) => {
     const [dropdownState, setDropdownState] = useState<boolean>(true);
 
-    console.log(dropdownState);
-
-    return(
+    return (
         <S.Container>
             <DropdownHeader title={title} dropdownState={dropdownState} setDropdownState={setDropdownState} />
             {dropdownState ? <S.DropdownBody> {children} </S.DropdownBody> : <></>}

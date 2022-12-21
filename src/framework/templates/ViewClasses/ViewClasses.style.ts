@@ -3,6 +3,7 @@ import { theme } from "~/theme";
 
 export const Container = styled.div`
     width: 94%;
+    height: 100%;
     
     display: flex;
     flex-direction: column;
