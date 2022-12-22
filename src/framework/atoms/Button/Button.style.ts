@@ -14,7 +14,8 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
     else if (
       v === VariantButtonEnum.SECONDARY ||
       v === VariantButtonEnum.TEXT ||
-      v === VariantButtonEnum.SECONDARY_TRANSPARENT){
+      v === VariantButtonEnum.SECONDARY_TRANSPARENT ||
+      v === VariantButtonEnum.PRIMARY_TRANSPARENT){
         return css`
         padding: 3% 0px;
         font-size: 0.9vw;

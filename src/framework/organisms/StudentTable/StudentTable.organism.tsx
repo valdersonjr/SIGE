@@ -2,8 +2,9 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { StudentTableRow } from "~/framework/molecules";
+import { TableRow, TableRowTitle } from "~/framework/molecules";
 
+import { titleList } from './StudentTable.logic';
 import * as S from './StudentTable.style';
 
 const temp = [{
@@ -69,14 +70,14 @@ const temp = [{
     situacao: 'Ativo'
 }];
 
-export const StudentTable: React.FC = () => {
+export const Table: React.FC = () => {
     const navigate = useNavigate();
 
     return (
         <S.Container>
-            <StudentTableRow index={0} title={true} />
+            <TableRowTitle title={titleList} />
             {temp.map((row, index) => (
-                <StudentTableRow index={index + 1} aluno={row.aluno} periodo={row.periodo} turma={row.turma} situacao={row.situacao} onEyeClick={() => navigate('/alunos/visualizar-aluno')} />
+                <TableRow index={index} aluno={row.aluno} periodo={row.periodo} turma={row.turma} situacao={row.situacao} onEyeClick={() => navigate('/alunos/visualizar-aluno')} />
             ))}
         </S.Container>
     )

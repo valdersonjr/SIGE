@@ -1,6 +1,10 @@
 import React from "react";
 
-export interface DrodownProps {
+interface DropdownCardButtonProps {
+    buttonText?: string;
+}
+
+export interface DrodownProps extends DropdownCardButtonProps {
     title: string;
     children?: React.ReactNode;
 }

@@ -12,7 +12,7 @@ const ViewStudent: React.FC = () => {
     return (
         <S.Container>
             <S.Header>
-                <Header title="Visualizar Aluno" onButtonClick={() => console.log("teste")} />
+                <Header title="Visualizar Aluno" buttonText="Editar dados do Aluno" onButtonClick={() => console.log("teste")} />
             </S.Header>
             <S.DropdownContainer>
                 <Dropdown title='Dados do Aluno' >

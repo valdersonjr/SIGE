@@ -1,11 +1,46 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "~/theme";
 
-export const Container = styled.div`
+export const color: { [key: string]: string } = {
+    'first': `${theme.palette.light.tint}`,
+    'second':`${theme.palette.light.tint}`,
+    'third': `${theme.palette.light.tint}`,
+    'fourth': `${theme.palette.light.tint}`
+};
+
+const variant = (type:string) => {
+    if(type === "first"){
+        return css`
+            background: linear-gradient(90deg, #35A7FF 2.23%, #5A78FF 103.23%);
+        `
+    }
+    else if (type === "second") {
+        return css`
+            background: linear-gradient(90deg, #35A7FF 2.23%, #5A78FF 103.23%);
+        `
+    }
+    else if (type === "third") {
+        return css`
+            background: linear-gradient(91.74deg, #36D75E 0%, #26AB47 100%);
+        `
+    }
+    else if (type === "fourth") {
+        return css`
+            background: linear-gradient(90deg, #FF5964 2.23%, #D8000E 103.23%);
+        `
+    }
+    else {
+        return css`
+            background-color: ${color[type]};
+        `
+    }
+}
+
+export const Container = styled.div<{ type:string }>`
+    ${({type}) => variant(type)}
+
     min-height: 100px;
     min-width: 250px;
-
-    background-color: ${theme.palette.light.tint};
 
     display: flex;
     flex-direction: column;
@@ -17,6 +52,8 @@ export const Container = styled.div`
 
     border: 1px solid #EDEDED;
     border-radius: 12px;
+
+    padding: 18px;
 `
 
 export const HeaderContainer = styled.div`
@@ -37,5 +74,4 @@ export const HeaderLabel = styled.span`
     font-weight: 400;
     font-size: 14px;
     line-height: 110%;
-    color: ${theme.palette.dark.shade};
 `

@@ -8,7 +8,7 @@ import { HeaderProps } from "./Header.interface";
 
 import * as S from './Header.style';
 
-export const Header: React.FC<HeaderProps> = ({ title, onButtonClick }) => {
+export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText }) => {
     const navigate = useNavigate();
 
     return (
@@ -19,8 +19,8 @@ export const Header: React.FC<HeaderProps> = ({ title, onButtonClick }) => {
             <Title>{title}</Title>
             {onButtonClick ?
                 <S.EditDataButton onClick={onButtonClick}>
-                    <Button label='Editar dados do Aluno' variant={VariantButtonEnum.SECONDARY} />
-                </S.EditDataButton> : ""}
+                    <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} />
+                </S.EditDataButton> : <></>}
         </S.Container>
     )
 }
