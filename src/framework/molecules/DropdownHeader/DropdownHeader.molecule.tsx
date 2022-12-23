@@ -6,12 +6,12 @@ import { ChevronDownCircle, ChevronUpCircle } from "~/framework/atoms/Icons";
 import { DropdownCardProps } from "./DropdownHeader.interface";
 import * as S from './DropdownHeader.style';
 
-export const DropdownHeader: React.FC<DropdownCardProps> = ({ title, dropdownState, setDropdownState, buttonText }) => {
+export const DropdownHeader: React.FC<DropdownCardProps> = ({ title, dropdownState, setDropdownState, buttonText, onButtonClick }) => {
     return (
         <S.Container state={dropdownState} >
             <Title size={20}>{title}</Title>
             <div style={{"display":"flex", "flexDirection":"row", "gap": "10px"}}>
-                {buttonText ? <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} />  : <></>}
+                {buttonText ? <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} onClick={onButtonClick} />  : <></>}
                 <S.Icon onClick={() => setDropdownState(!dropdownState)}>
                     {dropdownState ? <ChevronUpCircle /> : <ChevronDownCircle />}
                 </S.Icon>

@@ -2,7 +2,8 @@ import React from "react";
 
 import { Button, SelectInLabel, Title, VariantButtonEnum } from "~/framework/atoms";
 import { Header } from "~/framework/molecules";
-import { ClassTable } from "~/framework/organisms";
+import { ClassesTable } from "~/framework/organisms";
+
 
 import * as S from './ViewClasses.style';
 
@@ -27,7 +28,7 @@ export const ViewClasses: React.FC = () => {
                     </S.ButtonContainer>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ClassTable />
+            <ClassesTable />
         </S.Container>
     )
 }

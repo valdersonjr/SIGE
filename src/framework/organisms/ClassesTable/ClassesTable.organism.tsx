@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableRowTitle } from "~/framework/molecules";
 
-import { ClassTableProps } from "./ClassTable.interface";
-import { titleList } from "./ClassTable.logic";
-import * as S from './ClassTable.style';
+import { ClassesTableProps } from "./ClassesTable.interface";
+import { titleList } from "./ClassesTable.logic";
+import * as S from './ClassesTable.style';
 
 const temp = [{
     aluno: 'Jardim I',
@@ -70,7 +70,7 @@ const temp = [{
 }];
 
 
-export const ClassTable: React.FC<ClassTableProps> = () => {
+export const ClassesTable: React.FC<ClassesTableProps> = () => {
     const navigate = useNavigate();
 
     return (

@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { theme } from "~/theme";
 
 export const Container = styled.div`
-    width: 100%;
+    width: 79.3vw;
+    overflow: auto;
 `
 
 export const DropdownBody = styled.div`
     background-color: ${theme.palette.light.base};
 
-    width: 100%;
+    width: 79.3vw;
 
     padding: 12px 16px;
     border: 1px solid #F0F6FA;

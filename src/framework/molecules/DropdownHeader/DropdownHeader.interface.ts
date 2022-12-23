@@ -1,5 +1,6 @@
 interface DropdownCardButtonProps {
     buttonText?: string;
+    onButtonClick?: () => void;
 }
 
 export interface DropdownCardProps extends DropdownCardButtonProps {
