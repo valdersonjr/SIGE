@@ -5,7 +5,7 @@ import { Table } from '~/framework/organisms';
 import { FormStudentQuery } from '~/framework/organisms';
 import { StudentsPageBanner } from '~/framework/atoms/Icons';
 
-import { StudentsProps } from './Students.interface';
+// import { StudentsProps } from './Students.interface';
 
 import { useNavigate } from 'react-router-dom';
 

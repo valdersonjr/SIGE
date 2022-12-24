@@ -11,11 +11,13 @@ export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, 
 
     return (
         <S.Container type={type} >
-            <S.BannerIconContainer>{Icon}</S.BannerIconContainer>
-            <S.TextContainer>
-                <S.Title>{title}</S.Title>
-                <S.Text>{text}</S.Text>
-            </S.TextContainer>
+            <S.MainContentContainer>
+                <S.BannerIconContainer>{Icon}</S.BannerIconContainer>
+                <S.TextContainer>
+                    <S.Title>{title}</S.Title>
+                    <S.Text>{text}</S.Text>
+                </S.TextContainer>
+            </S.MainContentContainer>
             {buttonLabel ?
                 <S.ButtonContainer>
                     <Button label={buttonLabel} type="button" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
