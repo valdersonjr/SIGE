@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, PostIt, Title, VariantButtonEnum } from "~/framework/atoms";
 
 import { ColumnCenterCard, Header } from "~/framework/molecules";
 import { Dropdown } from "~/framework/organisms";
+import EditClassData from "~/framework/organisms/Modals/EditClassData/EditClassData.organism";
 
 import { financeData, registrationData } from "./ViewClass.logic";
-
+import { EditDataModalContent } from "./EditDataModalContent/EditDataModalContent";
 import * as S from './ViewClass.style';
 
 const ViewClass: React.FC = () => {
+    const [modalState, setModalState] = useState(false);
+
+
     return (
         <S.Container>
+            {modalState ? <EditClassData modalState={modalState} setModalState={setModalState}><EditDataModalContent /></EditClassData> : <></>}
             <Header title="Turma" />
-            <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => console.log("chamar modal-1")} >
+            <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setModalState(!modalState)} >
                 {registrationData.map((item)=>(
                     <PostIt  key={item.key} title={item.name} content={item.content} />
                 ))}
