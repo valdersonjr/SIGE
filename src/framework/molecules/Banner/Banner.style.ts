@@ -22,6 +22,11 @@ const getVariant = (type:string) => {
             background: linear-gradient(90.27deg, #36D75E 0.94%, #26AB47 99.93%);
         `
     }
+    else if (type === 'reports') {
+        return css`
+          background: linear-gradient(90deg, #35A7FF 2.23%, #8FFF5A 103.23%);
+        `
+    }
 }
 
 export const Container = styled.div<{type: string}>`

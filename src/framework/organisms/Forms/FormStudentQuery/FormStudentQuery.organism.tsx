@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Select, Title, VariantButtonEnum } from "~/framework/atoms";
+import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
 
 import { InputInLabel } from "~/framework/molecules";
 

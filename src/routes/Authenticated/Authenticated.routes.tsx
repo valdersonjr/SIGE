@@ -1,8 +1,9 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from '~/framework/pages/Home/Home.page';
 import UsersPage from '~/framework/pages/Users/Users.page';
-import ReportsPage from '~/framework/pages/Report/Reports.page';
+import ReportsPage from '~/framework/pages/Reports/Reports.page';
 import StudentsPage from '~/framework/pages/Students/Students.page';
 import ManagementPage from '~/framework/pages/Management/Management.page';
 import ViewStudentPage from '~/framework/pages/Students/ViewStudent/ViewStudent.page';

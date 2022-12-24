@@ -216,6 +216,7 @@ export const Button = styled.button<ButtonInternalProps>`
     font-weight: 600;
     width: 100%;
     cursor: pointer;
+    //padding: 18px 40px;
 
     &:disabled {
       cursor: not-allowed;
