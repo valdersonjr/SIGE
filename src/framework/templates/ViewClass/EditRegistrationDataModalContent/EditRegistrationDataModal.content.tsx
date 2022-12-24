@@ -2,7 +2,7 @@ import React from "react";
 
 import { InputInLabel } from "~/framework/molecules";
 
-export const EditDataModalContent:React.FC = () => {
+export const EditRegistrationDataModal:React.FC = () => {
     return(
         <React.Fragment>
             <InputInLabel label="Nome" onChange={() => console.log("tteste")} value="Junin" />

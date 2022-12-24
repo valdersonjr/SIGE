@@ -6,25 +6,28 @@ import { Dropdown } from "~/framework/organisms";
 import EditClassData from "~/framework/organisms/Modals/EditClassData/EditClassData.organism";
 
 import { financeData, registrationData } from "./ViewClass.logic";
-import { EditDataModalContent } from "./EditDataModalContent/EditDataModalContent";
+import { EditRegistrationDataModal } from "./EditRegistrationDataModalContent/EditRegistrationDataModal.content";
+import { EditFinancialDataModal } from "./EditFinancialDataModalContent/EditFinancialData.content";
 import * as S from './ViewClass.style';
 
 const ViewClass: React.FC = () => {
-    const [modalState, setModalState] = useState(false);
+    const [registrationModalState, setRegistrationModalState] = useState(false);
+    const [financeModalState, setFinanceModalState] = useState(false);
 
 
     return (
         <S.Container>
-            {modalState ? <EditClassData modalState={modalState} setModalState={setModalState}><EditDataModalContent /></EditClassData> : <></>}
+            {registrationModalState ? <EditClassData title="Editar dados cadastrais" modalState={registrationModalState} setModalState={setRegistrationModalState}><EditRegistrationDataModal /></EditClassData> : <></>}
+            {financeModalState ? <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState}><EditFinancialDataModal/></EditClassData> : <></>}
             <Header title="Turma" />
-            <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setModalState(!modalState)} >
+            <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)} >
                 {registrationData.map((item)=>(
                     <PostIt  key={item.key} title={item.name} content={item.content} />
                 ))}
             </Dropdown>
-            <Dropdown title="Dados Financeiros" buttonText="Editar Dados" onButtonClick={() => console.log("chamar modal-2")} >
+            <Dropdown title="Dados Financeiros" buttonText="Editar Dados" onButtonClick={() => setFinanceModalState(!financeModalState)} >
                 {financeData.map((item)=>(
-                            <PostIt  key={item.key} title={item.name} content={item.content} />
+                    <PostIt  key={item.key} title={item.name} content={item.content} />
                 ))}
             </Dropdown>
             <S.LinkedStudentsHeader>

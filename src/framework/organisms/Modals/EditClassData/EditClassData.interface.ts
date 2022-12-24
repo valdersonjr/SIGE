@@ -6,5 +6,6 @@ interface BackButtonProps {
 }
 
 export interface EditClassDataProps extends BackButtonProps {
+    title: string;
     children: React.ReactNode;
 }
