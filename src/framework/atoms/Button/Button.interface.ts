@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum VariantButtonEnum {
   PRIMARY = 'primary',
   SMALL_PRIMARY = 'small-primary',
@@ -32,4 +34,5 @@ export interface ButtonProps extends ButtonInternalProps {
   rightIcon?: React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  justifyText?: 'start' | 'center' | 'end';
 }

@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText
             <Title>{title}</Title>
             {onButtonClick ?
                 <S.EditDataButton onClick={onButtonClick}>
-                    <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} />
+                    <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} justifyText="center" />
                 </S.EditDataButton> : <></>}
         </S.Container>
     )

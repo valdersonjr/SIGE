@@ -4,7 +4,6 @@ import { Button, Paragraph, Title, VariantButtonEnum } from '@atoms';
 import { LeftSideLoginProps } from './LoginBanner.interface';
 
 import * as S from './LoginBanner.style';
-import { RequestAuthUser } from '~/models/datacore/RequestAuthUser';
 import { dataview } from '~/models';
 
 export const LoginBanner: React.FC<LeftSideLoginProps> = ({
@@ -48,6 +47,7 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
           label={buttonRegisterText}
           onClick={handleClickRegisterButton}
           variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
+          justifyText="center"
         />
       </S.ButtonContainer>
 
@@ -56,6 +56,7 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
           label={buttonForgotPasswordText}
           onClick={handleClickForgotPasswordButton}
           variant={VariantButtonEnum.TEXT}
+          justifyText="center"
         />
       </S.ButtonContainer>
     </S.Container>

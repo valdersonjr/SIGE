@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ButtonInternalProps, VariantButtonType, VariantButtonEnum } from './Button.interface';
+import {VariantButtonType, VariantButtonEnum, ButtonProps} from './Button.interface';
 
 export const getVariant = (variant: VariantButtonType, selected:boolean) => {
   const buttonStyle = (v = variant) => {
@@ -210,10 +210,13 @@ export const getVariant = (variant: VariantButtonType, selected:boolean) => {
   }
 };
 
-export const Button = styled.button<ButtonInternalProps>`
-  ${({ variant = VariantButtonEnum.PRIMARY, selected}) => css`
+export const Button = styled.button<ButtonProps>`
+  ${({ variant = VariantButtonEnum.PRIMARY, selected, justifyText}) => css`
     ${getVariant(variant, Boolean(selected))}
-    font-weight: 600;
+
+    display: flex;
+    justify-content: ${justifyText};
+    align-items: center;
     width: 100%;
     cursor: pointer;
     //padding: 18px 40px;
@@ -223,9 +226,12 @@ export const Button = styled.button<ButtonInternalProps>`
     }
   `}
 `;
-
+export const Label = styled.span`
+  font-weight: 600;
+  font-size: 15px;
+`;
 export const LeftIconContainer = styled.span`
-  margin-right: calc(100% - 13px);
+  margin: 0 8px 0 0;
 `;
 export const RightIconContainer = styled.span`
   margin-left: 13px;

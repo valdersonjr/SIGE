@@ -20,10 +20,10 @@ export const ViewClasses: React.FC = () => {
                     <SelectInLabel label="Situação" />
                     <S.ButtonContainer>
                         <S.ButtonResize>
-                            <Button label="Limpar Filtro" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                            <Button label="Limpar Filtro" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                         </S.ButtonResize>
                         <S.ButtonResize>
-                            <Button label="Aplicar" variant={VariantButtonEnum.SECONDARY} />
+                            <Button label="Aplicar" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
                         </S.ButtonResize>
                     </S.ButtonContainer>
                 </S.FilterContainer>

@@ -15,8 +15,8 @@ const DownloadStudentReport: React.FC<DownloadStudentReportProps> = ({ title, ch
             </S.Header>
             <S.InputsContainer>{children}</S.InputsContainer>
             <S.ButtonsContainer>
-                <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Baixar sem filtros" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                <Button label="Baixar" variant={VariantButtonEnum.SECONDARY} />
+                <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Baixar sem filtros" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                <Button label="Baixar" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
             </S.ButtonsContainer>
         </S.Modal>
     </S.Container>

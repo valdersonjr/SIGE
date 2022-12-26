@@ -20,7 +20,7 @@ export const Banner: React.FC<BannerProps> = ({ Icon, buttonLabel, title, text, 
             </S.MainContentContainer>
             {buttonLabel ?
                 <S.ButtonContainer>
-                    <Button label={buttonLabel} type="button" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
+                    <Button label={buttonLabel} type="button" justifyText="center" variant={VariantButtonEnum.PRIMARY} onClick={onButtonClick} />
                 </S.ButtonContainer> : <></>
             }
         </S.Container>)

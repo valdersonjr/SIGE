@@ -11,7 +11,7 @@ export const DropdownHeader: React.FC<DropdownCardProps> = ({ title, dropdownSta
         <S.Container state={dropdownState} >
             <Title size={20}>{title}</Title>
             <div style={{"display":"flex", "flexDirection":"row", "gap": "10px"}}>
-                {buttonText ? <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} onClick={onButtonClick} />  : <></>}
+                {buttonText ? <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={onButtonClick} />  : <></>}
                 <S.Icon onClick={() => setDropdownState(!dropdownState)}>
                     {dropdownState ? <ChevronUpCircle /> : <ChevronDownCircle />}
                 </S.Icon>

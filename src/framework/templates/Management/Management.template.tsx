@@ -25,8 +25,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} onClick={() => navigate('/gestao-escolar/visualizar-turmas')} />
+                        <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} justifyText="center" />
+                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={() => navigate('/gestao-escolar/visualizar-turmas')} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
@@ -37,8 +37,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Cadastrar Nova Atividade" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} />
+                        <Button label="Cadastrar Nova Atividade" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
@@ -49,8 +49,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Nova Matrícula de Aluno" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} />
+                        <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
@@ -61,8 +61,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Nova Matrícula de Aluno" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dado" variant={VariantButtonEnum.SECONDARY} />
+                        <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Visualizar Dado" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
                     </S.BlockFooter>
                 </S.Block>
             </S.Body>

@@ -33,7 +33,7 @@ const ViewClass: React.FC = () => {
             <S.LinkedStudentsHeader>
                 <Title>Alunos Vínculados</Title>
                 <div style={{"maxWidth":"300px"}}>
-                    <Button label="Vincular Novo Aluno" variant={VariantButtonEnum.SECONDARY} />
+                    <Button label="Vincular Novo Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
                 </div>
             </S.LinkedStudentsHeader>
             <S.CardsContainer>

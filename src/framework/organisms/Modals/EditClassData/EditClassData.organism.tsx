@@ -15,8 +15,8 @@ const EditClassData:React.FC<EditClassDataProps> = ({ title, children, modalStat
                 </S.Header>
                 <S.InputsContainer>{ children }</S.InputsContainer>
                 <S.ButtonsContainer>
-                    <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem Salvar" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    <Button label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} />
+                    <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem Salvar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
                 </S.ButtonsContainer>
             </S.Modal>
         </S.Container>

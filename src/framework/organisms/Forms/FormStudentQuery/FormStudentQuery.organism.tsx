@@ -14,10 +14,10 @@ export const FormStudentQuery: React.FC = () => {
                 <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
                 <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
-                    <Button label="Buscar" type="submit" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                    <Button label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                 </S.SearchButton>
             </S.InputContainer>
             <Title size={18}>Filtrar por:</Title>
@@ -25,10 +25,10 @@ export const FormStudentQuery: React.FC = () => {
                 <InputInLabel label="Turma" onChange={() => console.log("tteste")} value="Junin" />
                 <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
-                    <Button label="Buscar" type="submit" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                    <Button label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                 </S.SearchButton>
             </S.InputContainer>
         </S.Form >

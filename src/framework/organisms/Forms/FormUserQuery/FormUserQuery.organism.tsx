@@ -18,10 +18,10 @@ export const FormUserQuery: React.FC = () => (
                                 options={[{value: 'ACTIVE', label: 'Ativado'}, {value: 'INACTIVE', label: 'Desativado'}]}
             />
             <S.ClearButton>
-                <Button label="Limpar filtro" type="reset" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
             </S.ClearButton>
             <S.SearchButton>
-                <Button label="Aplicar" type="submit" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                <Button label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
             </S.SearchButton>
         </S.InputContainer>
     </S.Form >

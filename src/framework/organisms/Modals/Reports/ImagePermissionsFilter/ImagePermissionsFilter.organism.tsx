@@ -12,8 +12,8 @@ const ImagePermissionsFilter: React.FC<ImagePermissionsFilterProps> = ({title, c
             </S.Header>
             <S.InputsContainer>{children}</S.InputsContainer>
             <S.ButtonsContainer>
-                <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem aplicar" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                <Button label="Aplicar filtro" variant={VariantButtonEnum.SECONDARY} />
+                <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } justifyText="center" label="Sair sem aplicar" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                <Button label="Aplicar filtro" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
             </S.ButtonsContainer>
         </S.Modal>
     </S.Container>

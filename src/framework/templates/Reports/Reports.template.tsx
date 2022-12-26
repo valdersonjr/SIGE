@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import * as S from './Reports.style';
+import { theme } from '~/theme';
 import {Banner} from "@molecules";
 import {ReportsPageBannerIcon} from "@atoms/Icons/ReportsPageBanner.icon";
 import {Button, Title, VariantButtonEnum} from "@atoms";
@@ -30,6 +31,7 @@ import ImagePermissionsFilter from "@organisms/Modals/Reports/ImagePermissionsFi
 import {
     ImagePermissionsFilterDataModal
 } from "@templates/Reports/ReportsDataModalContent/ImagePermissionsFilterContent/ImagePermissionsDataModal.content";
+import {DownloadIcon} from "@atoms/Icons/Download.icon";
 
 export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
@@ -85,23 +87,24 @@ export const Reports: React.FC = () => {
                         <S.BlockTitle>
                             <Title>{it.name}</Title>
                             <S.ButtonTitleContainer>
-                                <Button label="Baixar Relatório" type="button" variant={VariantButtonEnum.PRIMARY}
+                                <Button label="Baixar Relatório" justifyText="center" type="button" variant={VariantButtonEnum.PRIMARY}
+                                        leftIcon={<DownloadIcon color={theme.palette.light.tint} />}
                                     onClick={() => setDownloadStudentReportModalState(true)}/>
                             </S.ButtonTitleContainer>
                         </S.BlockTitle>
                         <S.BlockBody>
                             <S.BlockBodyDivisor>
                                 <S.ButtonBodyContainer>
-                                    <Button label="Aplicar filtro" type="button" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
+                                    <Button label="Aplicar filtro" type="button" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
                                         onClick={() => handleFilterModal(it.key)}/>
                                 </S.ButtonBodyContainer>
                                 <S.ButtonBodyContainer>
-                                    <Button label="Limpar filtro" type="button" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                                    <Button label="Limpar filtro" type="button" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                                 </S.ButtonBodyContainer>
                             </S.BlockBodyDivisor>
                             <S.BlockBodyDivisor>
                                 <S.ButtonBodyContainer>
-                                    <Button label="Visualizar relatório" type="button" variant={VariantButtonEnum.SECONDARY} />
+                                    <Button label="Visualizar relatório" justifyText="center" type="button" variant={VariantButtonEnum.SECONDARY} />
                                 </S.ButtonBodyContainer>
                             </S.BlockBodyDivisor>
                         </S.BlockBody>
