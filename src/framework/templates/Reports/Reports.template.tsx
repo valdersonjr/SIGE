@@ -30,6 +30,7 @@ export const Reports: React.FC = () => {
     const [activitiesFilterModalState, setActivitiesFilterModalState] = useState(false);
     const [billetsFilterModalState, setBilletsFilterModalState] = useState(false);
     const [phoneContactFilterModalState, setPhoneContactFilterModalState] = useState(false);
+    const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
 
     const handleFilterModal = (key: string) => {
         switch (key) {
@@ -43,7 +44,7 @@ export const Reports: React.FC = () => {
                 break;
             case 'phone_contact': setPhoneContactFilterModalState(true);
                 break;
-            case 'phone_birthday_contact':
+            case 'phone_birthday_contact': setPhoneContactBirthdaysFilterModalState(true);
                 break;
             case 'periods':
                 break;
@@ -62,6 +63,7 @@ export const Reports: React.FC = () => {
             {activitiesFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={activitiesFilterModalState} setModalState={setActivitiesFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
             {billetsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
             {phoneContactFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
+            {phoneContactBirthdaysFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />
