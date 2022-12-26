@@ -11,10 +11,12 @@ export const Container = styled.div`
 
     display: flex;
     flex-direction: column;
-
+    justify-content: center;
     align-items: center;
 
     position: fixed;
+    top: 0;
+    left: 0;
 `
 export const Modal = styled.div`
     width: 40%;
