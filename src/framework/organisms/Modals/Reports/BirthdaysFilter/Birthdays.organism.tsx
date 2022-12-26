@@ -1,10 +1,10 @@
 import React from 'react';
-import {StudentsFilterProps} from "./StudentsFilter.interface";
-import * as S from "./StudentsFilter.style";
+import * as S from "./BirthdaysFilter.style";
 import {Header} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
+import {BirthdaysFilterProps} from "./BirthdaysFilter.interface";
 
-const StudentsFilter: React.FC<StudentsFilterProps> = ({title, children, modalState, setModalState}) => (
+const BirthdaysFilter: React.FC<BirthdaysFilterProps> = ({title, children, modalState, setModalState}) => (
     <S.Container>
         <S.Modal>
             <S.Header>
@@ -19,4 +19,4 @@ const StudentsFilter: React.FC<StudentsFilterProps> = ({title, children, modalSt
     </S.Container>
 );
 
-export default StudentsFilter;
+export default BirthdaysFilter;

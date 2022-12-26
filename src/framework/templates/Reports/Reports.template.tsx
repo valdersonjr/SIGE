@@ -14,16 +14,21 @@ import StudentsFilter from "@organisms/Modals/Reports/StudentsFilter/StudentsFil
 import {
     StudentsFilterDataModal
 } from "@templates/Reports/ReportsDataModalContent/StudentsFilterContent/StudentsFilterDataModal.content";
+import BirthdaysFilter from "@organisms/Modals/Reports/BirthdaysFilter/Birthdays.organism";
+import {
+    BirthdaysFilterDataModal
+} from "@templates/Reports/ReportsDataModalContent/BirthdaysFilterContent/BirthdaysFilterDataModal.content";
 
 export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
     const [studentsFilterModalState, setStudentsFilterModalState] = useState(false);
+    const [birthdaysFilterModalState, setBirthdaysFilterModalState] = useState(false);
 
     const handleFilterModal = (key: string) => {
         switch (key) {
             case 'students': setStudentsFilterModalState(true);
                 break;
-            case 'birthdays':
+            case 'birthdays': setBirthdaysFilterModalState(true);
                 break;
             case 'activities':
                 break;
@@ -46,6 +51,7 @@ export const Reports: React.FC = () => {
         <S.Container>
             {downloadStudentReportModalState ? <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport> : <></>}
             {studentsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
+            {birthdaysFilterModalState ? <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState}><BirthdaysFilterDataModal /></BirthdaysFilter> : <></>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />

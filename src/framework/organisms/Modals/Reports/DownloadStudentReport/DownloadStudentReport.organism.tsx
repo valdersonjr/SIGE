@@ -3,7 +3,7 @@ import React from 'react';
 import * as S from './DownloadStudentReport.style';
 import {
     DownloadStudentReportProps
-} from "@organisms/Modals/Reports/DownloadStudentReport/DownloadStudentReport.interface";
+} from "./DownloadStudentReport.interface";
 import {Header} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
 
