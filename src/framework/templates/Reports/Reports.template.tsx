@@ -23,6 +23,7 @@ export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
     const [studentsFilterModalState, setStudentsFilterModalState] = useState(false);
     const [birthdaysFilterModalState, setBirthdaysFilterModalState] = useState(false);
+    const [activitiesFilterModalState, setActivitiesFilterModalState] = useState(false);
 
     const handleFilterModal = (key: string) => {
         switch (key) {
@@ -30,7 +31,7 @@ export const Reports: React.FC = () => {
                 break;
             case 'birthdays': setBirthdaysFilterModalState(true);
                 break;
-            case 'activities':
+            case 'activities': setActivitiesFilterModalState(true);
                 break;
             case 'billet':
                 break;
@@ -52,6 +53,7 @@ export const Reports: React.FC = () => {
             {downloadStudentReportModalState ? <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport> : <></>}
             {studentsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
             {birthdaysFilterModalState ? <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState}><BirthdaysFilterDataModal /></BirthdaysFilter> : <></>}
+            {activitiesFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={activitiesFilterModalState} setModalState={setActivitiesFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />
