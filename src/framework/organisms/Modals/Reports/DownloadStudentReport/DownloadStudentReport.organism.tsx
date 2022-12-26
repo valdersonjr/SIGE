@@ -20,6 +20,6 @@ const DownloadStudentReport: React.FC<DownloadStudentReportProps> = ({ title, ch
             </S.ButtonsContainer>
         </S.Modal>
     </S.Container>
-)
+);
 
 export default DownloadStudentReport;
