@@ -12,6 +12,7 @@ import ViewClassPage from '~/framework/pages/Management/ViewClasses/ViewClass/Vi
 import RegisterStudentPage from '~/framework/pages/Students/RegisterStudent/RegisterStudent.page';
 
 import PageBase from '~/framework/templates/PageBase/PageBase.template';
+import RegisterUserPage from "~/framework/pages/Users/RegisterUser/RegisterUser.page";
 
 
 export const AuthenticatedRoutes: React.FC = () => {
@@ -29,6 +30,8 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/visualizar-turmas/turma' element={<ViewClassPage />} />
 
         <Route path='/usuarios' element={<UsersPage />} />
+        <Route path='/usuarios/novo-usuario' element={<RegisterUserPage />} />
+
         <Route path='/relatorios' element={<ReportsPage />} />
       </Route>
     </Routes>
