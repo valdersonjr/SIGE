@@ -26,6 +26,10 @@ import PeriodsFilter from "@organisms/Modals/Reports/PeriodsFilter/PeriodsFilter
 import {
     PeriodsFilterDataModal
 } from "@templates/Reports/ReportsDataModalContent/PeriodsFilterContent/PeriodsDataModal.content";
+import ImagePermissionsFilter from "@organisms/Modals/Reports/ImagePermissionsFilter/ImagePermissionsFilter.organism";
+import {
+    ImagePermissionsFilterDataModal
+} from "@templates/Reports/ReportsDataModalContent/ImagePermissionsFilterContent/ImagePermissionsDataModal.content";
 
 export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
@@ -36,6 +40,7 @@ export const Reports: React.FC = () => {
     const [phoneContactFilterModalState, setPhoneContactFilterModalState] = useState(false);
     const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
     const [periodsFilterModalState, setPeriodsFilterModalState] = useState(false);
+    const [imagePermissionsFilterModalState, setImagePermissionsFilterModalState] = useState(false);
 
     const handleFilterModal = (key: string) => {
         switch (key) {
@@ -53,7 +58,7 @@ export const Reports: React.FC = () => {
                 break;
             case 'periods': setPeriodsFilterModalState(true);
                 break;
-            case 'image_permissions':
+            case 'image_permissions': setImagePermissionsFilterModalState(true);
                 break;
             default:
                 break;
@@ -70,6 +75,7 @@ export const Reports: React.FC = () => {
             {phoneContactFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
             {phoneContactBirthdaysFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
             {periodsFilterModalState ? <PeriodsFilter title="Aplicar filtro" modalState={periodsFilterModalState} setModalState={setPeriodsFilterModalState}><PeriodsFilterDataModal /></PeriodsFilter> : <></>}
+            {imagePermissionsFilterModalState ? <ImagePermissionsFilter title="Aplicar filtro" modalState={imagePermissionsFilterModalState} setModalState={setImagePermissionsFilterModalState}><ImagePermissionsFilterDataModal /></ImagePermissionsFilter> : <></>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />

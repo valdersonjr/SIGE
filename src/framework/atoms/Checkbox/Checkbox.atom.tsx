@@ -9,6 +9,7 @@ export const Checkbox = ({
   onChange,
   checked,
   interminateChecked,
+  mt,
   ...props
 }: CheckboxProps) => {
   const handleChange = () => {
@@ -16,7 +17,7 @@ export const Checkbox = ({
   };
 
   return (
-    <label>
+    <S.LabelContainer mt={mt}>
       <S.CheckboxContainer>
         <S.HiddenCheckbox checked={checked} onChange={handleChange} {...props} />
         <S.StyledCheckbox checked={checked} interminateChecked={interminateChecked}>
@@ -27,6 +28,6 @@ export const Checkbox = ({
       </S.CheckboxContainer>
 
       {label}
-    </label>
+    </S.LabelContainer>
   );
 };

@@ -38,3 +38,12 @@ export const StyledCheckbox = styled.div<CheckboxInternalProps>`
     outline: 4px solid ${({ theme }) => `${theme.palette.primary.base}26`};
   }
 `;
+
+export const LabelContainer = styled.label<CheckboxInternalProps>`
+    display: flex;
+    user-select: none;
+    cursor: pointer;
+    margin-top: ${({mt}) => {
+        return mt ? `${mt}px` : 0;
+    }};
+`;
