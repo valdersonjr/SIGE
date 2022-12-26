@@ -22,6 +22,10 @@ import PhoneContactFilter from "@organisms/Modals/Reports/PhoneContactFilter/Pho
 import {
     PhoneContactFilterDataModal
 } from "@templates/Reports/ReportsDataModalContent/PhoneContactFilterContent/PhoneContactDataModal.content";
+import PeriodsFilter from "@organisms/Modals/Reports/PeriodsFilter/PeriodsFilter.organism";
+import {
+    PeriodsFilterDataModal
+} from "@templates/Reports/ReportsDataModalContent/PeriodsFilterContent/PeriodsDataModal.content";
 
 export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
@@ -31,6 +35,7 @@ export const Reports: React.FC = () => {
     const [billetsFilterModalState, setBilletsFilterModalState] = useState(false);
     const [phoneContactFilterModalState, setPhoneContactFilterModalState] = useState(false);
     const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
+    const [periodsFilterModalState, setPeriodsFilterModalState] = useState(false);
 
     const handleFilterModal = (key: string) => {
         switch (key) {
@@ -46,7 +51,7 @@ export const Reports: React.FC = () => {
                 break;
             case 'phone_birthday_contact': setPhoneContactBirthdaysFilterModalState(true);
                 break;
-            case 'periods':
+            case 'periods': setPeriodsFilterModalState(true);
                 break;
             case 'image_permissions':
                 break;
@@ -64,6 +69,7 @@ export const Reports: React.FC = () => {
             {billetsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
             {phoneContactFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
             {phoneContactBirthdaysFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
+            {periodsFilterModalState ? <PeriodsFilter title="Aplicar filtro" modalState={periodsFilterModalState} setModalState={setPeriodsFilterModalState}><PeriodsFilterDataModal /></PeriodsFilter> : <></>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />
