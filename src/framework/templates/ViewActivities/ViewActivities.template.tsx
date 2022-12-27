@@ -1,21 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { Button, SelectInLabel, Title, VariantButtonEnum } from "~/framework/atoms";
-import { Header } from "~/framework/molecules";
-import { ClassesTable } from "~/framework/organisms";
+import * as S from './ViewActivities.style';
+import {Header} from "@molecules";
+import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
+import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organism";
 
-import * as S from './ViewClasses.style';
-
-export const ViewClasses: React.FC = () => {
+export const ViewActivities: React.FC = () => {
     return (
         <S.Container>
-            <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => console.log("cadastrar nova turma")} />
+            <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => console.log("register new activity")} />
             <S.FindClassContainer>
-                <Title size={20}>Encontre sua turma</Title>
+                <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
                     <SelectInLabel options={[]} label="Período" />
                     <SelectInLabel options={[]} label="Horário" />
-                    <SelectInLabel options={[]} label="Turma" />
                     <SelectInLabel options={[]} label="Situação" />
                     <S.ClearButton>
                         <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
@@ -25,7 +23,7 @@ export const ViewClasses: React.FC = () => {
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ClassesTable />
+            <ActivitiesTable />
         </S.Container>
-    )
-}
+    );
+};

@@ -38,7 +38,7 @@ export const Management: React.FC = () => {
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Cadastrar Nova Atividade" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
+                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} onClick={() => navigate('/gestao-escolar/visualizar-atividades')} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>

@@ -25,14 +25,14 @@ export const FindClassContainer = styled.div`
     border-radius: 16px;
 `
 export const FilterContainer = styled.div`
-    width: 100%;
-    height: 75px;
-    
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    
-    align-items: flex-end;
+  width: 100%;
+  height: 75px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  align-items: flex-end;
 `
 export const ClearButton = styled.div`
   width: 60%;
