@@ -32,6 +32,7 @@ import {
     ImagePermissionsFilterDataModal
 } from "@templates/Reports/ReportsDataModalContent/ImagePermissionsFilterContent/ImagePermissionsDataModal.content";
 import {DownloadIcon} from "@atoms/Icons/Download.icon";
+import {SimpleEyeIcon} from "@atoms/Icons/SimpleEye.icon";
 
 export const Reports: React.FC = () => {
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
@@ -104,7 +105,9 @@ export const Reports: React.FC = () => {
                             </S.BlockBodyDivisor>
                             <S.BlockBodyDivisor>
                                 <S.ButtonBodyContainer>
-                                    <Button label="Visualizar relatório" justifyText="center" type="button" variant={VariantButtonEnum.SECONDARY} />
+                                    <Button label="Visualizar relatório" justifyText="center" type="button"
+                                            rightIcon={<SimpleEyeIcon color={theme.palette.light.tint} />}
+                                            variant={VariantButtonEnum.SECONDARY} />
                                 </S.ButtonBodyContainer>
                             </S.BlockBodyDivisor>
                         </S.BlockBody>

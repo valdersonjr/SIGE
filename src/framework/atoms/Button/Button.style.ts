@@ -231,8 +231,8 @@ export const Label = styled.span`
   font-size: 15px;
 `;
 export const LeftIconContainer = styled.span`
-  margin: 0 8px 0 0;
+  margin-right: 8px;
 `;
 export const RightIconContainer = styled.span`
-  margin-left: 13px;
+  margin-left: 8px;
 `;
