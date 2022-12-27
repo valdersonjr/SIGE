@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {theme} from "@theme";
 
 export const Container = styled.div`
     width: 100%;
@@ -36,4 +37,19 @@ export const InputContainer = styled.div`
     gap: 10px;
 
     padding: 10px;
+`
+export const DescInfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8vw;
+    font-weight: 600; 
+    color: ${theme.palette.dark.tint};
+    width: 100%;
+    gap: 8px;
+`
+export const DescInfoInput = styled.textarea`
+    ${theme.components.input}
+    outline: none;
+    resize: none;
+    max-height: 95vh;
 `
