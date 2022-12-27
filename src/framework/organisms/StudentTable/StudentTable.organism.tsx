@@ -70,7 +70,7 @@ const temp = [{
     situacao: 'Ativo'
 }];
 
-export const Table: React.FC = () => {
+export const StudentTable: React.FC = () => {
     const navigate = useNavigate();
 
     return (

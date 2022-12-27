@@ -6,6 +6,7 @@ import * as S from './Users.style';
 import {Banner} from "@molecules";
 import {FormUserQuery} from '~/framework/organisms';
 import {UsersPageBannerIcon} from "@atoms/Icons/UsersPageBanner.icon";
+import {UsersTable} from "@organisms/UsersTable/UsersTable.organism";
 
 export const Users: React.FC = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ export const Users: React.FC = () => {
         <S.Container>
             <Banner Icon={<UsersPageBannerIcon />} type="users" title='Usuários' text="Veja os usuários vinculados a sua escola, edite, adicione!" buttonLabel="Novo Usuário" onButtonClick={() => navigate("/usuarios/novo-usuario")} />
             <FormUserQuery />
+            <UsersTable />
         </S.Container>
     );
 }
