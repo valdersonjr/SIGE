@@ -5,9 +5,7 @@ interface ActionIconsOnClicks {
 }
 
 export interface TableRowProps extends ActionIconsOnClicks  {
-    index:number;
-    aluno?: string;
-    periodo?: string;
-    turma?: string;
-    situacao?: string;
+    index: number;
+    fields: string[];
+    status?: string;
 }

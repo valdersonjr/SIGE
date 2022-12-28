@@ -75,9 +75,10 @@ export const ClassesTable: React.FC<ClassesTableProps> = () => {
 
     return (
         <S.Container>
-            <TableRowTitle title={titleList} />
+            <TableRowTitle titles={titleList} />
             {temp.map((row, index) => (
-                <TableRow index={index} aluno={row.aluno} periodo={row.periodo} turma={row.turma} situacao={row.situacao} onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")} />
+                <TableRow index={index} fields={[row.aluno, row.periodo, row.turma]} status={row.situacao}
+                          onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")} />
             ))}
         </S.Container>
     )

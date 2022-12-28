@@ -6,17 +6,17 @@ import { ActionIcons } from "~/framework/molecules";
 import * as S from './Table.style';
 import { TableRowProps } from "./TableRow.interface";
 
-export const TableRow: React.FC<TableRowProps> = ({ index, aluno, periodo, turma, situacao, onEyeClick, onSwitchClick, onThrashClick }) => {
+export const TableRow: React.FC<TableRowProps> = ({ index, fields, status, onEyeClick, onSwitchClick, onThrashClick }) => {
     return (
         <S.Container index={index}>
-            {!!aluno && <S.RowSection><S.Text>{aluno}</S.Text></S.RowSection>}
-            {!!periodo && <S.RowSection><S.Text>{periodo}</S.Text></S.RowSection>}
-            {!!turma && <S.RowSection><S.Text>{turma}</S.Text></S.RowSection>}
-            {!!situacao &&
+            {fields.length > 0 && fields.map(field => (
+                <S.RowSection><S.Text>{field}</S.Text></S.RowSection>
+            ))}
+            {!!status &&
               <S.RowSection>
                 <S.SituationContainer>
-                    {situacao ? <GlowingCircle type={situacao} /> : <></>}
-                  <S.Text>{situacao}s</S.Text>
+                    {status ? <GlowingCircle type={status} /> : <></>}
+                  <S.Text>{status}s</S.Text>
                 </S.SituationContainer>
               </S.RowSection>
             }

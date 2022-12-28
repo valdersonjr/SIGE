@@ -11,9 +11,9 @@ export const UsersTable: React.FC<UsersTableProps> = () => {
 
     return (
         <S.Container>
-            <TableRowTitle title={titleList} />
+            <TableRowTitle titles={titleList} />
             {temp.map((row, index) => (
-                <TableRow index={index} aluno={row.nome} periodo={row.perfil} situacao={row.situacao}
+                <TableRow index={index} fields={[row.nome, row.perfil]} status={row.situacao}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}
