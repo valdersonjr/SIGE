@@ -16,6 +16,7 @@ import RegisterUserPage from "~/framework/pages/Users/RegisterUser/RegisterUser.
 import ViewActivitiesPage from "~/framework/pages/Management/ViewActivities/ViewActivities.page";
 import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
 import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
+import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />
         <Route path='/gestao-escolar/visualizar-matriculas' element={<ViewRegistrationsPage />} />
         <Route path='/gestao-escolar/visualizar-professores' element={<ViewTeachersPage />} />
+        <Route path='/gestao-escolar/visualizar-professores/professor' element={<ViewTeacherPage />} />
 
         <Route path='/usuarios' element={<UsersPage />} />
         <Route path='/usuarios/novo-usuario' element={<RegisterUserPage />} />
