@@ -14,7 +14,8 @@ import RegisterStudentPage from '~/framework/pages/Students/RegisterStudent/Regi
 import PageBase from '~/framework/templates/PageBase/PageBase.template';
 import RegisterUserPage from "~/framework/pages/Users/RegisterUser/RegisterUser.page";
 import ViewActivitiesPage from "~/framework/pages/Management/ViewActivities/ViewActivities.page";
-import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrationsPage";
+import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
+import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/visualizar-turmas/turma' element={<ViewClassPage />} />
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />
         <Route path='/gestao-escolar/visualizar-matriculas' element={<ViewRegistrationsPage />} />
+        <Route path='/gestao-escolar/visualizar-professores' element={<ViewTeachersPage />} />
 
         <Route path='/usuarios' element={<UsersPage />} />
         <Route path='/usuarios/novo-usuario' element={<RegisterUserPage />} />
