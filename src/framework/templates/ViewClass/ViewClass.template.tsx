@@ -17,8 +17,8 @@ const ViewClass: React.FC = () => {
 
     return (
         <S.Container>
-            {registrationModalState ? <EditClassData title="Editar dados cadastrais" modalState={registrationModalState} setModalState={setRegistrationModalState}><EditRegistrationDataModal /></EditClassData> : <></>}
-            {financeModalState ? <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState}><EditFinancialDataModal/></EditClassData> : <></>}
+            {registrationModalState && <EditClassData title="Editar dados cadastrais" modalState={registrationModalState} setModalState={setRegistrationModalState}><EditRegistrationDataModal /></EditClassData>}
+            {financeModalState && <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState}><EditFinancialDataModal/></EditClassData>}
             <Header title="Turma" />
             <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)} >
                 {registrationData.map((item)=>(
