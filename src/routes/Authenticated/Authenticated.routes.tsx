@@ -17,6 +17,7 @@ import ViewActivitiesPage from "~/framework/pages/Management/ViewActivities/View
 import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
 import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
 import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
+import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewActivity/ViewActivity.page";
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/visualizar-turmas' element={<ViewClassesPage />} />
         <Route path='/gestao-escolar/visualizar-turmas/turma' element={<ViewClassPage />} />
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />
+        <Route path='/gestao-escolar/visualizar-atividades/atividade' element={<ViewActivityPage />} />
         <Route path='/gestao-escolar/visualizar-matriculas' element={<ViewRegistrationsPage />} />
         <Route path='/gestao-escolar/visualizar-professores' element={<ViewTeachersPage />} />
         <Route path='/gestao-escolar/visualizar-professores/professor' element={<ViewTeacherPage />} />

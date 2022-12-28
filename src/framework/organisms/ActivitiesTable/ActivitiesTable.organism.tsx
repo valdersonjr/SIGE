@@ -14,7 +14,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = () => {
             <TableRowTitle titles={titleList} />
             {temp.map((row, index) => (
                 <TableRow index={index} fields={[row.atividade, row.professor, row.periodo]} status={row.status}
-                          onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")}
+                          onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}
                 />

@@ -43,6 +43,7 @@ export const Container = styled.div<{ type:string }>`
     min-width: 250px;
 
     display: flex;
+    flex: 1;
     flex-direction: column;
 
     align-items: center;
