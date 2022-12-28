@@ -9,11 +9,11 @@ import { financeData, registrationData } from "./ViewClass.logic";
 import { EditRegistrationDataModal } from "./EditRegistrationDataModalContent/EditRegistrationDataModal.content";
 import { EditFinancialDataModal } from "./EditFinancialDataModalContent/EditFinancialData.content";
 import * as S from './ViewClass.style';
+import {ViewClassTable} from "@organisms/ViewClassTable/ViewClassTable.organism";
 
 const ViewClass: React.FC = () => {
     const [registrationModalState, setRegistrationModalState] = useState(false);
     const [financeModalState, setFinanceModalState] = useState(false);
-
 
     return (
         <S.Container>
@@ -42,7 +42,7 @@ const ViewClass: React.FC = () => {
                 <ColumnCenterCard label="Alunos desativados" value={2} variant="third" />
                 <ColumnCenterCard label="Alunos ativos" value={10} variant="fourth" />
             </S.CardsContainer>
-            <h2>falta a tabela aqui</h2>
+            <ViewClassTable />
         </S.Container>
     )
 }
