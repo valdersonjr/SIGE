@@ -1,19 +1,18 @@
 import React from 'react';
-
-import { useNavigate } from 'react-router-dom';
-import {ActivitiesTableProps} from "@organisms/ActivitiesTable/ActivitiesTable.interface";
+import {useNavigate} from "react-router-dom";
+import * as S from "./RegistrationsTable.style";
 import {TableRow, TableRowTitle} from "@molecules";
-import * as S from "@organisms/ClassesTable/ClassesTable.style";
-import {temp, titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
+import {RegistrationsTableProps} from "@organisms/RegistrationsTable/RegistrationsTable.interface";
+import {titleList, temp} from "@organisms/RegistrationsTable/RegistrationsTable.logic";
 
-export const ActivitiesTable: React.FC<ActivitiesTableProps> = () => {
+export const RegistrationsTable: React.FC<RegistrationsTableProps> = () => {
     const navigate = useNavigate();
 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {temp.map((row, index) => (
-                <TableRow index={index} fields={[row.atividade, row.professor, row.periodo]} status={row.status}
+                <TableRow index={index} fields={[row.matricula, row.aluno, row.anoIngresso]} status={row.status}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}
@@ -21,4 +20,4 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = () => {
             ))}
         </S.Container>
     );
-};
+}

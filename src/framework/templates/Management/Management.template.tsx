@@ -26,7 +26,8 @@ export const Management: React.FC = () => {
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} justifyText="center" />
-                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={() => navigate('/gestao-escolar/visualizar-turmas')} />
+                        <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} justifyText="center"
+                                onClick={() => navigate('/gestao-escolar/visualizar-turmas')} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
@@ -38,7 +39,8 @@ export const Management: React.FC = () => {
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Cadastrar Nova Atividade" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} onClick={() => navigate('/gestao-escolar/visualizar-atividades')} />
+                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
+                                onClick={() => navigate('/gestao-escolar/visualizar-atividades')} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
@@ -50,7 +52,8 @@ export const Management: React.FC = () => {
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY} />
+                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
+                                onClick={() => navigate('/gestao-escolar/visualizar-matriculas')} />
                     </S.BlockFooter>
                 </S.Block>
                 <S.Block>
