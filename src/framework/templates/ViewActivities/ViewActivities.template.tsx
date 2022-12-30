@@ -4,11 +4,14 @@ import * as S from './ViewActivities.style';
 import {Header} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organism";
+import {useNavigate} from "react-router-dom";
 
 export const ViewActivities: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <S.Container>
-            <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => {}} />
+            <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => navigate('/gestao-escolar/nova-atividade')} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
