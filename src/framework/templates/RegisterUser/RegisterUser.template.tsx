@@ -13,12 +13,12 @@ export const RegisterUser: React.FC = () => (
             <S.InputSection>
                 <Title>Dados do Usuário</Title>
                 <S.InputContainer>
-                    <InputInLabel label="Nome do Usuário" value="" placeholder="Digite aqui" onChange={() => console.log("fon")} />
-                    <InputInLabel label="Perfil" value="" placeholder="Digite aqui" onChange={() => console.log("fon")} />
+                    <InputInLabel label="Nome do Usuário" value="" placeholder="Digite aqui" onChange={() => {}} />
+                    <InputInLabel label="Perfil" value="" placeholder="Digite aqui" onChange={() => {}} />
                 </S.InputContainer>
                 <S.InputContainer>
-                    <InputInLabel label="Email" value="" placeholder="Digite aqui" onChange={() => console.log("fon")} />
-                    <InputInLabel label="Telefone" value="" placeholder="Digite aqui" onChange={() => console.log("fon")} />
+                    <InputInLabel label="Email" value="" placeholder="Digite aqui" onChange={() => {}} />
+                    <InputInLabel label="Telefone" value="" placeholder="Digite aqui" onChange={() => {}} />
                 </S.InputContainer>
                 <S.InputContainer>
                     <S.DescInfoContainer>

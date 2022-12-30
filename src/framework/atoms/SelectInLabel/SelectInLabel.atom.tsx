@@ -12,8 +12,8 @@ export const SelectInLabel:React.FC<SelectInLabelProps> = ({label, onChange= () 
         <S.Container>
             <S.Label>{label}</S.Label>
             <S.Select onChange={() => handleChange}>
-                {options.map(it => (
-                    <option value={it.value}>{it.label}</option>
+                {options.map((it, i) => (
+                    <option key={i} value={it.value}>{it.label}</option>
                 ))}
             </S.Select>
         </S.Container>

@@ -9,7 +9,7 @@ import * as S from './ViewClasses.style';
 export const ViewClasses: React.FC = () => {
     return (
         <S.Container>
-            <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => console.log("cadastrar nova turma")} />
+            <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => {}} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>

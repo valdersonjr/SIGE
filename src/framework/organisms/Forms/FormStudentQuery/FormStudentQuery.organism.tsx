@@ -11,8 +11,8 @@ export const FormStudentQuery: React.FC = () => {
         <S.Form>
             <Title size={20} >Encontre seu aluno</Title>
             <S.InputContainer>
-                <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
-                <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
+                <InputInLabel label="Nome do Aluno" onChange={() => {}} value="Junin" />
+                <InputInLabel label="Nome do Aluno" onChange={() => {}} value="Junin" />
                 <S.ClearButton>
                     <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
@@ -22,8 +22,8 @@ export const FormStudentQuery: React.FC = () => {
             </S.InputContainer>
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
-                <InputInLabel label="Turma" onChange={() => console.log("tteste")} value="Junin" />
-                <InputInLabel label="Nome do Aluno" onChange={() => console.log("tteste")} value="Junin" />
+                <InputInLabel label="Turma" onChange={() => {}} value="Junin" />
+                <InputInLabel label="Nome do Aluno" onChange={() => {}} value="Junin" />
                 <S.ClearButton>
                     <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>

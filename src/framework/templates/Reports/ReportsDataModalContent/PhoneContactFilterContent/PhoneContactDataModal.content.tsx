@@ -5,13 +5,13 @@ import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSele
 
 export const PhoneContactFilterDataModal: React.FC = () => (
     <React.Fragment>
-        <InputInLabel label="Aluno" onChange={() => console.log("student name")} value="Junin" />
-        <InputInLabel label="Pai" onChange={() => console.log("daddy name")} value="Junin" />
-        <InputInLabel label="Mãe" onChange={() => console.log("mommy name")} value="Junin" />
-        <InputSelectInLabel label="Ano" onChange={() => console.log('year')}
+        <InputInLabel label="Aluno" onChange={() => {}} value="Junin" />
+        <InputInLabel label="Pai" onChange={() => {}} value="Junin" />
+        <InputInLabel label="Mãe" onChange={() => {}} value="Junin" />
+        <InputSelectInLabel label="Ano" onChange={() => {}}
                             options={[{value: '2020', label: '2020'}, {value: '2021', label: '2021'}]}
         />
-        <InputSelectInLabel label="Turma" onChange={() => console.log('class')}
+        <InputSelectInLabel label="Turma" onChange={() => {}}
                             options={[{value: '2°A', label: '2°A'}, {value: '2°B', label: '2°B'}]}
         />
     </React.Fragment>

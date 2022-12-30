@@ -26,7 +26,6 @@ export const Body = styled.div`
 `
 export const ImageInputContainer = styled.div`
     width: 100%;
-    background-color: silver;
     margin-bottom: 16px;
 `
 export const InputSection = styled.div`

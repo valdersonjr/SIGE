@@ -8,7 +8,7 @@ import {TeachersTable} from "@organisms/TeachersTable/TeachersTable.organism";
 export const ViewTeachers: React.FC = () => {
     return (
         <S.Container>
-            <Header title="Professores" buttonText="Novo Professor" onButtonClick={() => console.log("register new teacher")} />
+            <Header title="Professores" buttonText="Novo Professor" onButtonClick={() => {}} />
             <S.FindClassContainer>
                 <Title size={20}>Encontrar Professor</Title>
                 <S.FilterContainer>

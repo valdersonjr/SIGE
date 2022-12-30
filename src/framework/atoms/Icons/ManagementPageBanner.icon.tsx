@@ -2,7 +2,7 @@ import { SVGProps } from 'react';
 {/* <g style={{"mixBlendMode":"multiply"}} */}
 
 export const ManagementPageBanner = ({ color, ...props }: SVGProps<SVGSVGElement>) => (
-    <svg width="226" height="130" viewBox="0 0 226 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="226" height="130" viewBox="0 0 226 130" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 <path d="M154.564 26.4422C164.613 26.4422 172.76 18.2928 172.76 8.2401C172.76 -1.8126 164.613 -9.96191 154.564 -9.96191C144.514 -9.96191 136.367 -1.8126 136.367 8.2401C136.367 18.2928 144.514 26.4422 154.564 26.4422Z" stroke="#A86534" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M203.141 85.5109C205.983 82.6682 205.983 78.0593 203.141 75.2167C200.299 72.374 195.691 72.374 192.85 75.2167C190.008 78.0593 190.008 82.6682 192.85 85.5109C195.691 88.3536 200.299 88.3536 203.141 85.5109Z" stroke="#A86534" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M51.7799 127.104C55.7988 127.104 59.0568 123.845 59.0568 119.825C59.0568 115.805 55.7988 112.546 51.7799 112.546C47.7609 112.546 44.5029 115.805 44.5029 119.825C44.5029 123.845 47.7609 127.104 51.7799 127.104Z" stroke="#A86534" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>

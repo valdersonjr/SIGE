@@ -10,11 +10,11 @@ export const FormUserQuery: React.FC = () => (
         <Title size={20}>Encontra Usuário</Title>
         <Title size={18}>Filtrar por:</Title>
         <S.InputContainer>
-            <InputInLabel label="Nome" onChange={() => console.log("Name")} value="Junin" />
-            <InputSelectInLabel label="Perfil" onChange={() => console.log('perfil')}
+            <InputInLabel label="Nome" onChange={() => {}} value="Junin" />
+            <InputSelectInLabel label="Perfil" onChange={() => {}}
                 options={[{value: 'TEACHER', label: 'Professor'}, {value: 'STUDENT', label: 'Aluno'}]}
             />
-            <InputSelectInLabel label="Situação" onChange={() => console.log('situação')}
+            <InputSelectInLabel label="Situação" onChange={() => {}}
                                 options={[{value: 'ACTIVE', label: 'Ativado'}, {value: 'INACTIVE', label: 'Desativado'}]}
             />
             <S.ClearButton>

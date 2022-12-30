@@ -14,7 +14,7 @@ export const InputBatch: React.FC<InputBatchProps> = ({ labelList }) => {
             <Title>Dados Pessoais do Aluno</Title>
             <S.InputContainer>
                 {labelList.map((item) => (
-                    <InputInLabel label={item.data} value="" placeholder="Digite aqui" onChange={() => console.log("fon")} />
+                    <InputInLabel label={item.data} value="" placeholder="Digite aqui" onChange={() => {}} />
                 ))}
             </S.InputContainer>
         </S.Container>

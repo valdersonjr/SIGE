@@ -13,12 +13,8 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
   paragraph = 'Digite seus dados cadastrais para realizar seu login',
   submitLoginForm,
 }) => {
-  const handleClickRegisterButton = () => {
-    console.log('Register');
-  };
-  const handleClickForgotPasswordButton = () => {
-    console.log('Forgot Password');
-  };
+  const handleClickRegisterButton = () => { };
+  const handleClickForgotPasswordButton = () => { };
 
   const handleSubmitForm = (values: dataview.AuthenticateUser) => {
     submitLoginForm(values);

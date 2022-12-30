@@ -8,7 +8,7 @@ import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organi
 export const ViewActivities: React.FC = () => {
     return (
         <S.Container>
-            <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => console.log("register new activity")} />
+            <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => {}} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>

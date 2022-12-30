@@ -7,8 +7,11 @@ import { RegisterStudentProps } from "./RegisterStudent.interface";
 
 import * as S from './RegisterStudent.style';
 import {createStudentApiService} from "~/framework/pages/Students/student.service";
+import {ChooseImage} from "@molecules/Inputs/ChooseImage/ChooseImage.molecule";
 
 export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
+    const [studentImage, setStudentImage] = useState('');
+
     const [studentName, setStudentName] = useState('');
     const [birthdayDate, setBirthdayDate] = useState('');
     const [teaching, setTeaching] = useState('');
@@ -26,20 +29,6 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
     const [description, setDescription] = useState('');
 
     const save = () => {
-        console.log({
-            nome: studentName,
-            data_nascimento: birthdayDate,
-            ensino: teaching,
-            periodo: period,
-            responsavel_financeiro: financialResponsible,
-            pais_juntos: parentsTogether,
-            nome_pai: daddyName,
-            nome_mae: mommyName,
-            convenio_medico: medicalInsurance,
-            documento_convenio_medico: medicalInsuranceDocument,
-            hospital_preferencia: preferredHospital,
-            descricao_status: description
-        })
         createStudentApiService({
             nome: studentName,
             data_nascimento: birthdayDate,
@@ -53,9 +42,11 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
             documento_convenio_medico: medicalInsuranceDocument,
             hospital_preferencia: preferredHospital,
             descricao_status: description
-        }).then(r => {
-            console.log('then', r);
-        })
+        }).then(r => { console.log('then', r) })
+    };
+
+    const handleChangeImage = (e: any) => {
+        setStudentImage(e.target.files[0]);
     };
 
     return (
@@ -65,7 +56,8 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
             </S.Header>
             <S.Body>
                 <S.ImageInputContainer>
-                    a imagem vai por aq
+                    <ChooseImage label="clique para adicionar uma foto do aluno" value={studentImage}
+                                  onChange={handleChangeImage} />
                 </S.ImageInputContainer>
                 <S.InputSection>
                     <Title>Dados Pessoais do Aluno</Title>

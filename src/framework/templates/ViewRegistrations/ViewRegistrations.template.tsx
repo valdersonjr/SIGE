@@ -8,7 +8,7 @@ import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTab
 export const ViewRegistrations: React.FC = () => {
     return (
         <S.Container>
-            <Header title="Matrículas" buttonText="Nova Matrícula" onButtonClick={() => console.log("register new registration")} />
+            <Header title="Matrículas" buttonText="Nova Matrícula" onButtonClick={() => {}} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>

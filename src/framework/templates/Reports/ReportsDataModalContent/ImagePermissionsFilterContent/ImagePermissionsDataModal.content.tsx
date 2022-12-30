@@ -9,11 +9,11 @@ export const ImagePermissionsFilterDataModal: React.FC = () => {
 
     return (
         <React.Fragment>
-            <InputInLabel label="Aluno" onChange={() => console.log("student name")} value="Junin" />
-            <InputSelectInLabel label="Ano" onChange={() => console.log('year')}
+            <InputInLabel label="Aluno" onChange={() => {}} value="Junin" />
+            <InputSelectInLabel label="Ano" onChange={() => {}}
                 options={[{value: '2020', label: '2020'}, {value: '2021', label: '2021'}]}
             />
-            <InputSelectInLabel label="Turma/Período" onChange={() => console.log('class')}
+            <InputSelectInLabel label="Turma/Período" onChange={() => {}}
                 options={[{value: '2°A', label: '2°A'}, {value: '2°B', label: '2°B'}]}
             />
             <Checkbox label="Permitiram divulgação da imagem" checked={imageAllowedCheck}
