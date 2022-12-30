@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthenticatedRoutes } from '../Authenticated/Authenticated.routes';
 import { NotAuthenticatedRoutes } from '../NotAuthenticated/NotAuthenticated.routes';

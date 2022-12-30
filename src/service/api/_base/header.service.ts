@@ -13,6 +13,7 @@ export const mountHeaders = async ({ headers }: CustomHeaders): Promise<Headers>
   header.append('mode', 'no-cors');
   header.append('sec-fetch-mode', 'cors');
   header.append('sec-fetch-site', 'cross-site');
+  header.append('access_token', localStorage.getItem('access_token') || '');
 
   return header;
 };

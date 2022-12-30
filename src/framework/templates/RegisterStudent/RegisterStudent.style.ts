@@ -9,11 +9,9 @@ export const Container = styled.div`
     align-items: center;
     gap: 10px;
 `
-
 export const Header = styled.div`
     width: 94%;
 `
-
 export const Body = styled.div`
     min-height: 80vh;
     max-height: 95vh;
@@ -26,13 +24,11 @@ export const Body = styled.div`
     padding: 10px;
     gap: 10px;
 `
-
 export const ImageInputContainer = styled.div`
     width: 100%;
     background-color: silver;
     margin-bottom: 16px;
 `
-
 export const InputSection = styled.div`
     display: flex;
     flex-direction: column;
@@ -47,7 +43,6 @@ export const InputContainer = styled.div`
 
     padding: 10px;
 `
-
 export const MedicalInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
