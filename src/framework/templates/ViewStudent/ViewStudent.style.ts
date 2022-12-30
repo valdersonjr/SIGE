@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "~/theme";
 
 export const Container = styled.div`
     width: 100%;
@@ -15,14 +14,12 @@ export const Container = styled.div`
 export const Header = styled.div`
     width: 94%;
 `
-
-export const BackButton = styled.button`
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+export const ImageInputContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
 `
-
-
 export const DropdownContainer = styled.div`
     width: 94%;
 
