@@ -9,3 +9,9 @@ export const Container = styled.div`
 
     gap: 18px;
 `
+export const ImageInputContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
+`

@@ -10,10 +10,16 @@ import {
 } from "@templates/ViewTeacher/EditRegistrationDataModalContent/EditRegistrationDataModal.content";
 import EditTeacherContactData from "@organisms/Modals/EditTeacherContactData/EditTeacherContactData.organism";
 import {EditContactDataModal} from "@templates/ViewTeacher/EditContactDataModalContent/EditContactDataModal.content";
+import {ChooseImage} from "@molecules/Inputs/ChooseImage/ChooseImage.molecule";
 
 const ViewTeacher: React.FC = () => {
     const [registrationModalState, setRegistrationModalState] = useState(false);
     const [contactModalState, setContactModalState] = useState(false);
+    const [teacherImage, setTeacherImage] = useState('');
+
+    const handleChangeImage = (e: any) => {
+        setTeacherImage(e.target.files[0]);
+    };
 
     return (
         <S.Container>
@@ -22,7 +28,10 @@ const ViewTeacher: React.FC = () => {
 
             <Header title="Visualizar Professor" />
 
-            <h2>falta a imagem aqui</h2>
+            <S.ImageInputContainer>
+                <ChooseImage label="clique para adicionar uma foto do professor" value={teacherImage}
+                             onChange={handleChangeImage} />
+            </S.ImageInputContainer>
 
             <Dropdown title="Dados Cadastrais do Professor" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)} >
                 {registrationData.map((item)=>(
