@@ -25,7 +25,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} justifyText="center" />
+                        <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
+                                justifyText="center" onClick={() => navigate('/gestao-escolar/nova-turma')} />
                         <Button label="Visualizar Dados" variant={VariantButtonEnum.SECONDARY} justifyText="center"
                                 onClick={() => navigate('/gestao-escolar/visualizar-turmas')} />
                     </S.BlockFooter>

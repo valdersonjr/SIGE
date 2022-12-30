@@ -5,11 +5,14 @@ import { Header } from "~/framework/molecules";
 import { ClassesTable } from "~/framework/organisms";
 
 import * as S from './ViewClasses.style';
+import {useNavigate} from "react-router-dom";
 
 export const ViewClasses: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <S.Container>
-            <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => {}} />
+            <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => navigate('/gestao-escolar/nova-turma')} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
