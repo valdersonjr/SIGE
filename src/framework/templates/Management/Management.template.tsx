@@ -54,7 +54,8 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
+                                onClick={() => navigate('/gestao-escolar/nova-matricula')}/>
                         <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
                                 onClick={() => navigate('/gestao-escolar/visualizar-matriculas')} />
                     </S.BlockFooter>
@@ -67,7 +68,7 @@ export const Management: React.FC = () => {
                         ))}
                     </S.BlockBody>
                     <S.BlockFooter>
-                        <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Cadastrar Novo Professor" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                         <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
                                 onClick={() => navigate('/gestao-escolar/visualizar-professores')} />
                     </S.BlockFooter>

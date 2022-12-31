@@ -4,11 +4,14 @@ import * as S from './ViewRegistrations.style';
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTable.organism";
+import {useNavigate} from "react-router-dom";
 
 export const ViewRegistrations: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <S.Container>
-            <Header title="Matrículas" buttonText="Nova Matrícula" onButtonClick={() => {}} />
+            <Header title="Matrículas" buttonText="Nova Matrícula" onButtonClick={() => navigate('/gestao-escolar/nova-matricula')} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
