@@ -14,6 +14,7 @@ export const mountHeaders = async ({ headers }: CustomHeaders): Promise<Headers>
   header.append('sec-fetch-mode', 'cors');
   header.append('sec-fetch-site', 'cross-site');
   header.append('access_token', localStorage.getItem('access_token') || '');
+  header.append('Authorization',`Bearer ${localStorage.getItem('access_token')}`);
 
   return header;
 };
