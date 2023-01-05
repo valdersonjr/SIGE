@@ -10,6 +10,6 @@ export * from './Dashboard.icon';
 export * from './HomePageBanner.icon';
 export * from './ChevronUp.icon';
 export * from './ChevronDown.icon';
-export * from './ChevronLeft.iconCircle';
+export * from './ChevronLeftCircle.icon';
 export * from './StudentsPageBanner.icon';
 export * from './ManagementPageBanner.icon';

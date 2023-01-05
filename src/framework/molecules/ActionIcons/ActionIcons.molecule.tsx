@@ -8,14 +8,14 @@ import * as S from './ActionIcons.style';
 export const ActionIcons: React.FC<ActionIconsProps> = ({ onEyeClick, onSwitchClick, onThrashClick }) => {
     return (
         <S.Container>
-            <S.Button>
-                <ThrashIcon onClick={onThrashClick} />
+            <S.Button flag="trash" onClick={onThrashClick} >
+                <ThrashIcon />
             </S.Button>
-            <S.Button onClick={onEyeClick}>
+            <S.Button flag="eye" onClick={onEyeClick}>
                 <EyeIcon />
             </S.Button>
-            <S.Button>
-                <SwitchOnIcon onClick={onSwitchClick} />
+            <S.Button flag="switch" onClick={onSwitchClick} >
+                <SwitchOnIcon />
             </S.Button>
         </S.Container>
     )

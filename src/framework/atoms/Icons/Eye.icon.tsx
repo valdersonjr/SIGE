@@ -1,10 +1,8 @@
 import { SVGProps } from 'react';
 
 export const EyeIcon = ({ color, ...props }: SVGProps<SVGSVGElement>) => (
-    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} >
-        <rect x="0.799805" width="32" height="32" rx="4" fill="#B8DFFD" />
-        <path d="M20.3797 15.9999C20.3797 17.9799 18.7797 19.5799 16.7997 19.5799C14.8197 19.5799 13.2197 17.9799 13.2197 15.9999C13.2197 14.0199 14.8197 12.4199 16.7997 12.4199C18.7797 12.4199 20.3797 14.0199 20.3797 15.9999Z" stroke="#35A7FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M16.7996 24.2702C20.3296 24.2702 23.6196 22.1902 25.9096 18.5902C26.8096 17.1802 26.8096 14.8102 25.9096 13.4002C23.6196 9.80021 20.3296 7.72021 16.7996 7.72021C13.2696 7.72021 9.97965 9.80021 7.68965 13.4002C6.78965 14.8102 6.78965 17.1802 7.68965 18.5902C9.97965 22.1902 13.2696 24.2702 16.7996 24.2702Z" stroke="#35A7FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="24" height="24" viewBox="0 -2 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props} >
+        <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42001 13.98 8.42001 12C8.42001 10.02 10.02 8.42001 12 8.42001C13.98 8.42001 15.58 10.02 15.58 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.4C18.82 5.8 15.53 3.72 12 3.72C8.47 3.72 5.18 5.8 2.89 9.4C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-
 );
