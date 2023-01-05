@@ -29,6 +29,7 @@ export const Body = styled.div`
 `
 
 export const Icon = styled.button`
+    all: unset;
     display: inline;
     cursor: pointer;
     border: none;

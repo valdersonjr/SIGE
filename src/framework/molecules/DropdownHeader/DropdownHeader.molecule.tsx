@@ -1,7 +1,8 @@
 import React from "react";
 
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
-import { ChevronDownCircle, ChevronUpCircle } from "~/framework/atoms/Icons";
+import { ChevronUp, ChevronDown } from "~/framework/atoms/Icons";
+
 
 import { DropdownCardProps } from "./DropdownHeader.interface";
 import * as S from './DropdownHeader.style';
@@ -13,7 +14,7 @@ export const DropdownHeader: React.FC<DropdownCardProps> = ({ title, dropdownSta
             <div style={{"display":"flex", "flexDirection":"row", "gap": "10px"}}>
                 {buttonText ? <Button label={buttonText} variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={onButtonClick} />  : <></>}
                 <S.Icon onClick={() => setDropdownState(!dropdownState)}>
-                    {dropdownState ? <ChevronUpCircle /> : <ChevronDownCircle />}
+                    {dropdownState ? <ChevronUp /> : <ChevronDown />}
                 </S.Icon>
             </div>
         </S.Container>
