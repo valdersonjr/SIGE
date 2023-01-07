@@ -6,6 +6,7 @@ import { Input } from '@atoms';
 import * as S from './InputInLabel.style';
 
 export const InputInLabel: React.FC<InputInLabelProps> = ({
+  name,
   value,
   onChange,
   placeholder,
@@ -22,6 +23,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
     <S.LabelContainer>
       {label}
       <Input
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
