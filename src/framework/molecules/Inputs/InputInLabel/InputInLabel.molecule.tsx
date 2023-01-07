@@ -13,6 +13,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
   disabled,
   style,
 }) => {
+
   const handleChange = (value: string) => {
     onChange(value);
   };

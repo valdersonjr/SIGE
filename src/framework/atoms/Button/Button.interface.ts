@@ -28,7 +28,7 @@ export interface ButtonInternalProps {
 }
 
 export interface ButtonProps extends ButtonInternalProps {
-  onClick?: () => void;
+  onClick?: (e:  React.SyntheticEvent) => void;
   label?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
