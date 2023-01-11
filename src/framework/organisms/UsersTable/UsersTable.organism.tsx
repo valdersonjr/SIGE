@@ -9,8 +9,6 @@ import { titleList, temp } from "@organisms/UsersTable/UsersTable.logic";
 export const UsersTable: React.FC<UsersTableProps> = ({ filters }) => {
     const navigate = useNavigate();
 
-    console.log(filters);
-
     let filteredData = temp;
 
     if (filters?.name !== "" && filters?.name) {

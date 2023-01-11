@@ -4,4 +4,5 @@ export interface SelectInLabelProps {
     onChange?: (value: string) => void;
     selectedOption?: (string:string) => void;
     disabled?: boolean;
+    selectedValue?:string;
 }

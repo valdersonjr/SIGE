@@ -35,7 +35,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar' element={<ManagementPage />} />
 
         <Route path='/gestao-escolar/visualizar-turmas' element={<ViewClassesPage />} />
-        <Route path='/gestao-escolar/visualizar-turmas/turma' element={<ViewClassPage />} />
+        <Route path='/gestao-escolar/visualizar-turmas/turma/:id' element={<ViewClassPage />} />
         <Route path='/gestao-escolar/nova-turma' element={<NewClassPage />} />
 
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />

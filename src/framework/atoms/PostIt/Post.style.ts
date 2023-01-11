@@ -3,7 +3,7 @@ import { theme } from "~/theme";
 
 export const Container = styled.div`
     width: 260px;
-    min-height: 150px;
+    min-height: 170px;
     padding: 12px;
 
     display: flex;
@@ -21,6 +21,7 @@ export const Title = styled.h2`
     line-height: 110%;
     
     margin: 8px;
+    min-height: 50px;
 `
 export const Content = styled.span`
     font-weight: 600;

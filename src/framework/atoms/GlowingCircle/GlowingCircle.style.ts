@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const situation: { [key: string]: string } = {
     'Ativo': '#36D75E',
-    'Desativado': '#FF5964',
+    'Inativo': '#FF5964',
     'Pendência': '#F18F01',
     'Indisponível': '#949494',
 };
