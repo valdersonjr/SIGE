@@ -1,7 +1,7 @@
 export interface educationDataProps {
     education: string;
     name: string;
-    period: string;
+    period: number;
 }
 export interface finantialDataProps {
     montlyFee: string;

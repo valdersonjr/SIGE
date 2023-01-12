@@ -8,4 +8,5 @@ export interface InputProps {
   disabled?: boolean;
   style?: React.CSSProperties;
   type?:string;
+  required?: boolean;
 }
