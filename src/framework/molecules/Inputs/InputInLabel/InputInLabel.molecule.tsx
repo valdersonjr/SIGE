@@ -13,6 +13,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
   label,
   disabled,
   style,
+  type
 }) => {
 
   const handleChange = (value: string) => {
@@ -23,6 +24,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
     <S.LabelContainer>
       {label}
       <Input
+        type={type}
         name={name}
         placeholder={placeholder}
         value={value}
