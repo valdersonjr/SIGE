@@ -13,6 +13,8 @@ import * as S from './ClassesTable.style';
 export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data }) => {
     const navigate = useNavigate();
 
+    const [idArray, setIdArray] = useState<number[]>([]);
+
     let filteredData: datacore.ResponseClass[] = [];
 
     if (data) {
@@ -21,7 +23,7 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data }) => 
 
     if (filters.class !== "" && filters.class) {
         filteredData = filteredData.filter((row) => {
-            return row.descricao === filters.class;
+            return row.ensino === filters.class;
         });
     }
 
@@ -47,23 +49,24 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data }) => 
     const handleClassDeletion = async (id: number) => {
         await deleteClassApiService(id).then(response => {
             console.log(response);
+            setIdArray([...idArray, id]);
         }).catch(error => {
             console.log(error);
         });
     }
 
-    useEffect(() => {
-        console.log("ENTROU AQUIII");
-    }, [data]);
-
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
-            {filteredData.map((turma, index) => (
-                <TableRow index={index} fields={[turma.descricao, turma.periodo_turma_descricao, turma.horario]} status={turma.ativo ? "Ativo" : "Inativo"}
-                    onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${turma.id}`)}
-                    onThrashClick={() => handleClassDeletion(turma.id)} />
-            ))}
+            {filteredData.map((turma, index) => {
+                if (idArray.includes(turma.id)) {
+                    return;
+                }
+                return(
+                    <TableRow index={index} fields={[turma.descricao, turma.periodo_turma_descricao, turma.horario]} status={turma.ativo ? "Ativo" : "Inativo"}
+                        onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${turma.id}`)}
+                        onThrashClick={() => handleClassDeletion(turma.id)} />
+                    )})}
         </S.Container>
     )
 }

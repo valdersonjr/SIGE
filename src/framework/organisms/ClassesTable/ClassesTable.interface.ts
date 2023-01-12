@@ -8,5 +8,5 @@ export interface IFilter {
 }
 export interface ClassesTableProps {
     filters: IFilter;
-    data?: datacore.ResponseClasses[];
+    data?: datacore.ResponseClass[];
 }

@@ -44,7 +44,7 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classesList }) => {
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.class} onChange={handleFilterChange} options={classOptions} label="Turma" />
+                    <SelectInLabel selectedValue={filters.class} onChange={handleFilterChange} options={classOptions} label="Ensino" />
                     <SelectInLabel selectedValue={filters.period} onChange={handleFilterChange} options={periodOptions} label="Período" />
                     <SelectInLabel selectedValue={filters.schedule} onChange={handleFilterChange} options={scheduleOptions} label="Horário" />
                     <SelectInLabel selectedValue={filters.status} onChange={handleFilterChange} options={statusOptions} label="Situação" />
