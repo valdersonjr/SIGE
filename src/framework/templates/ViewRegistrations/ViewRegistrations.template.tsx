@@ -1,5 +1,4 @@
 import React from 'react';
-
 import * as S from './ViewRegistrations.style';
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
