@@ -15,7 +15,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data}) => {
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.map((row: any, index: number) => (
-                <TableRow index={index} fields={[row.atividade, row.professor, row.periodo]} status={row.ativo ? "Ativo" : "Inativo"}
+                <TableRow index={index} fields={[row.descricao, row.professor, row.periodo]} status={row.ativo ? "Ativo" : "Inativo"}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}

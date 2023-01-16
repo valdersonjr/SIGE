@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const NewClassPage: React.FC = () => {
     const navigate = useNavigate();
 
-    const handleClassCreation = async (e: React.SyntheticEvent, educationData: educationDataProps, finantialData: finantialDataProps) => {
+    const handleClassCreation = async (_e: React.SyntheticEvent, educationData: educationDataProps, finantialData: finantialDataProps) => {
         if (educationData.education === "") {
             alert("Selecione o tipo de ensino da turma!");
         }
