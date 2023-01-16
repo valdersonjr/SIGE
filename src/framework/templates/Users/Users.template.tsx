@@ -15,6 +15,7 @@ export const Users: React.FC = () => {
         profile: "",
         status: ""
     });
+    console.log(filters);
 
     return (
         <S.Container>

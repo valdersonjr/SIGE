@@ -6,6 +6,7 @@ import { InputInLabel } from "@molecules";
 import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
 
 import { FormUserQueyProps } from './FormUserQuery.interface';
+import { profileOptions, statusOptions } from './FormUserQuery.logic';
 
 export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
     const [formData, setFormData] = useState({
@@ -34,11 +35,11 @@ export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
                 <InputInLabel name='testeee' label="Nome" onChange={(e) => handleFormDataChange(e, "name")} value={formData.name} />
-                <InputSelectInLabel label="Perfil" onChange={(e) => handleFormDataChange(e, "profile")}
-                    options={[{ value: 'Professor', label: 'Professor' }, { value: 'Aluno', label: 'Aluno' }]}
+                <InputSelectInLabel label="Perfil" onChange={(e:any) => handleFormDataChange(e.value, "profile")}
+                    options={profileOptions}
                 />
-                <InputSelectInLabel label="Situação" onChange={(e) => handleFormDataChange(e, "status")}
-                    options={[{ value: 'Ativo', label: 'Ativo' }, { value: 'Desativado', label: 'Desativado' }]}
+                <InputSelectInLabel label="Situação" onChange={(e:any) => handleFormDataChange(e.value, "status")}
+                    options={statusOptions}
                 />
                 <S.ClearButton>
                     <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
