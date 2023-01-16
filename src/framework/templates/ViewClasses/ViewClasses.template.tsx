@@ -49,11 +49,11 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classesList }) => {
                     <SelectInLabel selectedValue={filters.schedule} onChange={handleFilterChange} options={scheduleOptions} label="Horário" />
                     <SelectInLabel selectedValue={filters.status} onChange={handleFilterChange} options={statusOptions} label="Situação" />
                     <S.ClearButton>
-                        <Button onClick={handleReset} label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                        <Button onClick={handleReset} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
-                    <S.SearchButton>
+                    {/* <S.SearchButton>
                         <Button onClick={handleOnSubmit} label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                    </S.SearchButton>
+                    </S.SearchButton> */}
                 </S.FilterContainer>
             </S.FindClassContainer>
             <ClassesTable filters={filters} data={classesList} />
