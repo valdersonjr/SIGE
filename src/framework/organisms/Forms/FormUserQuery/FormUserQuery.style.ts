@@ -12,21 +12,25 @@ export const Form = styled.form`
   gap: 10px;
 `
 export const InputContainer = styled.div`
-    width: 100%;
-    height: 75px;
+  width: 100%;
+  min-width: 884px;
 
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 
-    align-items: flex-end;
+  align-items: flex-end;
+
+  @media(max-width: 1200px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const ClearButton = styled.div`
-    width: 60%;
-    height: 48px;
+  width: 60%;
+  height: 48px;
 `
 export const SearchButton = styled.div`
-    width: 50%;
-    height: 48px;
+  width: 50%;
+  height: 48px;
 `

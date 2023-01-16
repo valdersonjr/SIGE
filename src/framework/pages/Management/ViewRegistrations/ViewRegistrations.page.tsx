@@ -17,7 +17,7 @@ const ViewRegistrationsPage: React.FC = () => {
 
     return (
         <S.Container>
-            <ViewRegistrations />
+            <ViewRegistrations registrations={registrations} />
         </S.Container>
     )
 };

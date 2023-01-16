@@ -20,7 +20,7 @@ export const Select = styled.select`
     height: 6vh;
     
     padding: 4px 12px;
-    font-size: 0.9vw;
+    font-size: 14px;
     border: none;
     border-radius: 6px;
 `

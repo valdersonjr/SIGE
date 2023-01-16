@@ -9,3 +9,10 @@ export const getRegistrationsApiService = async (): Promise<datacore.FetchRespon
         method: 'GET'
     });
 }
+
+export const deleteRegistrationApiService = async (id: number): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(`${endpoint}/${id}`, {
+        title: 'API - registrationApiService',
+        method: 'DELETE'
+    });
+}
