@@ -4,4 +4,5 @@ export interface InputInLabelProps extends InputProps {
   label?: string;
   disabled?: boolean;
   onChange: (any:any) => void;
+  required?:boolean;
 }

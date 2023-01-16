@@ -44,16 +44,16 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classesList }) => {
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.class} onChange={handleFilterChange} options={classOptions} label="Turma" />
+                    <SelectInLabel selectedValue={filters.class} onChange={handleFilterChange} options={classOptions} label="Ensino" />
                     <SelectInLabel selectedValue={filters.period} onChange={handleFilterChange} options={periodOptions} label="Período" />
                     <SelectInLabel selectedValue={filters.schedule} onChange={handleFilterChange} options={scheduleOptions} label="Horário" />
                     <SelectInLabel selectedValue={filters.status} onChange={handleFilterChange} options={statusOptions} label="Situação" />
                     <S.ClearButton>
-                        <Button onClick={handleReset} label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                        <Button onClick={handleReset} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
-                    <S.SearchButton>
+                    {/* <S.SearchButton>
                         <Button onClick={handleOnSubmit} label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                    </S.SearchButton>
+                    </S.SearchButton> */}
                 </S.FilterContainer>
             </S.FindClassContainer>
             <ClassesTable filters={filters} data={classesList} />

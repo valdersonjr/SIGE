@@ -5,8 +5,9 @@ import {Header} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organism";
 import {useNavigate} from "react-router-dom";
+import {ViewActivitiesProps} from "@templates/ViewActivities/ViewActivities.interface";
 
-export const ViewActivities: React.FC = () => {
+export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities}) => {
     const navigate = useNavigate();
 
     return (
@@ -26,7 +27,7 @@ export const ViewActivities: React.FC = () => {
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ActivitiesTable />
+            <ActivitiesTable data={activities} />
         </S.Container>
     );
 };

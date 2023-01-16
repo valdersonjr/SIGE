@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import {ActivitiesTableProps} from "@organisms/ActivitiesTable/ActivitiesTable.interface";
 import {TableRow, TableRowTitle} from "@molecules";
 import * as S from "@organisms/ClassesTable/ClassesTable.style";
-import {temp, titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
+import {titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
 
-export const ActivitiesTable: React.FC<ActivitiesTableProps> = () => {
+export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data}) => {
     const navigate = useNavigate();
+
+    let filteredData: any = data;
 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
-            {temp.map((row, index) => (
-                <TableRow index={index} fields={[row.atividade, row.professor, row.periodo]} status={row.status}
+            {filteredData.map((row: any, index: number) => (
+                <TableRow index={index} fields={[row.descricao, row.professor, row.periodo]} status={row.ativo ? "Ativo" : "Inativo"}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}

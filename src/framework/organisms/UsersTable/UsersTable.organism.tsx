@@ -13,12 +13,13 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters }) => {
 
     if (filters?.name !== "" && filters?.name) {
         filteredData = filteredData.filter((row) => {
-            return row.nome === filters.name;
+            return row.nome.includes(filters.name);
         });
     }
 
     if (filters?.profile !== "" && filters?.profile) {
         filteredData = filteredData.filter((row) => {
+            console.log(row.perfil, filters.profile);
             return row.perfil === filters.profile;
         });
     }

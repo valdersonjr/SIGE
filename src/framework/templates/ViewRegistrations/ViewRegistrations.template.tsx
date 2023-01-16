@@ -1,13 +1,24 @@
-import React from 'react';
-
+import React, {useState} from 'react';
 import * as S from './ViewRegistrations.style';
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTable.organism";
 import {useNavigate} from "react-router-dom";
+import {ViewRegistrationsProps} from "@templates/ViewRegistrations/ViewRegistrations.interface";
 
-export const ViewRegistrations: React.FC = () => {
+export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registrations}) => {
     const navigate = useNavigate();
+
+    const [filters, setFilters] = useState({
+        register: '',
+        studentName: '',
+        registerYear: '',
+        status: ''
+    });
+
+    const handleFilterChange = (field: string, value: any) => {
+        setFilters({...filters, [field]: value});
+    }
 
     return (
         <S.Container>
@@ -15,10 +26,9 @@ export const ViewRegistrations: React.FC = () => {
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
-                    <InputInLabel label="Matrícula" value="" onChange={() => {}} />
-                    <InputInLabel label="Nome do Aluno" value="" onChange={() => {}} />
-                    <SelectInLabel options={[]} label="Ano de Ingresso" />
-                    <SelectInLabel options={[]} label="Período de Ingresso" />
+                    <InputInLabel label="Matrícula" value={filters.register} onChange={value => handleFilterChange('register', value)} />
+                    <InputInLabel label="Nome do Aluno" value={filters.studentName} onChange={value => handleFilterChange('studentName', value)} />
+                    <SelectInLabel label="Ano de Ingresso" selectedValue={filters.registerYear} onChange={value => handleFilterChange('registerYear', value)} options={[]} />
                     <S.ClearButton>
                         <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
@@ -27,7 +37,7 @@ export const ViewRegistrations: React.FC = () => {
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <RegistrationsTable />
+            <RegistrationsTable filters={filters} data={registrations} />
         </S.Container>
     );
 };

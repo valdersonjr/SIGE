@@ -1,11 +1,11 @@
 export const classOptions = [
     {value:"", label:""}, 
-    {value: 'Berçário', label: 'Berçário'},
-    {value: 'Jardim I', label: 'Jardim I'}, 
-    {value: 'Jardim II', label: 'Jardim II'},
-    {value: 'Maternal', label: 'Maternal'},
-    {value: 'Maternal 2', label: 'Maternal 2'},
-    {value: 'Minimaternal', label: 'Minimaternal'},
+    {value: 'bercario', label: 'Berçário'},
+    {value: 'jardim1', label: 'Jardim I'}, 
+    {value: 'jardim2', label: 'Jardim II'},
+    {value: 'maternal', label: 'Maternal'},
+    {value: 'maternal2', label: 'Maternal 2'},
+    {value: 'minimaternal', label: 'Minimaternal'},
 ];
 
 export const periodOptions = [
@@ -30,7 +30,7 @@ export const statusOptions = [
 ];
 
 export const getField = (name:string) :string => {
-        if(name === "Turma") {
+        if(name === "Ensino") {
            return "class";
         }
         else if(name === "Período"){
