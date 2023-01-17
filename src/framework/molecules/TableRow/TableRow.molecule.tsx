@@ -6,17 +6,22 @@ import { ActionIcons } from "~/framework/molecules";
 import * as S from './Table.style';
 import { TableRowProps } from "./TableRow.interface";
 
-export const TableRow: React.FC<TableRowProps> = ({ index, fields, status, switchValue, onEyeClick, onSwitchClick, onThrashClick }) => {
+export const TableRow: React.FC<TableRowProps> = ({ index, fields, profiles, status, switchValue, onEyeClick, onSwitchClick, onThrashClick }) => {
   return (
     <S.Container index={index}>
       {fields.length > 0 && fields.map(field => (
         <S.RowSection><S.Text>{field}</S.Text></S.RowSection>
       ))}
+     {profiles ?  <S.RowSection>
+        <div style={{"display":"flex", "flexDirection": "column", "gap":"4px", "padding": "4px"}}>
+          {profiles.map((profile) => (<S.Text>{profile.descricao}</S.Text>))}
+        </div>
+      </S.RowSection> : <></>}
       {!!status &&
         <S.RowSection>
           <S.SituationContainer>
             {status ? <GlowingCircle type={status} /> : <></>}
-            <S.Text>{status}s</S.Text>
+            <S.Text>{status}</S.Text>
           </S.SituationContainer>
         </S.RowSection>
       }

@@ -1,3 +1,5 @@
+import { IProfile } from "~/models/datacore";
+
 interface ActionIconsOnClicks {
     onEyeClick?: () => void;
     onThrashClick?: () => void;
@@ -7,6 +9,7 @@ interface ActionIconsOnClicks {
 export interface TableRowProps extends ActionIconsOnClicks  {
     index: number;
     fields: string[];
+    profiles: IProfile[];
     status?: string;
     switchValue?: boolean;
 }
