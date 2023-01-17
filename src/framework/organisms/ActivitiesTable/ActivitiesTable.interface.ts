@@ -1,3 +1,11 @@
+import { ResponseActivities } from "~/models/datacore";
+
+interface IActivityFilter {
+    activity: string;
+    status: string;
+}
+
 export interface ActivitiesTableProps {
-    data?: any[];
+    data?: ResponseActivities[];
+    filters?: IActivityFilter;
 }

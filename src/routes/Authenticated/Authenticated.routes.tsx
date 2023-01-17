@@ -18,9 +18,10 @@ import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistration
 import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
 import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
 import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewActivity/ViewActivity.page";
-import NewActivityPage from "~/framework/pages/Management/ViewActivities/NewActivity/ViewActivity.page";
+
 import NewClassPage from "~/framework/pages/Management/ViewClasses/NewClass/NewClass.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
+import NewActivityPage from '~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page';
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
