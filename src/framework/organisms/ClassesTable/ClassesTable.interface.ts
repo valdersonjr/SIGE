@@ -1,12 +1,13 @@
 import { datacore } from "~/models";
 
 export interface IFilter {
-    class: string;
-    period: string;
-    schedule: string;
+    ensino: string;
+    descricao: string;
     status: string;
 }
 export interface ClassesTableProps {
     filters: IFilter;
     data?: datacore.ResponseClass[];
+    reload: boolean;
+    setReload: (value: boolean) => any
 }

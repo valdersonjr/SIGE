@@ -12,9 +12,7 @@ export const Dropdown: React.FC<DrodownProps> = ({ title, children, buttonText, 
     return (
         <S.Container>
             <DropdownHeader buttonText={buttonText}  title={title} dropdownState={dropdownState} setDropdownState={setDropdownState} onButtonClick={onButtonClick} />
-            {dropdownState ? <S.DropdownBody> {children} </S.DropdownBody> : <></>}
+            {dropdownState && <S.DropdownBody> {children} </S.DropdownBody>}
         </S.Container>
     )
 }
-
-export default Dropdown;

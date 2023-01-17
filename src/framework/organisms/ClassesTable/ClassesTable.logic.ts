@@ -2,15 +2,15 @@ import { DataMap } from "~/models/dataview";
 
 export const titleList:DataMap[] = [{
     key: 0,
-    data: 'Turma'
+    data: 'Ensino'
 },
 {
     key: 1,
-    data: 'Período'
+    data: 'Nome'
 },
 {
     key: 2,
-    data: 'Horário'
+    data: 'Data de Cadastro'
 },
 {
     key: 3,

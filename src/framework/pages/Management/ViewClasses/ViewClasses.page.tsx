@@ -5,19 +5,18 @@ import { getClassesApiService } from "~/service/api";
 import * as S from './ViewClasses.style';
 
 const ViewClassesPage: React.FC = () => {
-    const [classesList, setClassesList] = useState<datacore.ResponseClass[]>([]);
+    const [classes, setClasses] = useState<datacore.ResponseClass[]>([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getClassesApiService().then(response => {
-            setClassesList(response.data);
-        }).catch(error => {
-            console.log(error);
-        });
-    }, []);
+            setClasses(response.data);
+        }).catch(error => console.error(error));
+    }, [reload]);
 
     return (
         <S.Container>
-            <ViewClasses classesList={classesList} />
+            <ViewClasses classes={classes} reload={reload} setReload={setReload} />
         </S.Container>
     )
 }

@@ -1,25 +1,27 @@
 import styled from "styled-components";
-import { theme } from "~/theme";
+import {theme} from "~/theme";
 
 export const Container = styled.div`
-    width: 79.3vw;
-    overflow: auto;
+  width: 79.3vw;
 `
 
 export const DropdownBody = styled.div`
-    background-color: ${theme.palette.light.base};
+  background-color: ${theme.palette.light.base};
 
-    width: 79.3vw;
+  width: 79.3vw;
 
-    padding: 12px 16px;
-    border: 1px solid #F0F6FA;
-    border-radius: 0px 0px 7px 7px;
+  padding: 12px 16px;
+  border: 1px solid #F0F6FA;
+  border-radius: 0 0 7px 7px;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1em;
 
-    overflow: auto;
+  //@media(min-width: 1500px) {
+  //  grid-template-columns: auto auto auto;
+  //}
+  //@media(min-width: 1500px) {
+  //  grid-template-columns: auto auto auto;
+  //}
 `
