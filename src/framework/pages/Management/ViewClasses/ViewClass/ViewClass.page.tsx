@@ -19,7 +19,7 @@ const ViewClassPage: React.FC = () => {
 
     return (
         <S.Container>
-            <ViewClass classs={classs} />
+            <ViewClass _class={classs} />
         </S.Container>
     )
 }

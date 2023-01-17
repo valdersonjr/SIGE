@@ -6,7 +6,7 @@ import { ActionIcons } from "~/framework/molecules";
 import * as S from './Table.style';
 import { TableRowProps } from "./TableRow.interface";
 
-export const TableRow: React.FC<TableRowProps> = ({ index, fields, status, onEyeClick, onSwitchClick, onThrashClick }) => {
+export const TableRow: React.FC<TableRowProps> = ({ index, fields, status, switchValue, onEyeClick, onSwitchClick, onThrashClick }) => {
   return (
     <S.Container index={index}>
       {fields.length > 0 && fields.map(field => (
@@ -21,7 +21,7 @@ export const TableRow: React.FC<TableRowProps> = ({ index, fields, status, onEye
         </S.RowSection>
       }
       <S.RowSection>
-        <ActionIcons onEyeClick={onEyeClick} onSwitchClick={onSwitchClick} onThrashClick={onThrashClick} />
+        <ActionIcons onEyeClick={onEyeClick} onSwitchClick={onSwitchClick} onThrashClick={onThrashClick} switchValue={switchValue} />
       </S.RowSection>
     </S.Container>
   )

@@ -1,5 +1,8 @@
 import { datacore } from "~/models";
 
 export interface ViewClassesProps {
-    classesList?: datacore.ResponseClass[];
+    classes?: datacore.ResponseClass[];
+    reload: boolean;
+    setReload: (value: boolean) => any;
 }
+
