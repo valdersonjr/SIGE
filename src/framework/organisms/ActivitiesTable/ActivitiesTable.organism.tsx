@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import {ActivitiesTableProps} from "@organisms/ActivitiesTable/ActivitiesTable.interface";
@@ -6,13 +6,13 @@ import {TableRow, TableRowTitle} from "@molecules";
 import * as S from "@organisms/ClassesTable/ClassesTable.style";
 import {titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
 import { ResponseActivities } from '~/models/datacore';
+import { deleteActivityApiService } from '~/service/api';
 
 export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters}) => {
     const navigate = useNavigate();
+    const [deletedIndexArray, setDeletedIndexArray] = useState<number[]>([]);
     
     let filteredData: ResponseActivities[] = [];
-
-    console.log(filters);
 
     if(data){
         filteredData = data;
@@ -33,16 +33,31 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters})
         return filteredData;
     });
 
+    const handleDeleteActivity = async (id:number) => {
+        await deleteActivityApiService(id).then(response => {
+            console.log(response);
+            setDeletedIndexArray([...deletedIndexArray, id]);
+        });
+    }
+
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
-            {filteredData.map((row: any, index: number) => (
-                <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
+            {filteredData.map((row: ResponseActivities, index: number) => {
+                for(const id of deletedIndexArray){
+                    if(id === row.id){
+                        return <></>
+                    }
+                } 
+
+                return (
+                    <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
                           onSwitchClick={() => {}}
-                          onThrashClick={() => {}}
+                          onThrashClick={() => handleDeleteActivity(row.id)}
                 />
-            ))}
+                )
+            })}
         </S.Container>
     );
 };
