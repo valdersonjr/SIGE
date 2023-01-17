@@ -18,7 +18,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data }) => {
 
     if (filters?.name !== "" && filters?.name) {
         filteredData = filteredData.filter((row) => {
-            return row.nome.toLocaleLowerCase().includes(filters.name);
+            return row.nome.toLocaleLowerCase().includes(filters.name.toLocaleLowerCase());
         });
     }
 
