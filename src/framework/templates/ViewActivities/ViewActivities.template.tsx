@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from './ViewActivities.style';
 import {Header} from "@molecules";
@@ -6,9 +6,42 @@ import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organism";
 import {useNavigate} from "react-router-dom";
 import {ViewActivitiesProps} from "@templates/ViewActivities/ViewActivities.interface";
+import { statusData } from './ViewActivities.logic';
 
 export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities}) => {
     const navigate = useNavigate();
+    const [activitiesData, setActivitiesData] = useState<Array<{value: string | number, label: string}>>([]);
+    const [filters, setFilters] = useState({ activity: "", status: "" });
+   
+    const [filterControll, setFilterControll] = useState({ activity: "", status: "" });
+    
+    const [selectedValue, setSelectedValue] = useState({ activity: "", status: "" });
+
+    useEffect(()=> {
+        let activitiesDataArr = [{value:"", label: ""}];
+
+        if(activities){
+            activities.forEach(activity => {
+                activitiesDataArr = [...activitiesDataArr, { value: activity.descricao, label: activity.descricao }];
+            });
+        }
+        setActivitiesData(activitiesDataArr);
+    },[activities]);
+
+    const handleSelectChange = (e:any, type:string) => {  
+        setFilterControll({...filterControll, [type]: e. value});
+        setSelectedValue({...selectedValue, [type]: e. value});
+    }
+    
+    const handleFilterSubmit = () => {
+        setFilters(filterControll);
+    }
+
+    const handleCleanFilter = () => {
+        setFilters({ activity: "", status: "" });
+        setSelectedValue({ activity: "", status: "" });
+        setFilterControll({ activity: "", status: "" });
+    }
 
     return (
         <S.Container>
@@ -16,18 +49,17 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities}) => {
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
-                    <SelectInLabel options={[]} label="Período" />
-                    <SelectInLabel options={[]} label="Horário" />
-                    <SelectInLabel options={[]} label="Situação" />
+                    <SelectInLabel options={activitiesData} selectedValue={selectedValue.activity} label="Atividade" onChange={(e) => handleSelectChange(e, "activity")} />
+                    <SelectInLabel options={statusData} selectedValue={selectedValue.status} label="Situação" onChange={(e) => handleSelectChange(e, "status")} />
                     <S.ClearButton>
-                        <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                        <Button label="Limpar filtro" type="reset" justifyText="center" onClick={handleCleanFilter} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
                     <S.SearchButton>
-                        <Button label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                        <Button label="Aplicar" type="submit" justifyText="center" onClick={handleFilterSubmit} variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ActivitiesTable data={activities} />
+            <ActivitiesTable data={activities} filters={filters} />
         </S.Container>
     );
 };

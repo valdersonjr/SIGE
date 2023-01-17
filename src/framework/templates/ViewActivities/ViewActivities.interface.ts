@@ -1,3 +1,5 @@
+import { ResponseActivities } from "~/models/datacore";
+
 export interface ViewActivitiesProps {
-    activities?: any[];
+    activities?: ResponseActivities[];
 }
