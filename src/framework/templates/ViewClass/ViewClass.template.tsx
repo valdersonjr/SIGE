@@ -39,7 +39,7 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     }
 
     const save = async () => {
-        await putClassApiService(data?.id, data)
+        await putClassApiService(data?.id, {...data, ...dataOneToSave, ...dataTwoToSave})
             .then(() => {
                 if (registrationModalState && !!setRegistrationModalState) {
                     setRegistrationModalState(!registrationModalState);
@@ -53,9 +53,10 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
 
     useEffect(() => {
         if (canSave) {
+            setData({...data, ...dataOneToSave, ...dataTwoToSave});
             save()
                 .then(() => {
-                    setData({...data, ...dataOneToSave, ...dataTwoToSave});
+                    alert("Turma salva com sucesso!");
                 }).catch(err => console.error(err));
             setCanSave(false);
         }
