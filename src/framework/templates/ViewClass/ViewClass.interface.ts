@@ -1,3 +1,3 @@
 export interface ViewClassProps {
-    _class?: any;
+    classId: number;
 }

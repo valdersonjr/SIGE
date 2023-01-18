@@ -42,7 +42,18 @@ export const putClassApiService = async (id: number, data: any) => {
     return callApiBaseAsync(`${endpoint}/${id}`, {
         title: 'API - classApiService',
         method: 'PUT',
-        body: {...data}
+        body: {
+            periodo_turma_id: data?.periodo_turma?.id,
+            ensino: data?.ensino,
+            descricao: data?.descricao,
+            valor_mensalidade: data?.valor_mensalidade,
+            valor_refeicao: data?.valor_refeicao,
+            valor_hora_extra: data?.valor_hora_extra,
+            valor_projeto_nutricional: data?.valor_projeto_nutricional,
+            valor_material_didatico: data?.valor_material_didatico,
+            valor_material_pedagogico: data?.valor_material_pedagogico,
+            ativo: !data?.ativo
+        }
     });
 }
 

@@ -18,10 +18,13 @@ export const DropdownBody = styled.div`
   grid-template-columns: auto auto auto auto;
   grid-gap: 1em;
 
-  //@media(min-width: 1500px) {
-  //  grid-template-columns: auto auto auto;
-  //}
-  //@media(min-width: 1500px) {
-  //  grid-template-columns: auto auto auto;
-  //}
+  @media(max-width: 1500px) {
+    grid-template-columns: auto auto auto;
+  }
+  @media(max-width: 1000px) {
+    grid-template-columns: auto auto;
+  }
+  @media(max-width: 700px) {
+    grid-template-columns: auto;
+  }
 `

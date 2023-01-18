@@ -6,7 +6,8 @@ import { Button, SelectInLabel, Title, VariantButtonEnum } from "~/framework/ato
 import {Header, InputInLabel} from "~/framework/molecules";
 import { ClassesTable } from "~/framework/organisms";
 import { ViewClassesProps } from "./ViewClasses.interface";
-import { classOptions, statusOptions } from "./ViewClasses.logic";
+import { statusOptions } from "./ViewClasses.logic";
+import {ensinoOptions} from "~/utils/ensino-options";
 
 import * as S from './ViewClasses.style';
 
@@ -46,7 +47,7 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.ensino} onChange={value => handleFilterChange('ensino', value)} options={classOptions} label="Ensino" />
+                    <SelectInLabel selectedValue={filters.ensino} onChange={value => handleFilterChange('ensino', value)} options={ensinoOptions} label="Ensino" />
                     <InputInLabel value={filters.descricao} onChange={value => handleFilterChange('descricao', value)} label="Nome" />
                     <SelectInLabel selectedValue={filters.status} onChange={value => handleFilterChange('status', value)} options={statusOptions} label="Situação" />
                     <S.ClearButton>

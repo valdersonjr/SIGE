@@ -42,22 +42,7 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reloa
     }
 
     const handleSwitchStatus = async (data: any) => {
-        function manageData (data: any): any {
-            return {
-                periodo_turma_id: data?.periodo_turma?.id,
-                ensino: data?.ensino,
-                descricao: data?.descricao,
-                valor_mensalidade: data?.valor_mensalidade,
-                valor_refeicao: data?.valor_refeicao,
-                valor_hora_extra: data?.valor_hora_extra,
-                valor_projeto_nutricional: data?.valor_projeto_nutricional,
-                valor_material_didatico: data?.valor_material_didatico,
-                valor_material_pedagogico: data?.valor_material_pedagogico,
-                ativo: !data?.ativo
-            }
-        }
-
-        await putClassApiService(data?.id, manageData(data))
+        await putClassApiService(data?.id, data)
             .then(() => setReload(!reload)).catch(err => console.error(err));
     }
 

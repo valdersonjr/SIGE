@@ -7,8 +7,9 @@ import { Header, InputInLabel } from "@molecules";
 
 import { getCleanCurrencyValue } from '~/utils';
 
-import { educationOption, periodOption } from './NewClass.logic';
+import { periodOption } from './NewClass.logic';
 import * as S from './NewClass.style';
+import {ensinoOptions} from "~/utils/ensino-options";
 
 export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
     const [classData, setClassData] = useState({
@@ -63,7 +64,7 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
                 <S.InputSection>
                     <Title>Dados da Turma</Title>
                     <S.InputContainer>
-                        <SelectInLabel label="Ensino" options={educationOption} onChange={(e: any) => setClassData({ ...classData, education: e.value })} />
+                        <SelectInLabel label="Ensino" options={ensinoOptions} onChange={(e: any) => setClassData({ ...classData, education: e.value })} />
                         <InputInLabel required label="Nome" value={classData.name} placeholder="Digite aqui..." onChange={(e) => setClassData({ ...classData, name: e })} />
                         <SelectInLabel label="Período" options={periodOption} onChange={(e: any) => setClassData({ ...classData, period: e.value })} />
                     </S.InputContainer>

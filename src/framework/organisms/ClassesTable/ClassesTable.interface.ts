@@ -9,5 +9,5 @@ export interface ClassesTableProps {
     filters: IFilter;
     data?: datacore.ResponseClass[];
     reload: boolean;
-    setReload: (value: boolean) => any
+    setReload: (value: boolean) => void
 }

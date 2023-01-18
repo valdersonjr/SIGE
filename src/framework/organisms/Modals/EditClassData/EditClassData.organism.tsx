@@ -6,7 +6,7 @@ import { Header } from "~/framework/molecules";
 import { EditClassDataProps } from "./EditClassData.interface";
 import * as S from './EditClassData.style';
 
-const EditClassData:React.FC<EditClassDataProps> = ({ title, children, modalState, setModalState }) => {
+const EditClassData:React.FC<EditClassDataProps> = ({ title, children, modalState, setModalState, setCanSave }) => {
     return(
         <S.Container>
             <S.Modal>
@@ -15,8 +15,10 @@ const EditClassData:React.FC<EditClassDataProps> = ({ title, children, modalStat
                 </S.Header>
                 <S.InputsContainer>{ children }</S.InputsContainer>
                 <S.ButtonsContainer>
-                    <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem Salvar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    <Button label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
+                    <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> }
+                            label="Sair sem Salvar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} justifyText="center"
+                            onClick={() => setCanSave && setCanSave(true)} />
                 </S.ButtonsContainer>
             </S.Modal>
         </S.Container>
