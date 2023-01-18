@@ -20,10 +20,6 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
         status: ""
     });
 
-    const handleFilterChange = (field: string, value: any) => {
-        setFilters({...filters, [field]: value});
-    }
-
     const handleOnSubmit = () => {
         console.log(filters);
     }
@@ -46,9 +42,9 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.ensino} onChange={value => handleFilterChange('ensino', value)} options={ensinoOptions} label="Ensino" />
-                    <InputInLabel value={filters.descricao} onChange={value => handleFilterChange('descricao', value)} label="Nome" />
-                    <SelectInLabel selectedValue={filters.status} onChange={value => handleFilterChange('status', value)} options={statusOptions} label="Situação" />
+                    <SelectInLabel selectedValue={filters.ensino} onChange={(select: any) => setFilters({...filters, ensino: select.value})} options={ensinoOptions} label="Ensino" />
+                    <InputInLabel value={filters.descricao} onChange={value => setFilters({...filters, descricao: value})} label="Nome" />
+                    <SelectInLabel selectedValue={filters.status} onChange={(select: any) => setFilters({...filters, status: select.value})} options={statusOptions} label="Situação" />
                     <S.ClearButton>
                         <Button onClick={handleReset} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
