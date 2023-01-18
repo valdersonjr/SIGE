@@ -4,15 +4,14 @@ import { getStudentsApiService } from '@service/api';
 import { datacore } from '~/models';
 
 const StudentsPage: React.FC = () => {
+    // @ts-ignore
     const [studentList, setStudentList] = useState<datacore.ResponseStudent[]>();
 
     useEffect(() => {
         getStudentsApiService().then(response => {
             setStudentList(response.data);
-        }).catch(error => console.log(error));
+        }).catch(error => console.error(error));
     },[]);
-    
-    console.log(studentList);
 
     return <Students />;
 }

@@ -29,10 +29,6 @@ export const EditRegistrationDataModal:React.FC<EditRegistrationDataModelProps> 
         }
     }, [ensino, nome, periodo]);
 
-    useEffect(() => {
-        console.log('enennenen', data);
-    }, []);
-
     return(
         <React.Fragment>
             <SelectInLabel selectedValue={ensino} options={ensinoOptions} label="Ensino" onChange={(select: any) => setEnsino(select?.value)} />

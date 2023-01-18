@@ -21,9 +21,6 @@ export const Students: React.FC = () => {
         situation: ""
     });
 
-    console.log(tableFilters);
-
-
     return (
         <S.Container>
             <Banner Icon={<StudentsPageBanner />} type="students" title='Área de Alunos' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar cadastre um novo aluno cliquando ao lado." buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")} />

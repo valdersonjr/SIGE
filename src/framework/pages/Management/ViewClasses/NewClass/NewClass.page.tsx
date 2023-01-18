@@ -19,11 +19,10 @@ const NewClassPage: React.FC = () => {
         }
         else {
             await createClassApiService(educationData, finantialData)
-                .then(response => {
-                    console.log(response);
+                .then(() => {
                     navigate(-1);
                 })
-                .catch(error => console.log(error));
+                .catch(error => console.error(error));
         }
     }
 

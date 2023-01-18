@@ -21,7 +21,6 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
     });
 
     const handleFilterChange = (field: string, value: any) => {
-        console.log('field', value);
         setFilters({...filters, [field]: value});
     }
 

@@ -19,7 +19,6 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters }) => {
 
     if (filters?.profile !== "" && filters?.profile) {
         filteredData = filteredData.filter((row) => {
-            console.log(row.perfil, filters.profile);
             return row.perfil === filters.profile;
         });
     }

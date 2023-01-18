@@ -8,7 +8,7 @@ import { AuthenticateUser } from '~/models/dataview/AuthenticateUser.interface';
 export const LoginPage: React.FC = () => {
   const authenticate = useAuthentication();
   const handleSubmitLoginForm = (value: AuthenticateUser) => {
-    authenticate.login(value).then(r => console.log('logged', r));
+    authenticate.login(value).then(() => {});
   };
   return (
     <S.Container>

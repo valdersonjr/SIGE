@@ -17,7 +17,8 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     const [financeModalState, setFinanceModalState] = useState(false);
 
     const [data, setData] = useState<any>();
-    const [dataToSave, setDataToSave] = useState<any>();
+    const [dataOneToSave, setDataOneToSave] = useState<any>();
+    const [dataTwoToSave, setDataTwoToSave] = useState<any>();
     const [canSave, setCanSave] = useState(false);
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
             .then(response => {
                 setData(response.data);
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
     },[]);
 
     const sumTotal = (): number => {
@@ -38,11 +39,13 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     }
 
     const save = async () => {
-        console.log('func save', dataToSave);
-        await putClassApiService(data?.id, dataToSave)
+        await putClassApiService(data?.id, data)
             .then(() => {
                 if (registrationModalState && !!setRegistrationModalState) {
                     setRegistrationModalState(!registrationModalState);
+                }
+                if (financeModalState && !!setFinanceModalState) {
+                    setFinanceModalState(!financeModalState);
                 }
             })
             .catch(err => console.error(err));
@@ -50,10 +53,10 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
 
     useEffect(() => {
         if (canSave) {
-            console.log('dasdas', dataToSave);
             save()
-                .then(() => setData(dataToSave))
-                .catch(err => console.error(err));
+                .then(() => {
+                    setData({...data, ...dataOneToSave, ...dataTwoToSave});
+                }).catch(err => console.error(err));
             setCanSave(false);
         }
     }, [canSave]);
@@ -62,9 +65,12 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
         <S.Container>
             {registrationModalState &&
               <EditClassData title="Editar dados cadastrais" modalState={registrationModalState} setModalState={setRegistrationModalState} setCanSave={setCanSave}>
-                <EditRegistrationDataModal data={data} setData={setDataToSave} />
+                <EditRegistrationDataModal data={data} setData={setDataOneToSave} />
               </EditClassData>}
-            {financeModalState && <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState}><EditFinancialDataModal/></EditClassData>}
+            {financeModalState &&
+              <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState} setCanSave={setCanSave}>
+                <EditFinancialDataModal data={data} setData={setDataTwoToSave} />
+              </EditClassData>}
             <Header title="Turma" />
             <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)}>
                 <PostIt title="Ensino" content={data?.ensino} />
