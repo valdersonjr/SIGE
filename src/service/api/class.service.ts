@@ -1,7 +1,6 @@
-import {educationDataProps, finantialDataProps} from "@templates/NewClass/NewClass.interface";
+import {createClassDataProps} from "@templates/NewClass/NewClass.interface";
 import { datacore } from "~/models";
 import {callApiBaseAsync} from "@service/api/_base";
-import {getCleanCurrencyValue} from "~/utils";
 
 const endpoint = '/turma';
 
@@ -19,20 +18,20 @@ export const getClassApiService = async (id:number): Promise<datacore.FetchRespo
     });
 }
 
-export const createClassApiService = async (educationData:educationDataProps, financialData:finantialDataProps): Promise<datacore.FetchResponse<string>> => {
+export const createClassApiService = async (data: createClassDataProps): Promise<datacore.FetchResponse<string>> => {
     return callApiBaseAsync(endpoint,  {
         title: 'API - classApiService',
         method: 'POST',
         body: {
-            periodo_turma_id: educationData.period,
-            ensino: educationData.education,
-            descricao: educationData.name,
-            valor_mensalidade: financialData.montlyFee ? getCleanCurrencyValue(financialData.montlyFee) : 0,
-            valor_refeicao: financialData.mealValue ? getCleanCurrencyValue(financialData.mealValue) : 0,
-            valor_hora_extra: financialData.extraHourValue ? getCleanCurrencyValue(financialData.extraHourValue) : 0,
-            valor_projeto_nutricional: financialData.nutritionalProjectValue ? getCleanCurrencyValue(financialData.nutritionalProjectValue) : 0,
-            valor_material_didatico: financialData.didacticMaterialValue ? getCleanCurrencyValue(financialData.didacticMaterialValue) : 0,
-            valor_material_pedagogico: financialData.pedagogicalMaterialValue ? getCleanCurrencyValue(financialData.pedagogicalMaterialValue) : 0,
+            periodo_turma_id: data.periodo,
+            ensino: data.ensino,
+            descricao: data.descricao,
+            valor_mensalidade: data.mensalidade,
+            valor_refeicao: data.refeicao,
+            valor_hora_extra: data.horaExtra,
+            valor_projeto_nutricional: data.nutricional,
+            valor_material_didatico: data.didatico,
+            valor_material_pedagogico: data.pedagogico,
             ativo: true
         }
     });

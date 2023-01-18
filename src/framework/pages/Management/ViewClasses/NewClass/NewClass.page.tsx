@@ -1,24 +1,26 @@
 import React from 'react';
 import { NewClass } from "@templates/NewClass/NewClass.template";
-import { educationDataProps, finantialDataProps } from '~/framework/templates/NewClass/NewClass.interface';
+import {
+    createClassDataProps
+} from '~/framework/templates/NewClass/NewClass.interface';
 import { createClassApiService } from '~/service/api';
 import { useNavigate } from 'react-router-dom';
 
 const NewClassPage: React.FC = () => {
     const navigate = useNavigate();
 
-    const handleClassCreation = async (_e: React.SyntheticEvent, educationData: educationDataProps, finantialData: finantialDataProps) => {
-        if (educationData.education === "") {
+    const handleClassCreation = async (_e: React.SyntheticEvent, data: createClassDataProps) => {
+        if (data.ensino === "") {
             alert("Selecione o tipo de ensino da turma!");
         }
-        else if (educationData.name === "") {
+        else if (data.descricao === "") {
             alert("Entre com um nome de turma válido!");
         }
-        else if (Number(educationData.period) === -1) {
+        else if (data.periodo === -1) {
             alert("Entre com um período válido!");
         }
         else {
-            await createClassApiService(educationData, finantialData)
+            await createClassApiService(data)
                 .then(() => {
                     navigate(-1);
                 })
