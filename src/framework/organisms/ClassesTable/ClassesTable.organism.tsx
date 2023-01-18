@@ -4,13 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableRowTitle } from "~/framework/molecules";
 import { datacore } from "~/models";
-import {deleteClassApiService, putClassApiService} from "~/service/api";
+import {putClassApiService} from "~/service/api";
 
 import { ClassesTableProps } from "./ClassesTable.interface";
 import { titleList } from "./ClassesTable.logic";
 import * as S from './ClassesTable.style';
 
-export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reload, setReload }) => {
+export const ClassesTable: React.FC<ClassesTableProps> = (
+    { filters,
+        data,
+        reload,
+        setReload,
+        setConfirmRemoveModal,
+        confirmRemoveModal,
+        setIdToDelete
+    }
+) => {
     const navigate = useNavigate();
 
     let filteredData: datacore.ResponseClass[] = [];
@@ -36,11 +45,6 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reloa
         });
     }
 
-    const handleClassDeletion = async (id: number) => {
-        await deleteClassApiService(id)
-            .then(() => setReload(!reload)).catch(error => console.error(error));
-    }
-
     const handleSwitchStatus = async (data: any) => {
         await putClassApiService(data?.id, data)
             .then(() => setReload(!reload)).catch(err => console.error(err));
@@ -54,7 +58,10 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reloa
                     <TableRow index={index} fields={[it?.ensino, it?.descricao, it.horario]} status={it.ativo ? "Ativo" : "Inativo"}
                         onSwitchClick={() => handleSwitchStatus(it)} switchValue={it?.ativo}
                         onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${it.id}`)}
-                        onThrashClick={() => handleClassDeletion(it.id)}
+                        onThrashClick={() => {
+                            setConfirmRemoveModal(!confirmRemoveModal);
+                            setIdToDelete(it?.id);
+                        }}
                     />
                 )})}
         </S.Container>

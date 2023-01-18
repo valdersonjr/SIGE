@@ -10,9 +10,18 @@ import { statusOptions } from "./ViewClasses.logic";
 import {ensinoOptions} from "~/utils/ensino-options";
 
 import * as S from './ViewClasses.style';
+import {deleteClassApiService} from "@service/api";
+import ConfirmRemoveData from "@organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism";
+import {
+    ConfirmRemoveClassContent
+} from "@templates/ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content";
 
 export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setReload }) => {
     const navigate = useNavigate();
+
+    const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
+    const [canSave, setCanSave] = useState(false);
+    const [idToDelete, setIdToDelete] = useState<number>(-1);
 
     const [filters, setFilters] = useState({
         ensino: "",
@@ -36,8 +45,24 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
         handleOnSubmit();
     }, [filters]);
 
+    useEffect(() => {
+        if (canSave) {
+            deleteClassApiService(idToDelete)
+                .then(() => {
+                    setReload(!reload);
+                    setConfirmRemoveModal(!confirmRemoveModal);
+                }).catch(error => console.error(error));
+            setCanSave(false);
+        }
+    }, [canSave]);
+
     return (
         <S.Container>
+            {confirmRemoveModal && <ConfirmRemoveData title="Confirmar Deleção" children={<ConfirmRemoveClassContent />}
+                                                      setCanSave={setCanSave}
+                                                      setModalState={setConfirmRemoveModal} modalState={confirmRemoveModal}
+            />}
+
             <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => navigate('/gestao-escolar/nova-turma')} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
@@ -50,7 +75,9 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
                     </S.ClearButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ClassesTable filters={filters} data={classes} reload={reload} setReload={setReload} />
+            <ClassesTable filters={filters} data={classes} reload={reload} setReload={setReload}
+                confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal}
+                setIdToDelete={setIdToDelete} />
         </S.Container>
     )
 }
