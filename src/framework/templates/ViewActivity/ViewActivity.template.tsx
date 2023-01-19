@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import * as S from './ViewActivity.style';
 import {ColumnCenterCard, Header} from "@molecules";
 import {Dropdown} from "@organisms";
-import {activityRegistrationData} from "./ViewActivity.logic";
 import {Button, PostIt, Title, VariantButtonEnum} from "@atoms";
 import EditActivityData from "@organisms/Modals/EditActivityData/EditActivityData.organism";
 import {
     EditActivityDataModal
 } from "@templates/ViewActivity/EditActivityDataModalContent/EditActivityDataModal.content";
 import {ViewActivityTable} from "@organisms/ViewActivityTable/ViewActivityTable.organism";
+import { ViewActivityProps } from './ViewActivity.interface';
 
-const ViewActivity: React.FC = () => {
+const ViewActivity: React.FC<ViewActivityProps> = ({activity}) => {
     const [activityRegistrationModalState, setActivityRegistrationModalState] = useState(false);
 
     return (
@@ -20,9 +20,7 @@ const ViewActivity: React.FC = () => {
             <Header title="Visualizar Atividade" />
 
             <Dropdown title="Dados Cadastrais da Atividade" buttonText="Editar Dados" onButtonClick={() => setActivityRegistrationModalState(!activityRegistrationModalState)} >
-                {activityRegistrationData.map((item)=>(
-                    <PostIt  key={item.key} title={item.name} content={item.content} />
-                ))}
+                <PostIt title="Atividade" content={activity?.descricao} />
             </Dropdown>
 
             <S.LinkedStudentsHeader>

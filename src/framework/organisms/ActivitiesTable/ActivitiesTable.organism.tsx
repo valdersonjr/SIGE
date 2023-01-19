@@ -60,7 +60,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
                 return (
                     <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
                           switchValue={row.ativo}
-                          onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
+                          onEyeClick={() => navigate(`/gestao-escolar/visualizar-atividades/atividade/${row.id}`)}
                           onSwitchClick={() => handleActivityStatus(row)}
                           onThrashClick={() => handleDeleteActivity(row.id)}
                 />
