@@ -8,7 +8,7 @@ export const statusData = [
         label: "Ativo"
     },
     {
-        value: "inativo",
+        value: "inactive",
         label: "Inativo"
     }
 ]

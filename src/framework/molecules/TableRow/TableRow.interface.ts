@@ -9,7 +9,7 @@ interface ActionIconsOnClicks {
 export interface TableRowProps extends ActionIconsOnClicks  {
     index: number;
     fields: string[];
-    profiles: IProfile[];
+    profiles?: IProfile[];
     status?: string;
     switchValue?: boolean;
 }
