@@ -33,7 +33,7 @@ export const updateUserApiService = async (user:any): Promise<datacore.FetchResp
 }
 
 export const registerUserApiService = async (user:IRegisterUser): Promise<datacore.FetchResponse<any>> => { 
-    return callApiBaseAsync(`${endpoint}/${user.name}`,  {
+    return callApiBaseAsync(`${endpoint}`,  {
         title: 'USER API - userApiService',
         method: 'POST',
         body: {
@@ -42,6 +42,7 @@ export const registerUserApiService = async (user:IRegisterUser): Promise<dataco
             senha: user.password,
             telefone: user.phone,
             ativo: user.status,
+            perfis: user.profile
         }
     });
 }

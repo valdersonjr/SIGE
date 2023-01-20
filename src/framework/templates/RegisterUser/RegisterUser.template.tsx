@@ -1,22 +1,22 @@
 import React from 'react';
-import Select from 'react-select'
 
 import * as S from './RegisterUser.style';
 import {Header, InputInLabel} from "@molecules";
-import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
+import {Button, Title, VariantButtonEnum} from "@atoms";
 import { RegisterUserProps } from './RegisterUser.interface';
 import { IRegisterUser } from '~/models/dataview';
+import MultiSelect from '~/framework/atoms/MultiSelect/MuliSelect.atom';
 
 const profileOptions = [
-    {label: "Administrador", value: "admin"},
-    {label: "Usuário", value: "user"},
-    {label: "Responsável", value: "guardian"},
+    {label: "Administrador", value: "ADM"},
+    {label: "Usuário", value: "USU"},
+    {label: "Responsável", value: ""},
 ]
 
 export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
     const [inputdata, setInputData] = React.useState<IRegisterUser>({
         name: "",
-        profile: "",
+        profile: [],
         email: "",
         phone: "",
         password: "",
@@ -28,12 +28,22 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
         setInputData({...inputdata, [type]: value});
     }
 
+    const handleMultiSelectChange = (value: [{ label: string; value: string; }]) => {
+        let profileArray:string[] = [];
+        
+        value.forEach(element => {
+            profileArray.push(element.value);
+        });
+
+        setInputData({ ...inputdata, profile: profileArray });
+    }
+
     const handleReset = (event:React.SyntheticEvent) => {
         event.preventDefault();
 
         setInputData({
             name: "",
-            profile: "",
+            profile: [],
             email: "",
             phone: "",
             password: "",
@@ -62,13 +72,14 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
                         <InputInLabel label="Email" placeholder="Digite aqui"  value={inputdata.email} onChange={(value:string) => handleChange(value, "email")} />
                     </S.InputContainer>
                     <S.InputContainer>
-                        {/* <SelectInLabel label='Perfil' multiple options={profileOptions} onChange={(e) => console.log(e)} /> */}
-                        <Select isMulti options={profileOptions} />
+                        <div style={{"width":"100%", "marginTop":"4px"}}>
+                            <MultiSelect label="Perfil"  options={profileOptions} onChange={(value) => handleMultiSelectChange(value)} />
+                        </div>
                         <InputInLabel label="Telefone" placeholder="Digite aqui"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
                     </S.InputContainer>
                     <S.InputContainer>
-                        <InputInLabel required min={3} label="Senha" type='password' placeholder="Digite aqui"  value={inputdata.password} onChange={(value:string) => handleChange(value, "password")} />
-                        <InputInLabel required label="Confirmar senha" type='password' placeholder="Digite aqui" value={inputdata.confirmPassword} onChange={(value:string) => handleChange(value, "confirmPassword")} />
+                        <InputInLabel label="Senha" type='password' placeholder="Digite aqui"  value={inputdata.password} onChange={(value:string) => handleChange(value, "password")} />
+                        <InputInLabel label="Confirmar senha" type='password' placeholder="Digite aqui" value={inputdata.confirmPassword} onChange={(value:string) => handleChange(value, "confirmPassword")} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <S.DescInfoContainer>
