@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {theme} from "@theme";
 
-export const Container = styled.div`
+export const Container = styled.form`
     width: 100%;
 
     display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const Header = styled.div`
     width: 94%;
 `
-export const Body = styled.div`
+export const Body = styled.form`
     min-height: 80vh;
     max-height: 95vh;
     width: 94%;
@@ -52,4 +52,12 @@ export const DescInfoInput = styled.textarea`
     outline: none;
     resize: none;
     max-height: 95vh;
+`
+export const ButtonContainer = styled.div`
+    padding: 0px 30px;
+
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 30px;
 `
