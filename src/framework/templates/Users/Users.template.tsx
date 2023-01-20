@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,33 +7,23 @@ import { Banner } from "@molecules";
 import { FormUserQuery } from '~/framework/organisms';
 import { UsersPageBannerIcon } from "@atoms/Icons/UsersPageBanner.icon";
 import { UsersTable } from "@organisms/UsersTable/UsersTable.organism";
-import { getUsertsApiService } from '~/service/api';
-import { datacore } from "~/models"
+import { UsersProps } from './Users.interface';
 
-export const Users: React.FC = () => {
+
+export const Users: React.FC<UsersProps> = ({users, reload, setReload}) => {
     const navigate = useNavigate();
-    const [users, setUsers] = useState<datacore.FetchUserResponse[]>();
 
     const [filters, setFilters] = useState({
         name: "",
         profile: "",
         status: ""
     });
-    
-    console.log(filters);
-
-    useEffect(() => {
-        getUsertsApiService().then(response => {
-            setUsers(response.data);
-            console.log(response.data);
-        }).catch(err => console.log(err));
-    }, []);
 
     return (
         <S.Container>
             <Banner Icon={<UsersPageBannerIcon />} type="users" title='Usuários' text="Veja os usuários vinculados a sua escola, edite, adicione!" buttonLabel="Novo Usuário" onButtonClick={() => navigate("/usuarios/novo-usuario")} />
             <FormUserQuery setFilters={setFilters} />
-            <UsersTable data={users} filters={filters} />
+            <UsersTable data={users} filters={filters} reload={reload} setReload={setReload} />
         </S.Container>
     );
 }

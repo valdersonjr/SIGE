@@ -8,7 +8,7 @@ import { HeaderProps } from "./Header.interface";
 
 import * as S from './Header.style';
 
-export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText, backButtonState, setBackButtonState }) => {
+export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText, backButtonState, setBackButtonState, navigatePath }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -16,7 +16,12 @@ export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText
             setBackButtonState(!backButtonState);
         }
         else {
-            navigate(-1);
+            if(navigatePath){
+                navigate(navigatePath);
+            }
+            else {
+                navigate(-1);
+            }
         }
     }
 
