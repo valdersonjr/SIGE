@@ -1,7 +1,6 @@
 import React from 'react';
 
 import * as S from './UsersTable.style';
-import { useNavigate } from "react-router-dom";
 import { TableRow, TableRowTitle } from "@molecules";
 import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
@@ -9,7 +8,6 @@ import { FetchUserResponse } from '~/models/datacore';
 import { deleteUserApiService, updateUserApiService } from '~/service/api';
 
 export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
-    const navigate = useNavigate();
     const [deletedIdArray, setDeletedIdArray] = React.useState<number[]>([]);
 
     let filteredData:FetchUserResponse[] = [];

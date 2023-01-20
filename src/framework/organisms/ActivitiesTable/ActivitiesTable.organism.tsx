@@ -44,7 +44,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
     const handleActivityStatus = async (row:ResponseActivities) => {
         // console.log(row);
         row.ativo = !row.ativo;
-        await updateActivityApiService(row).then(response =>  setReload ? setReload(!reload) : "");
+        await updateActivityApiService(row).then(() =>  setReload ? setReload(!reload) : "");
     }
 
     return (
