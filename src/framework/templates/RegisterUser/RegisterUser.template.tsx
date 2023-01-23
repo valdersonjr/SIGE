@@ -8,9 +8,9 @@ import { IRegisterUser } from '~/models/dataview';
 import MultiSelect from '~/framework/atoms/MultiSelect/MuliSelect.atom';
 
 const profileOptions = [
-    {label: "Administrador", value: "ADM"},
-    {label: "Usuário", value: "USU"},
-    {label: "Responsável", value: ""},
+    {label: "Administrador", value: 1},
+    {label: "Usuário", value: 2},
+    {label: "Responsável", value: 3}
 ]
 
 export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
@@ -59,6 +59,7 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
             handleSubmit(inputdata);
         };
     }
+
     return(
         <S.Container>
             <S.Header>
@@ -69,13 +70,13 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
                     <Title>Dados do Usuário</Title>
                     <S.InputContainer>
                         <InputInLabel label="Nome do Usuário" placeholder="Digite aqui" value={inputdata.name} onChange={(value:string) => handleChange(value, "name")} />
-                        <InputInLabel label="Email" placeholder="Digite aqui"  value={inputdata.email} onChange={(value:string) => handleChange(value, "email")} />
+                        <InputInLabel required={true} type="email" label="Email" placeholder="usuario@sige"  value={inputdata.email} onChange={(value:string) => handleChange(value, "email")} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <div style={{"width":"100%", "marginTop":"4px"}}>
                             <MultiSelect label="Perfil"  options={profileOptions} onChange={(value) => handleMultiSelectChange(value)} />
                         </div>
-                        <InputInLabel label="Telefone" placeholder="Digite aqui"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
+                        <InputInLabel type='text' label="Telefone" placeholder="(XX) 9XXXX - XXXX"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <InputInLabel label="Senha" type='password' placeholder="Digite aqui"  value={inputdata.password} onChange={(value:string) => handleChange(value, "password")} />
@@ -89,7 +90,7 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
                     </S.InputContainer>
                 </S.InputSection>
                 <S.ButtonContainer>
-                    <Button type='reset' label="Limpar campos" variant={VariantButtonEnum.PRIMARY} justifyText="center" onClick={handleReset} />
+                    <Button type='reset' label="Limpar" variant={VariantButtonEnum.PRIMARY} justifyText="center" onClick={handleReset} />
                     <Button type='submit' label="Criar Matrícula" variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={handleRegisterButtonClick} />
                 </S.ButtonContainer>
             </S.Body>
