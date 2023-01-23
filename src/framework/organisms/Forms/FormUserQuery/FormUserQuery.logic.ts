@@ -1,7 +1,8 @@
 export const profileOptions = [
     { value: '', label: '' },
     { value: 'ADM', label: 'Administrador' },
-    { value: 'USU', label: 'Usuário' }
+    { value: 'USU', label: 'Usuário' },
+    { value: 'RES', label: 'Responsável' }
 ];
 
 export const statusOptions = [

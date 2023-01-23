@@ -22,6 +22,7 @@ import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewAc
 import NewClassPage from "~/framework/pages/Management/ViewClasses/NewClass/NewClass.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
 import NewActivityPage from '~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page';
+import ViewUserPage from '~/framework/pages/Users/ViewUser/ViewUser.page';
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ export const AuthenticatedRoutes: React.FC = () => {
 
         <Route path='/usuarios' element={<UsersPage />} />
         <Route path='/usuarios/novo-usuario' element={<RegisterUserPage />} />
+        <Route path='/usuarios/visualizar-usuario/:id' element={<ViewUserPage />} />
 
         <Route path='/relatorios' element={<ReportsPage />} />
       </Route>

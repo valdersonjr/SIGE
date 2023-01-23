@@ -6,5 +6,6 @@ export * from './Management/Management.template';
 export * from './ViewClass/ViewClass.template';
 export * from './PageBase/PageBase.template';
 export * from './Students/Students.template';
+export * from './ViewUser/ViewUser.template';
 export * from './Reports/Reports.template';
 export * from './Home/Home.template';

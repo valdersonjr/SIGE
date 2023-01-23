@@ -6,8 +6,10 @@ import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
 import { FetchUserResponse } from '~/models/datacore';
 import { deleteUserApiService, updateUserApiService } from '~/service/api';
+import { useNavigate } from 'react-router-dom';
 
 export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
+    const navigate = useNavigate();
     const [deletedIdArray, setDeletedIdArray] = React.useState<number[]>([]);
 
     let filteredData:FetchUserResponse[] = [];
@@ -61,7 +63,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                     return (
                         <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
-                            onEyeClick={() => {}}
+                            onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => handleSwitchClick(row)}
                             onThrashClick={() => handleUserDeletion(row.id)} />
                     )

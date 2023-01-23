@@ -25,12 +25,17 @@ export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
     const handleFormSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
         if (formData && setFilters) {
-            setFilters(formData)
+            setFilters(formData);
         }
     }
 
     const handleFilterReset = () => {
         if(setFilters){
+            setFormData({
+                name: "",
+                profile: "",
+                status: ""
+            });
             setFilters({
                 name: "",
                 profile: "",
