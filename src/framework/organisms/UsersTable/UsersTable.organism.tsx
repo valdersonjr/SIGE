@@ -32,11 +32,11 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         })
     }
 
-    // if (filters?.status !== "" && filters?.status) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.descricao_status === filters.status;
-    //     });
-    // }
+    if (filters?.status !== "" && filters?.status) {
+        filteredData = filteredData.filter((row) => {
+            return row.descricao_status === (filters.status === "Ativo" ? "Sim" : "Não");
+        });
+    }
 
     const handleUserDeletion = async (id:number) => {
         await deleteUserApiService(id).then(() => {

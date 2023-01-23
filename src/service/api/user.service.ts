@@ -41,7 +41,7 @@ export const registerUserApiService = async (user:IRegisterUser): Promise<dataco
             email: user.email,
             senha: user.password,
             telefone: user.phone,
-            ativo: user.status,
+            ativo: true,
             perfis: user.profile
         }
     });

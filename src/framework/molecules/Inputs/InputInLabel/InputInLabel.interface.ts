@@ -6,4 +6,5 @@ export interface InputInLabelProps extends InputProps {
   onChange: (any:any) => void;
   required?:boolean;
   min?:number;
+  pattern?:string;
 }
