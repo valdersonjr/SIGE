@@ -10,7 +10,7 @@ import { statusOptions } from "./ViewClasses.logic";
 import {ensinoOptions} from "~/utils/ensino-options";
 
 import * as S from './ViewClasses.style';
-import {deleteClassApiService} from "@service/api";
+import {deleteClassApiService, searchClassApiService} from "@service/api";
 import ConfirmRemoveData from "@organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism";
 import {
     ConfirmRemoveClassContent
@@ -29,8 +29,14 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
         status: ""
     });
 
-    const handleOnSubmit = () => {
-        console.log(filters);
+    const handleFilters = () => {
+        searchClassApiService({
+            periodo_turma: '',
+            turma: '',
+            situacao: filters.status === 'INATIVO'
+        })
+            .then(() => {})
+            .catch(err => console.error(err));
     }
 
     const handleReset = () => {
@@ -42,7 +48,7 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
     }
 
     useEffect(() => {
-        handleOnSubmit();
+        handleFilters();
     }, [filters]);
 
     useEffect(() => {

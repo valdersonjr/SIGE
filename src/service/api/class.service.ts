@@ -18,6 +18,18 @@ export const getClassApiService = async (id:number): Promise<datacore.FetchRespo
     });
 }
 
+export const searchClassApiService = async (data: any): Promise<any> => {
+    return callApiBaseAsync(`${endpoint}/search`, {
+        title: 'API - classApiService',
+        method: 'POST',
+        body: {
+            periodo_turma: data?.periodo_turma,
+            turma: data?.turma,
+            situacao: data?.situacao
+        }
+    });
+}
+
 export const createClassApiService = async (data: createClassDataProps): Promise<datacore.FetchResponse<string>> => {
     return callApiBaseAsync(endpoint,  {
         title: 'API - classApiService',
@@ -51,8 +63,22 @@ export const putClassApiService = async (id: number, data: any) => {
             valor_projeto_nutricional: data?.valor_projeto_nutricional,
             valor_material_didatico: data?.valor_material_didatico,
             valor_material_pedagogico: data?.valor_material_pedagogico,
-            ativo: !data?.ativo
+            ativo: data?.ativo
         }
+    });
+}
+
+export const activeClassApiService = async (id: number) => {
+    return callApiBaseAsync(`${endpoint}/${id}/ativar`, {
+        title: 'API - classApiService',
+        method: 'PUT'
+    });
+}
+
+export const inactiveClassApiService = async (id: number) => {
+    return callApiBaseAsync(`${endpoint}/${id}/inativar`, {
+        title: 'API - classApiService',
+        method: 'PUT'
     });
 }
 

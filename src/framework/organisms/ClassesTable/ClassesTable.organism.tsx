@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableRowTitle } from "~/framework/molecules";
 import { datacore } from "~/models";
-import {putClassApiService} from "~/service/api";
+import {activeClassApiService, inactiveClassApiService} from "~/service/api";
 
 import { ClassesTableProps } from "./ClassesTable.interface";
 import { titleList } from "./ClassesTable.logic";
@@ -46,15 +46,20 @@ export const ClassesTable: React.FC<ClassesTableProps> = (
     }
 
     const handleSwitchStatus = async (data: any) => {
-        await putClassApiService(data?.id, data)
-            .then(() => setReload(!reload)).catch(err => console.error(err));
+        if (data?.ativo) {
+            await inactiveClassApiService(data?.id)
+                .then(() => setReload(!reload)).catch(err => console.error(err));
+        } else {
+            await activeClassApiService(data?.id)
+                .then(() => setReload(!reload)).catch(err => console.error(err));
+        }
     }
 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.map((it, index) => {
-                return(
+                return (
                     <TableRow index={index} fields={[it?.ensino, it?.descricao, it.horario]} status={it.ativo ? "Ativo" : "Inativo"}
                         onSwitchClick={() => handleSwitchStatus(it)} switchValue={it?.ativo}
                         onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${it.id}`)}
