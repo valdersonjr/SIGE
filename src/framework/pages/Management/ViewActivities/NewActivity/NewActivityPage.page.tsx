@@ -11,8 +11,7 @@ const NewActivityPage: React.FC = () => {
         event.preventDefault();
 
         await createActivityApiService(description)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 navigate("/gestao-escolar/visualizar-atividades");
         });
     }

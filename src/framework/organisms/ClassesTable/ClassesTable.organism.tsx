@@ -4,13 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 import { TableRow, TableRowTitle } from "~/framework/molecules";
 import { datacore } from "~/models";
-import {deleteClassApiService, putClassApiService} from "~/service/api";
+import {activeClassApiService, inactiveClassApiService} from "~/service/api";
 
 import { ClassesTableProps } from "./ClassesTable.interface";
 import { titleList } from "./ClassesTable.logic";
 import * as S from './ClassesTable.style';
 
-export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reload, setReload }) => {
+export const ClassesTable: React.FC<ClassesTableProps> = (
+    { filters,
+        data,
+        reload,
+        setReload,
+        setConfirmRemoveModal,
+        confirmRemoveModal,
+        setIdToDelete
+    }
+) => {
     const navigate = useNavigate();
 
     let filteredData: datacore.ResponseClass[] = [];
@@ -36,40 +45,28 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({ filters, data, reloa
         });
     }
 
-    const handleClassDeletion = async (id: number) => {
-        await deleteClassApiService(id)
-            .then(() => setReload(!reload)).catch(error => console.error(error));
-    }
-
     const handleSwitchStatus = async (data: any) => {
-        function manageData (data: any): any {
-            return {
-                periodo_turma_id: data?.periodo_turma?.id,
-                ensino: data?.ensino,
-                descricao: data?.descricao,
-                valor_mensalidade: data?.valor_mensalidade,
-                valor_refeicao: data?.valor_refeicao,
-                valor_hora_extra: data?.valor_hora_extra,
-                valor_projeto_nutricional: data?.valor_projeto_nutricional,
-                valor_material_didatico: data?.valor_material_didatico,
-                valor_material_pedagogico: data?.valor_material_pedagogico,
-                ativo: !data?.ativo
-            }
+        if (data?.ativo) {
+            await inactiveClassApiService(data?.id)
+                .then(() => setReload(!reload)).catch(err => console.error(err));
+        } else {
+            await activeClassApiService(data?.id)
+                .then(() => setReload(!reload)).catch(err => console.error(err));
         }
-
-        await putClassApiService(data?.id, manageData(data))
-            .then(() => setReload(!reload)).catch(err => console.error(err));
     }
 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.map((it, index) => {
-                return(
+                return (
                     <TableRow index={index} fields={[it?.ensino, it?.descricao, it.horario]} status={it.ativo ? "Ativo" : "Inativo"}
                         onSwitchClick={() => handleSwitchStatus(it)} switchValue={it?.ativo}
                         onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${it.id}`)}
-                        onThrashClick={() => handleClassDeletion(it.id)}
+                        onThrashClick={() => {
+                            setConfirmRemoveModal(!confirmRemoveModal);
+                            setIdToDelete(it?.id);
+                        }}
                     />
                 )})}
         </S.Container>

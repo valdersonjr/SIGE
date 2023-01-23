@@ -104,9 +104,7 @@ export const StudentTable: React.FC<StudentTableProps> = ({ filters }) => {
     }
 
     useEffect(() => {
-        getStudentApiService().then(r => {
-            console.log('funcionou', r);
-        });
+        getStudentApiService().then(() => {});
     }, []);
 
     return (

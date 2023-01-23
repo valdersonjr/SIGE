@@ -1,18 +1,17 @@
-export interface educationDataProps {
-    education: string;
-    name: string;
-    period: number;
-}
-export interface finantialDataProps {
-    montlyFee: string;
-    mealValue: string;
-    extraHourValue: string;
-    nutritionalProjectValue: string;
-    didacticMaterialValue: string;
-    pedagogicalMaterialValue: string;
-    totalValue: string;
+import React from 'react';
+
+export interface createClassDataProps {
+    periodo: number;
+    ensino: string;
+    descricao: string;
+    mensalidade: number;
+    refeicao: number;
+    horaExtra: number;
+    nutricional: number;
+    didatico: number;
+    pedagogico: number;
 }
 
 export interface NewClassProps {
-    handleSubmit?: (event: React.SyntheticEvent, educationData:educationDataProps, finantialData: finantialDataProps) => void;
+    handleSubmit?: (event: React.SyntheticEvent, data: createClassDataProps) => void;
 }

@@ -35,8 +35,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
     });
 
     const handleDeleteActivity = async (id:number) => {
-        await deleteActivityApiService(id).then(response => {
-            console.log(response);
+        await deleteActivityApiService(id).then(() => {
             setDeletedIndexArray([...deletedIndexArray, id]);
         });
     }

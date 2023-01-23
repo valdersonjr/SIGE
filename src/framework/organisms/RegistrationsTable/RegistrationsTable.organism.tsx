@@ -25,9 +25,7 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, fil
 
     const handleRegistrationDeletion = async (id: number) => {
         await deleteRegistrationApiService(id)
-            .then(response =>{
-                console.log(response);
-            }).catch(err => console.error(err));
+            .then(() => { }).catch(err => console.error(err));
     }
 
     return (
