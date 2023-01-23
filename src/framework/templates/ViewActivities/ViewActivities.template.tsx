@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {ViewActivitiesProps} from "@templates/ViewActivities/ViewActivities.interface";
 import { statusData } from './ViewActivities.logic';
 
-export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities}) => {
+export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setReload, reload}) => {
     const navigate = useNavigate();
     const [activitiesData, setActivitiesData] = useState<Array<{value: string | number, label: string}>>([]);
     const [filters, setFilters] = useState({ activity: "", status: "" });
@@ -59,7 +59,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities}) => {
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ActivitiesTable data={activities} filters={filters} />
+            <ActivitiesTable data={activities} filters={filters} reload={reload} setReload={setReload} />
         </S.Container>
     );
 };

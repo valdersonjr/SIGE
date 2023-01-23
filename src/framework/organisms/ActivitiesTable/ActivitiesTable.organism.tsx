@@ -6,9 +6,9 @@ import {TableRow, TableRowTitle} from "@molecules";
 import * as S from "@organisms/ClassesTable/ClassesTable.style";
 import {titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
 import { ResponseActivities } from '~/models/datacore';
-import { deleteActivityApiService } from '~/service/api';
+import { deleteActivityApiService, updateActivityApiService } from '~/service/api';
 
-export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters}) => {
+export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, reload, setReload}) => {
     const navigate = useNavigate();
     const [deletedIndexArray, setDeletedIndexArray] = useState<number[]>([]);
     
@@ -26,6 +26,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters})
     });
 
     filteredData =  filteredData.filter((item) => {
+        console.log(item);
         if(filters?.status !== ""){
             let status = item.ativo ? "active" : "inactive";
             return status === filters?.status;
@@ -34,10 +35,15 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters})
     });
 
     const handleDeleteActivity = async (id:number) => {
-        await deleteActivityApiService(id).then(response => {
-            console.log(response);
+        await deleteActivityApiService(id).then(() => {
             setDeletedIndexArray([...deletedIndexArray, id]);
         });
+    }
+
+    const handleActivityStatus = async (row:ResponseActivities) => {
+        // console.log(row);
+        row.ativo = !row.ativo;
+        await updateActivityApiService(row).then(() =>  setReload ? setReload(!reload) : "");
     }
 
     return (
@@ -52,8 +58,9 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters})
 
                 return (
                     <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
+                          switchValue={row.ativo}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-atividades/atividade")}
-                          onSwitchClick={() => {}}
+                          onSwitchClick={() => handleActivityStatus(row)}
                           onThrashClick={() => handleDeleteActivity(row.id)}
                 />
                 )

@@ -1,4 +1,5 @@
 interface BackButtonProps {
+    navigatePath?:string;
     backButtonState?:boolean;
     setBackButtonState?: (boolean:boolean) => void;
 }

@@ -42,7 +42,7 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
             documento_convenio_medico: medicalInsuranceDocument,
             hospital_preferencia: preferredHospital,
             descricao_status: description
-        }).then(r => { console.log('then', r) })
+        }).then(() => {})
     };
 
     const handleChangeImage = (e: any) => {

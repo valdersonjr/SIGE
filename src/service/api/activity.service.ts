@@ -28,3 +28,14 @@ export const deleteActivityApiService = async (id: number): Promise<datacore.Fet
         method: 'DELETE',
     });
 }
+
+export const updateActivityApiService = async (activity: ResponseActivities): Promise<datacore.FetchResponse<string>> => {
+    return callApiBaseAsync(`${endpoint}/${activity.id}`, {
+        title: 'API - activityApiService',
+        method: 'PUT',
+        body: {
+            descricao: activity.descricao,
+            ativo: activity.ativo
+        }
+    });
+}

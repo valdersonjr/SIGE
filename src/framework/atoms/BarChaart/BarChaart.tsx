@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, BarChart, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, Legend, XAxis, YAxis } from 'recharts';
 
 import { data } from './BarChaart.logic';
 
@@ -15,7 +15,6 @@ export const BarChaart: React.FC = () => {
             </defs>
             <XAxis dataKey="meses" />
             <YAxis dataKey="matricula" />
-            {/* <Tooltip /> */}
             <Bar dataKey="matricula" fill="url(#colorUv)" radius={10} label={{ fill: "#fff", position: "center", fontWeight: "900" }} />
             <Legend />
         </BarChart>

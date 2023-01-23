@@ -25,7 +25,6 @@ export const useAuthentication = () => {
       // @ts-ignore
       localStorage.setItem('access_token', response.data.access_token);
       setLoading(false);
-      console.log('token', response);
       navigate('/alunos');
     } catch (error) {
       console.error(error);

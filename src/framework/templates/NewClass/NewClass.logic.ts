@@ -1,13 +1,3 @@
-export const educationOption = [
-    { label: "", value: ""},
-    { label: "Berçário", value: "bercario"},
-    { label: "Minimaternal", value: "minimaternal"},
-    { label: "Maternal", value: "maternal"},
-    { label: "Maternal 2", value: "maternal2"},
-    { label: "Jardim I", value: "jardim1"},
-    { label: "Jardim II", value: "jardim2"},
-];
-
 export const periodOption = [
     { label: "", value: -1},
     { label: "07:30:00 - 12:30:00 (Manhã)", value: 1},

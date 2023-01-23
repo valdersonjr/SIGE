@@ -14,6 +14,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
   disabled,
   style,
   type,
+  min,
   required
 }) => {
 
@@ -25,6 +26,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
     <S.LabelContainer>
       {label}
       <Input
+        min={min}
         required={required}
         type={type}
         name={name}
