@@ -65,7 +65,9 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     return (
         <S.Container>
             {registrationModalState &&
-              <EditClassData title="Editar dados cadastrais" modalState={registrationModalState} setModalState={setRegistrationModalState} setCanSave={setCanSave}>
+              <EditClassData title="Editar dados cadastrais"
+                             modalState={registrationModalState} setModalState={setRegistrationModalState}
+                             setCanSave={setCanSave}>
                 <EditRegistrationDataModal data={data} setData={setDataOneToSave} />
               </EditClassData>}
             {financeModalState &&

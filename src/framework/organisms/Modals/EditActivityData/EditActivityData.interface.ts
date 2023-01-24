@@ -8,4 +8,5 @@ interface BackButtonProps {
 export interface EditActivityDataProps extends BackButtonProps {
     title: string;
     children: React.ReactNode;
+    setCanSave?: (value: boolean) => void;
 }

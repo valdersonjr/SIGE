@@ -11,6 +11,13 @@ export const getActivitiesApiService = async (): Promise<datacore.FetchResponse<
     });
 }
 
+export const getActivityApiService = async (id: number): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(`${endpoint}/${id}`, {
+        title: 'API - activityApiService',
+        method: 'GET'
+    });
+}
+
 export const createActivityApiService = async (description: string): Promise<datacore.FetchResponse<any>> => {
     return callApiBaseAsync(`${endpoint}`, {
         title: 'API - activityApiService',
@@ -29,13 +36,27 @@ export const deleteActivityApiService = async (id: number): Promise<datacore.Fet
     });
 }
 
-export const updateActivityApiService = async (activity: ResponseActivities): Promise<datacore.FetchResponse<string>> => {
-    return callApiBaseAsync(`${endpoint}/${activity.id}`, {
+export const updateActivityApiService = async (id: number, activity: any): Promise<datacore.FetchResponse<string>> => {
+    return callApiBaseAsync(`${endpoint}/${id}`, {
         title: 'API - activityApiService',
         method: 'PUT',
         body: {
             descricao: activity.descricao,
             ativo: activity.ativo
         }
+    });
+}
+
+export const activeActivityApiService = async (id: number): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(`${endpoint}/${id}/ativar`, {
+        title: 'API - activityApiService',
+        method: 'PUT'
+    });
+}
+
+export const inactiveActivityApiService = async (id: number): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(`${endpoint}/${id}/inativar`, {
+        title: 'API - activityApiService',
+        method: 'PUT'
     });
 }

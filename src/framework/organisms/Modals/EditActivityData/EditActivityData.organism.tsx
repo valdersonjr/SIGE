@@ -4,7 +4,7 @@ import {EditActivityDataProps} from "@organisms/Modals/EditActivityData/EditActi
 import {Header} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
 
-const EditActivityData: React.FC<EditActivityDataProps> = ({title, children, modalState, setModalState}) => {
+const EditActivityData: React.FC<EditActivityDataProps> = ({title, children, modalState, setModalState, setCanSave}) => {
     return (
         <S.Container>
             <S.Modal>
@@ -14,7 +14,8 @@ const EditActivityData: React.FC<EditActivityDataProps> = ({title, children, mod
                 <S.InputsContainer>{ children }</S.InputsContainer>
                 <S.ButtonsContainer>
                     <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem Salvar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    <Button label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
+                    <Button label="Salvar alterações" onClick={() => setCanSave && setCanSave(true)}
+                            variant={VariantButtonEnum.SECONDARY} justifyText="center" />
                 </S.ButtonsContainer>
             </S.Modal>
         </S.Container>

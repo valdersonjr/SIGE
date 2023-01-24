@@ -7,7 +7,6 @@ import { registerUserApiService } from "~/service/api"
 const RegisterUserPage: React.FC = () => {
     
     const handleRegisterUser = async (user:IRegisterUser) => {
-        console.log(user);
         if(user.password.trim().length < 6){
             alert("Senha inválida! \nSua senha precisa ter no mínimo 6 dígitos.");
         }
@@ -16,7 +15,7 @@ const RegisterUserPage: React.FC = () => {
         }
         else {
             await registerUserApiService(user).then(response => {
-                console.log(response);
+                console.info(response);
             });
         }
     }

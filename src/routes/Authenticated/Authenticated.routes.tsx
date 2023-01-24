@@ -40,7 +40,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/nova-turma' element={<NewClassPage />} />
 
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />
-        <Route path='/gestao-escolar/visualizar-atividades/atividade' element={<ViewActivityPage />} />
+        <Route path='/gestao-escolar/visualizar-atividades/atividade/:id' element={<ViewActivityPage />} />
         <Route path='/gestao-escolar/nova-atividade' element={<NewActivityPage />} />
 
         <Route path='/gestao-escolar/visualizar-matriculas' element={<ViewRegistrationsPage />} />
