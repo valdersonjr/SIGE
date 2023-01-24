@@ -43,5 +43,7 @@ export const Content = styled.span`
     line-height: 110%;
     color: ${theme.palette.dark.tint};
 
+    width: fit-content;
+
     margin: 8px;
 `

@@ -26,15 +26,16 @@ export const deleteUserApiService = async (id:number): Promise<datacore.FetchRes
 }
 
 export const updateUserApiService = async (user:any): Promise<datacore.FetchResponse<any>> => { 
+    console.log(user);
     return callApiBaseAsync(`${endpoint}/${user.id}`,  {
         title: 'USER API - userApiService',
         method: 'PUT',
         body: {
             nome: user.nome,
             email: user.email,
-            senha: "123456",
+            senha: user.senha ? user.senha : null,
             telefone: user.telefone,
-            ativo: user.ativo,
+            ativo: true,
         }
     });
 }
