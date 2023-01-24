@@ -34,9 +34,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         })
     }
 
-    if (filters?.status !== "" && filters?.status) {
+    if (filters?.status) {
         filteredData = filteredData.filter((row) => {
-            return row.descricao_status === (filters.status === "Ativo" ? "Sim" : "Não");
+            return row.ativo === (filters.status === "Ativo" ?  true : false);
         });
     }
 
@@ -46,9 +46,8 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         });
     }
 
-    const handleSwitchClick = (user: any) => {
-        let status = user.descricao_status === "Sim" ? true : false;
-        user.ativo = !status;
+    const handleSwitchClick = (user: FetchUserResponse) => {
+        user.ativo = !(user.ativo);
         updateUserApiService(user).then(() => setReload ? setReload(!reload) : null);
     }
     

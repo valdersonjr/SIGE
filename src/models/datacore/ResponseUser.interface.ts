@@ -12,4 +12,5 @@ export interface FetchUserResponse {
     descricao_status: string;
     telefone_formatado: string;
     perfis: IProfile[];
+    senha?: string;
 }

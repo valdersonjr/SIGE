@@ -1,4 +1,5 @@
 import { datacore } from "~/models"
+import { FetchUserResponse } from "~/models/datacore";
 import { IRegisterUser } from "~/models/dataview";
 import { callApiBaseAsync } from "./_base"
 
@@ -25,8 +26,7 @@ export const deleteUserApiService = async (id:number): Promise<datacore.FetchRes
     });
 }
 
-export const updateUserApiService = async (user:any): Promise<datacore.FetchResponse<any>> => { 
-    console.log(user);
+export const updateUserApiService = async (user:FetchUserResponse): Promise<datacore.FetchResponse<any>> => { 
     return callApiBaseAsync(`${endpoint}/${user.id}`,  {
         title: 'USER API - userApiService',
         method: 'PUT',
@@ -35,7 +35,7 @@ export const updateUserApiService = async (user:any): Promise<datacore.FetchResp
             email: user.email,
             senha: user.senha ? user.senha : null,
             telefone: user.telefone,
-            ativo: true,
+            ativo: user.ativo !== null ? user.ativo : true,
         }
     });
 }
