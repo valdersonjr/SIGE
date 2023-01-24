@@ -112,7 +112,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
                     return <InputInLabel label={item.label} onChange={(e) => handleFindStudentChange(e, item.key)} value={item.key === 0 ? studentName : studentRegistration} placeholder={placeholder} disabled={item.key !== 1 ? disabled : false} />
                 })}
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
                     <Button onClick={handleFindStudentSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
@@ -130,7 +130,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
                     return <InputSelectInLabel key={item.key} label={item.label} onChange={(e) => handleFilterChange(e)} options={[{ value: 'Professor', label: 'Professor' }, { value: 'Aluno', label: 'Aluno' }]} disabled={disabled} />
                 })}
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
                     <Button onClick={handleFilterSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
