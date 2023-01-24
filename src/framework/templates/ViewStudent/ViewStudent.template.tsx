@@ -28,22 +28,22 @@ const ViewStudent: React.FC = () => {
             <S.DropdownContainer>
                 <Dropdown title='Dados do Aluno' >
                     {dadosDoAlunoSection.map((item) => (
-                        <PostIt title={item.title} content={item.content} />
+                        <PostIt title={item.title} content={[item.content]} />
                     ))}
                 </Dropdown>
                 <Dropdown title='Dados Cadastrais'>
                     {dadosCadastraisSection.map((item) => (
-                        <PostIt title={item.title} content={item.content} />
+                        <PostIt title={item.title} content={[item.content]} />
                     ))}
                 </Dropdown>
                 <Dropdown title='Dados dos Responsáveis'>
                     {dadosCadastraisSection.map((item) => (
-                        <PostIt title={item.title} content={item.content} />
+                        <PostIt title={item.title} content={[item.content]} />
                     ))}
                 </Dropdown>
                 <Dropdown title='Contatos de Emergência'>
                     {contatosDeEmergenciaSection.map((item) => (
-                        <PostIt title={item.title} content={item.content} />
+                        <PostIt title={item.title} content={[item.content]} />
                     ))}
                 </Dropdown>
             </S.DropdownContainer>

@@ -6,8 +6,10 @@ import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
 import { FetchUserResponse } from '~/models/datacore';
 import { deleteUserApiService, updateUserApiService } from '~/service/api';
+import { useNavigate } from 'react-router-dom';
 
 export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
+    const navigate = useNavigate();
     const [deletedIdArray, setDeletedIdArray] = React.useState<number[]>([]);
 
     let filteredData:FetchUserResponse[] = [];
@@ -32,11 +34,11 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         })
     }
 
-    // if (filters?.status !== "" && filters?.status) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.descricao_status === filters.status;
-    //     });
-    // }
+    if (filters?.status !== "" && filters?.status) {
+        filteredData = filteredData.filter((row) => {
+            return row.descricao_status === (filters.status === "Ativo" ? "Sim" : "Não");
+        });
+    }
 
     const handleUserDeletion = async (id:number) => {
         await deleteUserApiService(id).then(() => {
@@ -61,7 +63,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                     return (
                         <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
-                            onEyeClick={() => {}}
+                            onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => handleSwitchClick(row)}
                             onThrashClick={() => handleUserDeletion(row.id)} />
                     )

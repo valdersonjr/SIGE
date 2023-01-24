@@ -13,6 +13,20 @@ export const Container = styled.div`
 
     border-radius: 8px;
     background-color: ${theme.palette.light.tint};
+
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+    }
 `
 export const Title = styled.h2`
     color: #B9B9B9;

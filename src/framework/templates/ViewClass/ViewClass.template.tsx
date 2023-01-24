@@ -76,18 +76,18 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
               </EditClassData>}
             <Header title="Turma" />
             <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)}>
-                <PostIt title="Ensino" content={data?.ensino} />
-                <PostIt title="Nome" content={data?.descricao} />
-                <PostIt title="Período" content={`${data?.periodo_turma?.horario_entrada} - ${data?.periodo_turma?.horario_saida}`} />
+                <PostIt title="Ensino" content={[data?.ensino]} />
+                <PostIt title="Nome" content={[data?.descricao]} />
+                <PostIt title="Período" content={[`${data?.periodo_turma?.horario_entrada} - ${data?.periodo_turma?.horario_saida}`]} />
             </Dropdown>
             <Dropdown title="Dados Financeiros" buttonText="Editar Dados" onButtonClick={() => setFinanceModalState(!financeModalState)} >
-                <PostIt title="Valor mensalidade" content={`R$ ${data?.valor_mensalidade.toFixed(2)}`} />
-                <PostIt title="Valor reifeição" content={`R$ ${data?.valor_refeicao.toFixed(2)}`} />
-                <PostIt title="Valor hora extra" content={`R$ ${data?.valor_hora_extra.toFixed(2)}`} />
-                <PostIt title="Valor Projeto nutricionista" content={`R$ ${data?.valor_projeto_nutricional.toFixed(2)}`} />
-                <PostIt title="Valor Material didático" content={`R$ ${data?.valor_material_didatico.toFixed(2)}`} />
-                <PostIt title="Valor Material pedagógico" content={`R$ ${data?.valor_material_pedagogico.toFixed(2)}`} />
-                <PostIt title="Total" content={`R$ ${sumTotal().toFixed(2)}`} />
+                <PostIt title="Valor mensalidade" content={[`R$ ${data?.valor_mensalidade.toFixed(2)}`]} />
+                <PostIt title="Valor reifeição" content={[`R$ ${data?.valor_refeicao.toFixed(2)}`]} />
+                <PostIt title="Valor hora extra" content={[`R$ ${data?.valor_hora_extra.toFixed(2)}`]} />
+                <PostIt title="Valor Projeto nutricionista" content={[`R$ ${data?.valor_projeto_nutricional.toFixed(2)}`]} />
+                <PostIt title="Valor Material didático" content={[`R$ ${data?.valor_material_didatico.toFixed(2)}`]} />
+                <PostIt title="Valor Material pedagógico" content={[`R$ ${data?.valor_material_pedagogico.toFixed(2)}`]} />
+                <PostIt title="Total" content={[`R$ ${sumTotal().toFixed(2)}`]} />
             </Dropdown>
             <S.LinkedStudentsHeader>
                 <Title>Alunos Vínculados</Title>

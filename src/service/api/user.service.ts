@@ -11,6 +11,13 @@ export const getAllUsersApiService = async (): Promise<datacore.FetchResponse<da
     });
 }
 
+export const getUserByIdApiService = async (id:number): Promise<datacore.FetchResponse<datacore.FetchUserResponse>> => { 
+    return callApiBaseAsync(`${endpoint}/${id}`, {
+        title: 'USER API - userApiService',
+        method: 'GET',
+    });
+}
+
 export const deleteUserApiService = async (id:number): Promise<datacore.FetchResponse<string>> => { 
     return callApiBaseAsync(`${endpoint}/${id}`,  {
         title: 'USER API - userApiService',
@@ -41,7 +48,7 @@ export const registerUserApiService = async (user:IRegisterUser): Promise<dataco
             email: user.email,
             senha: user.password,
             telefone: user.phone,
-            ativo: user.status,
+            ativo: true,
             perfis: user.profile
         }
     });

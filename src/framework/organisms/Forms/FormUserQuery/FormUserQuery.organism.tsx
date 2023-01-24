@@ -25,12 +25,17 @@ export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
     const handleFormSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
         if (formData && setFilters) {
-            setFilters(formData)
+            setFilters(formData);
         }
     }
 
     const handleFilterReset = () => {
         if(setFilters){
+            setFormData({
+                name: "",
+                profile: "",
+                status: ""
+            });
             setFilters({
                 name: "",
                 profile: "",
@@ -52,7 +57,7 @@ export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
                     options={statusOptions}
                 />
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" justifyText="center" onClick={handleFilterReset} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button label="Limpar" type="reset" justifyText="center" onClick={handleFilterReset} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
                     <Button label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />

@@ -1,6 +1,6 @@
 interface option {
     label: string;
-    value: string;
+    value: string | number;
 }
 
 export interface MultiSelectProps {

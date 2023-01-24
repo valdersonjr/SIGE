@@ -4,6 +4,7 @@ export * from './Login/Login.page';
 export * from './Reports/Reports.page';
 export * from './Students/Students.page';
 export * from './Management/Management.page';
+export * from './Users/ViewUser/ViewUser.page';
 export * from './Students/ViewStudent/ViewStudent.page';
 export * from './Management/ViewClasses/ViewClasses.page';
 export * from './Students/RegisterStudent/RegisterStudent.page';

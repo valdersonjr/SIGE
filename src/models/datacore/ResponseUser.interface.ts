@@ -8,6 +8,7 @@ export interface FetchUserResponse {
     nome: string;
     email: string;
     telefone: string;
+    ativo?: boolean;
     descricao_status: string;
     telefone_formatado: string;
     perfis: IProfile[];
