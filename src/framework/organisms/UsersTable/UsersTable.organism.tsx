@@ -40,9 +40,14 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         });
     }
 
-    const handleUserDeletion = async (id:number) => {
-        await deleteUserApiService(id).then(() => {
-            setDeletedIdArray([...deletedIdArray, id]);
+    const handleUserDeletion = async (id:number, name:string) => {
+        await deleteUserApiService(id).then((response:any) => {
+            if(response.message){
+                alert(`Não foi possível excluir o usuário ${name}`);
+            }
+            else {
+                setDeletedIdArray([...deletedIdArray, id]);
+            }
         });
     }
 
@@ -64,7 +69,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                             switchValue={status}
                             onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => handleSwitchClick(row)}
-                            onThrashClick={() => handleUserDeletion(row.id)} />
+                            onThrashClick={() => handleUserDeletion(row.id, row.nome)} />
                     )
                 }
             })}
