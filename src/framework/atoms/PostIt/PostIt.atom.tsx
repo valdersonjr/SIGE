@@ -8,7 +8,9 @@ export const PostIt:React.FC<PostItProps> = ({title, content}) => {
     return(
         <S.Container>
             <S.Title>{title}</S.Title>
-            <S.Content>{content}</S.Content>
+            {content?.map((item) => 
+                <S.Content>{item}</S.Content>
+            )}
         </S.Container>
     )
 }

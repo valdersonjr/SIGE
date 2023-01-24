@@ -35,12 +35,12 @@ const ViewTeacher: React.FC = () => {
 
             <Dropdown title="Dados Cadastrais do Professor" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)} >
                 {registrationData.map((item)=>(
-                    <PostIt  key={item.key} title={item.name} content={item.content} />
+                    <PostIt  key={item.key} title={item.name} content={[item.content]} />
                 ))}
             </Dropdown>
             <Dropdown title="Contato" buttonText="Editar Dados" onButtonClick={() => setContactModalState(!contactModalState)} >
                 {contactData.map((item)=>(
-                    <PostIt  key={item.key} title={item.name} content={item.content} />
+                    <PostIt  key={item.key} title={item.name} content={[item.content]} />
                 ))}
             </Dropdown>
         </S.Container>
