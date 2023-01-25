@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterUserPage: React.FC = () => {
     const navigate = useNavigate();
-    
+
     const handleRegisterUser = async (user:IRegisterUser) => {
+        console.log(user);
         if(user.password.trim().length < 6){
             alert("Senha inválida! \nSua senha precisa ter no mínimo 6 dígitos.");
         }

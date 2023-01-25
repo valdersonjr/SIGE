@@ -1,10 +1,11 @@
 import React from 'react';
-import * as S from './EditActivityData.style';
-import {EditActivityDataProps} from "@organisms/Modals/EditActivityData/EditActivityData.interface";
-import {Header} from "@molecules";
-import {Button, VariantButtonEnum} from "@atoms";
+import { Button, VariantButtonEnum } from '~/framework/atoms';
+import { Header } from '~/framework/molecules';
+import { EditUserDataProps } from './EditUserData.interface';
 
-const EditActivityData: React.FC<EditActivityDataProps> = ({title, children, modalState, setModalState, setCanSave}) => {
+import * as S from "./EditUserData.style";
+
+const EditUserData: React.FC<EditUserDataProps> = ({ title, children, modalState, setModalState, handleModalSubmit }) => {
     return (
         <S.Container>
             <S.Modal>
@@ -14,12 +15,11 @@ const EditActivityData: React.FC<EditActivityDataProps> = ({title, children, mod
                 <S.InputsContainer>{ children }</S.InputsContainer>
                 <S.ButtonsContainer>
                     <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> } label="Sair sem Salvar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    <Button label="Salvar alterações" onClick={() => setCanSave && setCanSave(true)}
-                            variant={VariantButtonEnum.SECONDARY} justifyText="center" />
+                    <Button onClick={handleModalSubmit} label="Salvar alterações" variant={VariantButtonEnum.SECONDARY} justifyText="center" />
                 </S.ButtonsContainer>
             </S.Modal>
         </S.Container>
     );
 }
 
-export default EditActivityData;
+export default EditUserData;

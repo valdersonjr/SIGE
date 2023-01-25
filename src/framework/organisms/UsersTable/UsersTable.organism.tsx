@@ -6,8 +6,10 @@ import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
 import { FetchUserResponse } from '~/models/datacore';
 import { deleteUserApiService, updateUserApiService } from '~/service/api';
+import { useNavigate } from 'react-router-dom';
 
 export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
+    const navigate = useNavigate();
     const [deletedIdArray, setDeletedIdArray] = React.useState<number[]>([]);
 
     let filteredData:FetchUserResponse[] = [];
@@ -32,21 +34,25 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         })
     }
 
-    if (filters?.status !== "" && filters?.status) {
+    if (filters?.status) {
         filteredData = filteredData.filter((row) => {
-            return row.descricao_status === (filters.status === "Ativo" ? "Sim" : "Não");
+            return row.ativo === (filters.status === "Ativo" ?  true : false);
         });
     }
 
-    const handleUserDeletion = async (id:number) => {
-        await deleteUserApiService(id).then(() => {
-            setDeletedIdArray([...deletedIdArray, id]);
+    const handleUserDeletion = async (id:number, name:string) => {
+        await deleteUserApiService(id).then((response:any) => {
+            if(response.message){
+                alert(`Não foi possível excluir o usuário ${name}`);
+            }
+            else {
+                setDeletedIdArray([...deletedIdArray, id]);
+            }
         });
     }
 
-    const handleSwitchClick = (user: any) => {
-        let status = user.descricao_status === "Sim" ? true : false;
-        user.ativo = !status;
+    const handleSwitchClick = (user: FetchUserResponse) => {
+        user.ativo = !(user.ativo);
         updateUserApiService(user).then(() => setReload ? setReload(!reload) : null);
     }
     
@@ -61,9 +67,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                     return (
                         <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
-                            onEyeClick={() => {}}
+                            onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => handleSwitchClick(row)}
-                            onThrashClick={() => handleUserDeletion(row.id)} />
+                            onThrashClick={() => handleUserDeletion(row.id, row.nome)} />
                     )
                 }
             })}

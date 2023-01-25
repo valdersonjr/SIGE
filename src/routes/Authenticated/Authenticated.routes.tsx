@@ -22,6 +22,7 @@ import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewAc
 import NewClassPage from "~/framework/pages/Management/ViewClasses/NewClass/NewClass.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
 import NewActivityPage from '~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page';
+import ViewUserPage from '~/framework/pages/Users/ViewUser/ViewUser.page';
 
 export const AuthenticatedRoutes: React.FC = () => {
   return (
@@ -31,7 +32,7 @@ export const AuthenticatedRoutes: React.FC = () => {
 
         <Route path='/alunos' element={<StudentsPage />} />
         <Route path='/alunos/novo-aluno' element={<RegisterStudentPage />} />
-        <Route path='/alunos/visualizar-aluno' element={<ViewStudentPage />} />
+        <Route path='/alunos/visualizar-aluno/:id' element={<ViewStudentPage />} />
 
         <Route path='/gestao-escolar' element={<ManagementPage />} />
 
@@ -40,7 +41,7 @@ export const AuthenticatedRoutes: React.FC = () => {
         <Route path='/gestao-escolar/nova-turma' element={<NewClassPage />} />
 
         <Route path='/gestao-escolar/visualizar-atividades' element={<ViewActivitiesPage />} />
-        <Route path='/gestao-escolar/visualizar-atividades/atividade' element={<ViewActivityPage />} />
+        <Route path='/gestao-escolar/visualizar-atividades/atividade/:id' element={<ViewActivityPage />} />
         <Route path='/gestao-escolar/nova-atividade' element={<NewActivityPage />} />
 
         <Route path='/gestao-escolar/visualizar-matriculas' element={<ViewRegistrationsPage />} />
@@ -51,6 +52,7 @@ export const AuthenticatedRoutes: React.FC = () => {
 
         <Route path='/usuarios' element={<UsersPage />} />
         <Route path='/usuarios/novo-usuario' element={<RegisterUserPage />} />
+        <Route path='/usuarios/visualizar-usuario/:id' element={<ViewUserPage />} />
 
         <Route path='/relatorios' element={<ReportsPage />} />
       </Route>

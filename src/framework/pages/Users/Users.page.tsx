@@ -10,7 +10,7 @@ const UsersPage: React.FC = () => {
     useEffect(() => {
         getAllUsersApiService().then(response => {
             setUsers(response.data);
-        }).catch(err => console.log(err));
+        }).catch(err => console.error(err));
     }, [reload]);
 
     return <Users users={users} reload={reload} setReload={setReload} />;
