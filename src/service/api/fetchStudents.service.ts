@@ -10,6 +10,13 @@ export const getAllStudentsApiService = async (): Promise<datacore.FetchResponse
     });
 }
 
+export const getStudentByIdApiService = async (id:number): Promise<datacore.FetchResponse<datacore.ResponseStudent>> => { 
+    return callApiBaseAsync(`${endpoint}/${id}`,  {
+        title: 'STUDENT API - studentApiService',
+        method: 'GET',
+    });
+}
+
 export const deleteStudentApiService = async (id:number) : Promise<datacore.FetchResponse<string>> => {
     return callApiBaseAsync(`${endpoint}/${id}`,  {
         title: 'STUDENT API - studentApiService',

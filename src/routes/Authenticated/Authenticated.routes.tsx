@@ -32,7 +32,7 @@ export const AuthenticatedRoutes: React.FC = () => {
 
         <Route path='/alunos' element={<StudentsPage />} />
         <Route path='/alunos/novo-aluno' element={<RegisterStudentPage />} />
-        <Route path='/alunos/visualizar-aluno' element={<ViewStudentPage />} />
+        <Route path='/alunos/visualizar-aluno/:id' element={<ViewStudentPage />} />
 
         <Route path='/gestao-escolar' element={<ManagementPage />} />
 

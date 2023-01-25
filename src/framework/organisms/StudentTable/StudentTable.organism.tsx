@@ -109,7 +109,7 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
                     return(
                         <TableRow key={row.id} index={index} fields={[row.nome, "-", getClassType(row.matriculas, "2022")]} status={row.ativo ? "Ativo" : "Inativo"}
                             switchValue={row.ativo}
-                            onEyeClick={() => navigate('/alunos/visualizar-aluno')}
+                            onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
                             onThrashClick={() => handleDeleteStudent(row.id, row.nome)} 
                             onSwitchClick={() => handleSwitchClick(row.id, row.ativo)} />
                     )

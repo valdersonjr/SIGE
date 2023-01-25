@@ -14,25 +14,10 @@ export const dropdownSections = [{
     key: 4,
 },]
 
-export const dadosDoAlunoSection = [{
-    key: 0,
-    title: 'Nome',
-    content: 'Carlos Eduardo de Lima'
-},
-{
-    key: 1,
-    title: 'Data de nascimento',
-    content: '17/02/2002'
-},
-{
-    key: 2,
-    title: 'Idade',
-    content: '08'
-}];
 
 export const dadosCadastraisSection = [{
     key: 0,
-    title: 'Turma Vinculada',
+    title: '',
     content: 'Nenhuma'
 },
 {
@@ -78,3 +63,17 @@ export const contatosDeEmergenciaSection = [{
     content: '(00) 0 0000-0000'
 }
 ];
+
+export const calculateAge = (birthdate: string): number => {
+    const birthdateArray = birthdate.split('/');
+    const day = parseInt(birthdateArray[0]);
+    const month = parseInt(birthdateArray[1]);
+    const year = parseInt(birthdateArray[2]);
+    const today = new Date();
+    let age = today.getFullYear() - year;
+    const monthDiff = today.getMonth() - month;
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < day)) {
+      age--;
+    }
+    return age;
+  }
