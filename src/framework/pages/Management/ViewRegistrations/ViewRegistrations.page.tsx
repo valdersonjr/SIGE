@@ -4,20 +4,19 @@ import {ViewRegistrations} from "@templates/ViewRegistrations/ViewRegistrations.
 import {getRegistrationsApiService} from "@service/api/registration.service";
 
 const ViewRegistrationsPage: React.FC = () => {
-    // @ts-ignore
     const [registrations, setRegistrations] = useState([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getRegistrationsApiService()
-            .then(response => {
-                setRegistrations(response.data);
-            }).catch(err => console.error(err));
-    }, []);
+            .then(response => setRegistrations(response.data))
+            .catch(err => console.error(err));
+    }, [reload]);
 
 
     return (
         <S.Container>
-            <ViewRegistrations registrations={registrations} />
+            <ViewRegistrations registrations={registrations} reload={reload} setReload={setReload} />
         </S.Container>
     )
 };

@@ -4,7 +4,6 @@ export const titleList: DataMap[] = [
     { key: 0, data: 'Matrícula' },
     { key: 1, data: 'Aluno' },
     { key: 2, data: 'Ano de Ingresso' },
-    { key: 3, data: 'Status' },
     { key: 4, data: 'Ações' }
 ];
 

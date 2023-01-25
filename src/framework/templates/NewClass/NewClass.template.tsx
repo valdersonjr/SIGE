@@ -83,7 +83,8 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
                                       placeholder="R$" onChange={() => {}} />
                     </S.InputContainer>
                 </S.InputSection>
-                <div style={{ "display": "flex", "flexDirection": "row", "gap": "14px" }}>
+
+                <S.ButtonContainer>
                     <Button label="Criar turma" variant={VariantButtonEnum.SECONDARY} justifyText="center"
                             onClick={(event) => handleSubmit ? handleSubmit(event, {
                                 periodo: Number(periodo), ensino, descricao, mensalidade: removeCurrencyPrefix(mensalidade),
@@ -91,7 +92,7 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
                                 nutricional: removeCurrencyPrefix(nutricional), didatico: removeCurrencyPrefix(didatico),
                                 pedagogico: removeCurrencyPrefix(pedagogico)
                             }) : ""} />
-                </div>
+                </S.ButtonContainer>
             </S.Body>
         </S.Container>
     );

@@ -1,8 +1,8 @@
+import React from 'react';
 import Select from 'react-select';
 import { MultiSelectProps } from './MultiSelect.interface';
 
 import * as S from "./MultiSelect.syle";
- 
 
 const MultiSelect:React.FC <MultiSelectProps> = ({ label, options, onChange }) => {
     return(
@@ -22,7 +22,7 @@ const MultiSelect:React.FC <MultiSelectProps> = ({ label, options, onChange }) =
                     border: '0 !important',
                     cursor: "pointer"
                  }             
-            })}} options={options} onChange={onChange} />
+            })}} options={options} onChange={onChange}  />
         </S.Container>
     );
 }

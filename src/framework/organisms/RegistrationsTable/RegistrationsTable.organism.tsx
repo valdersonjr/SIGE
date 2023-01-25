@@ -6,7 +6,7 @@ import {RegistrationsTableProps} from "@organisms/RegistrationsTable/Registratio
 import {titleList} from "@organisms/RegistrationsTable/RegistrationsTable.logic";
 import {deleteRegistrationApiService} from "@service/api/registration.service";
 
-export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, filters}) => {
+export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, filters, reload, setReload}) => {
     const navigate = useNavigate();
 
     let filteredData: any[] = [];
@@ -25,16 +25,16 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, fil
 
     const handleRegistrationDeletion = async (id: number) => {
         await deleteRegistrationApiService(id)
-            .then(() => { }).catch(err => console.error(err));
+            .then(() => setReload(!reload))
+            .catch(err => console.error(err));
     }
 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData?.map((row, index) => (
-                <TableRow index={index} fields={[row?.id, row?.aluno?.nome, row?.aluno?.matriculas[0]?.ano]} status={row?.aluno?.ativo ? 'Ativo' : 'Inativo'}
-                          onEyeClick={() => navigate("/gestao-escolar/visualizar-turmas/turma")}
-                          onSwitchClick={() => {}}
+                <TableRow index={index} fields={[row?.id, row?.aluno?.nome, row?.ano]}
+                          onEyeClick={() => {}} // navigate("/gestao-escolar/visualizar-turmas/turma")
                           onThrashClick={() => handleRegistrationDeletion(row?.id)}
                 />
             ))}

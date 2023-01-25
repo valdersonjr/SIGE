@@ -6,14 +6,15 @@ import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTab
 import {useNavigate} from "react-router-dom";
 import {ViewRegistrationsProps} from "@templates/ViewRegistrations/ViewRegistrations.interface";
 
-export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registrations}) => {
+export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registrations, reload, setReload}) => {
     const navigate = useNavigate();
 
     const [filters, setFilters] = useState({
-        register: '',
-        studentName: '',
-        registerYear: '',
-        status: ''
+        ano: '',
+        nome: '',
+        matricula: '',
+        periodo_turma: '',
+        situacao: ''
     });
 
     const handleFilterChange = (field: string, value: any) => {
@@ -26,18 +27,15 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registratio
             <S.FindClassContainer>
                 <Title size={20}>Encontre Atividade</Title>
                 <S.FilterContainer>
-                    <InputInLabel label="Matrícula" value={filters.register} onChange={value => handleFilterChange('register', value)} />
-                    <InputInLabel label="Nome do Aluno" value={filters.studentName} onChange={value => handleFilterChange('studentName', value)} />
-                    <SelectInLabel label="Ano de Ingresso" selectedValue={filters.registerYear} onChange={value => handleFilterChange('registerYear', value)} options={[]} />
+                    <InputInLabel label="Matrícula" value={filters.matricula} onChange={value => handleFilterChange('register', value)} />
+                    <InputInLabel label="Nome do Aluno" value={filters.nome} onChange={value => handleFilterChange('studentName', value)} />
+                    <SelectInLabel label="Ano de Ingresso" selectedValue={filters.ano} onChange={value => handleFilterChange('registerYear', value)} options={[]} />
                     <S.ClearButton>
-                        <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                        <Button label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
-                    <S.SearchButton>
-                        <Button label="Aplicar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                    </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <RegistrationsTable filters={filters} data={registrations} />
+            <RegistrationsTable filters={filters} data={registrations} reload={reload} setReload={setReload} />
         </S.Container>
     );
 };
