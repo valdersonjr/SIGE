@@ -3,5 +3,5 @@ export interface StudentTableFilter {
     registration: string;
     period: string;
     class: string;
-    situation: string;
+    status: string;
 }

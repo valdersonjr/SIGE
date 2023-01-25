@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+export const Form = styled.div`
   width: 94%;
   padding: 16px;
   border-bottom: 1px solid #EDEDED;
@@ -11,7 +11,7 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 10px;
 `
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   min-width: 884px;
 
   display: flex;

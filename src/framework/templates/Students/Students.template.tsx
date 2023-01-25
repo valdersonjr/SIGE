@@ -19,13 +19,12 @@ export const Students: React.FC<StudentsProps> = ({ students, reload, setReload 
         registration: "",
         period: "",
         class: "",
-        situation: ""
+        status: ""
     });
 
     return (
         <S.Container>
             <Banner Icon={<StudentsPageBanner />} type="students" title='Área de Alunos' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar, cadastre um novo aluno cliquando ao lado." buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")} />
-            {/* <S.StudentQuery></S.StudentQuery> */}
             <FormStudentQuery filters={tableFilters} setFilters={setTableFilters} />
             <StudentTable data={students} filters={tableFilters} reload={reload} setReload={setReload} />
         </S.Container>

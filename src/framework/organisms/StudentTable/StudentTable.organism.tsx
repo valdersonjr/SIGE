@@ -30,17 +30,11 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         })
     },[data]);
 
-    // if (filters.name !== "" && filters.name) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.name === filters.name;
-    //     });
-    // }
-
-    // if (filters.class !== "" && filters.class) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.class === filters.class;
-    //     });
-    // }
+    if (filters.name !== "" && filters.name) {
+        filteredData = filteredData.filter((row) => {
+            return row.nome.includes(filters.name);
+        });
+    }
 
     // if (filters.period !== "" && filters.period) {
     //     filteredData = filteredData.filter((row) => {
@@ -48,11 +42,18 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
     //     });
     // }
 
-    // if (filters.situation !== "" && filters.situation) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.situation === filters.situation;
-    //     });
-    // }
+    if (filters.class !== "" && filters.class) {
+        filteredData = filteredData.filter((row) => {
+            return row.matriculas[0].descricao_turma === filters.class;
+        });
+    }
+
+    if (filters.status !== "" && filters.status) {
+        filteredData = filteredData.filter((row) => {
+            const status = filters.status === "Ativo" ? true : false;
+            return row.ativo === status;
+        });
+    }
 
 
     const getClassType = (registers: IRegister[], yearFilter:string):string => {
