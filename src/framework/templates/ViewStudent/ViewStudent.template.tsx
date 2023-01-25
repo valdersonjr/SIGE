@@ -4,12 +4,11 @@ import { PostIt } from '~/framework/atoms';
 import { Header } from '~/framework/molecules';
 import { Dropdown } from '~/framework/organisms';
 
-import { calculateAge, contatosDeEmergenciaSection, dadosCadastraisSection } from './ViewStudent.logic';
+import { calculateAge } from './ViewStudent.logic';
 
 import * as S from './ViewStudent.style';
 import {ChooseImage} from "@molecules/Inputs/ChooseImage/ChooseImage.molecule";
 import { ViewStudentProps } from './ViewStudent.interface';
-import { getClassApiService } from '~/service/api';
 
 const ViewStudent: React.FC<ViewStudentProps> = ({ student }) => {
     const [studentImage, setStudentImage] = useState('');
@@ -37,7 +36,7 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ student }) => {
                     {student?.matriculas && student.matriculas.map(matricula => {
                         return <PostIt title="Turma Vinculada" content={[matricula.descricao_turma, `(${matricula.ano})`]} />
                     })}
-                    {student?.matriculas && student.matriculas.map(matricula => {
+                    {student?.matriculas && student.matriculas.map((/*matricula*/) => {
                         return <PostIt title="Período" content={["ajustar back"]} /> 
                     })}
                     <PostIt title="Atividades Extras" content={["O que seria?"]} />
