@@ -16,7 +16,7 @@ export const Students: React.FC<StudentsProps> = ({ students, reload, setReload 
     const navigate = useNavigate();
     const [tableFilters, setTableFilters] = useState({
         name: "",
-        registration: "",
+        year: 2022,
         period: "",
         class: "",
         status: ""

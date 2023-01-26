@@ -36,8 +36,8 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ student }) => {
                     {student?.matriculas && student.matriculas.map(matricula => {
                         return <PostIt title="Turma Vinculada" content={[matricula.descricao_turma, `(${matricula.ano})`]} />
                     })}
-                    {student?.matriculas && student.matriculas.map((/*matricula*/) => {
-                        return <PostIt title="Período" content={["ajustar back"]} /> 
+                    {student?.matriculas && student.matriculas.map((matricula) => {
+                        return <PostIt title="Período" content={[matricula.descricao_periodo_turma, `(${matricula.ano})`]} /> 
                     })}
                     <PostIt title="Atividades Extras" content={["O que seria?"]} />
                 </Dropdown>

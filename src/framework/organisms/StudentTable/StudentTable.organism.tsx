@@ -36,15 +36,17 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         });
     }
 
-    // if (filters.period !== "" && filters.period) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.period === filters.period;
-    //     });
-    // }
+    if (filters.period) {
+        filteredData = filteredData.filter((row) => {
+            if(row.matriculas[filters.year - 2022] && row.matriculas[filters.year - 2022].descricao_periodo_turma){
+                return row.matriculas[filters.year - 2022].descricao_periodo_turma === filters.period;
+            }
+        });
+    }
 
     if (filters.class !== "" && filters.class) {
         filteredData = filteredData.filter((row) => {
-            return row.matriculas[0].descricao_turma === filters.class;
+            return row.matriculas[filters.year - 2022].descricao_turma === filters.class;
         });
     }
 
@@ -66,6 +68,18 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         });
 
         return classType;
+    }
+
+    const getPeriod = (registers: IRegister[], yearFilter:string):string => {
+        let period = "Sem Turma Vinculada";
+        
+        registers.forEach(register => {
+            if(register.ano === yearFilter){
+                if(register.descricao_periodo_turma) period = register.descricao_periodo_turma;
+            }
+        });
+
+        return period;
     }
 
     const handleDeleteStudent = async (id:number, name:string) => {
@@ -102,13 +116,14 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         }
     }
 
+
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.length > 0 && filteredData.map((row, index) => {
                 if(!deletedStudentIdArray.includes(row.id)){
                     return(
-                        <TableRow key={row.id} index={index} fields={[row.nome, "-", getClassType(row.matriculas, "2022")]} status={row.ativo ? "Ativo" : "Inativo"}
+                        <TableRow key={row.id} index={index} fields={[row.nome, getPeriod(row.matriculas, String(filters.year)), getClassType(row.matriculas, String(filters.year))]} status={row.ativo ? "Ativo" : "Inativo"}
                             switchValue={row.ativo}
                             onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
                             onThrashClick={() => handleDeleteStudent(row.id, row.nome)} 
