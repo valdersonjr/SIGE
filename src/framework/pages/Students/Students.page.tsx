@@ -4,7 +4,6 @@ import { getAllStudentsApiService } from '@service/api';
 import { datacore } from '~/models';
 
 const StudentsPage: React.FC = () => {
-    // @ts-ignore
     const [students, setStudents] = useState<datacore.ResponseStudent[]>();
     const[reload, setReload] = useState(false);
 
