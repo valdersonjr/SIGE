@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import * as S from './ViewActivities.style';
-import {Header} from "@molecules";
+import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organism";
 import {useNavigate} from "react-router-dom";
@@ -28,12 +28,13 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
         setActivitiesData(activitiesDataArr);
     },[activities]);
 
-    const handleSelectChange = (e:any, type:string) => {  
-        setFilterControll({...filterControll, [type]: e. value});
-        setSelectedValue({...selectedValue, [type]: e. value});
+    const handleSelectChange = (e:string, type:string) => {  
+        setFilterControll({...filterControll, [type]: e});
+        setSelectedValue({...selectedValue, [type]: e});
     }
     
-    const handleFilterSubmit = () => {
+    const handleFilterSubmit = (event:React.SyntheticEvent) => {
+        event.preventDefault();
         setFilters(filterControll);
     }
 
@@ -49,8 +50,8 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
             <S.FindClassContainer>
                 <Title size={20}>Encontre a atividade</Title>
                 <S.FilterContainer>
-                    <SelectInLabel options={activitiesData} selectedValue={selectedValue.activity} label="Atividade" onChange={(e) => handleSelectChange(e, "activity")} />
-                    <SelectInLabel options={statusData} selectedValue={selectedValue.status} label="Situação" onChange={(e) => handleSelectChange(e, "status")} />
+                    <InputInLabel label="Atividade" onChange={(e) => handleSelectChange(e, "activity")} />
+                    <SelectInLabel options={statusData} selectedValue={selectedValue.status} label="Situação" onChange={(e:any) => handleSelectChange(e.value, "status")} />
                     <S.ClearButton>
                         <Button label="Limpar filtro" type="reset" justifyText="center" onClick={handleCleanFilter} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
