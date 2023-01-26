@@ -46,7 +46,7 @@ export const FormUserQuery: React.FC<FormUserQueyProps> = ({ setFilters }) => {
 
     return (
         <S.Form onSubmit={handleFormSubmit} >
-            <Title size={20}>Encontra Usuário</Title>
+            <Title size={20}>Encontra o usuário</Title>
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
                 <InputInLabel name='testeee' label="Nome" onChange={(e) => handleFormDataChange(e, "name")} value={formData.name} />

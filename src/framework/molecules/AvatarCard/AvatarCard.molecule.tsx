@@ -14,7 +14,6 @@ export const AvatarCard: React.FC = () => {
 
     useEffect(() => {
         getAuthenticatedUser().then((response) => {
-            console.log(response);
             setLoggedUser(response.data);
         })
     },[]);
@@ -26,7 +25,7 @@ export const AvatarCard: React.FC = () => {
                     <Avatar src='https://www.cvasolutions.com/wp-content/uploads/2017/03/sem-avatar.jpg' alt={`${loggedUser?.nome}`} />
                     <S.TextContainer>
                         <S.Text isTitle={true}>{loggedUser?.nome}</S.Text>
-                            {loggedUser?.perfis.map(element => <S.Text isTitle={false}>{element.descricao}</S.Text>)}
+                            {loggedUser?.perfis.map(element => <S.Text key={element.sigla} isTitle={false}>{element.descricao}</S.Text>)}
                     </S.TextContainer>
                 </S.UserInfo>
             </S.UserInfo>

@@ -47,7 +47,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
         <S.Container>
             <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => navigate('/gestao-escolar/nova-atividade')} />
             <S.FindClassContainer>
-                <Title size={20}>Encontre Atividade</Title>
+                <Title size={20}>Encontre a atividade</Title>
                 <S.FilterContainer>
                     <SelectInLabel options={activitiesData} selectedValue={selectedValue.activity} label="Atividade" onChange={(e) => handleSelectChange(e, "activity")} />
                     <SelectInLabel options={statusData} selectedValue={selectedValue.status} label="Situação" onChange={(e) => handleSelectChange(e, "status")} />
