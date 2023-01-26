@@ -25,11 +25,11 @@ export const TableRow: React.FC<TableRowProps> = ({
     return (
         <S.Container index={index}>
             {fields.length > 0 && fields.map(field => (
-                <S.RowSection><S.Text>{field}</S.Text></S.RowSection>
+                <S.RowSection key={field} ><S.Text>{field}</S.Text></S.RowSection>
             ))}
             {profiles ? <S.RowSection>
                 <div style={{"display": "flex", "flexDirection": "column", "gap": "4px", "padding": "4px"}}>
-                    {profiles.map((profile) => (<S.Text>{profile.descricao}</S.Text>))}
+                    {profiles.map((profile) => (<S.Text key={profile.sigla} >{profile.descricao}</S.Text>))}
                 </div>
             </S.RowSection> : <></>}
             {!!status &&

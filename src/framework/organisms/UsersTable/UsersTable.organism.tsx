@@ -65,13 +65,16 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                     let status = row.descricao_status === "Sim" ? true : false;
                     let statusNome = row.descricao_status === "Sim" ? "Ativo" : "Inativo";
                     return (
-                        <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
+                        <React.Fragment key={row.id}>
+                            <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
                             onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => handleSwitchClick(row)}
                             onThrashClick={() => handleUserDeletion(row.id, row.nome)} />
+                        </React.Fragment>
                     )
                 }
+                return <></>
             })}
         </S.Container>
     );
