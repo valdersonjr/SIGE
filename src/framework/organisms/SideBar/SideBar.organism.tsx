@@ -12,6 +12,11 @@ import { useNavigate } from 'react-router-dom';
 export const SideBar: React.FC = () => {
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login");
+    }
+
     return (
         <S.SideBarSkeleton>
             <S.Container>
@@ -21,7 +26,7 @@ export const SideBar: React.FC = () => {
                 <Navigation />
                 <S.Footer>
                     <AvatarCard />
-                    <S.Logout>
+                    <S.Logout onClick={handleLogout}>
                         <DashboardIcon color={theme.palette.dark.tint} />
                         <S.Text>Sair</S.Text>
                     </S.Logout>
