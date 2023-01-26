@@ -28,6 +28,7 @@ export const useAuthentication = () => {
       navigate('/alunos');
     } catch (error) {
       console.error(error);
+      alert('Email ou senha inválidos');
     }
   };
 
