@@ -16,3 +16,10 @@ export const loginApiService = async (
     },
   });
 };
+
+export const getAuthenticatedUser = async ():Promise<datacore.FetchResponse<datacore.FetchUserResponse>> => {
+  return callApiBaseAsync(`${endpoint}/me`, {
+    title: 'AUTH API - loginApiService',
+    method: 'GET',
+  })
+}

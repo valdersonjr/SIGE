@@ -1,4 +1,4 @@
-export const classesOptions = [
+export const teachOptions = [
     { value: '', label: '' },
     { value: 'Jardim I', label: 'Jardim I' },
     { value: 'Jardim II', label: 'Jardim II' },

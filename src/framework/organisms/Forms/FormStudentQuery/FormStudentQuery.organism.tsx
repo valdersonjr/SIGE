@@ -8,7 +8,7 @@ import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSe
 import { FormStudentQueryProps } from "./FormStudentQuery.interface";
 
 import * as S from './FormStudentQuery.style';
-import { classesOptions, statusOptions, yearsOptions } from "./FormStudentQuery.logic";
+import { teachOptions, statusOptions, yearsOptions } from "./FormStudentQuery.logic";
 import { getPeriodsApiService } from "~/service/api";
 import { ResponseClassPeriod } from "~/models/datacore";
 
@@ -99,7 +99,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
                 <InputSelectInLabel label="Período" onChange={(e:any) => handleOnChange(e.value, "period")} options={periodOptions} />
-                <InputSelectInLabel label="Turma" onChange={(e:any) => handleOnChange(e.value, "class")} options={classesOptions} />
+                <InputSelectInLabel label="Ensino" onChange={(e:any) => handleOnChange(e.value, "class")} options={teachOptions} />
                 <InputSelectInLabel label="Situação" onChange={(e:any) => handleOnChange(e.value, "status")} options={statusOptions} />
                 <S.ClearButton>
                     <Button onClick={handleReset2} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
