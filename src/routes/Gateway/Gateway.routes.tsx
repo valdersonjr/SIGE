@@ -23,9 +23,19 @@ import ReportsPage from "~/framework/pages/Reports/Reports.page";
 import {PrivateRoute} from "~/routes/PrivateRoute/PrivateRoute";
 import PageBase from "@templates/PageBase/PageBase.template";
 import {Navigate} from "react-router";
+import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
+import { useSetRecoilState } from 'recoil';
 
-export const Gateway: React.FC = () => (
-    <Routes>
+export const Gateway: React.FC = () => {
+    const setSelectedSection = useSetRecoilState(selectedSidebar);
+
+    location.pathname.includes('/alunos') && setSelectedSection(1);
+    location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
+    location.pathname.includes('/usuarios') && setSelectedSection(3);
+    location.pathname.includes('/relatorios') && setSelectedSection(4);
+
+    return(
+        <Routes>
         {/* UNAUTHENTICATED ROUTES */}
         <Route index path='/login' element={<LoginPage/>}/>
 
@@ -62,4 +72,5 @@ export const Gateway: React.FC = () => (
             <Route path="*" element={<Navigate to="/"/>}/>
         </Route>
     </Routes>
-);
+    )
+};
