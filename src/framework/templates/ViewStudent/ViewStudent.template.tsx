@@ -4,12 +4,13 @@ import { PostIt } from '~/framework/atoms';
 import { Header } from '~/framework/molecules';
 import { Dropdown } from '~/framework/organisms';
 
-import { contatosDeEmergenciaSection, dadosCadastraisSection, dadosDoAlunoSection } from './ViewStudent.logic';
+import { calculateAge } from './ViewStudent.logic';
 
 import * as S from './ViewStudent.style';
 import {ChooseImage} from "@molecules/Inputs/ChooseImage/ChooseImage.molecule";
+import { ViewStudentProps } from './ViewStudent.interface';
 
-const ViewStudent: React.FC = () => {
+const ViewStudent: React.FC<ViewStudentProps> = ({ student }) => {
     const [studentImage, setStudentImage] = useState('');
 
     const handleChangeImage = (e: any) => {
@@ -27,24 +28,26 @@ const ViewStudent: React.FC = () => {
             </S.ImageInputContainer>
             <S.DropdownContainer>
                 <Dropdown title='Dados do Aluno' >
-                    {dadosDoAlunoSection.map((item) => (
-                        <PostIt title={item.title} content={[item.content]} />
-                    ))}
+                    {student?.nome && <PostIt title="Nome" content={[student.nome]} />}
+                    {student?.data_nascimento && <PostIt title="Data de nascimento" content={[student.data_nascimento]} />}
+                    {student?.data_nascimento && <PostIt title="Idade" content={[calculateAge(student.data_nascimento)]} /> }
                 </Dropdown>
                 <Dropdown title='Dados Cadastrais'>
-                    {dadosCadastraisSection.map((item) => (
-                        <PostIt title={item.title} content={[item.content]} />
-                    ))}
+                    {student?.matriculas && student.matriculas.map(matricula => {
+                        return <PostIt title="Turma Vinculada" content={[matricula.descricao_turma, `(${matricula.ano})`]} />
+                    })}
+                    {student?.matriculas && student.matriculas.map((/*matricula*/) => {
+                        return <PostIt title="Período" content={["ajustar back"]} /> 
+                    })}
+                    <PostIt title="Atividades Extras" content={["O que seria?"]} />
                 </Dropdown>
                 <Dropdown title='Dados dos Responsáveis'>
-                    {dadosCadastraisSection.map((item) => (
-                        <PostIt title={item.title} content={[item.content]} />
-                    ))}
+                    {student?.mae && <PostIt title="Mãe "content={[student.mae.nome]} />}
+                    {student?.pai && <PostIt title="Pai "content={[student.pai.nome]} />}
                 </Dropdown>
                 <Dropdown title='Contatos de Emergência'>
-                    {contatosDeEmergenciaSection.map((item) => (
-                        <PostIt title={item.title} content={[item.content]} />
-                    ))}
+                    {student?.mae && <PostIt title="Telefone da Mãe" content={[student.mae.telefone, student.mae.telefone_celular]} />}
+                    {student?.pai && <PostIt title="Telefone da Mãe" content={[student.pai.telefone, student.pai.telefone_celular]} />}
                 </Dropdown>
             </S.DropdownContainer>
         </S.Container>

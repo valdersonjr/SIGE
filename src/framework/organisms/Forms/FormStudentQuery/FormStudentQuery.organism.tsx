@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
 
@@ -8,132 +8,104 @@ import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSe
 import { FormStudentQueryProps } from "./FormStudentQuery.interface";
 
 import * as S from './FormStudentQuery.style';
-
-const findStudentList = [{
-    key: 0,
-    label: "Nome do Aluno"
-},
-{
-    key: 1,
-    label: "Matrícula"
-}];
-
-const filtersList = [{
-    key: 0,
-    label: "Período",
-},
-{
-    key: 1,
-    label: "Turma",
-},
-{
-    key: 2,
-    label: "Situação",
-}];
+import { classesOptions, statusOptions } from "./FormStudentQuery.logic";
+import { getPeriodsApiService } from "~/service/api";
+import { ResponseClassPeriod } from "~/models/datacore";
 
 export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, setFilters }) => {
-    const [studentName, setStudentName] = useState("");
-    const [studentRegistration, setStudentRegistration] = useState("");
+    const [periodOptions, setPeriodOptions] = useState<{value:string, label:string}[]>([]);
+    const [inputData, setInputData] = useState({
+        name: "",
+        registration: "",
+        period: "",
+        class: "",
+        status: ""
+    });
+    
+    useEffect(() => {
+        getPeriodsApiService().then((response:any) => {
+            let periods:{value:string, label:string}[] = [{value: "", label: ""}];
 
-    const [studentPeriod, setStudentPeriod] = useState("");
-    const [studentClass, setStudentClass] = useState("");
-    const [studentStatus, setStudentStudetStatus] = useState("");
+            if(!response.message){
+                response.data.forEach((elements:ResponseClassPeriod) => {
+                    periods.push({value: elements.descricao, label: elements.descricao});
+                })
+            }
+            else {
+                console.log(response.message);
+            }
+            setPeriodOptions(periods);
+        });
+
+    },[]);
 
 
-    const handleFindStudentChange = (value: string, key: number) => {
-        if (key === 0) {
-            setStudentName(value);
-        }
-        if (key === 1) {
-            setStudentRegistration(value);
-        }
+    const handleOnChange = (event: string, type:string) => {
+        setInputData({...inputData, [type]: event});
     }
 
-    const handleFilterChange = (value: string) => {
-        setStudentPeriod(value);
-        setStudentClass(value);
-        setStudentStudetStatus(value);
+    const handleReset1 = () => {
+        filters && setFilters && setFilters({
+            name: "",
+            registration: "",
+            period: filters.period,
+            class: filters.class,
+            status: filters.status
+        });
+        setInputData({
+            name: "",
+            registration: "",
+            period: inputData.period,
+            class: inputData.class,
+            status: inputData.status
+        });
     }
 
-    const handleFindStudentSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-
-
-        if (setFilters && filters) {
-            setFilters({
-                name: studentName,
-                registration: studentRegistration,
-                period: filters.period,
-                class: filters.class,
-                situation: filters.situation
-            });
-            setStudentName("");
-            setStudentRegistration("");
-        }
+    const handleReset2 = () => {
+        filters && setFilters && setFilters({
+            name: filters.name,
+            registration: filters.registration,
+            period: "",
+            class: "",
+            status: ""
+        });
+        setInputData({
+            name: inputData.name,
+            registration: inputData.registration,
+            period: "",
+            class: "",
+            status: ""
+        });
     }
 
-    const handleFilterSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-
-        if (setFilters && filters) {
-            setFilters({
-                name: filters.name,
-                registration: filters.registration,
-                period: studentPeriod,
-                class: studentClass,
-                situation: studentStatus
-            });
-
-            setStudentPeriod("");
-            setStudentClass("");
-            setStudentStudetStatus("");
-        }
+    const handleOnSubmit = (event:React.SyntheticEvent) => {
+        event.preventDefault();
+        setFilters && setFilters(inputData);
     }
 
     return (
         <S.Form>
             <Title size={20}>Encontre seu aluno</Title>
             <S.InputContainer>
-                {findStudentList.map((item) => {
-                    let disabled = false;
-                    let placeholder;
-
-                    if (studentRegistration !== "") {
-                        disabled = true;
-                    }
-
-                    if (item.key === 0) {
-                        placeholder = "Digite o nome do aluno";
-                    }
-                    else {
-                        placeholder = "Digite a matrícula do aluno";
-                    }
-
-                    return <InputInLabel label={item.label} onChange={(e) => handleFindStudentChange(e, item.key)} value={item.key === 0 ? studentName : studentRegistration} placeholder={placeholder} disabled={item.key !== 1 ? disabled : false} />
-                })}
+            <InputInLabel label="Nome do Aluno" onChange={(e) => handleOnChange(e, "name")} placeholder="Digite aqui..." />
+            <InputInLabel label="Matrícula" onChange={(e) => handleOnChange(e, "registration")} placeholder="Digite aqui..." />
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button onClick={handleReset1} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
-                    <Button onClick={handleFindStudentSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                    <Button onClick={handleOnSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                 </S.SearchButton>
             </S.InputContainer>
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
-                {filtersList.map((item) => {
-                    let disabled = false;
-
-                    if (studentRegistration !== "") {
-                        disabled = true;
-                    }
-
-                    return <InputSelectInLabel key={item.key} label={item.label} onChange={(e) => handleFilterChange(e)} options={[{ value: 'Professor', label: 'Professor' }, { value: 'Aluno', label: 'Aluno' }]} disabled={disabled} />
-                })}
+                <InputSelectInLabel label="Período" onChange={(e:any) => handleOnChange(e.value, "period")} options={periodOptions} />
+                <InputSelectInLabel label="Turma" onChange={(e:any) => handleOnChange(e.value, "class")} options={classesOptions} />
+                <InputSelectInLabel label="Situação" onChange={(e:any) => handleOnChange(e.value, "status")} options={statusOptions} />
                 <S.ClearButton>
-                    <Button label="Limpar filtro" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                    <Button onClick={handleReset2} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
                 <S.SearchButton>
-                    <Button onClick={handleFilterSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
+                    <Button onClick={handleOnSubmit} label="Buscar" type="submit" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
                 </S.SearchButton>
             </S.InputContainer>
         </S.Form >
