@@ -33,6 +33,7 @@ export const Gateway: React.FC = () => {
     location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
     location.pathname.includes('/usuarios') && setSelectedSection(3);
     location.pathname.includes('/relatorios') && setSelectedSection(4);
+    setSelectedSection(0)
 
     return(
         <Routes>
@@ -68,8 +69,7 @@ export const Gateway: React.FC = () => {
             <Route path='/usuarios/visualizar-usuario/:id' element={<PrivateRoute><ViewUserPage/></PrivateRoute>}/>
 
             <Route path='/relatorios' element={<PrivateRoute><ReportsPage/></PrivateRoute>}/>
-
-            {setSelectedSection(0)}
+            
             <Route path="*" element={<Navigate to="/"/>}/>
         </Route>
     </Routes>
