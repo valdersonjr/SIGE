@@ -1,7 +1,6 @@
 import React from 'react';
 
 import CurrencyInput from 'react-currency-input-field';
-import InputMask from 'react-input-mask';
 
 import { InputProps } from './Input.interface';
 import * as S from './Input.style';

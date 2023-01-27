@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button, VariantButtonEnum } from "~/framework/atoms";
 import FormRegister from "~/framework/organisms/Forms/FormRegister/FormRegister.organism";
-import { registerUserApiService } from "~/service/api";
+// import { registerUserApiService } from "~/service/api";
 
 import * as S from "./Register.style";
 
