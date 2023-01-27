@@ -60,7 +60,7 @@ export const ClassesTable: React.FC<ClassesTableProps> = (
             <TableRowTitle titles={titleList} />
             {filteredData.map((it, index) => {
                 return (
-                    <TableRow index={index} fields={[it?.descricao, it?.ensino, it.horario]} status={it.ativo ? "Ativo" : "Inativo"}
+                    <TableRow index={index} fields={[it?.descricao, it?.ensino]} status={it.ativo ? "Ativo" : "Inativo"}
                         onSwitchClick={() => handleSwitchStatus(it)} switchValue={it?.ativo}
                         onEyeClick={() => navigate(`/gestao-escolar/visualizar-turmas/turma/${it.id}`)}
                         onThrashClick={() => {

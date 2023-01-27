@@ -10,13 +10,9 @@ export const titleList:DataMap[] = [{
 },
 {
     key: 2,
-    data: 'Data de Cadastro'
-},
-{
-    key: 3,
     data: 'Status'
 },
 {
-    key: 4,
+    key: 3,
     data: 'Ações'
 }];
