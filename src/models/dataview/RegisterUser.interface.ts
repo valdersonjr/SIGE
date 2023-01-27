@@ -4,7 +4,7 @@ export interface IRegisterUser {
     email:string;
     phone:string;
     password: string;
-    confirmPassword: string;
-    description: string;
+    confirmPassword?: string;
+    description?: string;
     status?: boolean;
 }

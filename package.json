@@ -13,10 +13,12 @@
     "format": "npm run prettier:fix && npm run lint:fix"
   },
   "dependencies": {
+    "@types/react-input-mask": "^3.0.2",
     "inter-ui": "^3.19.3",
     "react": "^18.1.0",
     "react-currency-input-field": "^3.6.9",
     "react-dom": "^18.1.0",
+    "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "react-switch": "^7.0.0",

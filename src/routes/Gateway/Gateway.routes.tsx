@@ -1,18 +1,20 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
+
 import {LoginPage} from "~/framework/pages";
 import HomePage from "~/framework/pages/Home/Home.page";
 import StudentsPage from "~/framework/pages/Students/Students.page";
-import RegisterStudentPage from "~/framework/pages/Students/RegisterStudent/RegisterStudent.page";
-import ViewStudentPage from "~/framework/pages/Students/ViewStudent/ViewStudent.page";
 import ManagementPage from "~/framework/pages/Management/Management.page";
+import RegistrationPage from '~/framework/pages/Registration/Registration.page';
+import ViewStudentPage from "~/framework/pages/Students/ViewStudent/ViewStudent.page";
 import ViewClassesPage from "~/framework/pages/Management/ViewClasses/ViewClasses.page";
-import ViewClassPage from "~/framework/pages/Management/ViewClasses/ViewClass/ViewClass.page";
 import NewClassPage from "~/framework/pages/Management/ViewClasses/NewClass/NewClass.page";
+import ViewClassPage from "~/framework/pages/Management/ViewClasses/ViewClass/ViewClass.page";
 import ViewActivitiesPage from "~/framework/pages/Management/ViewActivities/ViewActivities.page";
+import RegisterStudentPage from "~/framework/pages/Students/RegisterStudent/RegisterStudent.page";
 import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewActivity/ViewActivity.page";
-import NewActivityPage from "~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page";
 import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
+import NewActivityPage from "~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
 // import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
 // import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
@@ -38,6 +40,7 @@ export const Gateway: React.FC = () => {
         <Routes>
         {/* UNAUTHENTICATED ROUTES */}
         <Route index path='/login' element={<LoginPage/>}/>
+        <Route index path='/cadastrar' element={<RegistrationPage/>}/>
 
         {/* AUTHENTICATED ROUTES */}
         <Route path='/' element={<PrivateRoute><PageBase/></PrivateRoute>}>
