@@ -46,7 +46,7 @@ const FormRegister:React.FC<FormRegisterProps> = ({onSubmit}) => {
                     type='email'
                     label='E-mail'
                     onChange={(value) => handleChange("email", value)}
-                    placeholder='sige@sige'
+                    placeholder='exemplo@sige.com'
                     value={form.email}
                 />
             </S.InputFormContainer>

@@ -28,6 +28,5 @@ export const Image = styled.img`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 4%;
   width: 100%;
 `;
