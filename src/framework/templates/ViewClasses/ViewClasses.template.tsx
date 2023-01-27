@@ -73,8 +73,8 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
             <S.FindClassContainer>
                 <Title size={20}>Encontre sua turma</Title>
                 <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.ensino} onChange={(select: any) => setFilters({...filters, ensino: select.value})} options={ensinoOptions} label="Ensino" />
                     <InputInLabel value={filters.descricao} onChange={value => setFilters({...filters, descricao: value})} label="Nome" />
+                    <SelectInLabel selectedValue={filters.ensino} onChange={(select: any) => setFilters({...filters, ensino: select.value})} options={ensinoOptions} label="Ensino" />
                     <SelectInLabel selectedValue={filters.status} onChange={(select: any) => setFilters({...filters, status: select.value})} options={statusOptions} label="Situação" />
                     <S.ClearButton>
                         <Button onClick={handleReset} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />

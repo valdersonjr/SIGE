@@ -3,6 +3,7 @@ export interface IRegister {
     id_turma: number,
     descricao_turma: string
     descricao_periodo_turma:string;
+    ensino:string;
 }
 
 interface IFather {

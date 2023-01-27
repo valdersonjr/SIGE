@@ -2,11 +2,11 @@ import { DataMap } from "~/models/dataview";
 
 export const titleList:DataMap[] = [{
     key: 0,
-    data: 'Ensino'
+    data: 'Nome'
 },
 {
     key: 1,
-    data: 'Nome'
+    data: 'Ensino'
 },
 {
     key: 2,

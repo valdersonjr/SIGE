@@ -63,7 +63,7 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         
         registers.forEach(register => {
             if(register.ano === yearFilter){
-                classType = register.descricao_turma;
+                classType = register.ensino;
             }
         });
 
