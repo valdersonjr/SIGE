@@ -5,7 +5,7 @@ import { TableRow, TableRowTitle } from "@molecules";
 import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
 import { FetchUserResponse } from '~/models/datacore';
-import { deleteUserApiService, updateUserApiService } from '~/service/api';
+import { activateUserApiService, deleteUserApiService, inactivateUserApiService } from '~/service/api';
 import { useNavigate } from 'react-router-dom';
 
 export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
@@ -51,9 +51,19 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         });
     }
 
-    const handleSwitchClick = (user: FetchUserResponse) => {
-        user.ativo = !(user.ativo);
-        updateUserApiService(user).then(() => setReload ? setReload(!reload) : null);
+    const handleSwitchClick = (id:number, name:string, user: boolean) => {
+        if(user){
+            inactivateUserApiService(id).then((response:any) => {
+                if(response.message) alert(`Não foi possível inativar o usuário ${name}`);
+                else setReload && setReload(!reload);
+            })
+        }
+        else if(!user) {
+            activateUserApiService(id).then((response:any) => {
+                if(response.message) alert(`Não foi possível ativar o usuário ${name}`);
+                else setReload && setReload(!reload);
+            })
+        }
     }
     
 
@@ -69,7 +79,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                             <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
                             onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
-                            onSwitchClick={() => handleSwitchClick(row)}
+                            onSwitchClick={() => row.ativo !== null && row.ativo !== undefined && handleSwitchClick(row.id, row.nome, row.ativo)}
                             onThrashClick={() => handleUserDeletion(row.id, row.nome)} />
                         </React.Fragment>
                     )
