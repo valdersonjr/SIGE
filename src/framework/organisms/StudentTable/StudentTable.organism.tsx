@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -8,13 +8,12 @@ import { StudentTableProps } from "./StudentTable.interface";
 import { titleList } from './StudentTable.logic';
 import * as S from './StudentTable.style';
 
-import { deleteStudentApiService, getClassApiService, setStudenActivetApiService, setStudenInactivetApiService } from "~/service/api";
+import { getClassApiService, setStudenActivetApiService, setStudenInactivetApiService } from "~/service/api";
 import { IRegister, ResponseStudent } from "~/models/datacore";
 
 
-export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reload, setReload }) => {
+export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reload, setReload, confirmRemoveModal, setConfirmRemoveModal, setIdToDelete }) => {
     const navigate = useNavigate();
-    const [deletedStudentIdArray, setDeletedStudentIdArray] = useState<number[]>([]);
 
     let filteredData:ResponseStudent[] = [];
 
@@ -82,17 +81,6 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         return period;
     }
 
-    const handleDeleteStudent = async (id:number, name:string) => {
-        deleteStudentApiService(id).then((response:any) => {
-            if(response.message){
-                alert(`Não foi possível excluir ${name}`);
-            }
-            else {
-                setDeletedStudentIdArray([...deletedStudentIdArray, id]);
-            }
-        })
-    }
-
     const handleSwitchClick = (id:number, active:boolean) => {
         if(active){
             setStudenInactivetApiService(id).then((response:any) => {
@@ -121,15 +109,16 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.length > 0 && filteredData.map((row, index) => {
-                if(!deletedStudentIdArray.includes(row.id)){
-                    return(
-                        <TableRow key={row.id} index={index} fields={[row.nome, getPeriod(row.matriculas, String(filters.year)), getClassType(row.matriculas, String(filters.year))]} status={row.ativo ? "Ativo" : "Inativo"}
-                            switchValue={row.ativo}
-                            onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
-                            onThrashClick={() => handleDeleteStudent(row.id, row.nome)} 
-                            onSwitchClick={() => handleSwitchClick(row.id, row.ativo)} />
-                    )
-                }
+                return(
+                    <TableRow key={row.id} index={index} fields={[row.nome, getPeriod(row.matriculas, String(filters.year)), getClassType(row.matriculas, String(filters.year))]} status={row.ativo ? "Ativo" : "Inativo"}
+                        switchValue={row.ativo}
+                        onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
+                        onThrashClick={() => { 
+                            setConfirmRemoveModal(!confirmRemoveModal);
+                            setIdToDelete(row.id);
+                            }} 
+                        onSwitchClick={() => handleSwitchClick(row.id, row.ativo)} />
+                )
             })}
         </S.Container>
     )

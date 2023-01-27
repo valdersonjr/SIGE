@@ -6,4 +6,7 @@ export interface StudentTableProps {
     data?: ResponseStudent[];
     reload?:boolean;
     setReload?: (boolean:boolean) => void;
+    confirmRemoveModal: boolean;
+    setConfirmRemoveModal: (value: boolean) => void;
+    setIdToDelete:(number:number) => void;
 }
