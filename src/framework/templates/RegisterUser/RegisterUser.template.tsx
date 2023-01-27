@@ -91,7 +91,7 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
                 </S.InputSection>
                 <S.ButtonContainer>
                     <Button type='reset' label="Limpar" variant={VariantButtonEnum.PRIMARY} justifyText="center" onClick={handleReset} />
-                    <Button type='submit' label="Criar Matrícula" variant={VariantButtonEnum.SECONDARY} justifyText="center"  />
+                    <Button type='submit' label="Salvar" variant={VariantButtonEnum.SECONDARY} justifyText="center"  />
                 </S.ButtonContainer>
             </S.Body>
         </S.Container>
