@@ -7,4 +7,5 @@ export interface MultiSelectProps {
     label?: string;
     options: option[];
     onChange: (any:any) => void;
+    required?:boolean;
 }

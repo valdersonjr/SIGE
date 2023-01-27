@@ -65,22 +65,22 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
             <S.Header>
                 <Header title="Novo Usuário" navigatePath='/usuarios'  />
             </S.Header>
-            <S.Body>
+            <S.Body onSubmit={handleRegisterButtonClick} >
                 <S.InputSection>
                     <Title>Dados do Usuário</Title>
                     <S.InputContainer>
-                        <InputInLabel label="Nome do Usuário" placeholder="Digite aqui" value={inputdata.name} onChange={(value:string) => handleChange(value, "name")} />
-                        <InputInLabel required={true} type="email" label="Email" placeholder="usuario@sige"  value={inputdata.email} onChange={(value:string) => handleChange(value, "email")} />
+                        <InputInLabel required label="Nome do Usuário" placeholder="Digite aqui" value={inputdata.name} onChange={(value:string) => handleChange(value, "name")} />
+                        <InputInLabel required type="email" label="Email" placeholder="usuario@sige"  value={inputdata.email} onChange={(value:string) => handleChange(value, "email")} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <div style={{"width":"100%", "marginTop":"4px"}}>
-                            <MultiSelect label="Perfil"  options={profileOptions} onChange={(value) => handleMultiSelectChange(value)} />
+                            <MultiSelect required label="Perfil"  options={profileOptions} onChange={(value) => handleMultiSelectChange(value)} />
                         </div>
-                        <InputInLabel type='text' label="Telefone" placeholder="(XX) 9XXXX - XXXX"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
+                        <InputInLabel required mask='(99) 99999 9999' type='text' label="Telefone" placeholder="(XX) 9XXXX - XXXX"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
                     </S.InputContainer>
                     <S.InputContainer>
-                        <InputInLabel label="Senha" type='password' placeholder="Digite aqui"  value={inputdata.password} onChange={(value:string) => handleChange(value, "password")} />
-                        <InputInLabel label="Confirmar senha" type='password' placeholder="Digite aqui" value={inputdata.confirmPassword} onChange={(value:string) => handleChange(value, "confirmPassword")} />
+                        <InputInLabel required label="Senha" type='password' placeholder="Digite aqui"  value={inputdata.password} onChange={(value:string) => handleChange(value, "password")} />
+                        <InputInLabel required label="Confirmar senha" type='password' placeholder="Digite aqui" value={inputdata.confirmPassword} onChange={(value:string) => handleChange(value, "confirmPassword")} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <S.DescInfoContainer>
@@ -91,7 +91,7 @@ export const RegisterUser: React.FC<RegisterUserProps> = ({ handleSubmit }) => {
                 </S.InputSection>
                 <S.ButtonContainer>
                     <Button type='reset' label="Limpar" variant={VariantButtonEnum.PRIMARY} justifyText="center" onClick={handleReset} />
-                    <Button type='submit' label="Criar Matrícula" variant={VariantButtonEnum.SECONDARY} justifyText="center" onClick={handleRegisterButtonClick} />
+                    <Button type='submit' label="Salvar" variant={VariantButtonEnum.SECONDARY} justifyText="center"  />
                 </S.ButtonContainer>
             </S.Body>
         </S.Container>

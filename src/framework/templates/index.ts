@@ -1,4 +1,5 @@
 export * from './RegisterStudent/RegisterStudent.template';
+export * from './RegisterBanner/RegisterBanner.template';
 export * from './LoginBanner/LoginBanner.template';
 export * from './ViewStudent/ViewStudent.template';
 export * from './ViewClasses/ViewClasses.template';

@@ -7,4 +7,5 @@ export interface InputInLabelProps extends InputProps {
   required?:boolean;
   min?:number;
   pattern?:string;
+  mask?:string;
 }

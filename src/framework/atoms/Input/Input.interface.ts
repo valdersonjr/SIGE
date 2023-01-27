@@ -11,4 +11,5 @@ export interface InputProps {
   required?: boolean;
   min?: number;
   pattern?: string;
+  mask?:string;
 }

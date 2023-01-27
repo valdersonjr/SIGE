@@ -16,7 +16,8 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
   type,
   min,
   required,
-  pattern
+  pattern,
+  mask
 }) => {
 
   const handleChange = (value: string) => {
@@ -27,6 +28,7 @@ export const InputInLabel: React.FC<InputInLabelProps> = ({
     <S.LabelContainer>
       {label}
       <Input
+        mask={mask}
         pattern={pattern}
         min={min}
         required={required}
