@@ -10,10 +10,8 @@ import {
 import {ViewActivityTable} from "@organisms/ViewActivityTable/ViewActivityTable.organism";
 import {ViewActivityProps} from "@templates/ViewActivity/ViewActivity.interface";
 import {getActivityApiService, updateActivityApiService} from "@service/api";
-import {useNavigate} from "react-router-dom";
 
 const ViewActivity: React.FC<ViewActivityProps> = ({activityId}) => {
-    const navigate = useNavigate();
     const [activityRegistrationModalState, setActivityRegistrationModalState] = useState(false);
 
     const [canSave, setCanSave] = useState(false);
@@ -41,9 +39,7 @@ const ViewActivity: React.FC<ViewActivityProps> = ({activityId}) => {
     useEffect(() => {
         if (canSave) {
             save()
-                .then(() => {
-                    navigate('/gestao-escolar/visualizar-atividades');
-                }).catch(err => console.error(err));
+                .then(() => {}).catch(err => console.error(err));
             setCanSave(false);
         }
     }, [canSave]);
@@ -59,13 +55,13 @@ const ViewActivity: React.FC<ViewActivityProps> = ({activityId}) => {
 
             <Dropdown title="Dados Cadastrais da Atividade" buttonText="Editar Dados"
                       onButtonClick={() => setActivityRegistrationModalState(!activityRegistrationModalState)}>
-                <PostIt key={data?.id} title="Atividade" content={data?.descricao} />
+                <PostIt key={data?.id} title="Atividade" content={[data?.descricao]} />
             </Dropdown>
 
             <S.LinkedStudentsHeader>
                 <Title>Períodos da Atividade</Title>
             </S.LinkedStudentsHeader>
-            <ViewActivityTable />
+            <ViewActivityTable data={dataToSave} />
         </S.Container>
     );
 }

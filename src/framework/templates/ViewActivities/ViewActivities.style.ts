@@ -9,7 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 10px;
 `
-export const FindClassContainer = styled.div`
+export const FindClassContainer = styled.form`
   min-width: 884px;
   min-height: 100%;
   padding: 22px;

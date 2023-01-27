@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -8,13 +8,12 @@ import { StudentTableProps } from "./StudentTable.interface";
 import { titleList } from './StudentTable.logic';
 import * as S from './StudentTable.style';
 
-import { deleteStudentApiService, getClassApiService, setStudenActivetApiService, setStudenInactivetApiService } from "~/service/api";
+import { getClassApiService, setStudenActivetApiService, setStudenInactivetApiService } from "~/service/api";
 import { IRegister, ResponseStudent } from "~/models/datacore";
 
 
-export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reload, setReload }) => {
+export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reload, setReload, confirmRemoveModal, setConfirmRemoveModal, setIdToDelete }) => {
     const navigate = useNavigate();
-    const [deletedStudentIdArray, setDeletedStudentIdArray] = useState<number[]>([]);
 
     let filteredData:ResponseStudent[] = [];
 
@@ -36,15 +35,17 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         });
     }
 
-    // if (filters.period !== "" && filters.period) {
-    //     filteredData = filteredData.filter((row) => {
-    //         return row.period === filters.period;
-    //     });
-    // }
+    if (filters.period) {
+        filteredData = filteredData.filter((row) => {
+            if(row.matriculas[filters.year - 2022] && row.matriculas[filters.year - 2022].descricao_periodo_turma){
+                return row.matriculas[filters.year - 2022].descricao_periodo_turma === filters.period;
+            }
+        });
+    }
 
     if (filters.class !== "" && filters.class) {
         filteredData = filteredData.filter((row) => {
-            return row.matriculas[0].descricao_turma === filters.class;
+            return row.matriculas[filters.year - 2022].descricao_turma === filters.class;
         });
     }
 
@@ -61,22 +62,23 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         
         registers.forEach(register => {
             if(register.ano === yearFilter){
-                classType = register.descricao_turma;
+                classType = register.ensino;
             }
         });
 
         return classType;
     }
 
-    const handleDeleteStudent = async (id:number, name:string) => {
-        deleteStudentApiService(id).then((response:any) => {
-            if(response.message){
-                alert(`Não foi possível excluir ${name}`);
+    const getPeriod = (registers: IRegister[], yearFilter:string):string => {
+        let period = "Sem Turma Vinculada";
+        
+        registers.forEach(register => {
+            if(register.ano === yearFilter){
+                if(register.descricao_periodo_turma) period = register.descricao_periodo_turma;
             }
-            else {
-                setDeletedStudentIdArray([...deletedStudentIdArray, id]);
-            }
-        })
+        });
+
+        return period;
     }
 
     const handleSwitchClick = (id:number, active:boolean) => {
@@ -102,19 +104,21 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
         }
     }
 
+
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.length > 0 && filteredData.map((row, index) => {
-                if(!deletedStudentIdArray.includes(row.id)){
-                    return(
-                        <TableRow key={row.id} index={index} fields={[row.nome, "-", getClassType(row.matriculas, "2022")]} status={row.ativo ? "Ativo" : "Inativo"}
-                            switchValue={row.ativo}
-                            onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
-                            onThrashClick={() => handleDeleteStudent(row.id, row.nome)} 
-                            onSwitchClick={() => handleSwitchClick(row.id, row.ativo)} />
-                    )
-                }
+                return(
+                    <TableRow key={row.id} index={index} fields={[row.nome, getPeriod(row.matriculas, String(filters.year)), getClassType(row.matriculas, String(filters.year))]} status={row.ativo ? "Ativo" : "Inativo"}
+                        switchValue={row.ativo}
+                        onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
+                        onThrashClick={() => { 
+                            setConfirmRemoveModal(!confirmRemoveModal);
+                            setIdToDelete(row.id);
+                            }} 
+                        onSwitchClick={() => handleSwitchClick(row.id, row.ativo)} />
+                )
             })}
         </S.Container>
     )

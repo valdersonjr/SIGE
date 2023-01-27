@@ -1,6 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { theme } from "~/theme";
+
+interface ITextProps {
+    fieldValue?:string;
+}
+
+const getFieldColor = (value?:string) => {
+    if(value === "Sem Turma Vinculada"){
+        return css`
+            color: #f34d57;
+        `
+    }
+    else {
+        return css`
+            color: ${theme.palette.dark.shade};
+        `
+    }
+}
 
 
 export const Container = styled.div<{ index:number }>`
@@ -31,8 +48,11 @@ export const SituationContainer = styled.div`
     align-items: center;
 `
 
-export const Text = styled.span`
-    color: ${theme.palette.dark.shade};
+export const Text = styled.span<ITextProps>`
+    ${({fieldValue}) => css `
+        ${getFieldColor(fieldValue)}
+    `}
+    
     font-weight: 500;
     font-size: 16px;
     line-height: 110%;

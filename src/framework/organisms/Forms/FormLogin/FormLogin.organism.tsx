@@ -31,6 +31,7 @@ export const FormLogin: React.FC<FormLoginProps> = ({
     <S.FormContainer onSubmit={handleSubmit} action={action}>
       <S.InputFormContainer>
         <InputInLabel
+          type='email'
           label='E-mail'
           onChange={(value) => handleChange('username', value)}
           placeholder='Digite aqui'
@@ -40,6 +41,7 @@ export const FormLogin: React.FC<FormLoginProps> = ({
 
       <S.InputFormContainer>
         <InputInLabel
+          type='password'
           label='Senha'
           onChange={(value) => handleChange('password', value)}
           placeholder='Digite aqui'

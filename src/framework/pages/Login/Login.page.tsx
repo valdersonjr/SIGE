@@ -8,7 +8,13 @@ import { AuthenticateUser } from '~/models/dataview/AuthenticateUser.interface';
 export const LoginPage: React.FC = () => {
   const authenticate = useAuthentication();
   const handleSubmitLoginForm = (value: AuthenticateUser) => {
-    authenticate.login(value).then(() => {});
+    if(value.password.length < 6) {
+      alert('Senha deve ter no mínimo 6 caracteres');
+      return;
+    }
+    else {
+      authenticate.login(value).then(() => {});
+    }
   };
   return (
     <S.Container>

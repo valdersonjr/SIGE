@@ -53,3 +53,17 @@ export const registerUserApiService = async (user:IRegisterUser): Promise<dataco
         }
     });
 }
+
+export const inactivateUserApiService = async (id:number) => {
+    return callApiBaseAsync(`${endpoint}/${id}/inativar`,  {
+        title: 'USER API - userApiService',
+        method: 'PUT',
+    });
+}
+
+export const activateUserApiService = async (id:number) => {
+    return callApiBaseAsync(`${endpoint}/${id}/ativar`,  {
+        title: 'USER API - userApiService',
+        method: 'PUT',
+    });
+}

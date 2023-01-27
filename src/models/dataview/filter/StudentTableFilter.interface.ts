@@ -1,6 +1,6 @@
 export interface StudentTableFilter {
     name: string;
-    registration: string;
+    year: number;
     period: string;
     class: string;
     status: string;

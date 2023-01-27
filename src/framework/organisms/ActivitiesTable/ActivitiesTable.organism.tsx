@@ -18,8 +18,8 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
     }
 
     filteredData =  filteredData.filter((item) => {
-        if(filters?.activity !== ""){
-            return item.descricao === filters?.activity;
+        if(filters && filters?.activity !== ""){
+            return item.descricao.includes(filters.activity);
         }
         return filteredData;
     });

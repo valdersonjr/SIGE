@@ -1,4 +1,4 @@
-export const classesOptions = [
+export const teachOptions = [
     { value: '', label: '' },
     { value: 'Jardim I', label: 'Jardim I' },
     { value: 'Jardim II', label: 'Jardim II' },
@@ -12,4 +12,9 @@ export const statusOptions = [
     { value: '', label: '' },
     { value: 'Ativo', label: 'Ativo' },
     { value: 'Inativo', label: 'Inativo' },
+]
+
+export const yearsOptions = [
+    { value: "2022", label: "2022" },
+    { value: "2023", label: "2023" },
 ]

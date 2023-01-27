@@ -14,8 +14,8 @@ import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewAc
 import NewActivityPage from "~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page";
 import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
-import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
-import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
+// import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
+// import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
 import UsersPage from "~/framework/pages/Users/Users.page";
 import RegisterUserPage from "~/framework/pages/Users/RegisterUser/RegisterUser.page";
 import ViewUserPage from "~/framework/pages/Users/ViewUser/ViewUser.page";
@@ -33,6 +33,7 @@ export const Gateway: React.FC = () => {
     location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
     location.pathname.includes('/usuarios') && setSelectedSection(3);
     location.pathname.includes('/relatorios') && setSelectedSection(4);
+    setSelectedSection(0)
 
     return(
         <Routes>
@@ -60,15 +61,15 @@ export const Gateway: React.FC = () => {
             <Route path='/gestao-escolar/visualizar-matriculas' element={<PrivateRoute><ViewRegistrationsPage/></PrivateRoute>}/>
             <Route path='/gestao-escolar/nova-matricula' element={<PrivateRoute><NewRegistrationPage/></PrivateRoute>}/>
 
-            <Route path='/gestao-escolar/visualizar-professores' element={<PrivateRoute><ViewTeachersPage/></PrivateRoute>}/>
-            <Route path='/gestao-escolar/visualizar-professores/professor' element={<PrivateRoute><ViewTeacherPage/></PrivateRoute>}/>
+            {/* <Route path='/gestao-escolar/visualizar-professores' element={<PrivateRoute><ViewTeachersPage/></PrivateRoute>}/> */}
+            {/* <Route path='/gestao-escolar/visualizar-professores/professor' element={<PrivateRoute><ViewTeacherPage/></PrivateRoute>}/> */}
 
             <Route path='/usuarios' element={<PrivateRoute><UsersPage/></PrivateRoute>}/>
             <Route path='/usuarios/novo-usuario' element={<PrivateRoute><RegisterUserPage/></PrivateRoute>}/>
             <Route path='/usuarios/visualizar-usuario/:id' element={<PrivateRoute><ViewUserPage/></PrivateRoute>}/>
 
             <Route path='/relatorios' element={<PrivateRoute><ReportsPage/></PrivateRoute>}/>
-
+            
             <Route path="*" element={<Navigate to="/"/>}/>
         </Route>
     </Routes>
