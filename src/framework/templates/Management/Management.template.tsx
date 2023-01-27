@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { ManagementPageBanner } from "~/framework/atoms/Icons";
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
 import { Banner, ColumnCenterCard } from "~/framework/molecules";
+import { activities, classes, /*professors,*/ registration } from "./Management.logic";
 
-import { activities, classes, professors, registration } from "./Management.logic";
 
 import * as S from './Management.style';
 

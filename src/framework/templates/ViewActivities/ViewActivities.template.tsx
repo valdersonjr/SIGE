@@ -7,15 +7,18 @@ import {ActivitiesTable} from "@organisms/ActivitiesTable/ActivitiesTable.organi
 import {useNavigate} from "react-router-dom";
 import {ViewActivitiesProps} from "@templates/ViewActivities/ViewActivities.interface";
 import { statusData } from './ViewActivities.logic';
+import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism';
+import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
+import { deleteActivityApiService } from '~/service/api';
 
 export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setReload, reload}) => {
     const navigate = useNavigate();
-    const [activitiesData, setActivitiesData] = useState<Array<{value: string | number, label: string}>>([]);
     const [filters, setFilters] = useState({ activity: "", status: "" });
-   
     const [filterControll, setFilterControll] = useState({ activity: "", status: "" });
-    
     const [selectedValue, setSelectedValue] = useState({ activity: "", status: "" });
+    const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
+    const [canSave, setCanSave] = useState(false);
+    const [idToDelete, setIdToDelete] = useState<number>(-1);
 
     useEffect(()=> {
         let activitiesDataArr = [{value:"", label: ""}];
@@ -25,8 +28,22 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
                 activitiesDataArr = [...activitiesDataArr, { value: activity.descricao, label: activity.descricao }];
             });
         }
-        setActivitiesData(activitiesDataArr);
     },[activities]);
+
+    useEffect(() => {
+        if(canSave){
+            deleteActivityApiService(idToDelete).then((response:any) => {
+                if(response.message){
+                    alert("Não foi possível excluir a atividade");
+                }
+                else{
+                    setReload && setReload(!reload);
+                    setConfirmRemoveModal(!confirmRemoveModal);
+                }
+            });
+            setCanSave(false);
+        }
+    },[canSave]);
 
     const handleSelectChange = (e:string, type:string) => {  
         setFilterControll({...filterControll, [type]: e});
@@ -46,6 +63,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
 
     return (
         <S.Container>
+            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave} children={<ConfirmRemoveClassContent />} modalState={confirmRemoveModal} setModalState={setConfirmRemoveModal} />}
             <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => navigate('/gestao-escolar/nova-atividade')} />
             <S.FindClassContainer>
                 <Title size={20}>Encontre a atividade</Title>
@@ -60,7 +78,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
                     </S.SearchButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <ActivitiesTable data={activities} filters={filters} reload={reload} setReload={setReload} />
+            <ActivitiesTable data={activities} filters={filters} reload={reload} setReload={setReload} confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
         </S.Container>
     );
 };
