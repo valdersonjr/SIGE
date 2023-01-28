@@ -41,6 +41,6 @@
       "@hooks": ["src/hooks"]
     }
   },
-  "include": ["styled.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["vite.config.ts", "styled.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
