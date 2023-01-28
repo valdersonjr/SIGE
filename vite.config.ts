@@ -7,5 +7,5 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 export default defineConfig({
   plugins: [react({
     include: "**/*.tsx",
-  }), tsconfigPaths(), reactRefresh()]
+  }), tsconfigPaths()]
 });
