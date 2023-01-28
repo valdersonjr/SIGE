@@ -36,14 +36,15 @@ export const Gateway: React.FC = () => {
     location.pathname.includes('/usuarios') &&  setSelectedSection(3);
     location.pathname.includes('/relatorios') &&  setSelectedSection(4);
 
-    return(
+     return(
         <Routes>
         {/* UNAUTHENTICATED ROUTES */}
         <Route index path='/login' element={<LoginPage/>}/>
-        <Route index path='/cadastrar' element={<RegistrationPage/>}/>
+        <Route path='/cadastrar' element={<RegistrationPage/>}/>
 
         {/* AUTHENTICATED ROUTES */}
         <Route path='/' element={<PrivateRoute><PageBase/></PrivateRoute>}>
+            <Route path='/__vite_ping' element={<>oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</>} />
             <Route index element={<PrivateRoute><HomePage/></PrivateRoute>}/>
 
             <Route path='/alunos' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
