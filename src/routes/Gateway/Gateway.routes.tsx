@@ -44,7 +44,6 @@ export const Gateway: React.FC = () => {
 
         {/* AUTHENTICATED ROUTES */}
         <Route path='/' element={<PrivateRoute><PageBase/></PrivateRoute>}>
-            <Route path='/__vite_ping' element={<>oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii</>} />
             <Route index element={<PrivateRoute><HomePage/></PrivateRoute>}/>
 
             <Route path='/alunos' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
