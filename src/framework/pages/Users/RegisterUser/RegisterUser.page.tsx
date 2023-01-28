@@ -17,7 +17,7 @@ const RegisterUserPage: React.FC = () => {
         else if(user.profile.length === 0) alert("Atenção! \nSelecione pelo menos um perfil.");
         else if(user.password.length < 6) alert("Senha inválida! \nSua senha precisa ter no mínimo 6 dígitos.");
         else if(user.confirmPassword !== user.password) alert("Atenção! \nAs senhas precisam ser iguais.");
-  
+
         else {
             await registerUserApiService(user).then((response:any) => {
                 if(response && response.message){

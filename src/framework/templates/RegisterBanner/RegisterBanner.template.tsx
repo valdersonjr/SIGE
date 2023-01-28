@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button, VariantButtonEnum } from "~/framework/atoms";
 import FormRegister from "~/framework/organisms/Forms/FormRegister/FormRegister.organism";
+import { registerUserToLoginApiSeervice } from "~/service/api";
 // import { registerUserApiService } from "~/service/api";
 
 import * as S from "./Register.style";
@@ -17,7 +18,8 @@ const RegisterBanner:React.FC = () => {
         form.phone = form.phone.replace(")", "");
 
         console.log(form);
-        // registerUserApiService({name: form.name, email:form.email, password:form.password, phone:form.phone, profile: ["2"]});
+
+        registerUserToLoginApiSeervice({name: form.name, email:form.email, password:form.password, phone:form.phone}).then((response:any) => response.message ?  alert("Não foi possível cadastrar o usuário") : navigate("/login"));
     }
     
     return (

@@ -54,6 +54,19 @@ export const registerUserApiService = async (user:IRegisterUser): Promise<dataco
     });
 }
 
+export const registerUserToLoginApiSeervice = async (lUser:{name:string; email:string; password:string; phone:string;}): Promise<datacore.FetchResponse<any>> => { 
+    return callApiBaseAsync(`${endpoint}/cadastrar`,  {
+        title: 'USER API - userApiService',
+        method: 'POST',
+        body: {
+            nome: lUser.name,
+            email: lUser.email,
+            senha: lUser.password,
+            telefone: lUser.phone,
+        }
+    });
+}
+
 export const inactivateUserApiService = async (id:number) => {
     return callApiBaseAsync(`${endpoint}/${id}/inativar`,  {
         title: 'USER API - userApiService',
