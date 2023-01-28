@@ -8,6 +8,7 @@ import { Header, InputInLabel } from "@molecules";
 import * as S from './NewClass.style';
 import {ensinoOptions} from "~/utils/ensino-options";
 import {getPeriodsApiService} from "@service/api/period.service";
+import {removeCurrencyPrefix} from "~/utils/removeCurrencyPrefix";
 
 export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
     const [periodo, setPeriodo] = useState('');
@@ -34,13 +35,6 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
         return removeCurrencyPrefix(mensalidade) + removeCurrencyPrefix(refeicao) +
             removeCurrencyPrefix(horaExtra) + removeCurrencyPrefix(nutricional) +
             removeCurrencyPrefix(didatico) + removeCurrencyPrefix(pedagogico);
-    }
-
-    const removeCurrencyPrefix = (value: string | number): number => {
-        if (String(value).indexOf('R') !== 0) {
-            return Number(value);
-        }
-        return Number(String(value).trim().slice(2));
     }
 
     return (
@@ -86,12 +80,12 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
 
                 <S.ButtonContainer>
                     <Button label="Criar turma" variant={VariantButtonEnum.SECONDARY} justifyText="center"
-                            onClick={(event) => handleSubmit ? handleSubmit(event, {
+                            onClick={(event) => handleSubmit && handleSubmit(event, {
                                 periodo: Number(periodo), ensino, descricao, mensalidade: removeCurrencyPrefix(mensalidade),
                                 refeicao: removeCurrencyPrefix(refeicao), horaExtra: removeCurrencyPrefix(horaExtra),
                                 nutricional: removeCurrencyPrefix(nutricional), didatico: removeCurrencyPrefix(didatico),
                                 pedagogico: removeCurrencyPrefix(pedagogico)
-                            }) : ""} />
+                            })} />
                 </S.ButtonContainer>
             </S.Body>
         </S.Container>
