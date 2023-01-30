@@ -24,9 +24,9 @@ import ViewUserPage from "~/framework/pages/Users/ViewUser/ViewUser.page";
 import ReportsPage from "~/framework/pages/Reports/Reports.page";
 import {PrivateRoute} from "~/routes/PrivateRoute/PrivateRoute";
 import PageBase from "@templates/PageBase/PageBase.template";
-import {Navigate} from "react-router";
-import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
-import { useSetRecoilState } from 'recoil';
+// import {Navigate} from "react-router";
+// import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
+// import { useSetRecoilState } from 'recoil';
 
 export const Gateway: React.FC = () => {
     // const setSelectedSection = useSetRecoilState(selectedSidebar);
