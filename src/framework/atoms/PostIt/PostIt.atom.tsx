@@ -8,8 +8,8 @@ export const PostIt:React.FC<PostItProps> = ({title, content}) => {
     return(
         <S.Container>
             <S.Title>{title}</S.Title>
-            {content?.map((item) => 
-                <S.Content>{item}</S.Content>
+            {content?.map((item, index) => 
+                <S.Content key={`${item}-${index}`}>{item}</S.Content>
             )}
         </S.Container>
     )

@@ -88,7 +88,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <Title size={20}>Encontre seu aluno</Title>
             <S.InputContainer>
             <InputInLabel label="Nome do Aluno" onChange={(e) => handleOnChange(e, "name")} placeholder="Digite aqui..." />
-            <InputSelectInLabel options={yearsOptions} label="Ano" onChange={(e) => handleOnChange(e, "year")} />
+            <InputSelectInLabel options={yearsOptions} label="Ano" onChange={(e:any) => handleOnChange(e.value, "year")} />
                 <S.ClearButton>
                     <Button onClick={handleReset1} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
