@@ -12,7 +12,7 @@ export const Header: React.FC<HeaderProps> = ({ title, onButtonClick, buttonText
     const navigate = useNavigate();
 
     const handleClick = () => {
-        if(setBackButtonState && backButtonState){
+        if(setBackButtonState){
             setBackButtonState(!backButtonState);
         }
         else {
