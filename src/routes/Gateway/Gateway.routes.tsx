@@ -29,12 +29,12 @@ import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
 import { useSetRecoilState } from 'recoil';
 
 export const Gateway: React.FC = () => {
-    const setSelectedSection = useSetRecoilState(selectedSidebar);
-
-    location.pathname.includes('/alunos') && setSelectedSection(1);
-    location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
-    location.pathname.includes('/usuarios') &&  setSelectedSection(3);
-    location.pathname.includes('/relatorios') &&  setSelectedSection(4);
+    // const setSelectedSection = useSetRecoilState(selectedSidebar);
+    //
+    // location.pathname.includes('/alunos') && setSelectedSection(1);
+    // location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
+    // location.pathname.includes('/usuarios') &&  setSelectedSection(3);
+    // location.pathname.includes('/relatorios') &&  setSelectedSection(4);
 
      return(
         <Routes>
@@ -72,7 +72,7 @@ export const Gateway: React.FC = () => {
 
             <Route path='/relatorios' element={<PrivateRoute><ReportsPage/></PrivateRoute>}/>
             
-            <Route path="*" element={<>{setSelectedSection(0)}<Navigate to="/"/></>}/>
+            {/*<Route path="*" element={<>{setSelectedSection(0)}<Navigate to="/"/></>}/>*/}
         </Route>
     </Routes>
     )
