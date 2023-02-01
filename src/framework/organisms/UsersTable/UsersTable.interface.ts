@@ -6,4 +6,7 @@ export interface UsersTableProps {
     data?: FetchUserResponse[];
     reload?: boolean;
     setReload?: (value: boolean) => void;
+    confirmRemoveModal: boolean;
+    setConfirmRemoveModal: (value: boolean) => void;
+    setIdToDelete:(number:number) => void;
 }

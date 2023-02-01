@@ -5,12 +5,11 @@ import { TableRow, TableRowTitle } from "@molecules";
 import { UsersTableProps } from "@organisms/UsersTable/UsersTable.interface";
 import { titleList } from "@organisms/UsersTable/UsersTable.logic";
 import { FetchUserResponse } from '~/models/datacore';
-import { deleteUserApiService, updateUserApiService } from '~/service/api';
+import { activateUserApiService, inactivateUserApiService } from '~/service/api';
 import { useNavigate } from 'react-router-dom';
 
-export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload }) => {
+export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, setReload, confirmRemoveModal, setConfirmRemoveModal, setIdToDelete }) => {
     const navigate = useNavigate();
-    const [deletedIdArray, setDeletedIdArray] = React.useState<number[]>([]);
 
     let filteredData:FetchUserResponse[] = [];
 
@@ -40,20 +39,19 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         });
     }
 
-    const handleUserDeletion = async (id:number, name:string) => {
-        await deleteUserApiService(id).then((response:any) => {
-            if(response.message){
-                alert(`Não foi possível excluir o usuário ${name}`);
-            }
-            else {
-                setDeletedIdArray([...deletedIdArray, id]);
-            }
-        });
-    }
-
-    const handleSwitchClick = (user: FetchUserResponse) => {
-        user.ativo = !(user.ativo);
-        updateUserApiService(user).then(() => setReload ? setReload(!reload) : null);
+    const handleSwitchClick = (id:number, name:string, user: boolean) => {
+        if(user){
+            inactivateUserApiService(id).then((response:any) => {
+                if(response.message) alert(`Não foi possível inativar o usuário ${name}`);
+                else setReload && setReload(!reload);
+            })
+        }
+        else if(!user) {
+            activateUserApiService(id).then((response:any) => {
+                if(response.message) alert(`Não foi possível ativar o usuário ${name}`);
+                else setReload && setReload(!reload);
+            })
+        }
     }
     
 
@@ -61,7 +59,6 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.map((row, index) => {
-                if(!deletedIdArray.includes(row.id)){
                     let status = row.descricao_status === "Sim" ? true : false;
                     let statusNome = row.descricao_status === "Sim" ? "Ativo" : "Inativo";
                     return (
@@ -69,12 +66,13 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
                             <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
                             onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
-                            onSwitchClick={() => handleSwitchClick(row)}
-                            onThrashClick={() => handleUserDeletion(row.id, row.nome)} />
+                            onSwitchClick={() => row.ativo !== null && row.ativo !== undefined && handleSwitchClick(row.id, row.nome, row.ativo)}
+                            onThrashClick={() => {
+                                setConfirmRemoveModal(!confirmRemoveModal);
+                                setIdToDelete(row?.id);
+                            }} />
                         </React.Fragment>
                     )
-                }
-                return <></>
             })}
         </S.Container>
     );

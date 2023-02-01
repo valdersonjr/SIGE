@@ -10,7 +10,7 @@ export const titleList:DataMap[] = [{
 },
 {
     key: 2,
-    data: 'Turma'
+    data: 'Ensino'
 },
 {
     key: 3,

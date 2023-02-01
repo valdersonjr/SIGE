@@ -4,8 +4,10 @@ import { api } from '@service';
 import { auth, app } from '@recoil';
 import { dataview } from '~/models';
 import {useNavigate} from "react-router-dom";
+import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
 
 export const useAuthentication = () => {
+  const setSelectedSection = useSetRecoilState(selectedSidebar);
   const setToken = useSetRecoilState(auth.atom.token);
   const setLoading = useSetRecoilState(app.appLoading);
 
@@ -24,10 +26,12 @@ export const useAuthentication = () => {
       setToken(response.data.access_token);
       // @ts-ignore
       localStorage.setItem('access_token', response.data.access_token);
+      setSelectedSection(0);
       setLoading(false);
-      navigate('/alunos');
+      navigate('/');
     } catch (error) {
       console.error(error);
+      alert('Email ou senha inválidos');
     }
   };
 

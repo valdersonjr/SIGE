@@ -8,7 +8,7 @@ import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSe
 import { FormStudentQueryProps } from "./FormStudentQuery.interface";
 
 import * as S from './FormStudentQuery.style';
-import { classesOptions, statusOptions } from "./FormStudentQuery.logic";
+import { teachOptions, statusOptions, yearsOptions } from "./FormStudentQuery.logic";
 import { getPeriodsApiService } from "~/service/api";
 import { ResponseClassPeriod } from "~/models/datacore";
 
@@ -16,7 +16,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
     const [periodOptions, setPeriodOptions] = useState<{value:string, label:string}[]>([]);
     const [inputData, setInputData] = useState({
         name: "",
-        registration: "",
+        year: 2022,
         period: "",
         class: "",
         status: ""
@@ -47,14 +47,14 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
     const handleReset1 = () => {
         filters && setFilters && setFilters({
             name: "",
-            registration: "",
+            year: 2022,
             period: filters.period,
             class: filters.class,
             status: filters.status
         });
         setInputData({
             name: "",
-            registration: "",
+            year: 2022,
             period: inputData.period,
             class: inputData.class,
             status: inputData.status
@@ -64,14 +64,14 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
     const handleReset2 = () => {
         filters && setFilters && setFilters({
             name: filters.name,
-            registration: filters.registration,
+            year: filters.year,
             period: "",
             class: "",
             status: ""
         });
         setInputData({
             name: inputData.name,
-            registration: inputData.registration,
+            year: inputData.year,
             period: "",
             class: "",
             status: ""
@@ -88,7 +88,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <Title size={20}>Encontre seu aluno</Title>
             <S.InputContainer>
             <InputInLabel label="Nome do Aluno" onChange={(e) => handleOnChange(e, "name")} placeholder="Digite aqui..." />
-            <InputInLabel label="Matrícula" onChange={(e) => handleOnChange(e, "registration")} placeholder="Digite aqui..." />
+            <InputSelectInLabel options={yearsOptions} label="Ano" onChange={(e:any) => handleOnChange(e.value, "year")} />
                 <S.ClearButton>
                     <Button onClick={handleReset1} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>
@@ -99,7 +99,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <Title size={18}>Filtrar por:</Title>
             <S.InputContainer>
                 <InputSelectInLabel label="Período" onChange={(e:any) => handleOnChange(e.value, "period")} options={periodOptions} />
-                <InputSelectInLabel label="Turma" onChange={(e:any) => handleOnChange(e.value, "class")} options={classesOptions} />
+                <InputSelectInLabel label="Ensino" onChange={(e:any) => handleOnChange(e.value, "class")} options={teachOptions} />
                 <InputSelectInLabel label="Situação" onChange={(e:any) => handleOnChange(e.value, "status")} options={statusOptions} />
                 <S.ClearButton>
                     <Button onClick={handleReset2} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />

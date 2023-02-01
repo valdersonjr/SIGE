@@ -24,8 +24,8 @@ export const TableRow: React.FC<TableRowProps> = ({
 
     return (
         <S.Container index={index}>
-            {fields.length > 0 && fields.map(field => (
-                <S.RowSection key={field} ><S.Text>{field}</S.Text></S.RowSection>
+            {fields.length > 0 && fields.map((field, index) => (
+                <S.RowSection key={`${field}-${index}`}><S.Text fieldValue={field} >{field}</S.Text></S.RowSection>
             ))}
             {profiles ? <S.RowSection>
                 <div style={{"display": "flex", "flexDirection": "column", "gap": "4px", "padding": "4px"}}>

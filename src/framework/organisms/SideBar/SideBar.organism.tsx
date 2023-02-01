@@ -8,9 +8,22 @@ import { Navigation, AvatarCard } from '~/framework/molecules';
 
 import * as S from "./SideBar.style";
 import { useNavigate } from 'react-router-dom';
+// import { getLogoutApiService } from '~/service/api';
 
 export const SideBar: React.FC = () => {
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // getLogoutApiService().then((response:any) => {
+            // if(response.message){
+            //     alert("Não foi possível realizar o logout");
+            // }
+            // else {
+                localStorage.clear();
+                navigate("/login");
+        //     }
+        // });   
+    }
 
     return (
         <S.SideBarSkeleton>
@@ -21,7 +34,7 @@ export const SideBar: React.FC = () => {
                 <Navigation />
                 <S.Footer>
                     <AvatarCard />
-                    <S.Logout>
+                    <S.Logout onClick={handleLogout}>
                         <DashboardIcon color={theme.palette.dark.tint} />
                         <S.Text>Sair</S.Text>
                     </S.Logout>

@@ -5,7 +5,7 @@ import CurrencyInput from 'react-currency-input-field';
 import { InputProps } from './Input.interface';
 import * as S from './Input.style';
 
-export const Input: React.FC<InputProps> = ({ value, onChange, disabled, placeholder, style, name, type, required, min, pattern }) => {
+export const Input: React.FC<InputProps> = ({ value, onChange, disabled, placeholder, style, name, type, required, min, pattern, mask }) => {
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     onChange(evt.target.value);
   };
@@ -27,8 +27,10 @@ export const Input: React.FC<InputProps> = ({ value, onChange, disabled, placeho
     />;
   }
 
+
   return (
-    <S.Input
+    <S.InputTest
+      mask={mask ? mask : ""}
       pattern={pattern}
       min={min}
       required={required}

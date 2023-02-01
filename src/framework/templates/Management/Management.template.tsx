@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { ManagementPageBanner } from "~/framework/atoms/Icons";
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
 import { Banner, ColumnCenterCard } from "~/framework/molecules";
+import { activities, classes, /*professors,*/ registration } from "./Management.logic";
 
-import { activities, classes, professors, registration } from "./Management.logic";
 
 import * as S from './Management.style';
 
@@ -60,7 +60,7 @@ export const Management: React.FC = () => {
                                 onClick={() => navigate('/gestao-escolar/visualizar-matriculas')} />
                     </S.BlockFooter>
                 </S.Block>
-                <S.Block>
+                {/* <S.Block>
                     <S.BlockTitle><Title>Professores</Title></S.BlockTitle>
                     <S.BlockBody>
                         {professors.map((item) => (
@@ -72,7 +72,7 @@ export const Management: React.FC = () => {
                         <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
                                 onClick={() => navigate('/gestao-escolar/visualizar-professores')} />
                     </S.BlockFooter>
-                </S.Block>
+                </S.Block> */}
             </S.Body>
         </S.Container>
     )

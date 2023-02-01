@@ -4,11 +4,11 @@ import { MultiSelectProps } from './MultiSelect.interface';
 
 import * as S from "./MultiSelect.syle";
 
-const MultiSelect:React.FC <MultiSelectProps> = ({ label, options, onChange }) => {
+const MultiSelect:React.FC <MultiSelectProps> = ({ label, options, onChange, required }) => {
     return(
         <S.Container>
             <S.Label>{label}</S.Label>
-            <Select  isMulti styles={{control: (baseStyles) => ({
+            <Select required={required} isMulti styles={{control: (baseStyles) => ({
                 ...baseStyles,
                 height: "6vh",
                 width: "100%",

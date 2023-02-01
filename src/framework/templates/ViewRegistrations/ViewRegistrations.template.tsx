@@ -25,7 +25,7 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registratio
         <S.Container>
             <Header title="Matrículas" buttonText="Nova Matrícula" onButtonClick={() => navigate('/gestao-escolar/nova-matricula')} />
             <S.FindClassContainer>
-                <Title size={20}>Encontre Atividade</Title>
+                <Title size={20}>Encontre a matrícula</Title>
                 <S.FilterContainer>
                     <InputInLabel label="Matrícula" value={filters.matricula} onChange={value => handleFilterChange('register', value)} />
                     <InputInLabel label="Nome do Aluno" value={filters.nome} onChange={value => handleFilterChange('studentName', value)} />

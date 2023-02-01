@@ -6,9 +6,9 @@ import {TableRow, TableRowTitle} from "@molecules";
 import * as S from "@organisms/ClassesTable/ClassesTable.style";
 import {titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
 import { ResponseActivities } from '~/models/datacore';
-import {activeActivityApiService, deleteActivityApiService, inactiveActivityApiService} from '~/service/api';
+import {activeActivityApiService, inactiveActivityApiService} from '~/service/api';
 
-export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, reload, setReload}) => {
+export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, reload, setReload, setConfirmRemoveModal, confirmRemoveModal, setIdToDelete}) => {
     const navigate = useNavigate();
     
     let filteredData: ResponseActivities[] = [];
@@ -18,8 +18,8 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
     }
 
     filteredData =  filteredData.filter((item) => {
-        if(filters?.activity !== ""){
-            return item.descricao === filters?.activity;
+        if(filters && filters?.activity !== ""){
+            return item.descricao.includes(filters.activity);
         }
         return filteredData;
     });
@@ -31,10 +31,6 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
         }
         return filteredData;
     });
-
-    const handleDeleteActivity = async (id:number) => {
-        await deleteActivityApiService(id).then(() => setReload && setReload(!reload));
-    }
 
     const handleActivityStatus = async (row: ResponseActivities) => {
         if (row.ativo) {
@@ -57,7 +53,10 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
                           switchValue={row.ativo}
                           onEyeClick={() => navigate(`/gestao-escolar/visualizar-atividades/atividade/${row.id}`)}
                           onSwitchClick={() => handleActivityStatus(row)}
-                          onThrashClick={() => handleDeleteActivity(row.id)}
+                          onThrashClick={() => {
+                            setConfirmRemoveModal(!confirmRemoveModal);
+                            setIdToDelete(row.id);
+                          }}
                     />
                 )
             })}

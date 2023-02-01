@@ -5,6 +5,7 @@ import { LeftSideLoginProps } from './LoginBanner.interface';
 
 import * as S from './LoginBanner.style';
 import { dataview } from '~/models';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginBanner: React.FC<LeftSideLoginProps> = ({
   buttonRegisterText = 'Cadastrar-se',
@@ -13,7 +14,11 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
   paragraph = 'Digite seus dados cadastrais para realizar seu login',
   submitLoginForm,
 }) => {
-  const handleClickRegisterButton = () => { };
+  const navigate = useNavigate();
+
+  const handleClickRegisterButton = () => { 
+    navigate('/cadastrar');
+  };
   const handleClickForgotPasswordButton = () => { };
 
   const handleSubmitForm = (values: dataview.AuthenticateUser) => {
@@ -34,9 +39,9 @@ export const LoginBanner: React.FC<LeftSideLoginProps> = ({
         </S.SubTitleContainer>
       </S.HeaderContainer>
 
-      <S.FormContainer>
-        <FormLogin onSubmit={handleSubmitForm} />
-      </S.FormContainer>
+        <S.FormContainer>
+          <FormLogin onSubmit={handleSubmitForm} />
+        </S.FormContainer>
 
       <S.ButtonContainer>
         <Button
