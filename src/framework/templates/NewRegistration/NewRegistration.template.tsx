@@ -3,19 +3,22 @@ import * as S from './NewRegistration.style';
 import {NewRegistrationProps} from "@templates/NewRegistration/NewRegistration.interface";
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, VariantButtonEnum} from "@atoms";
-import {anoOptions, formaPagamentoOptions} from "@templates/NewRegistration/NewRegistration.logic";
-import {getClassesApiService, getAllStudentsApiService} from "@service/api";
+import {anoOptions, formaPagamentoOptions, simOuNaoOptions} from "@templates/NewRegistration/NewRegistration.logic";
+import {getClassesApiService, getAllStudentsApiService, getActivitiesApiService} from "@service/api";
 import {SearchSelect} from "@atoms/SearchSelect/SearchSelect.atom";
 import {removeCurrencyPrefix} from "~/utils/removeCurrencyPrefix";
+import {InputDate} from "@atoms/InputDate/InputDate.atom";
+import moment from "moment/moment";
 
 export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) => {
     const [classes, setClasses] = useState<any>([]);
     const [students, setStudents] = useState([]);
+    const [activities, setActivities] = useState([]);
 
     const [ano, setAno] = useState('');
     const [turma, setTurma] = useState();
     const [aluno, setAluno] = useState<any>();
-    const [dataInicio, setDataInicio] = useState();
+    const [dataInicio, setDataInicio] = useState<Date>(new Date());
     const [divulgacaoDadosAutorizada, setDivulgacaoDadosAutorizada] = useState('FALSE');
     const [divulgacaoImagemRede, setDivulgacaoImagemRede] = useState('FALSE');
     const [optouAlmoco, setOptouAlmoco] = useState<any>();
@@ -28,6 +31,7 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
     const [valorMaterialDidatico, setValorMaterialDidatico] = useState('');
     const [valorMaterialPedagogico, setValorMaterialPedagogico] = useState('');
     const [formaPagamentoParcelas, setFormaPagamentoParcelas] = useState('');
+    const [atividades, setAtividades] = useState([]);
 
     useEffect(() => {
         getClassesApiService()
@@ -39,7 +43,20 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
         getAllStudentsApiService()
             .then((response: any) => setStudents(response.data.map((it: any) => {return {label: it.nome, value: it.id}})))
             .catch(err => console.error(err));
+
+        getActivitiesApiService()
+            .then((response: any) => setActivities(response.data.filter((it: any) => !!it?.ativo)))
+            .catch(err => console.error(err));
     }, []);
+
+    const isActivitySelected = (value: string): boolean => value === 'TRUE';
+
+    const handleActivitiesSelected = (activity: any, value: string) => {
+        if (isActivitySelected(value)) {
+            // @ts-ignore
+            setAtividades([...atividades, activity?.id]);
+        }
+    }
 
     return (
         <S.Container>
@@ -56,21 +73,21 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
                         <div style={{"width":"100%", "marginTop":"4px"}}>
                             <SearchSelect label="Pesquisar aluno *" options={students} onChange={(v: any) => setAluno(v)} value={aluno} />
                         </div>
-                        <InputInLabel label="Data de Início *" placeholder="00/00/0000" onChange={setDataInicio} value={dataInicio} />
+                        <InputDate label="Data de Início *" onChange={setDataInicio} value={dataInicio} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <SelectInLabel label="Autoriza divulgação de dados pessoais"
                                        selectedValue={divulgacaoDadosAutorizada} onChange={(v: any) => setDivulgacaoDadosAutorizada(v.value)}
-                                       options={[{label: 'Selecione', value: ''}, {label: 'Não', value: 'FALSE'}, {label: 'Sim', value: 'TRUE'}]} />
+                                       options={simOuNaoOptions} />
                         <SelectInLabel label="Autoriza a divulgação de sua imagem nas redes sociais da escola"
                                        selectedValue={divulgacaoImagemRede} onChange={(v: any) => setDivulgacaoImagemRede(v.value)}
-                                       options={[{label: 'Selecione', value: ''}, {label: 'Não', value: 'FALSE'}, {label: 'Sim', value: 'TRUE'}]} />
+                                       options={simOuNaoOptions} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <SelectInLabel label="Almoço" selectedValue={optouAlmoco} onChange={(v: any) => setOptouAlmoco(v.value)}
-                                       options={[{label: 'Selecione', value: ''}, {label: 'Não', value: 'FALSE'}, {label: 'Sim', value: 'TRUE'}]} />
+                                       options={simOuNaoOptions} />
                         <SelectInLabel label="Jantar" selectedValue={optouJantar} onChange={(v: any) => setOptouJantar(v.value)}
-                                       options={[{label: 'Selecione', value: ''}, {label: 'Não', value: 'FALSE'}, {label: 'Sim', value: 'TRUE'}]} />
+                                       options={simOuNaoOptions} />
                     </S.InputContainer>
                     <S.InputContainer>
                         <InputInLabel label="Valor matrícula *" placeholder="R$" type="currency"
@@ -94,14 +111,12 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
                         <SelectInLabel label="Forma de pagamento *" options={formaPagamentoOptions}
                                        selectedValue={formaPagamentoParcelas} onChange={(v: any) => setFormaPagamentoParcelas(v.value)} />
                     </S.InputContainer>
-                    <S.InputContainer>
-                        <SelectInLabel label="Estuda idiomas" options={[]} />
-                        <SelectInLabel label="Faz natação" options={[]} />
-                    </S.InputContainer>
-                    <S.InputContainer>
-                        <SelectInLabel label="Faz projeto nutricional" options={[]} />
-                        <SelectInLabel label="Faz recreação" options={[]} />
-                    </S.InputContainer>
+                    <S.GridContainer>
+                        {activities.map((it: any) => (
+                            <SelectInLabel key={'activity-'+it.id} label={it?.descricao} options={simOuNaoOptions}
+                                           onChange={(select: any) => handleActivitiesSelected(it, select.value)} />
+                        ))}
+                    </S.GridContainer>
                 </S.InputSection>
 
                 <S.ButtonContainer>
@@ -117,11 +132,11 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
                                 valor_projeto_nutricional: removeCurrencyPrefix(valorProjetoNutricional),
                                 valor_material_didatico: removeCurrencyPrefix(valorMaterialDidatico),
                                 valor_material_pedagogico: removeCurrencyPrefix(valorMaterialPedagogico),
-                                data_inicio: dataInicio,
+                                data_inicio: moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DDTHH:mm:ssZ'),
                                 forma_pagamento_parcelas: formaPagamentoParcelas,
                                 optou_almoco: optouAlmoco === 'TRUE',
                                 optou_jantar: optouJantar === 'TRUE',
-                                atividades: []
+                                atividades
                             })} />
                 </S.ButtonContainer>
             </S.Body>

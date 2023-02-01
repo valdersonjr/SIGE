@@ -41,4 +41,11 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 14px;
+  margin-top: 18px;
+`;
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 10px;
 `;

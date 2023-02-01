@@ -1,13 +1,12 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
 import * as S from "./RegistrationsTable.style";
 import {TableRow, TableRowTitle} from "@molecules";
 import {RegistrationsTableProps} from "@organisms/RegistrationsTable/RegistrationsTable.interface";
 import {titleList} from "@organisms/RegistrationsTable/RegistrationsTable.logic";
 import {deleteRegistrationApiService} from "@service/api/registration.service";
 
-export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, filters, reload, setReload}) => {
-    const navigate = useNavigate();
+export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, reload, setReload}) => {
+    // const navigate = useNavigate();
 
     let filteredData: any[] = [];
 
@@ -15,13 +14,13 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, fil
         filteredData = data;
     }
 
-    if (!!filters?.register) {
-        filteredData = filteredData.filter(row => String(row?.id)?.includes(filters.register));
-    }
+    // if (!!filters?.register) {
+    //     filteredData = filteredData.filter(row => String(row?.id)?.includes(filters.register));
+    // }
 
-    if (!!filters?.studentName) {
-        filteredData = filteredData.filter(row => row?.aluno?.nome.toLowerCase().includes(filters.studentName.toLowerCase()));
-    }
+    // if (!!filters?.studentName) {
+    //     filteredData = filteredData.filter(row => row?.aluno?.nome.toLowerCase().includes(filters.studentName.toLowerCase()));
+    // }
 
     const handleRegistrationDeletion = async (id: number) => {
         await deleteRegistrationApiService(id)

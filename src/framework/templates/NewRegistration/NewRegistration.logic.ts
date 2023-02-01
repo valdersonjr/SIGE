@@ -12,3 +12,5 @@ export const formaPagamentoOptions = [
     {label: 'Boleto', value: 'boleto'},
     {label: 'Transferência', value: 'transferencia'}
 ];
+
+export const simOuNaoOptions = [{label: 'Selecione', value: ''}, {label: 'Não', value: 'FALSE'}, {label: 'Sim', value: 'TRUE'}];

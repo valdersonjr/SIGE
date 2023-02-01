@@ -20,7 +20,7 @@ export const getRegistrationApiService = async (id: number): Promise<datacore.Fe
 export const createRegistrationApiService = async (data: any): Promise<datacore.FetchResponse<any>> => {
     return callApiBaseAsync(endpoint, {
         title: 'API - registrationApiService',
-        method: 'GET',
+        method: 'POST',
         body: {
             turma_id: data?.turma_id,
             aluno_id: data?.aluno_id,
@@ -33,7 +33,8 @@ export const createRegistrationApiService = async (data: any): Promise<datacore.
             forma_pagamento_parcelas: data?.forma_pagamento_parcelas,
             faz_recreacao: data?.faz_recreacao,
             optou_almoco: data?.optou_almoco,
-            optou_jantar: data?.optou_jantar
+            optou_jantar: data?.optou_jantar,
+            atividades: data?.atividades
         }
     });
 }

@@ -1,4 +1,3 @@
-// import {SelectSearchProps as DefaultProps} from "react-select-search";
 import {MultiSelectProps} from "@atoms/MultiSelect/MultiSelect.interface";
 
 export interface SelectSearchProps extends MultiSelectProps {
