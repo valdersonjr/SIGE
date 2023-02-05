@@ -8,7 +8,7 @@ import { Header, InputInLabel } from "@molecules";
 import * as S from './NewClass.style';
 import {ensinoOptions} from "~/utils/ensino-options";
 import {getPeriodsApiService} from "@service/api/period.service";
-import {removeCurrencyPrefix} from "~/utils/removeCurrencyPrefix";
+import {removeCurrencyPrefix, replaceCommaWithDot} from "~/utils/removeCurrencyPrefix";
 
 export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
     const [periodo, setPeriodo] = useState('');
@@ -73,7 +73,7 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
                                       placeholder="R$" onChange={setPedagogico} />
                     </S.InputContainer>
                     <S.InputContainer>
-                        <InputInLabel label="Valor total" disabled={true} value={`R$ ${sumTotal()}`}
+                        <InputInLabel label="Valor total" disabled={true} value={`R$ ${(replaceCommaWithDot(sumTotal()))}`}
                                       placeholder="R$" onChange={() => {}} />
                     </S.InputContainer>
                 </S.InputSection>
