@@ -45,7 +45,9 @@ export const StudentTable: React.FC<StudentTableProps> = ({ data, filters, reloa
 
     if (filters.class !== "" && filters.class) {
         filteredData = filteredData.filter((row) => {
-            return row.matriculas[filters.year - 2022].descricao_turma === filters.class;
+            if(row.matriculas[filters.year - 2022] && row.matriculas[filters.year - 2022].ensino){
+                return row.matriculas[filters.year - 2022].ensino === filters.class;
+            }     
         });
     }
 
