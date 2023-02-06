@@ -26,7 +26,7 @@ export const Students: React.FC<StudentsProps> = ({ students, reload, setReload 
         if(canSave){
             deleteStudentApiService(idToDelete).then((response:any) => {
                 if(response.message){
-                    alert(`Não foi possível excluir ${name}`);
+                    alert(`Não foi possível excluir o aluno`);
                 }
                 else {
                     setConfirmRemoveModal(!confirmRemoveModal);

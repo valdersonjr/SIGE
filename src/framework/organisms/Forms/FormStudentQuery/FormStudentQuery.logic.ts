@@ -1,12 +1,12 @@
 export const teachOptions = [
-    { value: '', label: '' },
-    { value: 'Jardim I', label: 'Jardim I' },
-    { value: 'Jardim II', label: 'Jardim II' },
-    { value: 'Maternal', label: 'Maternal' },
-    { value: 'Maternal 2', label: 'Maternal 2' },
-    { value: 'Berçário jardim', label: 'Berçário jardim' },
-    { value: 'Minimaternal', label: 'Minimaternal' },
-]
+    {value:"", label:""},
+    {value: 'bercario', label: 'Berçário'},
+    {value: 'jardim1', label: 'Jardim I'},
+    {value: 'jardim2', label: 'Jardim II'},
+    {value: 'maternal', label: 'Maternal'},
+    {value: 'maternal2', label: 'Maternal II'},
+    {value: 'minimaternal', label: 'Minimaternal'},
+];
 
 export const statusOptions = [
     { value: '', label: '' },
