@@ -16,8 +16,6 @@ import ViewActivityPage from "~/framework/pages/Management/ViewActivities/ViewAc
 import ViewRegistrationsPage from "~/framework/pages/Management/ViewRegistrations/ViewRegistrations.page";
 import NewActivityPage from "~/framework/pages/Management/ViewActivities/NewActivity/NewActivityPage.page";
 import NewRegistrationPage from "~/framework/pages/Management/ViewRegistrations/NewRegistration/NewRegistration.page";
-// import ViewTeachersPage from "~/framework/pages/Management/ViewTeachers/ViewTeachers.page";
-// import ViewTeacherPage from "~/framework/pages/Management/ViewTeachers/ViewTeacher/ViewTeacher.page";
 import UsersPage from "~/framework/pages/Users/Users.page";
 import RegisterUserPage from "~/framework/pages/Users/RegisterUser/RegisterUser.page";
 import ViewUserPage from "~/framework/pages/Users/ViewUser/ViewUser.page";
@@ -25,16 +23,14 @@ import ReportsPage from "~/framework/pages/Reports/Reports.page";
 import {PrivateRoute} from "~/routes/PrivateRoute/PrivateRoute";
 import PageBase from "@templates/PageBase/PageBase.template";
 import {Navigate} from "react-router";
-import { selectedSidebar } from '~/recoil/sidebar/sidebar.atom';
-import { useSetRecoilState } from 'recoil';
+import {setSelectedSection} from "~/utils/setSelectedSection";
 
 export const Gateway: React.FC = () => {
-    const setSelectedSection = useSetRecoilState(selectedSidebar);
-
-    location.pathname.includes('/alunos') && setSelectedSection(1);
-    location.pathname.includes('/gestao-escolar') && setSelectedSection(2);
-    location.pathname.includes('/usuarios') &&  setSelectedSection(3);
-    location.pathname.includes('/relatorios') &&  setSelectedSection(4);
+    if (location.pathname.includes('/alunos')) setSelectedSection('1');
+    else if (location.pathname.includes('/gestao-escolar')) setSelectedSection('2');
+    else if (location.pathname.includes('/usuarios')) setSelectedSection('3');
+    else if (location.pathname.includes('/relatorios')) setSelectedSection('4');
+    else setSelectedSection('0');
 
      return(
         <Routes>
@@ -72,7 +68,7 @@ export const Gateway: React.FC = () => {
 
             <Route path='/relatorios' element={<PrivateRoute><ReportsPage/></PrivateRoute>}/>
             
-            <Route path="*" element={<>{setSelectedSection(0)}<Navigate to="/"/></>}/>
+            <Route path="*" element={<Navigate to="/"/>}/>
         </Route>
     </Routes>
     )

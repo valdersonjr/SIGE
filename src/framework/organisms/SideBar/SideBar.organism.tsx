@@ -1,14 +1,9 @@
 import React from 'react';
-
 import { theme } from '~/theme';
-
 import { DashboardIcon } from '~/framework/atoms/Icons';
-
 import { Navigation, AvatarCard } from '~/framework/molecules';
-
 import * as S from "./SideBar.style";
 import { useNavigate } from 'react-router-dom';
-// import { getLogoutApiService } from '~/service/api';
 
 export const SideBar: React.FC = () => {
     const navigate = useNavigate();
