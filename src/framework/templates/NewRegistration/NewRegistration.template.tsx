@@ -132,7 +132,7 @@ export const NewRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) 
                                 valor_projeto_nutricional: removeCurrencyPrefix(valorProjetoNutricional),
                                 valor_material_didatico: removeCurrencyPrefix(valorMaterialDidatico),
                                 valor_material_pedagogico: removeCurrencyPrefix(valorMaterialPedagogico),
-                                data_inicio: moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DDTHH:mm:ssZ'),
+                                data_inicio: moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD'),
                                 forma_pagamento_parcelas: formaPagamentoParcelas,
                                 optou_almoco: optouAlmoco === 'TRUE',
                                 optou_jantar: optouJantar === 'TRUE',
