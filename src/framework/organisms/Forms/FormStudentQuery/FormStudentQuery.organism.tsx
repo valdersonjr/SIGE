@@ -31,9 +31,6 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
                     periods.push({value: elements.descricao, label: elements.descricao});
                 })
             }
-            else {
-                console.log(response.message);
-            }
             setPeriodOptions(periods);
         });
 

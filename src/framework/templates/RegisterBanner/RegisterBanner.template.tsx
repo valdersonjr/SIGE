@@ -17,8 +17,6 @@ const RegisterBanner:React.FC = () => {
         form.phone = form.phone.replace("(", "");
         form.phone = form.phone.replace(")", "");
 
-        console.log(form);
-
         registerUserToLoginApiSeervice({name: form.name, email:form.email, password:form.password, phone:form.phone}).then((response:any) => response.message ?  alert("Não foi possível cadastrar o usuário") : navigate("/login"));
     }
     

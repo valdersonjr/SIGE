@@ -12,7 +12,6 @@ const ViewStudentPage: React.FC = () => {
     useEffect(()=> {
         getStudentByIdApiService(Number(id)).then((response:any) => {
             if(response.message){
-                console.log(response.message);
                 return;
             }            
 

@@ -13,9 +13,6 @@ const NewRegistrationPage: React.FC = () => {
     }
 
     const save = (_e: React.SyntheticEvent, data: createRegistrationDataProps) => {
-        console.log(data);
-        console.log();
-
         if (hasErrorsFormData(data)) {
             console.error("Erros no formulário!");
             return;
@@ -26,8 +23,6 @@ const NewRegistrationPage: React.FC = () => {
                 navigate('/gestao-escolar/visualizar-matriculas');
             }).catch(err => console.error(err));
     }
-
-
 
     return <NewRegistration handleSubmit={save} />;
 }

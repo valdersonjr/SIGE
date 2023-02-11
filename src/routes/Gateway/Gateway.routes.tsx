@@ -26,6 +26,8 @@ import {Navigate} from "react-router";
 import {setSelectedSection} from "~/utils/setSelectedSection";
 import ViewRegistrationPage
     from "~/framework/pages/Management/ViewRegistrations/ViewRegistration/ViewRegistration.page";
+import EditRegistrationPage
+    from "~/framework/pages/Management/ViewRegistrations/EditRegistrationPage/EditRegistration.page";
 
 export const Gateway: React.FC = () => {
     if (location.pathname.includes('/alunos')) setSelectedSection('1');
@@ -60,6 +62,7 @@ export const Gateway: React.FC = () => {
 
             <Route path='/gestao-escolar/visualizar-matriculas' element={<PrivateRoute><ViewRegistrationsPage/></PrivateRoute>}/>
             <Route path='/gestao-escolar/visualizar-matriculas/matricula/:id' element={<PrivateRoute><ViewRegistrationPage/></PrivateRoute>}/>
+            <Route path='/gestao-escolar/editar-matricula/:id' element={<PrivateRoute><EditRegistrationPage/></PrivateRoute>}/>
             <Route path='/gestao-escolar/nova-matricula' element={<PrivateRoute><NewRegistrationPage/></PrivateRoute>}/>
 
             {/* <Route path='/gestao-escolar/visualizar-professores' element={<PrivateRoute><ViewTeachersPage/></PrivateRoute>}/> */}

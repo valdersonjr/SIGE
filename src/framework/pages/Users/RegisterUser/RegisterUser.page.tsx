@@ -21,7 +21,6 @@ const RegisterUserPage: React.FC = () => {
         else {
             await registerUserApiService(user).then((response:any) => {
                 if(response && response.message){
-                    console.log(response.message);
                     alert("Ocorreu um erro ao cadastrar o usuário. \nTente novamente.");
                 }
                 else {
