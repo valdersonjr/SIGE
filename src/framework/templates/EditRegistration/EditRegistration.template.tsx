@@ -8,11 +8,18 @@ import {SearchSelect} from "@atoms/SearchSelect/SearchSelect.atom";
 import {InputDate} from "@atoms/InputDate/InputDate.atom";
 import {removeCurrencyPrefix} from "~/utils/removeCurrencyPrefix";
 import moment from "moment";
-import {getActivitiesApiService, getAllStudentsApiService, getClassesApiService} from "@service/api";
+import {
+    getActivitiesApiService,
+    getAllStudentsApiService,
+    getClassesApiService,
+    getRegistrationApiService
+} from "@service/api";
 import {useParams} from "react-router-dom";
 
 export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) => {
     const { id } = useParams();
+
+    const [data, setData] = useState<any>();
 
     const [classes, setClasses] = useState<any>([]);
     const [students, setStudents] = useState([]);
@@ -49,6 +56,10 @@ export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit})
 
         getActivitiesApiService()
             .then((response: any) => setActivities(response.data.filter((it: any) => !!it?.ativo)))
+            .catch(err => console.error(err));
+
+        getRegistrationApiService(Number(id))
+            .then(({data}) => setData(data))
             .catch(err => console.error(err));
     }, []);
 
@@ -125,18 +136,21 @@ export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit})
                 <S.ButtonContainer>
                     <Button label="Salvar Matrícula" variant={VariantButtonEnum.SECONDARY} justifyText="center"
                             onClick={(e) => handleSubmit && handleSubmit(e, {
-                                id: Number(id), turma_id: Number(turma), aluno_id: aluno?.value, ano: ano,
+                                id: Number(id),
+                                turma_id: !!turma ? Number(turma) : data?.turma?.id,
+                                aluno_id: !!aluno ? aluno?.value : data?.aluno?.id,
+                                ano: !!ano ? ano : data?.ano,
                                 divulgacao_dados_autorizada: divulgacaoDadosAutorizada === 'TRUE',
                                 divulgacao_imagem_rede: divulgacaoImagemRede === 'TRUE',
-                                valor_matricula: removeCurrencyPrefix(valorMatricula),
-                                valor_mensalidade: removeCurrencyPrefix(valorMensalidade),
+                                valor_matricula: !!valorMatricula ? removeCurrencyPrefix(valorMatricula) : data?.valor_matricula,
+                                valor_mensalidade: !!valorMensalidade ? removeCurrencyPrefix(valorMensalidade) : data?.valor_mensalidade,
                                 valor_refeicao: removeCurrencyPrefix(valorRefeicao),
                                 valor_hora_extra: removeCurrencyPrefix(valorHoraExtra),
                                 valor_projeto_nutricional: removeCurrencyPrefix(valorProjetoNutricional),
                                 valor_material_didatico: removeCurrencyPrefix(valorMaterialDidatico),
                                 valor_material_pedagogico: removeCurrencyPrefix(valorMaterialPedagogico),
-                                data_inicio: moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-                                forma_pagamento_parcelas: formaPagamentoParcelas,
+                                data_inicio: !!dataInicio ? moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD') : data?.data_inicio,
+                                forma_pagamento_parcelas: !!formaPagamentoParcelas ? formaPagamentoParcelas : data?.forma_pagamento_parcelas,
                                 optou_almoco: optouAlmoco === 'TRUE',
                                 optou_jantar: optouJantar === 'TRUE',
                                 atividades
