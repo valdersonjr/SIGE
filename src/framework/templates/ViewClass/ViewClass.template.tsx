@@ -23,9 +23,7 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
 
     useEffect(() => {
         getClassApiService(classId)
-            .then(response => {
-                setData(response.data);
-            })
+            .then(response => setData(response.data))
             .catch(error => console.error(error));
     },[]);
 

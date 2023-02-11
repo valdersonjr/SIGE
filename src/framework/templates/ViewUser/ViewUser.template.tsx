@@ -53,8 +53,6 @@ const ViewUser:React.FC<ViewUserProps> = ({ user, reload, setReload }) => {
         alterUser.telefone = alterUser.telefone.replace("(", "");
         alterUser.telefone = alterUser.telefone.replace(")", "");
 
-        console.log(alterUser);
-
         await updateUserApiService(alterUser).then((response:any) => {
             if(inputdata.password !== inputdata.confirmPassword){
                 alert("As senhas não conferem");

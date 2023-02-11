@@ -4,9 +4,10 @@ import {TableRow, TableRowTitle} from "@molecules";
 import {RegistrationsTableProps} from "@organisms/RegistrationsTable/RegistrationsTable.interface";
 import {titleList} from "@organisms/RegistrationsTable/RegistrationsTable.logic";
 import {deleteRegistrationApiService} from "@service/api/registration.service";
+import {useNavigate} from "react-router-dom";
 
 export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, reload, setReload}) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     let filteredData: any[] = [];
 
@@ -33,7 +34,7 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, rel
             <TableRowTitle titles={titleList} />
             {filteredData?.map((row, index) => (
                 <TableRow index={index} fields={[row?.id, row?.aluno?.nome, row?.ano]}
-                          onEyeClick={() => {}} // navigate("/gestao-escolar/visualizar-turmas/turma")
+                          onEyeClick={() => navigate(`/gestao-escolar/visualizar-matriculas/matricula/${row.id}`)} // navigate("/gestao-escolar/visualizar-turmas/turma")
                           onThrashClick={() => handleRegistrationDeletion(row?.id)}
                 />
             ))}

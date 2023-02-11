@@ -28,10 +28,15 @@ export const createRegistrationApiService = async (data: any): Promise<datacore.
             divulgacao_dados_autorizada: data?.divulgacao_dados_autorizada,
             divulgacao_imagem_rede: data?.divulgacao_imagem_rede,
             valor_matricula: data?.valor_matricula,
+            valor_mensalidade: data?.valor_mensalidade,
+            valor_refeicao: data?.valor_refeicao,
+            valor_hora_extra:  data?.valor_hora_extra,
+            valor_projeto_nutricional: data?.valor_projeto_nutricional,
+            valor_material_didatico: data?.valor_material_didatico,
+            valor_material_pedagogico: data?.valor_material_pedagogico,
             data_inicio: data?.data_inicio,
-            solicitou_lista: data?.solicitou_lista,
+            solicitou_lista: true,
             forma_pagamento_parcelas: data?.forma_pagamento_parcelas,
-            faz_recreacao: data?.faz_recreacao,
             optou_almoco: data?.optou_almoco,
             optou_jantar: data?.optou_jantar,
             atividades: data?.atividades
@@ -65,12 +70,18 @@ export const putRegistrationApiService = async (id: number, data: any): Promise<
             divulgacao_dados_autorizada: data?.divulgacao_dados_autorizada,
             divulgacao_imagem_rede: data?.divulgacao_imagem_rede,
             valor_matricula: data?.valor_matricula,
+            valor_mensalidade: data?.valor_mensalidade,
+            valor_refeicao: data?.valor_refeicao,
+            valor_hora_extra:  data?.valor_hora_extra,
+            valor_projeto_nutricional: data?.valor_projeto_nutricional,
+            valor_material_didatico: data?.valor_material_didatico,
+            valor_material_pedagogico: data?.valor_material_pedagogico,
             data_inicio: data?.data_inicio,
-            solicitou_lista: data?.solicitou_lista,
+            solicitou_lista: true,
             forma_pagamento_parcelas: data?.forma_pagamento_parcelas,
-            faz_recreacao: data?.faz_recreacao,
             optou_almoco: data?.optou_almoco,
-            optou_jantar: data?.optou_jantar
+            optou_jantar: data?.optou_jantar,
+            atividades: data?.atividades
         }
     });
 }

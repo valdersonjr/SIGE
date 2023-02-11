@@ -29,7 +29,7 @@ export const EditRegistrationDataModal:React.FC<EditRegistrationDataModelProps> 
         }
     }, [ensino, nome, periodo]);
 
-    return(
+    return (
         <React.Fragment>
             <SelectInLabel selectedValue={ensino} options={ensinoOptions} label="Ensino" onChange={(select: any) => setEnsino(select?.value)} />
             <InputInLabel label="Nome" onChange={setNome} value={nome} />
