@@ -1,8 +1,9 @@
-import { datacore } from "~/models";
-
 export interface ViewClassesProps {
-    classes?: datacore.ResponseClass[];
+    classes: any;
     reload: boolean;
     setReload: (value: boolean) => void;
+    handleFilterChange: (field: string, value: any) => void;
+    filters: any;
+    clearFilters: () => void;
 }
 

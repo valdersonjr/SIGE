@@ -18,6 +18,17 @@ export const getActivityApiService = async (id: number): Promise<datacore.FetchR
     });
 }
 
+export const searchActivityApiService = async (data: any): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(`${endpoint}/search`, {
+        title: 'API - activityApiService',
+        method: 'POST',
+        body: {
+            descricao: data?.descricao,
+            situacao: data?.situacao
+        }
+    });
+}
+
 export const createActivityApiService = async (description: string): Promise<datacore.FetchResponse<any>> => {
     return callApiBaseAsync(`${endpoint}`, {
         title: 'API - activityApiService',

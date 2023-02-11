@@ -1,14 +1,14 @@
 export const statusData = [
     {
         value: "",
-        label: ""
+        label: "Selecione a situação"
     },
     {
-        value: "active",
+        value: true,
         label: "Ativo"
     },
     {
-        value: "inactive",
+        value: false,
         label: "Inativo"
     }
 ]

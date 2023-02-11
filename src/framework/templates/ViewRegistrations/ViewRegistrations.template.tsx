@@ -35,7 +35,7 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registratio
                     </S.ClearButton>
                 </S.FilterContainer>
             </S.FindClassContainer>
-            <RegistrationsTable filters={filters} data={registrations} reload={reload} setReload={setReload} />
+            <RegistrationsTable data={registrations} reload={reload} setReload={setReload} />
         </S.Container>
     );
 };

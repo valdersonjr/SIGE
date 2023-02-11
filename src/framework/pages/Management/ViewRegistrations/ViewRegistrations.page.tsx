@@ -40,7 +40,7 @@ const ViewRegistrationsPage: React.FC = () => {
             <ViewRegistrations registrations={registrations} reload={reload} setReload={setReload}
                                filters={filters} handleFilterChange={handleFilterChange} clearFilters={clearFilters} />
         </S.Container>
-    )
+    );
 };
 
 export default ViewRegistrationsPage;

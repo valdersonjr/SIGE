@@ -8,29 +8,8 @@ import {titleList} from "@organisms/ActivitiesTable/ActivitiesTable.logic";
 import { ResponseActivities } from '~/models/datacore';
 import {activeActivityApiService, inactiveActivityApiService} from '~/service/api';
 
-export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, reload, setReload, setConfirmRemoveModal, confirmRemoveModal, setIdToDelete}) => {
+export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, reload, setReload, setConfirmRemoveModal, confirmRemoveModal, setIdToDelete}) => {
     const navigate = useNavigate();
-    
-    let filteredData: ResponseActivities[] = [];
-
-    if(data){
-        filteredData = data;
-    }
-
-    filteredData =  filteredData.filter((item) => {
-        if(filters && filters?.activity !== ""){
-            return item.descricao.includes(filters.activity);
-        }
-        return filteredData;
-    });
-
-    filteredData =  filteredData.filter((item) => {
-        if(filters?.status !== ""){
-            let status = item.ativo ? "active" : "inactive";
-            return status === filters?.status;
-        }
-        return filteredData;
-    });
 
     const handleActivityStatus = async (row: ResponseActivities) => {
         if (row.ativo) {
@@ -47,7 +26,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, filters, 
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
-            {filteredData.map((row: ResponseActivities, index: number) => {
+            {data.map((row: ResponseActivities, index: number) => {
                 return (
                     <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
                           switchValue={row.ativo}

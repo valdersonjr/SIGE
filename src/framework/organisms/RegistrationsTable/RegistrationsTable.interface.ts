@@ -6,9 +6,9 @@ export interface IFilter {
     turma: string;
     situacao: boolean;
 }
+
 export interface RegistrationsTableProps {
-    filters: IFilter;
-    data?: any[];
+    data: any[];
     reload: boolean;
     setReload: (value: boolean) => void;
 }

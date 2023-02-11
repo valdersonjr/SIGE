@@ -9,20 +9,6 @@ import {useNavigate} from "react-router-dom";
 export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, reload, setReload}) => {
     const navigate = useNavigate();
 
-    let filteredData: any[] = [];
-
-    if (data) {
-        filteredData = data;
-    }
-
-    // if (!!filters?.register) {
-    //     filteredData = filteredData.filter(row => String(row?.id)?.includes(filters.register));
-    // }
-
-    // if (!!filters?.studentName) {
-    //     filteredData = filteredData.filter(row => row?.aluno?.nome.toLowerCase().includes(filters.studentName.toLowerCase()));
-    // }
-
     const handleRegistrationDeletion = async (id: number) => {
         await deleteRegistrationApiService(id)
             .then(() => setReload(!reload))
@@ -32,7 +18,7 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({data, rel
     return (
         <S.Container>
             <TableRowTitle titles={titleList} />
-            {filteredData?.map((row, index) => (
+            {data.map((row, index) => (
                 <TableRow index={index} fields={[row?.id, row?.aluno?.nome, row?.ano]}
                           onEyeClick={() => navigate(`/gestao-escolar/visualizar-matriculas/matricula/${row.id}`)} // navigate("/gestao-escolar/visualizar-turmas/turma")
                           onThrashClick={() => handleRegistrationDeletion(row?.id)}
