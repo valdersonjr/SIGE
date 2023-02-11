@@ -3,7 +3,8 @@ export interface IFilter {
     nome: string;
     matricula: string;
     periodo_turma: string;
-    situacao: string
+    turma: string;
+    situacao: boolean;
 }
 export interface RegistrationsTableProps {
     filters: IFilter;

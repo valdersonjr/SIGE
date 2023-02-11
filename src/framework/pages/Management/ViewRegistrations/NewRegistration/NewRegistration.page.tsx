@@ -19,9 +19,8 @@ const NewRegistrationPage: React.FC = () => {
         }
 
         createRegistrationApiService(data)
-            .then(() => {
-                navigate('/gestao-escolar/visualizar-matriculas');
-            }).catch(err => console.error(err));
+            .then(() => navigate('/gestao-escolar/visualizar-matriculas'))
+            .catch(err => console.error(err));
     }
 
     return <NewRegistration handleSubmit={save} />;

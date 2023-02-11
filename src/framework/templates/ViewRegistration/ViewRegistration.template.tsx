@@ -23,12 +23,12 @@ const ViewRegistration: React.FC<ViewRegistrationProps> = ({registrationId}) => 
                     optou_almoco: data?.optou_almoco,
                     optou_jantar: data?.optou_jantar,
                     valor_matricula: data?.valor_matricula,
-                    valor_mensalidade: data?.turma?.valor_mensalidade,
-                    valor_hora_extra: data?.turma?.valor_hora_extra,
-                    valor_projeto_nutricional: data?.turma?.valor_projeto_nutricional,
-                    valor_material_didatico: data?.turma?.valor_material_didatico,
-                    valor_material_pedagogico: data?.turma?.valor_material_pedagogico,
-                    valor_refeicao: data?.turma?.valor_refeicao,
+                    valor_mensalidade: data?.preco_negociado?.valor_mensalidade,
+                    valor_hora_extra: data?.preco_negociado?.valor_hora_extra,
+                    valor_projeto_nutricional: data?.preco_negociado?.valor_projeto_nutricional,
+                    valor_material_didatico: data?.preco_negociado?.valor_material_didatico,
+                    valor_material_pedagogico: data?.preco_negociado?.valor_material_pedagogico,
+                    valor_refeicao: data?.preco_negociado?.valor_refeicao,
                     forma_pagamento_parcelas: data?.forma_pagamento_parcelas
                 });
             })

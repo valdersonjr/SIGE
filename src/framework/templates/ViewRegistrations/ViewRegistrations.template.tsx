@@ -1,25 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as S from './ViewRegistrations.style';
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTable.organism";
 import {useNavigate} from "react-router-dom";
 import {ViewRegistrationsProps} from "@templates/ViewRegistrations/ViewRegistrations.interface";
+import {anoOptions} from "@templates/NewRegistration/NewRegistration.logic";
+import {getClassesApiService} from "@service/api";
 
-export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registrations, reload, setReload}) => {
+export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registrations, reload, setReload, handleFilterChange, filters, clearFilters}) => {
     const navigate = useNavigate();
+    const [classes, setClasses] = useState<any>([]);
 
-    const [filters, setFilters] = useState({
-        ano: '',
-        nome: '',
-        matricula: '',
-        periodo_turma: '',
-        situacao: ''
-    });
-
-    const handleFilterChange = (field: string, value: any) => {
-        setFilters({...filters, [field]: value});
-    }
+    useEffect(() => {
+        getClassesApiService()
+            .then((response: any) => {
+                const FORMATTED_DATA = response.data.map((it: any) => {return {label: it.descricao, value: it.id}});
+                setClasses([{label: 'Selecione a turma', value: ''}, ...FORMATTED_DATA]);
+            }).catch(error => console.error(error));
+    }, []);
 
     return (
         <S.Container>
@@ -27,11 +26,12 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({registratio
             <S.FindClassContainer>
                 <Title size={20}>Encontre a matrícula</Title>
                 <S.FilterContainer>
-                    <InputInLabel label="Matrícula" value={filters.matricula} onChange={value => handleFilterChange('register', value)} />
-                    <InputInLabel label="Nome do Aluno" value={filters.nome} onChange={value => handleFilterChange('studentName', value)} />
-                    <SelectInLabel label="Ano de Ingresso" selectedValue={filters.ano} onChange={value => handleFilterChange('registerYear', value)} options={[]} />
+                    <InputInLabel label="Nome do Aluno" value={filters.nome} onChange={value => handleFilterChange('nome', value)} />
+                    <SelectInLabel label="Ano de Ingresso" selectedValue={filters.ano} onChange={(v: any) => handleFilterChange('ano', v?.value)} options={anoOptions} />
+                    <SelectInLabel label="Turma" selectedValue={filters.turma} onChange={(v: any) => handleFilterChange('turma', v?.value)} options={classes} />
                     <S.ClearButton>
-                        <Button label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                        <Button label="Limpar" type="reset" onClick={clearFilters}
+                                justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                     </S.ClearButton>
                 </S.FilterContainer>
             </S.FindClassContainer>

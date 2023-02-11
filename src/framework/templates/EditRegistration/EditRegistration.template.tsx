@@ -143,7 +143,7 @@ export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit})
                                 divulgacao_dados_autorizada: divulgacaoDadosAutorizada === 'TRUE',
                                 divulgacao_imagem_rede: divulgacaoImagemRede === 'TRUE',
                                 valor_matricula: !!valorMatricula ? removeCurrencyPrefix(valorMatricula) : data?.valor_matricula,
-                                valor_mensalidade: !!valorMensalidade ? removeCurrencyPrefix(valorMensalidade) : data?.valor_mensalidade,
+                                valor_mensalidade: !!valorMensalidade ? removeCurrencyPrefix(valorMensalidade) : data?.preco_negociado?.valor_mensalidade,
                                 valor_refeicao: removeCurrencyPrefix(valorRefeicao),
                                 valor_hora_extra: removeCurrencyPrefix(valorHoraExtra),
                                 valor_projeto_nutricional: removeCurrencyPrefix(valorProjetoNutricional),

@@ -47,7 +47,7 @@ export const createRegistrationApiService = async (data: any): Promise<datacore.
 export const searchRegistrationApiService = async (data: any): Promise<datacore.FetchResponse<any>> => {
     return callApiBaseAsync(`${endpoint}/search`, {
         title: 'API - registrationApiService',
-        method: 'GET',
+        method: 'POST',
         body: {
             ano: data?.ano,
             nome: data?.nome,
