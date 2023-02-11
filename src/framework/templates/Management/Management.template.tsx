@@ -1,28 +1,66 @@
-import React from "react";
-
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-
 import { ManagementPageBanner } from "~/framework/atoms/Icons";
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
 import { Banner, ColumnCenterCard } from "~/framework/molecules";
-import { activities, classes, /*professors,*/ registration } from "./Management.logic";
-
-
 import * as S from './Management.style';
+import {
+    getActivitiesApiService,
+    getClassesApiService,
+    getPeriodsApiService,
+    getRegistrationsApiService
+} from "@service/api";
 
 export const Management: React.FC = () => {
     const navigate = useNavigate();
 
+    const [totalClasses, setTotalClasses] = useState<number>(0);
+    const [totalActiveClasses, setTotalActiveClasses] = useState<number>(0);
+    const [totalPeriods, setTotalPeriods] = useState<number>(0);
+    const [totalActivePeriods, setTotalActivePeriods] = useState<number>(0);
+    const [totalActivities, setTotalActivities] = useState<number>(0);
+    const [totalActiveActivities, setTotalActiveActivities] = useState<number>(0);
+    const [totalRegistrations, setTotalRegistrations] = useState<number>(0);
+    const [totalActiveRegistrations, setTotalActiveRegistrations] = useState<number>(0);
+
+    useEffect(() => {
+        getClassesApiService()
+            .then((r: any) => {
+                setTotalClasses(r?.data?.length);
+                setTotalActiveClasses(r?.data?.filter((it: any) => !!it?.ativo)?.length);
+            }).catch(err => console.error(err));
+
+        getPeriodsApiService()
+            .then((r: any) => {
+                setTotalPeriods(r?.data?.length);
+                setTotalActivePeriods(r?.data?.length);
+            }).catch(err => console.error(err));
+
+        getActivitiesApiService()
+            .then((r: any) => {
+                setTotalActivities(r?.data?.length);
+                setTotalActiveActivities(r?.data?.filter((it: any) => !!it?.ativo)?.length);
+            }).catch(err => console.error(err));
+
+        getRegistrationsApiService()
+            .then((r: any) => {
+                setTotalRegistrations(r?.data?.length);
+                setTotalActiveRegistrations(r?.data?.length);
+            }).catch(err => console.error(err));
+    }, []);
+
     return (
         <S.Container>
-            <Banner Icon={<ManagementPageBanner />} type="gestao-escolar" title="Gestão Escolar" text="Veja alguns números de como anda sua escola, edite, adicione turmas, crie novas atividades e veja como estão as matrículas atuais!" />
+            <Banner Icon={<ManagementPageBanner />} type="gestao-escolar" title="Gestão Escolar"
+                    text="Veja alguns números de como anda sua escola, edite, adicione turmas, crie novas atividades e veja como estão as matrículas atuais!" />
             <S.Body>
                 <S.Block>
                     <S.BlockTitle><Title>Turmas</Title></S.BlockTitle>
                     <S.BlockBody>
-                        {classes.map((item) => (
-                            <ColumnCenterCard key={item.key} label={item.label} value={item.value} active={item.active} />
-                        ))}
+                        <ColumnCenterCard label="Total de turmas" value={totalClasses} active={false} />
+                        <ColumnCenterCard label="Turmas Ativas" value={totalActiveClasses} active={true} />
+                        <ColumnCenterCard label="Total de Períodos" value={totalPeriods} active={false} />
+                        <ColumnCenterCard label="Períodos ativos" value={totalActivePeriods} active={true} />
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Cadastrar Nova Turma" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
@@ -34,9 +72,8 @@ export const Management: React.FC = () => {
                 <S.Block>
                     <S.BlockTitle><Title>Atividades</Title></S.BlockTitle>
                     <S.BlockBody>
-                        {activities.map((item) => (
-                            <ColumnCenterCard key={item.key} label={item.label} value={item.value} active={item.active} />
-                        ))}
+                        <ColumnCenterCard label="Total de Atividades" value={totalActivities} active={false} />
+                        <ColumnCenterCard label="Atividades Ativas" value={totalActiveActivities} active={true} />
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Cadastrar Nova Atividade" justifyText="center"
@@ -49,9 +86,8 @@ export const Management: React.FC = () => {
                 <S.Block>
                     <S.BlockTitle><Title>Matrículas</Title></S.BlockTitle>
                     <S.BlockBody>
-                        {registration.map((item) => (
-                            <ColumnCenterCard key={item.key} label={item.label} value={item.value} active={item.active} />
-                        ))}
+                        <ColumnCenterCard label="Total de Matrículas" value={totalRegistrations} active={false} />
+                        <ColumnCenterCard label="Total de Matrículas Ativas" value={totalActiveRegistrations} active={true} />
                     </S.BlockBody>
                     <S.BlockFooter>
                         <Button label="Nova Matrícula de Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT}
@@ -60,19 +96,6 @@ export const Management: React.FC = () => {
                                 onClick={() => navigate('/gestao-escolar/visualizar-matriculas')} />
                     </S.BlockFooter>
                 </S.Block>
-                {/* <S.Block>
-                    <S.BlockTitle><Title>Professores</Title></S.BlockTitle>
-                    <S.BlockBody>
-                        {professors.map((item) => (
-                            <ColumnCenterCard key={item.key} label={item.label} value={item.value} active={item.active} />
-                        ))}
-                    </S.BlockBody>
-                    <S.BlockFooter>
-                        <Button label="Cadastrar Novo Professor" justifyText="center" variant={VariantButtonEnum.SECONDARY_TRANSPARENT} />
-                        <Button label="Visualizar Dados" justifyText="center" variant={VariantButtonEnum.SECONDARY}
-                                onClick={() => navigate('/gestao-escolar/visualizar-professores')} />
-                    </S.BlockFooter>
-                </S.Block> */}
             </S.Body>
         </S.Container>
     )

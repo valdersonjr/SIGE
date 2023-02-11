@@ -7,7 +7,7 @@ import { ColumnCenterCardProps } from "./ColumnCenterCard.interface";
 import * as S from './ColumnCenterCard.style';
 
 export const ColumnCenterCard:React.FC<ColumnCenterCardProps> = ({ label, value, active, variant }) => {
-    return(
+    return (
         <S.Container type={`${variant ? variant : "" }`} >
             <S.HeaderContainer>
                 {active ? <GlowingCircle type="Ativo" /> : ""}
