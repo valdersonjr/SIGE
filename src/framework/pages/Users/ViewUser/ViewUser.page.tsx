@@ -10,15 +10,25 @@ const ViewUserPage: React.FC = () => {
     const [user, setUser] = useState<FetchUserResponse>();
     const [reload, setReload] = useState(false);
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
+
     useEffect(() => {
-        getUserByIdApiService(Number(id)).then((response) => {
-            setUser(response.data);
-        });
+        getUserByIdApiService(Number(id))
+            .then((response) => {
+                setUser(response.data);
+                setIsAllReqDone([true]);
+            });
     }, [reload]);
+
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
 
     return(
         <S.Container>
-            <ViewUser user={user} reload={reload} setReload={setReload} />
+            <ViewUser user={user} reload={reload} setReload={setReload} loading={loading} setLoading={setLoading}
+                      setIsAllReqDone={setIsAllReqDone} isAllReqDone={isAllReqDone} />
         </S.Container>
     )
 }

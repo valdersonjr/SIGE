@@ -11,15 +11,13 @@ import { UsersProps } from './Users.interface';
 import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism';
 import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
 import { deleteUserApiService } from '~/service/api';
+import {Loading} from "@organisms/Loading/Loading.organism";
 
-
-export const Users: React.FC<UsersProps> = ({users, reload, setReload}) => {
+export const Users: React.FC<UsersProps> = ({users, reload, setReload, loading}) => {
     const navigate = useNavigate();
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
     const [canSave, setCanSave] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
-
-
     const [filters, setFilters] = useState({
         name: "",
         profile: "",
@@ -45,8 +43,12 @@ export const Users: React.FC<UsersProps> = ({users, reload, setReload}) => {
         <S.Container>
             {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave} children={<ConfirmRemoveClassContent />} modalState={confirmRemoveModal} setModalState={setConfirmRemoveModal} />}
             <Banner Icon={<UsersPageBannerIcon />} type="users" title='Usuários' text="Veja os usuários vinculados a sua escola, edite, adicione!" buttonLabel="Novo Usuário" onButtonClick={() => navigate("/usuarios/novo-usuario")} />
-            <FormUserQuery setFilters={setFilters} />
-            <UsersTable data={users} filters={filters} reload={reload} setReload={setReload} confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
+            {!loading ? (
+                <React.Fragment>
+                    <FormUserQuery setFilters={setFilters} />
+                    <UsersTable data={users} filters={filters} reload={reload} setReload={setReload} confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     );
 }

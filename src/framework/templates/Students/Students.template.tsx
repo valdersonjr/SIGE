@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
 import { Banner } from '~/framework/molecules';
 import { StudentTable } from '~/framework/organisms';
 import { FormStudentQuery } from '~/framework/organisms';
 import { StudentsPageBanner } from '~/framework/atoms/Icons';
-
-// import { StudentsProps } from './Students.interface';
-
 import { useNavigate } from 'react-router-dom';
-
 import { StudentsProps } from './Students.interface';
 import * as S from './Students.style';
 import { deleteStudentApiService } from '~/service/api';
 import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism';
 import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
+import {Loading} from "@organisms/Loading/Loading.organism";
 
-export const Students: React.FC<StudentsProps> = ({ students, reload, setReload }) => {
+export const Students: React.FC<StudentsProps> = ({ students, reload, setReload, loading }) => {
     const navigate = useNavigate();
 
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
@@ -46,10 +42,20 @@ export const Students: React.FC<StudentsProps> = ({ students, reload, setReload 
 
     return (
         <S.Container>
-            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave} children={<ConfirmRemoveClassContent />} modalState={confirmRemoveModal} setModalState={setConfirmRemoveModal} />}
-            <Banner Icon={<StudentsPageBanner />} type="students" title='Área de Alunos' text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar, cadastre um novo aluno cliquando ao lado." buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")} />
-            <FormStudentQuery filters={tableFilters} setFilters={setTableFilters} />
-            <StudentTable data={students} filters={tableFilters} reload={reload} setReload={setReload} confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
+            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave}
+                                                      children={<ConfirmRemoveClassContent />}
+                                                      modalState={confirmRemoveModal} setModalState={setConfirmRemoveModal} />}
+            <Banner Icon={<StudentsPageBanner />} type="students" title='Área de Alunos'
+                    text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar, cadastre um novo aluno cliquando ao lado."
+                    buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")} />
+            {!loading ? (
+                <React.Fragment>
+                    <FormStudentQuery filters={tableFilters} setFilters={setTableFilters} />
+                    <StudentTable data={students} filters={tableFilters} reload={reload}
+                                  setReload={setReload} confirmRemoveModal={confirmRemoveModal}
+                                  setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     )
 }

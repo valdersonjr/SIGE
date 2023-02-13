@@ -9,17 +9,24 @@ const ViewStudentPage: React.FC = () => {
     const { id } = useParams();
     const [student, setStudent] = useState<ResponseStudent>();
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
+
     useEffect(()=> {
         getStudentByIdApiService(Number(id)).then((response:any) => {
-            if(response.message){
-                return;
-            }            
+            if (response.message) return;
 
             setStudent(response.data);
+            setIsAllReqDone([true]);
         })
     }, []);
 
-    return <ViewStudent student={student} />
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
+
+    return <ViewStudent student={student} loading={loading} setLoading={setLoading}
+                            setIsAllReqDone={setIsAllReqDone} isAllReqDone={isAllReqDone} />
 }
 
 export default ViewStudentPage;

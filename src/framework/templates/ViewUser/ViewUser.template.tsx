@@ -9,9 +9,10 @@ import { updateUserApiService } from "~/service/api";
 
 import { ViewUserProps } from "./ViewUser.interface";
 import * as S from "./ViewUser.style";
+import {Loading} from "@organisms/Loading/Loading.organism";
 
 
-const ViewUser:React.FC<ViewUserProps> = ({ user, reload, setReload }) => {
+const ViewUser:React.FC<ViewUserProps> = ({ user, reload, setReload, loading }) => {
     let profileArray:string[] = [];
 
     const [modalState, setModalState] = useState(false);
@@ -34,7 +35,6 @@ const ViewUser:React.FC<ViewUserProps> = ({ user, reload, setReload }) => {
             phone: user.telefone,
         })
     },[user, reload]);
-
 
     user?.perfis.forEach((perfil) => {
         profileArray.push(perfil.descricao);
@@ -83,12 +83,14 @@ const ViewUser:React.FC<ViewUserProps> = ({ user, reload, setReload }) => {
                     <InputInLabel type='text' mask="(99) 99999 9999" label="Telefone" placeholder="(XX) 9XXXX - XXXX"  value={inputdata.phone} onChange={(value:string) => handleChange(value, "phone")} />
                 </EditUserData> }
             <Header title="Usuário" />
-            <Dropdown title="Dados Cadastrais" buttonText="Editar Dados" onButtonClick={() => setModalState(!modalState)}>
-                {user?.nome && <PostIt title="Nome" content={[user.nome]} />}
-                {user?.email && <PostIt title="Email" content={[user.email]} />}
-                {user?.telefone_formatado && <PostIt title="Telefone" content={[user.telefone_formatado]} />}
-                {user?.perfis && user.perfis.length > 0 && <PostIt title="Perfil" content={profileArray} />}
-            </Dropdown>
+            {!loading ? (
+                <Dropdown title="Dados Cadastrais" buttonText="Editar Dados" onButtonClick={() => setModalState(!modalState)}>
+                    {user?.nome && <PostIt title="Nome" content={[user.nome]} />}
+                    {user?.email && <PostIt title="Email" content={[user.email]} />}
+                    {user?.telefone_formatado && <PostIt title="Telefone" content={[user.telefone_formatado]} />}
+                    {user?.perfis && user.perfis.length > 0 && <PostIt title="Perfil" content={profileArray} />}
+                </Dropdown>
+            ) : <Loading />}
         </S.Container>
     )
 }

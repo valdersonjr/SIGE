@@ -7,13 +7,24 @@ const UsersPage: React.FC = () => {
     const [users, setUsers] = useState<datacore.FetchUserResponse[]>();
     const [reload, setReload] = useState<boolean>(false);
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
+
     useEffect(() => {
-        getAllUsersApiService().then(response => {
-            setUsers(response.data);
-        }).catch(err => console.error(err));
+        getAllUsersApiService()
+            .then(response => {
+                setUsers(response.data);
+                setIsAllReqDone([true]);
+            }).catch(err => console.error(err));
     }, [reload]);
 
-    return <Users users={users} reload={reload} setReload={setReload} />;
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
+
+    return <Users users={users} reload={reload} setReload={setReload}
+                  loading={loading} setLoading={setLoading}
+                  setIsAllReqDone={setIsAllReqDone} isAllReqDone={isAllReqDone} />;
 }
 
 export default UsersPage;
