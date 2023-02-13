@@ -11,6 +11,7 @@ import * as S from './ViewClass.style';
 import {ViewClassTable} from "@organisms/ViewClassTable/ViewClassTable.organism";
 import { ViewClassProps } from "./ViewClass.interface";
 import {getClassApiService, putClassApiService} from "@service/api";
+import {Loading} from "@organisms/Loading/Loading.organism";
 
 const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     const [registrationModalState, setRegistrationModalState] = useState(false);
@@ -21,11 +22,31 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
     const [dataTwoToSave, setDataTwoToSave] = useState<any>();
     const [canSave, setCanSave] = useState(false);
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
+
     useEffect(() => {
         getClassApiService(classId)
-            .then(response => setData(response.data))
-            .catch(error => console.error(error));
+            .then(response => {
+                setData(response.data);
+                setIsAllReqDone([true]);
+            }).catch(error => console.error(error));
     },[]);
+
+    useEffect(() => {
+        if (canSave) {
+            setData({...data, ...dataOneToSave, ...dataTwoToSave});
+            save()
+                .then(() => {
+                    alert("Turma salva com sucesso!");
+                }).catch(err => console.error(err));
+            setCanSave(false);
+        }
+    }, [canSave]);
+
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
 
     const sumTotal = (): number => {
         return data?.valor_mensalidade +
@@ -49,17 +70,6 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
             .catch(err => console.error(err));
     }
 
-    useEffect(() => {
-        if (canSave) {
-            setData({...data, ...dataOneToSave, ...dataTwoToSave});
-            save()
-                .then(() => {
-                    alert("Turma salva com sucesso!");
-                }).catch(err => console.error(err));
-            setCanSave(false);
-        }
-    }, [canSave]);
-
     return (
         <S.Container>
             {registrationModalState &&
@@ -72,34 +82,39 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
               <EditClassData title="Editar dados financeiros" modalState={financeModalState} setModalState={setFinanceModalState} setCanSave={setCanSave}>
                 <EditFinancialDataModal data={data} setData={setDataTwoToSave} />
               </EditClassData>}
+
             <Header title="Turma" />
-            <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)}>
-                <PostIt title="Ensino" content={[data?.ensino]} />
-                <PostIt title="Nome" content={[data?.descricao]} />
-                <PostIt title="Período" content={[`${data?.periodo_turma?.horario_entrada} - ${data?.periodo_turma?.horario_saida}`]} />
-            </Dropdown>
-            <Dropdown title="Dados Financeiros" buttonText="Editar Dados" onButtonClick={() => setFinanceModalState(!financeModalState)} >
-                <PostIt title="Valor mensalidade" content={[`R$ ${data?.valor_mensalidade.toFixed(2)}`]} />
-                <PostIt title="Valor reifeição" content={[`R$ ${data?.valor_refeicao.toFixed(2)}`]} />
-                <PostIt title="Valor hora extra" content={[`R$ ${data?.valor_hora_extra.toFixed(2)}`]} />
-                <PostIt title="Valor Projeto nutricionista" content={[`R$ ${data?.valor_projeto_nutricional.toFixed(2)}`]} />
-                <PostIt title="Valor Material didático" content={[`R$ ${data?.valor_material_didatico.toFixed(2)}`]} />
-                <PostIt title="Valor Material pedagógico" content={[`R$ ${data?.valor_material_pedagogico.toFixed(2)}`]} />
-                <PostIt title="Total" content={[`R$ ${sumTotal().toFixed(2)}`]} />
-            </Dropdown>
-            <S.LinkedStudentsHeader>
-                <Title>Alunos Vínculados</Title>
-                {/*<div style={{"maxWidth":"300px"}}>*/}
-                {/*    <Button label="Vincular Novo Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY} />*/}
-                {/*</div>*/}
-            </S.LinkedStudentsHeader>
-            {/*<S.CardsContainer>*/}
-            {/*    <ColumnCenterCard label="Alunos vinculados" value={10} variant="first" />*/}
-            {/*    <ColumnCenterCard label="Vagas disponíveis" value={10} variant="second" />*/}
-            {/*    <ColumnCenterCard label="Alunos desativados" value={2} variant="third" />*/}
-            {/*    <ColumnCenterCard label="Alunos ativos" value={10} variant="fourth" />*/}
-            {/*</S.CardsContainer>*/}
-            <ViewClassTable students={data?.matriculados} />
+            {!loading ? (
+                <React.Fragment>
+                    <Dropdown title="Dados Cadastrais da Turma" buttonText="Editar Dados" onButtonClick={() => setRegistrationModalState(!registrationModalState)}>
+                        <PostIt title="Ensino" content={[data?.ensino]} />
+                        <PostIt title="Nome" content={[data?.descricao]} />
+                        <PostIt title="Período" content={[`${data?.periodo_turma?.horario_entrada} - ${data?.periodo_turma?.horario_saida}`]} />
+                    </Dropdown>
+                    <Dropdown title="Dados Financeiros" buttonText="Editar Dados" onButtonClick={() => setFinanceModalState(!financeModalState)} >
+                        <PostIt title="Valor mensalidade" content={[`R$ ${data?.valor_mensalidade.toFixed(2)}`]} />
+                        <PostIt title="Valor reifeição" content={[`R$ ${data?.valor_refeicao.toFixed(2)}`]} />
+                        <PostIt title="Valor hora extra" content={[`R$ ${data?.valor_hora_extra.toFixed(2)}`]} />
+                        <PostIt title="Valor Projeto nutricionista" content={[`R$ ${data?.valor_projeto_nutricional.toFixed(2)}`]} />
+                        <PostIt title="Valor Material didático" content={[`R$ ${data?.valor_material_didatico.toFixed(2)}`]} />
+                        <PostIt title="Valor Material pedagógico" content={[`R$ ${data?.valor_material_pedagogico.toFixed(2)}`]} />
+                        <PostIt title="Total" content={[`R$ ${sumTotal().toFixed(2)}`]} />
+                    </Dropdown>
+                    <S.LinkedStudentsHeader>
+                        <Title>Alunos Vínculados</Title>
+                        {/*<div style={{"maxWidth":"300px"}}>*/}
+                        {/*    <Button label="Vincular Novo Aluno" justifyText="center" variant={VariantButtonEnum.SECONDARY} />*/}
+                        {/*</div>*/}
+                    </S.LinkedStudentsHeader>
+                    {/*<S.CardsContainer>*/}
+                    {/*    <ColumnCenterCard label="Alunos vinculados" value={10} variant="first" />*/}
+                    {/*    <ColumnCenterCard label="Vagas disponíveis" value={10} variant="second" />*/}
+                    {/*    <ColumnCenterCard label="Alunos desativados" value={2} variant="third" />*/}
+                    {/*    <ColumnCenterCard label="Alunos ativos" value={10} variant="fourth" />*/}
+                    {/*</S.CardsContainer>*/}
+                    <ViewClassTable students={data?.matriculados} />
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     )
 }

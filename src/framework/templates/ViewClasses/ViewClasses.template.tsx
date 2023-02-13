@@ -11,11 +11,11 @@ import {
     ConfirmRemoveClassContent
 } from "@templates/ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content";
 import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
+import {Loading} from "@organisms/Loading/Loading.organism";
 
-export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setReload, filters, clearFilters, handleFilterChange }) => {
+export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setReload, filters, clearFilters, handleFilterChange, loading, classesOptions }) => {
     const navigate = useNavigate();
 
-    const [classesOptions, setClassesOptions] = useState<any[]>([]);
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
     const [canSave, setCanSave] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
@@ -31,11 +31,6 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
         }
     }, [canSave]);
 
-    useEffect(() => {
-        const FORMATTED_DATA = classes.map((it: any) => {return {label: it.descricao, value: it.id}});
-        setClassesOptions([{label: 'Selecione a turma', value: ''}, ...FORMATTED_DATA]);
-    }, []);
-
     return (
         <S.Container>
             {confirmRemoveModal && <ConfirmRemoveData title="Confirmar Deleção" children={<ConfirmRemoveClassContent />}
@@ -44,20 +39,24 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setRe
             />}
 
             <Header title="Turmas" buttonText="Cadastrar Nova Turma" onButtonClick={() => navigate('/gestao-escolar/nova-turma')} />
-            <S.FindClassContainer>
-                <Title size={20}>Encontre sua turma</Title>
-                <S.FilterContainer>
-                    <SelectInLabel selectedValue={filters.turma} onChange={(v: any) => handleFilterChange('turma', v?.value)} options={classesOptions} label="Turma" />
-                    <SelectInLabel selectedValue={filters.situacao} onChange={(v: any) => handleFilterChange('situacao', v?.value)} options={statusData} label="Situação" />
-                    <S.ClearButton>
-                        <Button onClick={clearFilters} label="Limpar" type="reset"
-                                justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    </S.ClearButton>
-                </S.FilterContainer>
-            </S.FindClassContainer>
-            <ClassesTable data={classes} reload={reload} setReload={setReload}
-                confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal}
-                setIdToDelete={setIdToDelete} />
+            {!loading ? (
+                <React.Fragment>
+                    <S.FindClassContainer>
+                        <Title size={20}>Encontre sua turma</Title>
+                        <S.FilterContainer>
+                            <SelectInLabel selectedValue={filters.turma} onChange={(v: any) => handleFilterChange('turma', v?.value)} options={classesOptions} label="Turma" />
+                            <SelectInLabel selectedValue={filters.situacao} onChange={(v: any) => handleFilterChange('situacao', v?.value)} options={statusData} label="Situação" />
+                            <S.ClearButton>
+                                <Button onClick={clearFilters} label="Limpar" type="reset"
+                                        justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                            </S.ClearButton>
+                        </S.FilterContainer>
+                    </S.FindClassContainer>
+                    <ClassesTable data={classes} reload={reload} setReload={setReload}
+                                  confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal}
+                                  setIdToDelete={setIdToDelete} />
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     );
 };

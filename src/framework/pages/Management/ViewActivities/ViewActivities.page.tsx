@@ -14,9 +14,15 @@ const ViewActivitiesPage: React.FC = () => {
     const [reload, setReload] = useState<boolean>(false);
     const [filters, setFilters] = useState(emptyFilters);
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
+
     useEffect(() => {
         getActivitiesApiService()
-            .then(response => setActivities(response?.data))
+            .then(response => {
+                setActivities(response?.data);
+                setIsAllReqDone([true]);
+            })
             .catch(err => console.error(err));
     }, [reload]);
 
@@ -25,6 +31,10 @@ const ViewActivitiesPage: React.FC = () => {
     //         .then((response: any) => setActivities(response?.data))
     //         .catch(err => console.error(err));
     // }, [filters]);
+
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
 
     const handleFilterChange = (field: string, value: any) => {
         setFilters({...filters, [field]: value});
@@ -35,7 +45,9 @@ const ViewActivitiesPage: React.FC = () => {
     return (
         <S.Container>
             <ViewActivities activities={activities} reload={reload} setReload={setReload}
-                            filters={filters} handleFilterChange={handleFilterChange} clearFilters={clearFilters} />
+                            filters={filters} handleFilterChange={handleFilterChange} clearFilters={clearFilters}
+                            isAllReqDone={isAllReqDone} setIsAllReqDone={setIsAllReqDone}
+                            loading={loading} setLoading={setLoading} />
         </S.Container>
     )
 };

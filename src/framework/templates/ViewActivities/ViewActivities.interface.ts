@@ -7,4 +7,8 @@ export interface ViewActivitiesProps {
     handleFilterChange: (field: string, value: any) => void;
     filters: any;
     clearFilters: () => void;
+    loading: boolean;
+    setLoading: (loading: boolean) => void;
+    isAllReqDone: boolean[];
+    setIsAllReqDone: (isAllReqDone: boolean[]) => void;
 }

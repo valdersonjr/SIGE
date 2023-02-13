@@ -10,8 +10,9 @@ import { statusData } from './ViewActivities.logic';
 import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism';
 import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
 import { deleteActivityApiService } from '~/service/api';
+import {Loading} from "@organisms/Loading/Loading.organism";
 
-export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setReload, reload, filters, handleFilterChange, clearFilters}) => {
+export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setReload, reload, filters, handleFilterChange, clearFilters, loading}) => {
     const navigate = useNavigate();
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
     const [canSave, setCanSave] = useState(false);
@@ -39,21 +40,25 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
                                                       setModalState={setConfirmRemoveModal} />}
 
             <Header title="Atividades" buttonText="Cadastrar Nova Atividade" onButtonClick={() => navigate('/gestao-escolar/nova-atividade')} />
-            <S.FindClassContainer>
-                <Title size={20}>Encontre a atividade</Title>
-                <S.FilterContainer>
-                    <InputInLabel label="Atividade" value={filters.descricao} onChange={v => handleFilterChange('descricao', v)} />
-                    <SelectInLabel label="Situação" options={statusData} selectedValue={filters.situacao}  onChange={(v: any) => handleFilterChange('situacao', v?.value)} />
-                    <S.ClearButton>
-                        <Button label="Limpar filtro" type="reset" justifyText="center"
-                                onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    </S.ClearButton>
-                </S.FilterContainer>
-            </S.FindClassContainer>
-            <ActivitiesTable data={activities} reload={reload} setReload={setReload}
-                             confirmRemoveModal={confirmRemoveModal}
-                             setConfirmRemoveModal={setConfirmRemoveModal}
-                             setIdToDelete={setIdToDelete} />
+            {!loading ? (
+                <React.Fragment>
+                    <S.FindClassContainer>
+                        <Title size={20}>Encontre a atividade</Title>
+                        <S.FilterContainer>
+                            <InputInLabel label="Atividade" value={filters.descricao} onChange={v => handleFilterChange('descricao', v)} />
+                            <SelectInLabel label="Situação" options={statusData} selectedValue={filters.situacao}  onChange={(v: any) => handleFilterChange('situacao', v?.value)} />
+                            <S.ClearButton>
+                                <Button label="Limpar filtro" type="reset" justifyText="center"
+                                        onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                            </S.ClearButton>
+                        </S.FilterContainer>
+                    </S.FindClassContainer>
+                    <ActivitiesTable data={activities} reload={reload} setReload={setReload}
+                                     confirmRemoveModal={confirmRemoveModal}
+                                     setConfirmRemoveModal={setConfirmRemoveModal}
+                                     setIdToDelete={setIdToDelete} />
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     );
 };

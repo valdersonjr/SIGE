@@ -6,11 +6,15 @@ import {Header} from "@molecules";
 import {Dropdown} from "@organisms";
 import {PostIt} from "@atoms";
 import {useNavigate} from "react-router-dom";
+import {Loading} from "@organisms/Loading/Loading.organism";
 
 const ViewRegistration: React.FC<ViewRegistrationProps> = ({registrationId}) => {
     const navigate = useNavigate();
 
     const [data, setData] = useState<any>();
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
 
     useEffect(() => {
         getRegistrationApiService(registrationId)
@@ -31,9 +35,14 @@ const ViewRegistration: React.FC<ViewRegistrationProps> = ({registrationId}) => 
                     valor_refeicao: data?.preco_negociado?.valor_refeicao,
                     forma_pagamento_parcelas: data?.forma_pagamento_parcelas
                 });
+                setIsAllReqDone([true]);
             })
             .catch(err => console.error(err));
     }, []);
+
+    useEffect(() => {
+        if (isAllReqDone.every(it => it)) setLoading(false);
+    }, [isAllReqDone]);
 
     const translateYesOrNo = (value: boolean): string => { return value ? 'Sim' : 'Não'; }
 
@@ -41,33 +50,37 @@ const ViewRegistration: React.FC<ViewRegistrationProps> = ({registrationId}) => 
         <S.Container>
             <Header title="Matrícula" buttonText="Editar Matrícula" onButtonClick={() => navigate(`/gestao-escolar/editar-matricula/${registrationId}`)} />
 
-            <Dropdown title="Dados da Matrícula">
-                <PostIt title="Ano" content={[data?.ano]} />
-                <PostIt title="Turma" content={[data?.turma?.descricao]} />
-                <PostIt title="Aluno" content={[data?.aluno?.nome]} />
-                <PostIt title="Data de Início" content={[data?.data_inicio]} />
-            </Dropdown>
+            {!loading ? (
+                <React.Fragment>
+                    <Dropdown title="Dados da Matrícula">
+                        <PostIt title="Ano" content={[data?.ano]} />
+                        <PostIt title="Turma" content={[data?.turma?.descricao]} />
+                        <PostIt title="Aluno" content={[data?.aluno?.nome]} />
+                        <PostIt title="Data de Início" content={[data?.data_inicio]} />
+                    </Dropdown>
 
-            <Dropdown title="Dados do Aluno">
-                <PostIt title="Autoriza divulgação de dados pessoais" content={[translateYesOrNo(data?.divulgacao_dados_autorizada)]} />
-                <PostIt title="Autoriza a divulgação de sua imagem" content={[translateYesOrNo(data?.divulgacao_imagem_rede)]} />
-                <PostIt title="Almoço" content={[translateYesOrNo(data?.optou_almoco)]} />
-                <PostIt title="Jantar" content={[translateYesOrNo(data?.optou_jantar)]} />
-            </Dropdown>
+                    <Dropdown title="Dados do Aluno">
+                        <PostIt title="Autoriza divulgação de dados pessoais" content={[translateYesOrNo(data?.divulgacao_dados_autorizada)]} />
+                        <PostIt title="Autoriza a divulgação de sua imagem" content={[translateYesOrNo(data?.divulgacao_imagem_rede)]} />
+                        <PostIt title="Almoço" content={[translateYesOrNo(data?.optou_almoco)]} />
+                        <PostIt title="Jantar" content={[translateYesOrNo(data?.optou_jantar)]} />
+                    </Dropdown>
 
-            <Dropdown title="Valores de Matrícula">
-                <PostIt title="Valor matrícula" content={[data?.valor_matricula]} />
-                <PostIt title="Valor mensalidade" content={[data?.valor_mensalidade]} />
-                <PostIt title="Valor hora extra" content={[data?.valor_hora_extra]} />
-                <PostIt title="Forma de pagamento" content={[data?.forma_pagamento_parcelas]} />
-            </Dropdown>
+                    <Dropdown title="Valores de Matrícula">
+                        <PostIt title="Valor matrícula" content={[data?.valor_matricula]} />
+                        <PostIt title="Valor mensalidade" content={[data?.valor_mensalidade]} />
+                        <PostIt title="Valor hora extra" content={[data?.valor_hora_extra]} />
+                        <PostIt title="Forma de pagamento" content={[data?.forma_pagamento_parcelas]} />
+                    </Dropdown>
 
-            <Dropdown title="Valores Extras">
-                <PostIt title="Valor refeição" content={[data?.valor_refeicao]} />
-                <PostIt title="Valor material didático" content={[data?.valor_material_didatico]} />
-                <PostIt title="Valor material pedagógico" content={[data?.valor_material_pedagogico]} />
-                <PostIt title="Valor projeto nutricional" content={[data?.valor_projeto_nutricional]} />
-            </Dropdown>
+                    <Dropdown title="Valores Extras">
+                        <PostIt title="Valor refeição" content={[data?.valor_refeicao]} />
+                        <PostIt title="Valor material didático" content={[data?.valor_material_didatico]} />
+                        <PostIt title="Valor material pedagógico" content={[data?.valor_material_pedagogico]} />
+                        <PostIt title="Valor projeto nutricional" content={[data?.valor_projeto_nutricional]} />
+                    </Dropdown>
+                </React.Fragment>
+            ) : <Loading />}
         </S.Container>
     );
 }
