@@ -10,13 +10,10 @@ import { EditFinancialDataModal } from "./EditFinancialDataModalContent/EditFina
 import * as S from './ViewClass.style';
 import {ViewClassTable} from "@organisms/ViewClassTable/ViewClassTable.organism";
 import { ViewClassProps } from "./ViewClass.interface";
-import {getClassApiService, putClassApiService} from "@service/api";
+import {getClassApiService} from "@service/api";
 import {Loading} from "@organisms/Loading/Loading.organism";
 
-const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
-    const [registrationModalState, setRegistrationModalState] = useState(false);
-    const [financeModalState, setFinanceModalState] = useState(false);
-
+const ViewClass: React.FC<ViewClassProps> = ({ classId, reload, setFinanceModalState, setRegistrationModalState, registrationModalState, financeModalState, handleSubmit }) => {
     const [data, setData] = useState<any>();
     const [dataOneToSave, setDataOneToSave] = useState<any>();
     const [dataTwoToSave, setDataTwoToSave] = useState<any>();
@@ -31,15 +28,11 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
                 setData(response.data);
                 setIsAllReqDone([true]);
             }).catch(error => console.error(error));
-    },[]);
+    },[reload]);
 
     useEffect(() => {
         if (canSave) {
-            setData({...data, ...dataOneToSave, ...dataTwoToSave});
-            save()
-                .then(() => {
-                    alert("Turma salva com sucesso!");
-                }).catch(err => console.error(err));
+            handleSubmit({...data, ...dataOneToSave, ...dataTwoToSave});
             setCanSave(false);
         }
     }, [canSave]);
@@ -55,19 +48,6 @@ const ViewClass: React.FC<ViewClassProps> = ({ classId }) => {
             data?.valor_projeto_nutricional +
             data?.valor_material_didatico +
             data?.valor_material_pedagogico;
-    }
-
-    const save = async () => {
-        await putClassApiService(data?.id, {...data, ...dataOneToSave, ...dataTwoToSave})
-            .then(() => {
-                if (registrationModalState && !!setRegistrationModalState) {
-                    setRegistrationModalState(!registrationModalState);
-                }
-                if (financeModalState && !!setFinanceModalState) {
-                    setFinanceModalState(!financeModalState);
-                }
-            })
-            .catch(err => console.error(err));
     }
 
     return (

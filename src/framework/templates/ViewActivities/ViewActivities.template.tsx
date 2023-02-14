@@ -39,9 +39,9 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setRe
     const deleteActivity = () => new Promise((resolve, reject) => {
         deleteActivityApiService(idToDelete)
             .then((response: any) => {
-                if (response.message) return reject("error removing activity");
+                if (!!response.message) return reject("error removing activity");
 
-                resolve(true)
+                resolve(true);
             }).catch(err => reject(err));
     });
 

@@ -13,5 +13,5 @@ export interface createClassDataProps {
 }
 
 export interface NewClassProps {
-    handleSubmit?: (event: React.SyntheticEvent, data: createClassDataProps) => void;
+    handleSubmit: (event: React.SyntheticEvent, data: createClassDataProps) => void;
 }

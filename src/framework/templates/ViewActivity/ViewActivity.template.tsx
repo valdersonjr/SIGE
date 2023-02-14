@@ -17,7 +17,6 @@ const ViewActivity: React.FC<ViewActivityProps> = ({activityId, setActivityRegis
     const [data, setData] = useState<any>();
     const [dataToSave, setDataToSave] = useState<any>();
 
-
     const [loading, setLoading] = useState<boolean>(true);
     const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
 

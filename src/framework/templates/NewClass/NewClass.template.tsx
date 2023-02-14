@@ -90,7 +90,7 @@ export const NewClass: React.FC<NewClassProps> = ({ handleSubmit }) => {
 
                     <S.ButtonContainer>
                         <Button label="Criar turma" variant={VariantButtonEnum.SECONDARY} justifyText="center"
-                                onClick={(event) => handleSubmit && handleSubmit(event, {
+                                onClick={(event) => handleSubmit(event, {
                                     periodo: Number(periodo), ensino, descricao, mensalidade: removeCurrencyPrefix(mensalidade),
                                     refeicao: removeCurrencyPrefix(refeicao), horaExtra: removeCurrencyPrefix(horaExtra),
                                     nutricional: removeCurrencyPrefix(nutricional), didatico: removeCurrencyPrefix(didatico),

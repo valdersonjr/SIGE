@@ -12,29 +12,44 @@ import {
 } from "@templates/ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content";
 import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
 import {Loading} from "@organisms/Loading/Loading.organism";
+import {toast} from "react-toastify";
 
 export const ViewClasses: React.FC<ViewClassesProps> = ({ classes, reload, setReload, filters, clearFilters, handleFilterChange, loading, classesOptions }) => {
     const navigate = useNavigate();
-
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
-    const [canSave, setCanSave] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
 
     useEffect(() => {
-        if (canSave) {
-            deleteClassApiService(idToDelete)
-                .then(() => {
-                    setReload(!reload);
-                    setConfirmRemoveModal(!confirmRemoveModal);
-                }).catch(error => console.error(error));
-            setCanSave(false);
+        if (canDelete) {
+            toast.promise(
+                () => deleteClass(),
+                {
+                    pending: 'Carregando...',
+                    success: 'Turma deletada com sucesso!',
+                    error: 'Falha ao tentar deletar turma!'
+                }
+            ).then(() => {
+                setReload(!reload);
+                setConfirmRemoveModal(false);
+                setCanDelete(false);
+            }).catch(err => console.error('toast error:', err));
         }
-    }, [canSave]);
+    }, [canDelete]);
+
+    const deleteClass = () => new Promise((resolve, reject) => {
+        deleteClassApiService(idToDelete)
+            .then((response: any) => {
+                if (!!response.message) return reject("error removing activity");
+
+                resolve(true);
+            }).catch(error => console.error(error));
+    });
 
     return (
         <S.Container>
             {confirmRemoveModal && <ConfirmRemoveData title="Confirmar Deleção" children={<ConfirmRemoveClassContent />}
-                                                      setCanSave={setCanSave}
+                                                      setCanSave={setCanDelete}
                                                       setModalState={setConfirmRemoveModal} modalState={confirmRemoveModal}
             />}
 

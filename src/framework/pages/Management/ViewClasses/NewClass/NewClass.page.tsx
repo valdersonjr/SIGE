@@ -5,30 +5,35 @@ import {
 } from '~/framework/templates/NewClass/NewClass.interface';
 import { createClassApiService } from '~/service/api';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 const NewClassPage: React.FC = () => {
     const navigate = useNavigate();
 
-    const handleClassCreation = async (_e: React.SyntheticEvent, data: createClassDataProps) => {
-        if (data.ensino === "") {
-            alert("Selecione o tipo de ensino da turma!");
-        }
-        else if (data.descricao === "") {
-            alert("Entre com um nome de turma válido!");
-        }
-        else if (data.periodo === -1) {
-            alert("Entre com um período válido!");
-        }
-        else {
-            await createClassApiService(data)
-                .then(() => {
-                    navigate(-1);
-                })
-                .catch(error => console.error(error));
-        }
+    const save = (_e: React.SyntheticEvent, data: createClassDataProps) => {
+        _e.preventDefault();
+
+        toast.promise(
+            () => handleSave(data),
+            {
+                pending: 'Carregando...',
+                success: 'Turma criada com sucesso!',
+                error: 'Falha ao tentar criar turma!'
+            }
+        ).then(() => {}).catch(err => console.error('toast error:', err));
     }
 
-    return <NewClass handleSubmit={handleClassCreation} />
+    const handleSave = (data: createClassDataProps) => new Promise((resolve, reject) => {
+        createClassApiService(data)
+            .then((response: any) => {
+                if (!!response?.message) return reject("error saving a new class");
+
+                navigate(-1);
+                resolve(true);
+            }).catch(err => reject(err));
+    });
+
+    return <NewClass handleSubmit={save} />
 }
 
 export default NewClassPage;
