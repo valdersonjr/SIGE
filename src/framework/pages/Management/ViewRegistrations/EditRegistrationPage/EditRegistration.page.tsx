@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {EditRegistration} from "@templates/EditRegistration/EditRegistration.template";
 import {putRegistrationApiService} from "@service/api";
 import {editRegistrationDataProps} from "@templates/EditRegistration/EditRegistration.interface";
+import {toast} from 'react-toastify';
 
 const EditRegistrationPage: React.FC = () => {
     const navigate = useNavigate();
@@ -13,16 +14,25 @@ const EditRegistrationPage: React.FC = () => {
     }
 
     const save = (_e: React.SyntheticEvent, data: editRegistrationDataProps) => {
-        if (hasErrorsFormData(data)) {
-            console.error("Erros no formulário!");
-            return;
-        }
+        toast.promise(
+            () => handleSave(data),
+            {
+                pending: 'Carregando...',
+                success: 'Matrícula salva com sucesso!',
+                error: 'Falha ao tentar salvar matrícula!'
+            }
+        ).then(() => {}).catch(err => console.error('toast error:', err));
+    }
+
+    const handleSave = (data: editRegistrationDataProps) => new Promise((resolve, reject) => {
+        if (hasErrorsFormData(data)) return reject("error saving a registration");
 
         putRegistrationApiService(data.id, data)
             .then(() => {
+                resolve(true);
                 navigate(`/gestao-escolar/visualizar-matriculas/matricula/${data.id}`);
-            }).catch(err => console.error(err));
-    }
+            }).catch(err => reject(err));
+    });
 
     return <EditRegistration handleSubmit={save} />
 }
