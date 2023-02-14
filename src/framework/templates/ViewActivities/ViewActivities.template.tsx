@@ -11,30 +11,43 @@ import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/Confir
 import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
 import { deleteActivityApiService } from '~/service/api';
 import {Loading} from "@organisms/Loading/Loading.organism";
+import {toast} from "react-toastify";
 
 export const ViewActivities: React.FC<ViewActivitiesProps> = ({activities, setReload, reload, filters, handleFilterChange, clearFilters, loading}) => {
     const navigate = useNavigate();
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
-    const [canSave, setCanSave] = useState(false);
+    const [canDelete, setCanDelete] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
 
     useEffect(() => {
-        if (canSave) {
-            deleteActivityApiService(idToDelete)
-                .then((response:any) => {
-                    if (response.message) alert("Não foi possível excluir a atividade");
-                    else {
-                        setReload && setReload(!reload);
-                        setConfirmRemoveModal(!confirmRemoveModal);
-                    }
-                }).catch(err => console.error(err));
-            setCanSave(false);
+        if (canDelete) {
+            toast.promise(
+                () => deleteActivity(),
+                {
+                    pending: 'Carregando...',
+                    success: 'Atividade deletada com sucesso!',
+                    error: 'Falha ao tentar deletar atividade!'
+                }
+            ).then(() => {
+                setReload(!reload);
+                setConfirmRemoveModal(!confirmRemoveModal);
+                setCanDelete(false);
+            }).catch(err => console.error('toast error:', err));
         }
-    },[canSave]);
+    },[canDelete]);
+
+    const deleteActivity = () => new Promise((resolve, reject) => {
+        deleteActivityApiService(idToDelete)
+            .then((response: any) => {
+                if (response.message) return reject("error removing activity");
+
+                resolve(true)
+            }).catch(err => reject(err));
+    });
 
     return (
         <S.Container>
-            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave}
+            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanDelete}
                                                       children={<ConfirmRemoveClassContent />}
                                                       modalState={confirmRemoveModal}
                                                       setModalState={setConfirmRemoveModal} />}

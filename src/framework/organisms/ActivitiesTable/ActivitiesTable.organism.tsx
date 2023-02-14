@@ -14,13 +14,18 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, reload, s
     const handleActivityStatus = async (row: ResponseActivities) => {
         if (row.ativo) {
             await inactiveActivityApiService(row.id)
-                .then(() => setReload && setReload(!reload))
+                .then(() => setReload(!reload))
                 .catch(err => console.error(err));
         } else {
             await activeActivityApiService(row.id)
-                .then(() => setReload && setReload(!reload))
+                .then(() => setReload(!reload))
                 .catch(err => console.error(err));
         }
+    }
+
+    const handleDelete = (id: any) => {
+        setConfirmRemoveModal(!confirmRemoveModal);
+        setIdToDelete(id);
     }
 
     return (
@@ -32,10 +37,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, reload, s
                           switchValue={row.ativo}
                           onEyeClick={() => navigate(`/gestao-escolar/visualizar-atividades/atividade/${row.id}`)}
                           onSwitchClick={() => handleActivityStatus(row)}
-                          onThrashClick={() => {
-                            setConfirmRemoveModal(!confirmRemoveModal);
-                            setIdToDelete(row.id);
-                          }}
+                          onThrashClick={() => handleDelete(row.id)}
                     />
                 )
             })}

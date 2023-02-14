@@ -14,6 +14,8 @@ const EditRegistrationPage: React.FC = () => {
     }
 
     const save = (_e: React.SyntheticEvent, data: editRegistrationDataProps) => {
+        _e.preventDefault();
+
         toast.promise(
             () => handleSave(data),
             {
@@ -28,7 +30,9 @@ const EditRegistrationPage: React.FC = () => {
         if (hasErrorsFormData(data)) return reject("error saving a registration");
 
         putRegistrationApiService(data.id, data)
-            .then(() => {
+            .then((response: any) => {
+                if (!!response?.message) return reject("error saving a registration");
+
                 resolve(true);
                 navigate(`/gestao-escolar/visualizar-matriculas/matricula/${data.id}`);
             }).catch(err => reject(err));

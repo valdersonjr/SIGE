@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NewActivityProps} from "@templates/NewActivity/NewActivity.interface";
 import * as S from './NewActivity.style';
 import {Header, InputInLabel} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
 
-export const NewActivity: React.FC<NewActivityProps> = ({ description, setDescription, onSubmit }) => {
+export const NewActivity: React.FC<NewActivityProps> = ({ handleSubmit }) => {
+    const [description, setDescription] = useState('');
+
     return (
         <S.Container>
             <S.Header>
@@ -18,7 +20,7 @@ export const NewActivity: React.FC<NewActivityProps> = ({ description, setDescri
                 </S.InputSection>
 
                 <Button type="submit" label="Criar atividade" variant={VariantButtonEnum.SECONDARY} justifyText="center"
-                        onClick={onSubmit} />
+                        onClick={(e) => handleSubmit(e, {description})} />
             </S.Body>
         </S.Container>
     );

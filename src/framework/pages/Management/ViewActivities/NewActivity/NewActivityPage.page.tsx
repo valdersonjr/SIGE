@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import {NewActivity} from "@templates/NewActivity/NewActivity.template";
 import { createActivityApiService } from '~/service/api/activity.service';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 const NewActivityPage: React.FC = () => {
-    const [description, setDescription] = useState('');
+
     const navigate = useNavigate();
 
-    const handleActivityCreation = async (event:React.SyntheticEvent) => {
-        event.preventDefault();
+    const save = async (_e: React.SyntheticEvent, data: any) => {
+        _e.preventDefault();
 
-        await createActivityApiService(description)
-            .then(() => {
-                navigate("/gestao-escolar/visualizar-atividades");
-        });
+        toast.promise(
+            () => handleSave(data),
+            {
+                pending: 'Carregando...',
+                success: 'Atividade criada com sucesso!',
+                error: 'Falha ao tentar criar atividade!'
+            }
+        ).then(() => {}).catch(err => console.error('toast error:', err));
     }
 
-    return <NewActivity description={description} setDescription={setDescription} onSubmit={handleActivityCreation} />
+    const handleSave = (data: any) => new Promise((resolve, reject) => {
+        if (data?.description.trim().length <= 0) return reject("error saving a new activity");
+
+        createActivityApiService(data?.description)
+            .then((response: any) => {
+                if (!!response?.message) return reject("error saving a new activity");
+
+                resolve(true);
+                navigate("/gestao-escolar/visualizar-atividades");
+            }).catch(err => reject(err));
+    });
+
+    return <NewActivity handleSubmit={save} />
 }
 
 export default NewActivityPage;

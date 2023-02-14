@@ -9,28 +9,17 @@ import {
 } from "@templates/ViewActivity/EditActivityDataModalContent/EditActivityDataModal.content";
 import {ViewActivityTable} from "@organisms/ViewActivityTable/ViewActivityTable.organism";
 import {ViewActivityProps} from "@templates/ViewActivity/ViewActivity.interface";
-import {getActivityApiService, updateActivityApiService} from "@service/api";
+import {getActivityApiService} from "@service/api";
 import {Loading} from "@organisms/Loading/Loading.organism";
 
-const ViewActivity: React.FC<ViewActivityProps> = ({activityId}) => {
-    const [activityRegistrationModalState, setActivityRegistrationModalState] = useState(false);
-
+const ViewActivity: React.FC<ViewActivityProps> = ({activityId, setActivityRegistrationModalState, activityRegistrationModalState, handleSubmit, reload}) => {
     const [canSave, setCanSave] = useState(false);
     const [data, setData] = useState<any>();
     const [dataToSave, setDataToSave] = useState<any>();
 
+
     const [loading, setLoading] = useState<boolean>(true);
     const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false]);
-
-    const save = async () => {
-        await updateActivityApiService(data?.id, {...dataToSave})
-            .then(() => {
-                if (activityRegistrationModalState && !!setActivityRegistrationModalState) {
-                    setActivityRegistrationModalState(!activityRegistrationModalState);
-                }
-            })
-            .catch(err => console.error(err));
-    }
 
     useEffect(() => {
         getActivityApiService(activityId)
@@ -39,12 +28,11 @@ const ViewActivity: React.FC<ViewActivityProps> = ({activityId}) => {
                 setDataToSave(response.data);
                 setIsAllReqDone([true]);
             }).catch(err => console.error(err));
-    }, []);
+    }, [reload]);
 
     useEffect(() => {
         if (canSave) {
-            save()
-                .then(() => {}).catch(err => console.error(err));
+            handleSubmit(dataToSave);
             setCanSave(false);
         }
     }, [canSave]);
