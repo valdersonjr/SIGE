@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import * as S from './Users.style';
-import { Banner } from "@molecules";
-import { FormUserQuery } from '~/framework/organisms';
-import { UsersPageBannerIcon } from "@atoms/Icons/UsersPageBanner.icon";
-import { UsersTable } from "@organisms/UsersTable/UsersTable.organism";
-import { UsersProps } from './Users.interface';
+import {Banner} from "@molecules";
+import {FormUserQuery} from '~/framework/organisms';
+import {UsersPageBannerIcon} from "@atoms/Icons/UsersPageBanner.icon";
+import {UsersTable} from "@organisms/UsersTable/UsersTable.organism";
+import {UsersProps} from './Users.interface';
 import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism';
-import { ConfirmRemoveClassContent } from '../ViewClasses/ConfirmRemoveClassModalContent/ConfirmRemoveClassModal.content';
-import { deleteUserApiService } from '~/service/api';
+import {deleteUserApiService} from '~/service/api';
 import {Loading} from "@organisms/Loading/Loading.organism";
+import {ConfirmRemoveContent} from "@organisms/Modals/ConfirmRemove/ConfirmRemoveContent/ConfirmRemove.content";
 
 export const Users: React.FC<UsersProps> = ({users, reload, setReload, loading}) => {
     const navigate = useNavigate();
@@ -23,32 +21,39 @@ export const Users: React.FC<UsersProps> = ({users, reload, setReload, loading})
         profile: "",
         status: ""
     });
-    
+
     useEffect(() => {
-        if(canSave){
-            deleteUserApiService(idToDelete).then((response:any) => {
-                if(response.message){
+        if (canSave) {
+            deleteUserApiService(idToDelete).then((response: any) => {
+                if (response.message) {
                     alert(`Não foi possível excluir o usuário`);
-                }
-                else {
+                } else {
                     setReload && setReload(!reload);
                     setConfirmRemoveModal(!confirmRemoveModal);
                 }
             });
             setCanSave(false);
         }
-    },[canSave]);
+    }, [canSave]);
 
     return (
         <S.Container>
-            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanSave={setCanSave} children={<ConfirmRemoveClassContent />} modalState={confirmRemoveModal} setModalState={setConfirmRemoveModal} />}
-            <Banner Icon={<UsersPageBannerIcon />} type="users" title='Usuários' text="Veja os usuários vinculados a sua escola, edite, adicione!" buttonLabel="Novo Usuário" onButtonClick={() => navigate("/usuarios/novo-usuario")} />
+            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanDelete={setCanSave}
+                                                      children={<ConfirmRemoveContent title="Atenção!"
+                                                                                      description="Tem certeza que deseja deletar esse usuário?"/>}
+                                                      modalState={confirmRemoveModal}
+                                                      setModalState={setConfirmRemoveModal}/>}
+            <Banner Icon={<UsersPageBannerIcon/>} type="users" title='Usuários'
+                    text="Veja os usuários vinculados a sua escola, edite, adicione!" buttonLabel="Novo Usuário"
+                    onButtonClick={() => navigate("/usuarios/novo-usuario")}/>
             {!loading ? (
                 <React.Fragment>
-                    <FormUserQuery setFilters={setFilters} />
-                    <UsersTable data={users} filters={filters} reload={reload} setReload={setReload} confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete} />
+                    <FormUserQuery setFilters={setFilters}/>
+                    <UsersTable data={users} filters={filters} reload={reload} setReload={setReload}
+                                confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal}
+                                setIdToDelete={setIdToDelete}/>
                 </React.Fragment>
-            ) : <Loading />}
+            ) : <Loading/>}
         </S.Container>
     );
 }

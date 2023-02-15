@@ -33,7 +33,7 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({data, reload, s
             <TableRowTitle titles={titleList} />
             {data.map((row: ResponseActivities, index: number) => {
                 return (
-                    <TableRow index={index} fields={[row.descricao]} status={row.ativo ? "Ativo" : "Inativo"}
+                    <TableRow index={index} fields={[{field: row?.descricao, status: null}]} status={row.ativo ? "Ativo" : "Inativo"}
                           switchValue={row.ativo}
                           onEyeClick={() => navigate(`/gestao-escolar/visualizar-atividades/atividade/${row.id}`)}
                           onSwitchClick={() => handleActivityStatus(row)}

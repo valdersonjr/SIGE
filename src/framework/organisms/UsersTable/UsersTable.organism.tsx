@@ -59,11 +59,11 @@ export const UsersTable: React.FC<UsersTableProps> = ({ filters, data, reload, s
         <S.Container>
             <TableRowTitle titles={titleList} />
             {filteredData.map((row, index) => {
-                    let status = row.descricao_status === "Sim" ? true : false;
+                    let status = row.descricao_status === "Sim";
                     let statusNome = row.descricao_status === "Sim" ? "Ativo" : "Inativo";
                     return (
                         <React.Fragment key={row.id}>
-                            <TableRow index={index} fields={[row.nome]} status={statusNome} profiles={row.perfis}
+                            <TableRow index={index} fields={[{field: row.nome, status null}]} status={statusNome} profiles={row.perfis}
                             switchValue={status}
                             onEyeClick={() => navigate(`/usuarios/visualizar-usuario/${row.id}`)}
                             onSwitchClick={() => row.ativo !== null && row.ativo !== undefined && handleSwitchClick(row.id, row.nome, row.ativo)}

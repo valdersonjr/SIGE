@@ -3,6 +3,7 @@ import * as S from './ViewRegistrations.style';
 import {ViewRegistrations} from "@templates/ViewRegistrations/ViewRegistrations.template";
 import {getRegistrationsApiService, searchRegistrationApiService} from "@service/api/registration.service";
 import {getClassesApiService} from "@service/api";
+import {toast} from "react-toastify";
 
 const ViewRegistrationsPage: React.FC = () => {
     const emptyFilters = {
@@ -21,28 +22,37 @@ const ViewRegistrationsPage: React.FC = () => {
 
     const [loading, setLoading] = useState<boolean>(true);
     const [isAllReqDone, setIsAllReqDone] = useState<boolean[]>([false, false]);
+    const [filtersLoading, setFiltersLoading] = useState<boolean>(true);
 
     useEffect(() => {
         getRegistrationsApiService()
-            .then(response => {
-                setRegistrations(response.data);
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setRegistrations(res.data);
                 setIsAllReqDone(prev => [true, prev[1]]);
-            }).catch(err => console.error(err));
+            }).catch(err => toast.error(err));
     }, [reload]);
 
     useEffect(() => {
         getClassesApiService()
-            .then((response: any) => {
-                const FORMATTED_DATA = response.data.map((it: any) => {return {label: it.descricao, value: it.id}});
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                const FORMATTED_DATA = res.data.map((it: any) => {return {label: it.descricao, value: it.id}});
                 setClasses([{label: 'Selecione a turma', value: ''}, ...FORMATTED_DATA]);
                 setIsAllReqDone(prev => [prev[0], true]);
-            }).catch(error => console.error(error));
+            }).catch(error => toast.error(error));
     }, []);
 
     useEffect(() => {
         searchRegistrationApiService(filters)
-            .then((response: any) => setRegistrations(response?.data))
-            .catch(err => console.error(err));
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setRegistrations(res?.data);
+                setFiltersLoading(false);
+            }).catch(err => toast.error(err));
     }, [filters]);
 
     useEffect(() => {
@@ -50,16 +60,21 @@ const ViewRegistrationsPage: React.FC = () => {
     }, [isAllReqDone]);
 
     const handleFilterChange = (field: string, value: any) => {
+        setFiltersLoading(true);
         setFilters({...filters, [field]: value});
     }
 
-    const clearFilters = () => setFilters(emptyFilters);
+    const clearFilters = () => {
+        setFiltersLoading(true);
+        setFilters(emptyFilters);
+    };
 
     return (
         <S.Container>
             <ViewRegistrations registrations={registrations} reload={reload} setReload={setReload}
                                filters={filters} handleFilterChange={handleFilterChange} clearFilters={clearFilters}
                                loading={loading} setLoading={setLoading}
+                               filtersLoading={filtersLoading} setFiltersLoading={setFiltersLoading}
                                setIsAllReqDone={setIsAllReqDone} isAllReqDone={isAllReqDone} classes={classes} />
         </S.Container>
     );

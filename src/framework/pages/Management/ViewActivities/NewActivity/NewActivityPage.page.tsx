@@ -18,7 +18,7 @@ const NewActivityPage: React.FC = () => {
                 success: 'Atividade criada com sucesso!',
                 error: 'Falha ao tentar criar atividade!'
             }
-        ).then(() => {}).catch(err => console.error('toast error:', err));
+        ).then(() => {}).catch(err => toast.error('toast error:', err));
     }
 
     const handleSave = (data: any) => new Promise((resolve, reject) => {

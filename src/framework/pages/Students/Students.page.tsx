@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Students} from '~/framework/templates';
 import {getAllStudentsApiService} from '@service/api';
 import {datacore} from '~/models';
+import {toast} from "react-toastify";
 
 const StudentsPage: React.FC = () => {
     const [students, setStudents] = useState<datacore.ResponseStudent[]>();
@@ -12,12 +13,11 @@ const StudentsPage: React.FC = () => {
 
     useEffect(() => {
         getAllStudentsApiService().then((response: any) => {
-            if (response.message) alert(response.message);
-            else {
-                setStudents(response.data);
-                setIsAllReqDone([true]);
-            }
-        }).catch(error => console.error(error));
+            if (!!response.message) return toast.error(response.message);
+
+            setStudents(response.data);
+            setIsAllReqDone([true]);
+        }).catch(error => toast.error(error));
     }, [reload]);
 
     useEffect(() => {

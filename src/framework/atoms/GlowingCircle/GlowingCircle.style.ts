@@ -14,5 +14,5 @@ export const CssIcon = styled.div<{ flag:string }>`
     border-radius: 100%;
 
     background: ${({flag}) => situation[flag]};
-    box-shadow: 0px 0px 12px ${({flag}) => situation[flag]};
+    box-shadow: 0 0 12px ${({flag}) => situation[flag]};
 `

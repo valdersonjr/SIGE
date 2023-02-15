@@ -12,7 +12,7 @@ export const TeachersTable: React.FC<TeachersTableProps> = () => {
         <S.Container>
             <TableRowTitle titles={titleList} />
             {temp.map((row, index) => (
-                <TableRow index={index} fields={[row.nomeProfessor, row.turma, row.periodo]} status={row.status}
+                <TableRow index={index} fields={[{field: row.nomeProfessor, status: null}, {field: row.turma, status: null}, {field: row.periodo, status: null}]} status={row.status}
                           onEyeClick={() => navigate("/gestao-escolar/visualizar-professores/professor")}
                           onSwitchClick={() => {}}
                           onThrashClick={() => {}}

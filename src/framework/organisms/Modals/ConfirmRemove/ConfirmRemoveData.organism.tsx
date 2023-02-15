@@ -4,7 +4,7 @@ import {ConfirmRemoveDataProps} from "@organisms/Modals/ConfirmRemove/ConfirmRem
 import {Header} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
 
-const ConfirmRemoveData: React.FC<ConfirmRemoveDataProps> = ({title, children, setCanSave, modalState, setModalState}) => {
+const ConfirmRemoveData: React.FC<ConfirmRemoveDataProps> = ({title, children, setCanDelete, modalState, setModalState}) => {
     return (
         <S.Container>
             <S.Modal>
@@ -13,9 +13,9 @@ const ConfirmRemoveData: React.FC<ConfirmRemoveDataProps> = ({title, children, s
                 </S.Header>
                 <S.InputsContainer>{ children }</S.InputsContainer>
                 <S.ButtonsContainer>
-                    <Button onClick={() => setModalState && modalState ? setModalState(!modalState) : <></> }
+                    <Button onClick={() => modalState ? setModalState(!modalState) : <></> }
                             label="Cancelar" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
-                    <Button label="Sim, confirmar!" onClick={() => setCanSave(true)} variant={VariantButtonEnum.SECONDARY} justifyText="center" />
+                    <Button label="Sim, confirmar!" onClick={() => setCanDelete(true)} variant={VariantButtonEnum.SECONDARY} justifyText="center" />
                 </S.ButtonsContainer>
             </S.Modal>
         </S.Container>

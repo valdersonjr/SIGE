@@ -17,9 +17,12 @@ export const ViewClassTable: React.FC<ViewClassTableProps> = ({students}) => {
 
     return (
         <S.Container>
-            <TableRowTitle titles={titleList} />
+            <TableRowTitle titles={titleList}/>
             {students?.map((row, index) => (
-                <TableRow index={index} fields={[row.nome, getAnoMatriculas(row?.matriculas)]}
+                <TableRow index={index} fields={[{field: row.nome, status: null}, {
+                    field: getAnoMatriculas(row?.matriculas),
+                    status: null
+                }]}
                           status={row.ativo ? 'Ativo' : 'Inativo'}/>
             ))}
         </S.Container>
