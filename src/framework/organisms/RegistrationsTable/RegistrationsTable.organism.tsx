@@ -28,7 +28,7 @@ export const RegistrationsTable: React.FC<RegistrationsTableProps> = ({
                     <TableRow index={index} fields={[{field: row?.id, status: null}, {
                         field: row?.aluno?.nome,
                         status: row?.aluno?.ativo
-                    }, {field: row?.ano, status: null}]}
+                    }, {field: row?.ano, status: null}, {field: row?.turma?.descricao, status: row?.turma?.ativo}]}
                               onEyeClick={() => navigate(`/gestao-escolar/visualizar-matriculas/matricula/${row.id}`)}
                               onThrashClick={() => handleDelete(row?.id)}/>
                 ))

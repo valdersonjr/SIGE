@@ -72,7 +72,7 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
                     <S.FindClassContainer>
                         <Title size={20}>Encontre a matrícula</Title>
                         <S.FilterContainer>
-                            <InputInLabel label="Nome do Aluno" value={filters.nome}
+                            <InputInLabel label="Nome do Aluno" value={filters.nome} placeholder="Digite aqui..."
                                           onChange={value => handleFilterChange('nome', value)}/>
                             <SelectInLabel label="Ano de Ingresso" selectedValue={filters.ano}
                                            onChange={(v: any) => handleFilterChange('ano', v?.value)}
