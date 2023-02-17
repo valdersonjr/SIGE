@@ -1,14 +1,11 @@
 import { ResponseActivities } from "~/models/datacore";
+import FiltersLoading from "~/models/dataview/filters-loading.interface";
+import Loading from "~/models/dataview/loading.interface";
+import Reload from "~/models/dataview/reload.interface";
+import FiltersMethods from "~/models/dataview/filters-methods.interface";
+import AllReqDone from "~/models/dataview/all-req-done.interface";
 
-export interface ViewActivitiesProps {
+export interface ViewActivitiesProps extends FiltersLoading, Loading, Reload, FiltersMethods, AllReqDone {
     activities: ResponseActivities[];
-    reload: boolean;
-    setReload: (reload: boolean) => void;
-    handleFilterChange: (field: string, value: any) => void;
     filters: any;
-    clearFilters: () => void;
-    loading: boolean;
-    setLoading: (loading: boolean) => void;
-    isAllReqDone: boolean[];
-    setIsAllReqDone: (isAllReqDone: boolean[]) => void;
 }

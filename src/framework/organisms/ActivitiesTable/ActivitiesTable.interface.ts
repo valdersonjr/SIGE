@@ -1,11 +1,9 @@
 import { ResponseActivities } from "~/models/datacore";
+import Reload from "~/models/dataview/reload.interface";
+import FiltersLoading from "~/models/dataview/filters-loading.interface";
+import ConfirmRemoveModal from "~/models/dataview/confirm-remove-modal.interface";
+import IdToDelete from "~/models/dataview/id-to-delete.interface";
 
-export interface ActivitiesTableProps {
+export interface ActivitiesTableProps extends Reload, FiltersLoading, ConfirmRemoveModal, IdToDelete {
     data: ResponseActivities[];
-    setActivitiesData?: (data: ResponseActivities[]) => void;
-    reload: boolean;
-    setReload: (reload: boolean) => void;
-    confirmRemoveModal: boolean;
-    setConfirmRemoveModal: (value: boolean) => void;
-    setIdToDelete:(number:number) => void;
 }

@@ -35,8 +35,8 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
                 () => deleteRegistration(),
                 {
                     pending: 'Carregando...',
-                    success: 'Atividade deletada com sucesso!',
-                    error: 'Falha ao tentar deletar atividade!'
+                    success: 'Matrícula deletada com sucesso!',
+                    error: 'Falha ao tentar deletar matrícula!'
                 }
             ).then(() => {
                 setReload(!reload);
@@ -66,7 +66,6 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
 
             <Header title="Matrículas" buttonText="Nova Matrícula"
                     onButtonClick={() => navigate('/gestao-escolar/nova-matricula')}/>
-
             {!loading ? (
                 <React.Fragment>
                     <S.FindClassContainer>

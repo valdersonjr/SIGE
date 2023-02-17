@@ -34,7 +34,7 @@ const NewRegistrationPage: React.FC = () => {
                 if (!!response?.message) return reject("error saving a new registration");
 
                 resolve(true);
-                navigate('/gestao-escolar/visualizar-matriculas');
+                navigate(-1);
             }).catch(err => reject(err));
     });
 

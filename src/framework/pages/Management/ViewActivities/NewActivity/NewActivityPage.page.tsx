@@ -29,7 +29,7 @@ const NewActivityPage: React.FC = () => {
                 if (!!response?.message) return reject("error saving a new activity");
 
                 resolve(true);
-                navigate("/gestao-escolar/visualizar-atividades");
+                navigate(-1);
             }).catch(err => reject(err));
     });
 
