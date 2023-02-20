@@ -6,7 +6,6 @@ import AllReqDone from "~/models/dataview/all-req-done.interface";
 
 export interface ViewClassesProps extends FiltersLoading, Loading, Reload, FiltersMethods, AllReqDone {
     classes: any;
-    classesOptions: any[];
     filters: any;
 }
 

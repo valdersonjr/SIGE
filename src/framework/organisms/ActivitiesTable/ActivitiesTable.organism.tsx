@@ -22,21 +22,18 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({
     const navigate = useNavigate();
 
     const handleActivityStatus = async (row: ResponseActivities) => {
-        if (row.ativo) {
-            await inactiveActivityApiService(row.id)
-                .then((res: any) => {
-                    if (!!res?.message) return toast.error(res?.message);
+        if (row.ativo) await inactiveActivityApiService(row.id)
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
 
-                    setReload(!reload);
-                }).catch(err => toast.error(err));
-        } else {
-            await activeActivityApiService(row.id)
-                .then((res: any) => {
-                    if (!!res?.message) return toast.error(res?.message);
+                setReload(!reload);
+            }).catch(err => toast.error(err));
+        else await activeActivityApiService(row.id)
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
 
-                    setReload(!reload);
-                }).catch(err => toast.error(err));
-        }
+                setReload(!reload);
+            }).catch(err => toast.error(err));
     }
 
     const handleDelete = (id: any) => {

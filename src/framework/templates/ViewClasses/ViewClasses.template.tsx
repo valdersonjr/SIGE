@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, SelectInLabel, Title, VariantButtonEnum} from "~/framework/atoms";
-import {Header} from "~/framework/molecules";
+import {Header, InputInLabel} from "~/framework/molecules";
 import {ClassesTable} from "~/framework/organisms";
 import {ViewClassesProps} from "./ViewClasses.interface";
 import * as S from './ViewClasses.style';
@@ -20,7 +20,7 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({
                                                             clearFilters,
                                                             handleFilterChange,
                                                             loading,
-                                                            classesOptions
+                                                            setFiltersLoading, filtersLoading
                                                         }) => {
     const navigate = useNavigate();
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
@@ -63,16 +63,15 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({
                                                       modalState={confirmRemoveModal}
             />}
 
-            <Header title="Turmas" buttonText="Cadastrar Nova Turma"
+            <Header title="Turmas" buttonText="Nova Turma"
                     onButtonClick={() => navigate('/gestao-escolar/nova-turma')}/>
             {!loading ? (
                 <React.Fragment>
                     <S.FindClassContainer>
                         <Title size={20}>Encontre sua turma</Title>
                         <S.FilterContainer>
-                            <SelectInLabel selectedValue={filters.turma}
-                                           onChange={(v: any) => handleFilterChange('turma', v?.value)}
-                                           options={classesOptions} label="Turma"/>
+                            <InputInLabel value={filters.descricao} label="Turma" placeholder="Digite aqui..."
+                                           onChange={(v: any) => handleFilterChange('descricao', v)} />
                             <SelectInLabel selectedValue={filters.situacao}
                                            onChange={(v: any) => handleFilterChange('situacao', v?.value)}
                                            options={statusData} label="Situação"/>
@@ -84,7 +83,8 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({
                     </S.FindClassContainer>
                     <ClassesTable data={classes} reload={reload} setReload={setReload}
                                   confirmRemoveModal={confirmRemoveModal} setConfirmRemoveModal={setConfirmRemoveModal}
-                                  setIdToDelete={setIdToDelete}/>
+                                  setIdToDelete={setIdToDelete} setFiltersLoading={setFiltersLoading}
+                                  filtersLoading={filtersLoading}/>
                 </React.Fragment>
             ) : <Loading/>}
         </S.Container>

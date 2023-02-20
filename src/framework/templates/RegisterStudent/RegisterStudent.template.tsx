@@ -62,10 +62,10 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = () => {
                 <S.InputSection>
                     <Title>Dados Pessoais do Aluno</Title>
                     <S.InputContainer>
-                        <InputInLabel label="Nome do Aluno" value={studentName} placeholder="Digite aqui" onChange={(e) => setStudentName(e)} />
-                        <InputInLabel label="Data de Nascimento" value={birthdayDate} placeholder="00/00/0000" onChange={(e) => setBirthdayDate(e)} />
-                        <InputInLabel label="Ensino" value={teaching} placeholder="Digite aqui" onChange={(e) => setTeaching(e)} />
-                        <InputInLabel label="Periodo" value={period} placeholder="Digite aqui" onChange={(e) => setPeriod(e)} />
+                        <InputInLabel label="Nome do Aluno" value={studentName} placeholder="Digite aqui" onChange={setStudentName} />
+                        <InputInLabel label="Data de Nascimento" value={birthdayDate} placeholder="00/00/0000" onChange={setBirthdayDate} />
+                        <InputInLabel label="Ensino" value={teaching} placeholder="Digite aqui" onChange={setTeaching} />
+                        <InputInLabel label="Periodo" value={period} placeholder="Digite aqui" onChange={setPeriod} />
                     </S.InputContainer>
                 </S.InputSection>
                 <S.InputSection>

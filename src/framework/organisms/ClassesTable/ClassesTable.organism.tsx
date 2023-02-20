@@ -7,6 +7,7 @@ import {titleList} from "./ClassesTable.logic";
 import * as S from './ClassesTable.style';
 import {Loading} from "@organisms/Loading/Loading.organism";
 import {NotFound} from "@organisms/NotFound/NotFound.organism";
+import {toast} from "react-toastify";
 
 export const ClassesTable: React.FC<ClassesTableProps> = ({
                                                               data,
@@ -19,11 +20,18 @@ export const ClassesTable: React.FC<ClassesTableProps> = ({
     const navigate = useNavigate();
 
     const handleSwitchStatus = async (data: any) => {
-        if (data?.ativo)
-            await inactiveClassApiService(data?.id)
-                .then(() => setReload(!reload)).catch(err => console.error(err));
+        if (data?.ativo) await inactiveClassApiService(data?.id)
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setReload(!reload);
+            }).catch(err => toast.error(err));
         else await activeClassApiService(data?.id)
-            .then(() => setReload(!reload)).catch(err => console.error(err));
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setReload(!reload);
+            }).catch(err => toast.error(err));
     }
 
     const handleDelete = (id: any) => {
