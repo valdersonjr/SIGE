@@ -33,8 +33,13 @@ import {
 } from "@templates/Reports/ReportsDataModalContent/ImagePermissionsFilterContent/ImagePermissionsDataModal.content";
 import {DownloadIcon} from "@atoms/Icons/Download.icon";
 import {SimpleEyeIcon} from "@atoms/Icons/SimpleEye.icon";
+import ViewReport from './ViewReport/ViewReport.template';
 
 export const Reports: React.FC = () => {
+
+    const [viewReportModalState, setViewReportModalState] = useState(false);    
+    const [viewReportModalEndpoint, setViewReportModalEndpoint] = useState('');    
+
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
     const [studentsFilterModalState, setStudentsFilterModalState] = useState(false);
     const [birthdaysFilterModalState, setBirthdaysFilterModalState] = useState(false);
@@ -44,6 +49,8 @@ export const Reports: React.FC = () => {
     const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
     const [periodsFilterModalState, setPeriodsFilterModalState] = useState(false);
     const [imagePermissionsFilterModalState, setImagePermissionsFilterModalState] = useState(false);
+
+
 
     const handleFilterModal = (key: string) => {
         switch (key) {
@@ -68,8 +75,14 @@ export const Reports: React.FC = () => {
         }
     }
 
+    const handleViewReportClick = (endpoint:string) => {
+        setViewReportModalState(!viewReportModalState);
+        setViewReportModalEndpoint(endpoint);
+    }
+
     return (
         <S.Container>
+            {viewReportModalState && <ViewReport state={viewReportModalState} endpoint={viewReportModalEndpoint} setModalState={setViewReportModalState} />}
             {downloadStudentReportModalState ? <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport> : <></>}
             {studentsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
             {birthdaysFilterModalState ? <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState}><BirthdaysFilterDataModal /></BirthdaysFilter> : <></>}
@@ -107,7 +120,8 @@ export const Reports: React.FC = () => {
                                 <S.ButtonBodyContainer>
                                     <Button label="Visualizar relatório" justifyText="center" type="button"
                                             rightIcon={<SimpleEyeIcon color={theme.palette.light.tint} />}
-                                            variant={VariantButtonEnum.SECONDARY} />
+                                            variant={VariantButtonEnum.SECONDARY}
+                                            onClick={() => handleViewReportClick(it.endpoint)} />
                                 </S.ButtonBodyContainer>
                             </S.BlockBodyDivisor>
                         </S.BlockBody>
