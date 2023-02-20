@@ -77,7 +77,7 @@ export const StudentTable: React.FC<StudentTableProps> = ({
     return (
         <S.Container>
             <TableRowTitle titles={titleList}/>
-            {data.length > 0 && data.map((row, index) => {
+            {data && data.length > 0 && data.map((row, index) => {
                 return (
                     <TableRow key={row.id} index={index}
                               fields={[{
