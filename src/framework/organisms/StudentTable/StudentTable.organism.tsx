@@ -1,34 +1,46 @@
-import React, {useEffect} from "react";
-
+import React from "react";
 import {useNavigate} from "react-router-dom";
-
 import {TableRow, TableRowTitle} from "~/framework/molecules";
-
 import {StudentTableProps} from "./StudentTable.interface";
 import {titleList} from './StudentTable.logic';
 import * as S from './StudentTable.style';
-
-import {getClassApiService, setStudenActivetApiService, setStudenInactivetApiService} from "~/service/api";
+import {setStudentActiveApiService, setStudentInactiveApiService} from "~/service/api";
+import {toast} from "react-toastify";
+import {NotFound} from "@organisms/NotFound/NotFound.organism";
+import {Loading} from "@organisms/Loading/Loading.organism";
 import {IRegister} from "~/models/datacore";
 
 export const StudentTable: React.FC<StudentTableProps> = ({
                                                               data,
-                                                              filters,
                                                               reload,
                                                               setReload,
                                                               confirmRemoveModal,
                                                               setConfirmRemoveModal,
-                                                              setIdToDelete
+                                                              setIdToDelete,
+                                                              filtersLoading,
+                                                              setFiltersLoading
                                                           }) => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        getClassApiService(2).then((response: any) => {
-            if (response.message) {
-                console.log(response.message);
-            }
-        })
-    }, [data]);
+    const handleActivityStatus = async (row: any) => {
+        if (row?.ativo) await setStudentInactiveApiService(row?.id)
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setReload(!reload);
+            }).catch(err => toast.error(err));
+        else await setStudentActiveApiService(row?.id)
+            .then((res: any) => {
+                if (!!res?.message) return toast.error(res?.message);
+
+                setReload(!reload);
+            }).catch(err => toast.error(err));
+    }
+
+    const handleDelete = (id: any) => {
+        setConfirmRemoveModal(true);
+        setIdToDelete(id);
+    }
 
     const getClassType = (registers: IRegister[], yearFilter: string): string => {
         let classType = "Sem Turma Vinculada";
@@ -54,49 +66,22 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         return period;
     }
 
-    const handleSwitchClick = (id: number, active: boolean) => {
-        if (active) {
-            setStudenInactivetApiService(id).then((response: any) => {
-                if (response.message) {
-                    console.log(response.message);
-                } else {
-                    setReload && setReload(!reload);
-                }
-            })
-        } else {
-            setStudenActivetApiService(id).then((response: any) => {
-                if (response.message) {
-                    console.log(response.message);
-                } else {
-                    setReload && setReload(!reload);
-                }
-            })
-        }
-    }
-
     return (
         <S.Container>
             <TableRowTitle titles={titleList}/>
-            {data.length > 0 && data.map((row, index) => {
-                return (
-                    <TableRow key={row.id} index={index}
-                              fields={[{
-                                  field: row.nome,
-                                  status: null
-                              }, {
-                                  field: getPeriod(row.matriculas, String(filters.year)),
-                                  status: null
-                              }, {field: getClassType(row.matriculas, String(filters.year)), status: null}]}
-                              status={row.ativo ? "Ativo" : "Inativo"}
-                              switchValue={row.ativo}
-                              onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row.id}`)}
-                              onThrashClick={() => {
-                                  setConfirmRemoveModal(!confirmRemoveModal);
-                                  setIdToDelete(row.id);
-                              }}
-                              onSwitchClick={() => handleSwitchClick(row.id, row.ativo)}/>
-                )
-            })}
+            {!filtersLoading ? (data.length === 0 ? <NotFound description="Nenhum aluno encontrado..." /> :
+            data.map((row, i) => (
+                <TableRow key={row?.id} index={i}
+                          fields={[{field: row?.nome, status: null}, {
+                              field: "getPeriod(row.matriculas, String(filters.year))",
+                              status: null
+                          }, {field: "getClassType(row.matriculas, String(filters.year))", status: null}]}
+                          status={row?.ativo ? "Ativo" : "Inativo"}
+                          switchValue={row?.ativo}
+                          onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row?.id}`)}
+                          onThrashClick={() => handleDelete(row?.id)}
+                          onSwitchClick={() => handleActivityStatus(row)}/>
+            ))) : <Loading height="40vh"/>}
         </S.Container>
-    )
+    );
 }

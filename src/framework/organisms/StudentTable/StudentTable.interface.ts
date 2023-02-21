@@ -1,12 +1,9 @@
 import { ResponseStudent } from "~/models/datacore";
-import { StudentTableFilter } from "~/models/dataview";
+import Reload from "~/models/dataview/reload.interface";
+import FiltersLoading from "~/models/dataview/filters-loading.interface";
+import ConfirmRemoveModal from "~/models/dataview/confirm-remove-modal.interface";
+import IdToDelete from "~/models/dataview/id-to-delete.interface";
 
-export interface StudentTableProps {
-    filters: StudentTableFilter;
+export interface StudentTableProps extends Reload, FiltersLoading, ConfirmRemoveModal, IdToDelete {
     data: ResponseStudent[];
-    reload:boolean;
-    setReload: (boolean:boolean) => void;
-    confirmRemoveModal: boolean;
-    setConfirmRemoveModal: (value: boolean) => void;
-    setIdToDelete:(number:number) => void;
 }

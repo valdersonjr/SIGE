@@ -55,7 +55,6 @@ export const ActivitiesTable: React.FC<ActivitiesTableProps> = ({
                     />
                 )
             )) : <Loading height="40vh"/>}
-            {}
         </S.Container>
     );
 };

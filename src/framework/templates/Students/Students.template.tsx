@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Banner} from '~/framework/molecules';
+import {Banner, InputInLabel} from '~/framework/molecules';
 import {StudentTable} from '~/framework/organisms';
-import {FormStudentQuery} from '~/framework/organisms';
 import {StudentsPageBanner} from '~/framework/atoms/Icons';
 import {useNavigate} from 'react-router-dom';
 import {StudentsProps} from './Students.interface';
@@ -11,17 +10,23 @@ import ConfirmRemoveData from '~/framework/organisms/Modals/ConfirmRemove/Confir
 import {Loading} from "@organisms/Loading/Loading.organism";
 import {ConfirmRemoveContent} from "@organisms/Modals/ConfirmRemove/ConfirmRemoveContent/ConfirmRemove.content";
 import {toast} from "react-toastify";
+import {Button, Title, VariantButtonEnum} from "@atoms";
+import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
+import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
 
-export const Students: React.FC<StudentsProps> = ({students, reload, setReload, loading}) => {
+export const Students: React.FC<StudentsProps> = ({
+                                                      students,
+                                                      setFiltersLoading,
+                                                      filtersLoading,
+                                                      clearFilters,
+                                                      handleFilterChange,
+                                                      filters,
+                                                      reload,
+                                                      setReload,
+                                                      loading
+                                                  }) => {
     const navigate = useNavigate();
 
-    const [tableFilters, setTableFilters] = useState({
-        name: "",
-        year: 2022,
-        period: "",
-        class: "",
-        status: ""
-    });
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
     const [canDelete, setCanDelete] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
@@ -51,25 +56,37 @@ export const Students: React.FC<StudentsProps> = ({students, reload, setReload, 
         }).catch(err => reject(err));
     });
 
-    return (
-        <S.Container>
-            {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanDelete={setCanDelete}
-                                                      children={<ConfirmRemoveContent
-                                                          title="Atenção!"
-                                                          description="Tem certeza que deseja deletar esse aluno?"/>}
-                                                      modalState={confirmRemoveModal}
-                                                      setModalState={setConfirmRemoveModal}/>}
-            <Banner Icon={<StudentsPageBanner/>} type="students" title='Área de Alunos'
-                    text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar, cadastre um novo aluno cliquando ao lado."
-                    buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")}/>
-            {!loading ? (
-                <React.Fragment>
-                    <FormStudentQuery filters={tableFilters} setFilters={setTableFilters}/>
-                    <StudentTable data={students} filters={tableFilters} reload={reload}
-                                  setReload={setReload} confirmRemoveModal={confirmRemoveModal}
-                                  setConfirmRemoveModal={setConfirmRemoveModal} setIdToDelete={setIdToDelete}/>
-                </React.Fragment>
-            ) : <Loading/>}
-        </S.Container>
-    )
+    return <S.Container>
+        {confirmRemoveModal && <ConfirmRemoveData title='Confirmar Deleção' setCanDelete={setCanDelete}
+                                                  children={<ConfirmRemoveContent
+                                                      title="Atenção!"
+                                                      description="Tem certeza que deseja deletar esse aluno?"/>}
+                                                  modalState={confirmRemoveModal}
+                                                  setModalState={setConfirmRemoveModal}/>}
+
+        <Banner Icon={<StudentsPageBanner/>} type="students" title='Área de Alunos'
+                text="Faça uma busca minuciosa e encontre seu aluno com muito mais simplicidade. Caso desejar, cadastre um novo aluno clicando ao lado."
+                buttonLabel="Novo Aluno" onButtonClick={() => navigate("/alunos/novo-aluno")}/>
+        {!loading ? (
+            <S.Content>
+                <S.FindStudentContainer>
+                    <Title size={20}>Encontre o aluno</Title>
+                    <S.FilterContainer>
+                        <InputInLabel label="Aluno" value={filters?.nome} placeholder="Digite aqui..."
+                                      onChange={v => handleFilterChange('nome', v)}/>
+                        <InputSelectInLabel label="Situação" options={statusData}
+                                            onChange={(v: any) => handleFilterChange('situacao', v?.value)}/>
+                        <S.ClearButton>
+                            <Button label="Limpar filtro" type="reset" justifyText="center"
+                                    onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT}/>
+                        </S.ClearButton>
+                    </S.FilterContainer>
+                </S.FindStudentContainer>
+                <StudentTable data={students} reload={reload} setIdToDelete={setIdToDelete}
+                              setReload={setReload} confirmRemoveModal={confirmRemoveModal}
+                              setConfirmRemoveModal={setConfirmRemoveModal}
+                              setFiltersLoading={setFiltersLoading} filtersLoading={filtersLoading}/>
+            </S.Content>
+        ) : <Loading/>}
+    </S.Container>
 }

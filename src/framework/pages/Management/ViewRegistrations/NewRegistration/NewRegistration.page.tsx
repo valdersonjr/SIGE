@@ -23,18 +23,21 @@ const NewRegistrationPage: React.FC = () => {
                 success: 'Matrícula criada com sucesso!',
                 error: 'Falha ao tentar criar matrícula!'
             }
-        ).then(() => {}).catch(err => console.error('toast error:', err));
+        ).then((res: any) => {
+            if (!!res?.message) return toast.error(res?.message);
+
+            navigate(-1);
+        }).catch(err => console.error('toast error:', err));
     }
 
     const handleSave = (data: createRegistrationDataProps) => new Promise((resolve, reject) => {
         if (hasErrorsFormData(data)) return reject("error saving a new registration");
 
         createRegistrationApiService(data)
-            .then((response: any) => {
-                if (!!response?.message) return reject("error saving a new registration");
+            .then((res: any) => {
+                if (!!res?.message) return reject("error saving a new registration");
 
                 resolve(true);
-                navigate(-1);
             }).catch(err => reject(err));
     });
 

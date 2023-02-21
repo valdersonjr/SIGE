@@ -1,6 +1,6 @@
 import { datacore } from '~/models';
 import { callApiBaseAsync } from '@service/api/_base';
-// import {CreateStudentDto} from "~/framework/pages/Students/student.interface";
+
 const endpoint = '/aluno';
 
 export const createStudentApiService = async (

@@ -3,7 +3,7 @@ import {theme} from "~/theme";
 
 export const Container = styled.div`
   overflow: auto;
-  width: 94%;
+  width: 100%;
   min-width: 884px;
   max-height: 95%;
   margin-bottom: 10px;

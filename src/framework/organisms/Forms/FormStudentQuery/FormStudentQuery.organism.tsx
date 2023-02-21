@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { Button, Title, VariantButtonEnum } from "~/framework/atoms";
-
-import { InputInLabel } from "~/framework/molecules";
 import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
-
 import { FormStudentQueryProps } from "./FormStudentQuery.interface";
-
 import * as S from './FormStudentQuery.style';
-import { teachOptions, statusOptions, yearsOptions } from "./FormStudentQuery.logic";
+import { teachOptions, yearsOptions } from "./FormStudentQuery.logic";
 import { getPeriodsApiService } from "~/service/api";
 import { ResponseClassPeriod } from "~/models/datacore";
 
@@ -84,7 +79,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
         <S.Form>
             <Title size={20}>Encontre seu aluno</Title>
             <S.InputContainer>
-            <InputInLabel label="Nome do Aluno" onChange={(e) => handleOnChange(e, "name")} placeholder="Digite aqui..." />
+
             <InputSelectInLabel options={yearsOptions} label="Ano" onChange={(e:any) => handleOnChange(e.value, "year")} />
                 <S.ClearButton>
                     <Button onClick={handleReset1} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
@@ -97,7 +92,6 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <S.InputContainer>
                 <InputSelectInLabel label="Período" onChange={(e:any) => handleOnChange(e.value, "period")} options={periodOptions} />
                 <InputSelectInLabel label="Ensino" onChange={(e:any) => handleOnChange(e.value, "class")} options={teachOptions} />
-                <InputSelectInLabel label="Situação" onChange={(e:any) => handleOnChange(e.value, "status")} options={statusOptions} />
                 <S.ClearButton>
                     <Button onClick={handleReset2} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>

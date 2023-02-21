@@ -13,7 +13,6 @@ export const Header = styled.div`
     width: 94%;
 `
 export const Body = styled.div`
-    min-height: 80vh;
     max-height: 95vh;
     width: 94%;
     box-shadow: 0px -3px 32px rgba(0, 0, 0, 0.08);
