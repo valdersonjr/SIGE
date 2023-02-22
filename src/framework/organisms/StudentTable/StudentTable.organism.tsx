@@ -30,6 +30,9 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         })
     }, [data]);
 
+    console.log("------------")
+    console.log(filters);
+
     const getClassType = (registers: IRegister[], yearFilter: string): string => {
         let classType = "Sem Turma Vinculada";
 

@@ -34,12 +34,14 @@ import {
 import {DownloadIcon} from "@atoms/Icons/Download.icon";
 import {SimpleEyeIcon} from "@atoms/Icons/SimpleEye.icon";
 import ViewReport from './ViewReport/ViewReport.template';
+import { IStudentsReportsModalFilters } from '~/models/dataview';
 
 export const Reports: React.FC = () => {
-
+    
     const [viewReportModalState, setViewReportModalState] = useState(false);    
     const [viewReportModalEndpoint, setViewReportModalEndpoint] = useState('');    
 
+    //boolean modals visualization controllers
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
     const [studentsFilterModalState, setStudentsFilterModalState] = useState(false);
     const [birthdaysFilterModalState, setBirthdaysFilterModalState] = useState(false);
@@ -49,6 +51,9 @@ export const Reports: React.FC = () => {
     const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
     const [periodsFilterModalState, setPeriodsFilterModalState] = useState(false);
     const [imagePermissionsFilterModalState, setImagePermissionsFilterModalState] = useState(false);
+
+    //filters
+    const [studentsModalFilters, setStudentsModalFilter] = useState<IStudentsReportsModalFilters>({ name: '', year: '', class: ''});
 
 
 
@@ -80,14 +85,21 @@ export const Reports: React.FC = () => {
         setViewReportModalEndpoint(endpoint);
     }
 
+
     return (
         <S.Container>
-            {viewReportModalState && <ViewReport state={viewReportModalState} endpoint={viewReportModalEndpoint} setModalState={setViewReportModalState} />}
+            {viewReportModalState && <ViewReport 
+                state={viewReportModalState}
+                endpoint={viewReportModalEndpoint} 
+                setModalState={setViewReportModalState}
+                studentsModalFilters={studentsModalFilters}
+                />}
+
             {downloadStudentReportModalState ? <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport> : <></>}
-            {studentsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
+            {studentsFilterModalState && <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState} setFilters={setStudentsModalFilter} ><StudentsFilterDataModal filters={studentsModalFilters} setFilters={setStudentsModalFilter} /></StudentsFilter>}
             {birthdaysFilterModalState ? <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState}><BirthdaysFilterDataModal /></BirthdaysFilter> : <></>}
-            {activitiesFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={activitiesFilterModalState} setModalState={setActivitiesFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
-            {billetsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState}><StudentsFilterDataModal /></StudentsFilter> : <></>}
+            {/* {activitiesFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={activitiesFilterModalState} setModalState={setActivitiesFilterModalState}><h2>CONSTRUIR</h2></StudentsFilter> : <></>} */}
+            {/* {billetsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState}><h2>CONSTRUIR</h2></StudentsFilter> : <></>} */}
             {phoneContactFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
             {phoneContactBirthdaysFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
             {periodsFilterModalState ? <PeriodsFilter title="Aplicar filtro" modalState={periodsFilterModalState} setModalState={setPeriodsFilterModalState}><PeriodsFilterDataModal /></PeriodsFilter> : <></>}

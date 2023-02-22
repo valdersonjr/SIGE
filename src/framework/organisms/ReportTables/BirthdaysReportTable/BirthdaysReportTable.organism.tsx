@@ -13,7 +13,11 @@ const BirthdaysReportTable:React.FC<BirthdaysReportTableProps> = ({ data }) => {
             <ReportsTableTitle titles={birthdaysReportTableTitle} />
             {data && data.map((row:BirthdaysReportTableDataType, index: number) => {
                 return (
-                    <ReportsTableRow index={index} fields={[[row.turma_descricao], ["Aluno", "(mockado)"], [row.aluno_nome], [row.aluno_data_nascimento]]} />
+                    <>
+                        <ReportsTableRow index={index} fields={[[row.turma_descricao], ["Aluno"], [row.aluno_nome], [row.aluno_data_nascimento]]} />
+                        <ReportsTableRow index={index} fields={[[], ["Mãe"], [row.mae.nome], [row.mae.data_nascimento]]} />
+                        <ReportsTableRow index={index} fields={[[], ["Pai"], [row.pai.nome], [row.pai.data_nascimento]]} />
+                    </>
                 )
             })}
         </S.Container>
