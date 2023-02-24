@@ -43,7 +43,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({
                 setReload(!reload);
                 setConfirmRemoveModal(false);
                 setCanDelete(false);
-            }).catch(err => toast.error('toast error:', err));
+            }).catch(err => toast.error(err));
         }
     }, [canDelete]);
 

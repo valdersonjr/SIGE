@@ -40,7 +40,7 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({
                 setReload(!reload);
                 setConfirmRemoveModal(false);
                 setCanDelete(false);
-            }).catch(err => toast.error('toast error:', err));
+            }).catch(err => toast.error(err));
         }
     }, [canDelete]);
 

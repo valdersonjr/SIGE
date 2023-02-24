@@ -1,36 +1,47 @@
 import React from 'react';
 import {RegisterUser} from "@templates/RegisterUser/RegisterUser.template";
-import { IRegisterUser } from '~/models/dataview';
-
 import { registerUserApiService } from "~/service/api"
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 const RegisterUserPage: React.FC = () => {
     const navigate = useNavigate();
 
-    const handleRegisterUser = async (user:IRegisterUser) => {
-        user.phone = user.phone.replaceAll(" ", "");
-        user.phone = user.phone.replace(")", "");
-        user.phone = user.phone.replace("(", "");
+    const save = (_e: React.SyntheticEvent, data: any) => {
+        _e.preventDefault();
 
-        if(user.phone.length !== 11) alert("Atenção \nTelefone inválido");
-        else if(user.profile.length === 0) alert("Atenção! \nSelecione pelo menos um perfil.");
-        else if(user.password.length < 6) alert("Senha inválida! \nSua senha precisa ter no mínimo 6 dígitos.");
-        else if(user.confirmPassword !== user.password) alert("Atenção! \nAs senhas precisam ser iguais.");
+        data.telefone = data.telefone.replaceAll(" ", "");
+        data.telefone = data.telefone.replace(")", "");
+        data.telefone = data.telefone.replace("(", "");
+        if (data.telefone.length !== 11) return toast.error("Atenção \nTelefone inválido");
+        if (data.perfis.length === 0) return toast.error("Atenção! \nSelecione pelo menos um perfil.");
+        if (data.senha.length < 6) return toast.error("Senha inválida! \nSua senha precisa ter no mínimo 6 dígitos.");
+        if (data.confirmaSenha !== data.senha) return toast.error("Atenção! \nAs senhas precisam ser iguais.");
 
-        else {
-            await registerUserApiService(user).then((response:any) => {
-                if(response && response.message){
-                    alert("Ocorreu um erro ao cadastrar o usuário. \nTente novamente.");
-                }
-                else {
-                    navigate(-1);
-                }
-            })
-        }
+        toast.promise(
+            () => handleSave(data),
+            {
+                pending: 'Carregando...',
+                success: 'Usuário criado com sucesso!',
+                error: 'Falha ao tentar criar usuário!'
+            }
+        ).then((res: any) => {
+            if (!!res?.message) return toast.error(res?.message);
+
+            navigate(-1);
+        }).catch(err => toast.error(err));
     }
 
-    return <RegisterUser handleSubmit={(user:IRegisterUser) => handleRegisterUser(user)} />;
+    const handleSave = (data: any) => new Promise((resolve, reject) => {
+        registerUserApiService(data)
+            .then((res: any) => {
+                if (!!res?.message) return reject(res?.message);
+
+                resolve(true);
+            }).catch(err => reject(err));
+    });
+
+    return <RegisterUser handleSubmit={save} />;
 }
 
 export default RegisterUserPage;

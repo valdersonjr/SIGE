@@ -1,5 +1,5 @@
-import { IRegisterUser } from "~/models/dataview";
+import React from "react";
 
 export interface  RegisterUserProps  {
-    handleSubmit?: (user:IRegisterUser) => void;
+    handleSubmit: (event: React.SyntheticEvent, data: any) => void;
 }

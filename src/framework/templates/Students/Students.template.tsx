@@ -44,7 +44,7 @@ export const Students: React.FC<StudentsProps> = ({
                 setConfirmRemoveModal(false);
                 setReload(!reload);
                 setCanDelete(false);
-            }).catch(err => toast.error('toast error:', err));
+            }).catch(err => toast.error(err));
         }
     }, [canDelete]);
 

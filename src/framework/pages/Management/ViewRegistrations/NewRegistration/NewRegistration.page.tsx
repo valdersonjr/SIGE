@@ -27,7 +27,7 @@ const NewRegistrationPage: React.FC = () => {
             if (!!res?.message) return toast.error(res?.message);
 
             navigate(-1);
-        }).catch(err => console.error('toast error:', err));
+        }).catch(err => toast.error(err));
     }
 
     const handleSave = (data: createRegistrationDataProps) => new Promise((resolve, reject) => {

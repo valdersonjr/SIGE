@@ -1,5 +1,5 @@
 export const profileOptions = [
-    { value: '', label: '' },
+    { value: '', label: 'Selecione um perfil' },
     { value: 'ADM', label: 'Administrador' },
     { value: 'USU', label: 'Usuário' },
     { value: 'RES', label: 'Responsável' }

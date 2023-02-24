@@ -23,7 +23,7 @@ const EditRegistrationPage: React.FC = () => {
                 success: 'Matrícula salva com sucesso!',
                 error: 'Falha ao tentar salvar matrícula!'
             }
-        ).then(() => {}).catch(err => console.error('toast error:', err));
+        ).then(() => {}).catch(err => toast.error(err));
     }
 
     const handleSave = (data: editRegistrationDataProps) => new Promise((resolve, reject) => {
