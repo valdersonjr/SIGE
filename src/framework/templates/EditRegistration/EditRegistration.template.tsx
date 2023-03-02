@@ -3,7 +3,7 @@ import {NewRegistrationProps} from "@templates/NewRegistration/NewRegistration.i
 import * as S from "@templates/NewRegistration/NewRegistration.style";
 import {Header, InputInLabel} from "@molecules";
 import {Button, SelectInLabel, VariantButtonEnum} from "@atoms";
-import {anoOptions, formaPagamentoOptions, simOuNaoOptions} from "@templates/NewRegistration/NewRegistration.logic";
+import {formaPagamentoOptions, simOuNaoOptions} from "@templates/NewRegistration/NewRegistration.logic";
 import {SearchSelect} from "@atoms/SearchSelect/SearchSelect.atom";
 import {InputDate} from "@atoms/InputDate/InputDate.atom";
 import {removeCurrencyPrefix} from "~/utils/removeCurrencyPrefix";
@@ -16,6 +16,7 @@ import {
 } from "@service/api";
 import {useParams} from "react-router-dom";
 import {Loading} from "@organisms/Loading/Loading.organism";
+import { yearOptions } from "~/utils/yerarOptions";
 
 export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit}) => {
     const { id } = useParams();
@@ -97,7 +98,7 @@ export const EditRegistration: React.FC<NewRegistrationProps> = ({handleSubmit})
                 <S.Body>
                     <S.InputSection>
                         <S.InputContainer>
-                            <SelectInLabel label="Ano *" options={anoOptions} onChange={(v: any) => setAno(v.value)} selectedValue={ano} />
+                            <SelectInLabel label="Ano *" options={yearOptions} onChange={(v: any) => setAno(v.value)} selectedValue={ano} />
                             <SelectInLabel label="Turma *" options={classes} onChange={(v: any) => setTurma(v.value)} selectedValue={turma} />
                         </S.InputContainer>
                         <S.InputContainer>

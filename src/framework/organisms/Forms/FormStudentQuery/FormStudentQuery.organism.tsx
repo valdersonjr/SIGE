@@ -8,9 +8,10 @@ import { InputSelectInLabel } from "@molecules/Inputs/InputSelectInLabel/InputSe
 import { FormStudentQueryProps } from "./FormStudentQuery.interface";
 
 import * as S from './FormStudentQuery.style';
-import { teachOptions, statusOptions, yearsOptions } from "./FormStudentQuery.logic";
+import { teachOptions, statusOptions } from "./FormStudentQuery.logic";
 import { getPeriodsApiService } from "~/service/api";
 import { ResponseClassPeriod } from "~/models/datacore";
+import { yearOptions } from "~/utils/yerarOptions";
 
 export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, setFilters }) => {
     const [periodOptions, setPeriodOptions] = useState<{value:string, label:string}[]>([]);
@@ -85,7 +86,7 @@ export const FormStudentQuery: React.FC<FormStudentQueryProps> = ({ filters, set
             <Title size={20}>Encontre seu aluno</Title>
             <S.InputContainer>
             <InputInLabel label="Nome do Aluno" onChange={(e) => handleOnChange(e, "name")} placeholder="Digite aqui..." />
-            <InputSelectInLabel options={yearsOptions} label="Ano" onChange={(e:any) => handleOnChange(e.value, "year")} />
+            <InputSelectInLabel options={yearOptions} label="Ano" onChange={(e:any) => handleOnChange(e.value, "year")} />
                 <S.ClearButton>
                     <Button onClick={handleReset1} label="Limpar" type="reset" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
                 </S.ClearButton>

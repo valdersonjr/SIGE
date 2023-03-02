@@ -2,15 +2,13 @@ import React from 'react';
 
 import {InputInLabel} from "@molecules";
 import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
+import { yearOptions } from '~/utils/yerarOptions';
+import { PeriodsFilterDataModalProps } from './PeriodsDataModal.interface';
 
-export const PeriodsFilterDataModal: React.FC = () => (
+export const PeriodsFilterDataModal: React.FC<PeriodsFilterDataModalProps> = ({filters, setFilters}) => (
     <React.Fragment>
-        <InputInLabel label="Aluno" onChange={() => {}} value="Junin" />
-        <InputSelectInLabel label="Ano" onChange={() => {}}
-                            options={[{value: '2020', label: '2020'}, {value: '2021', label: '2021'}]}
-        />
-        <InputSelectInLabel label="Turma/Período" onChange={() => {}}
-                            options={[{value: '2°A', label: '2°A'}, {value: '2°B', label: '2°B'}]}
-        />
+        <InputSelectInLabel label="Ano" onChange={(e:any) => setFilters({...filters, year: e.value})} options={yearOptions} />
+        <InputSelectInLabel label="Turma/Período" onChange={(e:any) => setFilters({...filters, classNPeriod: e.value})} options={[]} />
+        <InputInLabel label="Aluno" onChange={(value) => setFilters({...filters, studentsName: value})} value={filters.studentsName} />
     </React.Fragment>
 );

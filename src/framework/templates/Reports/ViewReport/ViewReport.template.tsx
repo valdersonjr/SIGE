@@ -8,13 +8,13 @@ import { getReportApiService } from "~/service/api/report.service";
 
 import * as S from "./ViewReport.style";
 import { ViewReportProps } from "./ViewReport.inteface";
-import { Endpoints, getReportType } from "./ViewReports.logic";
+import { getFilteredData, getReportType } from "./ViewReports.logic";
 import { Pagination } from "@mui/material";
+import { ReportsEndpoints } from "~/utils/enums";
 
 
-const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, studentsModalFilters }) => {
+const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, filters }) => {
     const [modalData, setModalData] = useState([]);
-    const [filteredModalData, setFilteredModalData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [nextPage, setNextPage] = useState(1);
 
@@ -22,23 +22,16 @@ const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, 
 
     useEffect(() => {
         getReportApiService(endpoint, nextPage, itemsPerPage).then((response:any) => {
-            setModalData(response.data);
             setCurrentPage(response.meta.current_page);
+            console.log(response.data);
+            const filteredData = getFilteredData(endpoint, response.data, filters);
+            setModalData(filteredData);
         })
     },[nextPage]);
 
     const handleChange = (_event: React.ChangeEvent<unknown>, page: number) => {
         setNextPage(page);
     }
-
-    let filteredData = modalData;
-    if(endpoint === Endpoints.ALUNOS && filteredData){
-        setModalData(filteredData.filter((elem:{ aluno_nome:string }) => elem.aluno_nome.includes(studentsModalFilters.name)));
-        // filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === studentsModalFilters.year);
-        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === studentsModalFilters.class);
-    }
-
-    useEffect(() => setFilteredModalData(modalData), []);
 
     return(
         <S.Container>
@@ -51,17 +44,17 @@ const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, 
                         <Title size={14}>Alunos da turma "x"</Title>
                     </S.ModalTextContainer>
                 </S.ModalHeader>
-                {endpoint === Endpoints.ALUNOS && filteredModalData && <StudentsReportTable data={filteredModalData} />}
-                {endpoint === Endpoints.ANIVERSARIOS && modalData && <BirthdaysReportTable data={modalData} />}
-                {endpoint === Endpoints.ATIVIDADES_EXTRA_CLASSE && modalData && <ExtraClassActivities data={modalData} />}
-                {endpoint === Endpoints.BOLETOS && modalData && <BillsReportTable data={modalData} />}
-                {endpoint === Endpoints.CONTATO_TELEFONICO && modalData && <PhoneContactRerportTable data={modalData} />}
-                {endpoint === Endpoints.CONTATO_TELEFONICO_ANIVERSARIO && modalData && <BirthdayPhoneContactRerportTable data={modalData} />}
-                {endpoint === Endpoints.PERIODOS && modalData && <PeriodsReportTable data={modalData} />}
-                {endpoint === Endpoints.PERMISSAO_IMAGEM && modalData && <ImagePermissionReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.ALUNOS && modalData && <StudentsReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.ANIVERSARIOS && modalData && <BirthdaysReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.ATIVIDADES_EXTRA_CLASSE && modalData && <ExtraClassActivities data={modalData} />}
+                {endpoint === ReportsEndpoints.BOLETOS && modalData && <BillsReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.CONTATO_TELEFONICO && modalData && <PhoneContactRerportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.CONTATO_TELEFONICO_ANIVERSARIO && modalData && <BirthdayPhoneContactRerportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.PERIODOS && modalData && <PeriodsReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.PERMISSAO_IMAGEM && modalData && <ImagePermissionReportTable data={modalData} />}
                 {(endpoint === '' || !modalData) && <S.LoadingContainer><Loading/></S.LoadingContainer>}
                 <S.ModalFooter>
-                    {filteredModalData && <Pagination page={currentPage} count={(filteredModalData.length/itemsPerPage)} color="primary" showFirstButton showLastButton onChange={handleChange}  />}
+                    {modalData && <Pagination page={currentPage} count={(modalData.length/itemsPerPage)} color="primary" showFirstButton showLastButton onChange={handleChange}  />}
                 </S.ModalFooter>
             </S.Modal>
         </S.Container>

@@ -1,11 +1,8 @@
-import { IStudentsReportsModalFilters } from "~/models/dataview";
+import { IReportsModalFilters } from "~/models/dataview";
 
-interface IFilters {
-    studentsModalFilters: IStudentsReportsModalFilters;
-}
-
-export interface ViewReportProps extends IFilters {
+export interface ViewReportProps {
     state: boolean;
     endpoint: string;
     setModalState?: (boolean:boolean) => void;
+    filters: IReportsModalFilters;
 }

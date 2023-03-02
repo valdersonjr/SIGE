@@ -34,7 +34,13 @@ import {
 import {DownloadIcon} from "@atoms/Icons/Download.icon";
 import {SimpleEyeIcon} from "@atoms/Icons/SimpleEye.icon";
 import ViewReport from './ViewReport/ViewReport.template';
-import { IStudentsReportsModalFilters } from '~/models/dataview';
+import { IBillsReportsModalFilters, IBirthDayPhoneContactReportsModalFilters, IBirthdaysReportsModalFilters, IExtraClassActivitiesReportsModalFilters, IImagePermissionReportsModalFilters, IPeriodsReportsModalFilters, IPhoneContactReportsModalFilters, IStudentsReportsModalFilters } from '~/models/dataview';
+import ExtraClassActivitiesFilter from '~/framework/organisms/Modals/Reports/ExtraClassActivitiesFilter/ExtraClassActivitiesFilter.organism';
+import BillsFilter from '~/framework/organisms/Modals/Reports/BillsFilter/BillsFilter.organism';
+import { ExtraClassActivitiesFilterDataModal } from './ReportsDataModalContent/ExtraClassActivitiesFilterContent/ExtraClassActivitiesFilterDataModal.content';
+import { BillsFilterDataModalContent } from './ReportsDataModalContent/BillsFilterContent/BillsFilterData.content';
+import { BirthdayPhoneContactFilterDataModal } from './ReportsDataModalContent/BirthdayPhoneContactFilterContent/BirthdayPhoneContactFilterDataModal.content';
+import BirthdayPhoneContactFilter from '~/framework/organisms/Modals/Reports/BirthdayPhoneContactFilter/BirthdayPhoneContactFilter.organism';
 
 export const Reports: React.FC = () => {
     
@@ -43,9 +49,10 @@ export const Reports: React.FC = () => {
 
     //boolean modals visualization controllers
     const [downloadStudentReportModalState, setDownloadStudentReportModalState] = useState(false);
+
     const [studentsFilterModalState, setStudentsFilterModalState] = useState(false);
     const [birthdaysFilterModalState, setBirthdaysFilterModalState] = useState(false);
-    const [activitiesFilterModalState, setActivitiesFilterModalState] = useState(false);
+    const [extraClassActivitiesFilterModalState, setExtraClassActivitiesFilterModalState] = useState(false);
     const [billetsFilterModalState, setBilletsFilterModalState] = useState(false);
     const [phoneContactFilterModalState, setPhoneContactFilterModalState] = useState(false);
     const [phoneContactBirthdaysFilterModalState, setPhoneContactBirthdaysFilterModalState] = useState(false);
@@ -54,7 +61,14 @@ export const Reports: React.FC = () => {
 
     //filters
     const [studentsModalFilters, setStudentsModalFilter] = useState<IStudentsReportsModalFilters>({ name: '', year: '', class: ''});
-
+    const [birthdaysModalFilters, setBirthdaysModalFilter] = useState<IBirthdaysReportsModalFilters>({ year: '', class: '', initialDate: '', finalDate: '', registerType: '' });
+    const [extraClassActivitiesModalFilters, setExtraClassActivitiesModalFilters] = useState<IExtraClassActivitiesReportsModalFilters>({ year: '', class: '', studentName: '', activity: '' });
+    const [billsModalFilters, setBillsModalFilters] = useState<IBillsReportsModalFilters>({ year: '', class: '', studentName: '' });
+    const [phoneContactFilters, setPhoneContactFilters] = useState<IPhoneContactReportsModalFilters>({ year: '', class: '', studentName: '', mothersName: '', fathersName: '' });
+    const [birthdayPhoneContactFilters, setBirthdayPhoneContactFilters] = useState<IBirthDayPhoneContactReportsModalFilters>({ year: '', class: '', studentsName: '', mothersName: '', fathersName: '' });
+    const [periodFilters, setPeriodFilters] = useState<IPeriodsReportsModalFilters>({ year: '', classNPeriod: '', studentsName: '' });
+    const [imagePermissionFilters, setImagePermissionFilters] = useState<IImagePermissionReportsModalFilters>({ year: '', class: '', studentsName: '', allowedImageDisclosure: false });
+    
 
 
     const handleFilterModal = (key: string) => {
@@ -63,7 +77,7 @@ export const Reports: React.FC = () => {
                 break;
             case 'birthdays': setBirthdaysFilterModalState(true);
                 break;
-            case 'activities': setActivitiesFilterModalState(true);
+            case 'activities': setExtraClassActivitiesFilterModalState(true);
                 break;
             case 'billet': setBilletsFilterModalState(true);
                 break;
@@ -85,25 +99,33 @@ export const Reports: React.FC = () => {
         setViewReportModalEndpoint(endpoint);
     }
 
-
     return (
         <S.Container>
             {viewReportModalState && <ViewReport 
                 state={viewReportModalState}
                 endpoint={viewReportModalEndpoint} 
                 setModalState={setViewReportModalState}
-                studentsModalFilters={studentsModalFilters}
+                filters={{
+                    studentsFilters: studentsModalFilters, 
+                    birthdaysFilters: birthdaysModalFilters, 
+                    extraClassAcitivitiesFilters: extraClassActivitiesModalFilters,
+                    billsFilters: billsModalFilters,
+                    phoneContactFilters: phoneContactFilters,
+                    birthdayPhoneContactFilters: birthdayPhoneContactFilters,
+                    periodFilters: periodFilters,
+                    imagePermissionFilters: imagePermissionFilters
+                }}
                 />}
 
-            {downloadStudentReportModalState ? <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport> : <></>}
+            {downloadStudentReportModalState && <DownloadStudentReport title="Baixar relatórios de alunos" modalState={downloadStudentReportModalState} setModalState={setDownloadStudentReportModalState}><DownloadStudentReportDataModal /></DownloadStudentReport>}
             {studentsFilterModalState && <StudentsFilter title="Aplicar filtro" modalState={studentsFilterModalState} setModalState={setStudentsFilterModalState} setFilters={setStudentsModalFilter} ><StudentsFilterDataModal filters={studentsModalFilters} setFilters={setStudentsModalFilter} /></StudentsFilter>}
-            {birthdaysFilterModalState ? <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState}><BirthdaysFilterDataModal /></BirthdaysFilter> : <></>}
-            {/* {activitiesFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={activitiesFilterModalState} setModalState={setActivitiesFilterModalState}><h2>CONSTRUIR</h2></StudentsFilter> : <></>} */}
-            {/* {billetsFilterModalState ? <StudentsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState}><h2>CONSTRUIR</h2></StudentsFilter> : <></>} */}
-            {phoneContactFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
-            {phoneContactBirthdaysFilterModalState ? <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState}><PhoneContactFilterDataModal /></PhoneContactFilter> : <></>}
-            {periodsFilterModalState ? <PeriodsFilter title="Aplicar filtro" modalState={periodsFilterModalState} setModalState={setPeriodsFilterModalState}><PeriodsFilterDataModal /></PeriodsFilter> : <></>}
-            {imagePermissionsFilterModalState ? <ImagePermissionsFilter title="Aplicar filtro" modalState={imagePermissionsFilterModalState} setModalState={setImagePermissionsFilterModalState}><ImagePermissionsFilterDataModal /></ImagePermissionsFilter> : <></>}
+            {birthdaysFilterModalState && <BirthdaysFilter title="Aplicar filtro" modalState={birthdaysFilterModalState} setModalState={setBirthdaysFilterModalState} setFilters={setBirthdaysModalFilter} ><BirthdaysFilterDataModal filters={birthdaysModalFilters} setFilters={setBirthdaysModalFilter} /></BirthdaysFilter>}
+            {extraClassActivitiesFilterModalState && <ExtraClassActivitiesFilter title="Aplicar filtro" modalState={extraClassActivitiesFilterModalState} setModalState={setExtraClassActivitiesFilterModalState} setFilters={setExtraClassActivitiesModalFilters}><ExtraClassActivitiesFilterDataModal filters={extraClassActivitiesModalFilters} setFilters={setExtraClassActivitiesModalFilters} /></ExtraClassActivitiesFilter>}
+            {billetsFilterModalState && <BillsFilter title="Aplicar filtro" modalState={billetsFilterModalState} setModalState={setBilletsFilterModalState} setFilters={setBillsModalFilters}><BillsFilterDataModalContent filters={billsModalFilters} setFilters={setBillsModalFilters} /></BillsFilter>}
+            {phoneContactFilterModalState && <PhoneContactFilter title="Aplicar filtro" modalState={phoneContactFilterModalState} setModalState={setPhoneContactFilterModalState} setFilters={setPhoneContactFilters}><PhoneContactFilterDataModal filters={phoneContactFilters} setFilters={setPhoneContactFilters} /></PhoneContactFilter>}
+            {phoneContactBirthdaysFilterModalState && <BirthdayPhoneContactFilter title="Aplicar filtro" modalState={phoneContactBirthdaysFilterModalState} setModalState={setPhoneContactBirthdaysFilterModalState} setFilters={setBirthdayPhoneContactFilters}><BirthdayPhoneContactFilterDataModal filters={birthdayPhoneContactFilters} setFilters={setBirthdayPhoneContactFilters} /></BirthdayPhoneContactFilter>}
+            {periodsFilterModalState && <PeriodsFilter title="Aplicar filtro" modalState={periodsFilterModalState} setModalState={setPeriodsFilterModalState} setFilters={setPeriodFilters}><PeriodsFilterDataModal filters={periodFilters} setFilters={setPeriodFilters} /></PeriodsFilter>}
+            {imagePermissionsFilterModalState && <ImagePermissionsFilter title="Aplicar filtro" modalState={imagePermissionsFilterModalState} setModalState={setImagePermissionsFilterModalState} setFilters={setImagePermissionFilters}><ImagePermissionsFilterDataModal filters={imagePermissionFilters} setFilters={setImagePermissionFilters} /></ImagePermissionsFilter>}
 
 
             <Banner Icon={<ReportsPageBannerIcon />} type="reports" title='Relatórios' text="Veja os relatórios vinculados a sua escola" />

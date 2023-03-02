@@ -1,14 +1,14 @@
 import React from 'react';
-import {PhoneContactFilterProps} from "./PhoneContactFilter.interface";
-import * as S from "./PhoneContactFilter.style";
+import * as S from "./ExtraClassActivitiesFilter.style";
 import {Header} from "@molecules";
 import {Button, VariantButtonEnum} from "@atoms";
+import { ExtraClassActivitiesFilterProps } from './ExtraClassActivitiesFilter.interface';
 
-const PhoneContactFilter: React.FC<PhoneContactFilterProps> = ({title, children, modalState, setModalState, setFilters}) => {
+const ExtraClassActivitiesFilter: React.FC<ExtraClassActivitiesFilterProps> = ({title, children, modalState, setModalState, setFilters}) => {
     const handleExitWithoutSaveClick = (event:React.SyntheticEvent) => {
         event.preventDefault();
         setModalState && modalState && setModalState(!modalState);
-        setFilters({year: '', class: '', studentName: '', fathersName: '', mothersName: ''});
+        setFilters({year: "", class: "", studentName: '', activity: ''});
     }
 
     const handleExitAndSaveClick = (event:React.SyntheticEvent) => {
@@ -32,4 +32,4 @@ const PhoneContactFilter: React.FC<PhoneContactFilterProps> = ({title, children,
     )
 }
 
-export default PhoneContactFilter;
+export default ExtraClassActivitiesFilter;
