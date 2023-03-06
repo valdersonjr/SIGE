@@ -1,6 +1,6 @@
 export * from './Card/Card.molecule';
-export * from './Banner/Banner.molecule';
 export * from './Header/Header.molecule';
+export * from './Banner/Banner.molecule';
 export * from './TableRow/TableRow.molecule';
 export * from './Navigation/Navigation.molecule';
 export * from './AvatarCard/AvatarCard.molecule';
@@ -9,6 +9,8 @@ export * from './Inputs/InputIcon/InputIcon.molecule';
 export * from './TableRowTitle/TableRowTitle.molecule';
 export * from './DropdownHeader/DropdownHeader.molecule';
 export * from './Inputs/InputSelect/InputSelect.molecule';
+export * from './ReportsTableRow/ReportsTableRow.molecule';
 export * from './Inputs/InputInLabel/InputInLabel.molecule';
 export * from './ColumnCenterCard/ColumnCenterCard.molecule';
+export * from './ReportsTableTitle/ReportsTableTitle.molecule';
 export * from './Inputs/InputWithButton/InputWithButton.molecule';

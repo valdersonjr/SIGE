@@ -6,7 +6,7 @@ export interface IRegister {
     ensino:string;
 }
 
-interface IFather {
+export interface IFather {
     id: number;
     cpf: number;
     rg: string;
@@ -21,7 +21,7 @@ interface IFather {
     ativo: boolean;
 }
 
-interface IMother {
+export interface IMother {
     id: number;
     cpf: string;
     rg: string;
