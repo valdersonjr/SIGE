@@ -1,8 +1,8 @@
 import React from 'react';
 import { RegisterStudent } from '~/framework/templates';
 import {useNavigate} from "react-router-dom";
-import {createStudentApiService} from "~/framework/pages/Students/student.service";
 import {toast} from "react-toastify";
+import {createStudentApiService} from "@service/api";
 
 const RegisterStudentPage: React.FC = () => {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const RegisterStudentPage: React.FC = () => {
 
     const handleSave = (data: any) => new Promise((resolve, reject) => {
         createStudentApiService(data).then((res: any) => {
-            if (!!res?.message) return reject("error saving a new student");
+            if (!!res?.message) return reject(res?.message);
 
             resolve(true);
         }).catch(err => reject(err));

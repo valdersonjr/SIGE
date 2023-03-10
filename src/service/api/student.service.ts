@@ -3,8 +3,17 @@ import {callApiBaseAsync} from "./_base"
 
 const endpoint = '/aluno';
 
+export const createStudentApiService = async (data: any): Promise<datacore.FetchResponse<any>> => {
+    return callApiBaseAsync(endpoint, {
+        title: 'AUTH API - createStudentApiService',
+        method: 'POST',
+        headers: new Headers(),
+        body: {...data},
+    });
+};
+
 export const getAllStudentsApiService = async (): Promise<datacore.FetchResponse<datacore.ResponseStudent[]>> => {
-    return callApiBaseAsync(`${endpoint}`, {
+    return callApiBaseAsync(endpoint, {
         title: 'STUDENT API - studentApiService',
         method: 'GET',
     });

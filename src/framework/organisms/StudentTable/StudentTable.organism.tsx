@@ -8,17 +8,15 @@ import {setStudentActiveApiService, setStudentInactiveApiService} from "~/servic
 import {toast} from "react-toastify";
 import {NotFound} from "@organisms/NotFound/NotFound.organism";
 import {Loading} from "@organisms/Loading/Loading.organism";
-import {IRegister} from "~/models/datacore";
+// import {IRegister} from "~/models/datacore";
 
 export const StudentTable: React.FC<StudentTableProps> = ({
                                                               data,
                                                               reload,
                                                               setReload,
-                                                              confirmRemoveModal,
                                                               setConfirmRemoveModal,
                                                               setIdToDelete,
-                                                              filtersLoading,
-                                                              setFiltersLoading
+                                                              filtersLoading
                                                           }) => {
     const navigate = useNavigate();
 
@@ -42,29 +40,29 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         setIdToDelete(id);
     }
 
-    const getClassType = (registers: IRegister[], yearFilter: string): string => {
-        let classType = "Sem Turma Vinculada";
-
-        registers.forEach(register => {
-            if (register.ano === yearFilter) {
-                classType = register.ensino;
-            }
-        });
-
-        return classType;
-    }
-
-    const getPeriod = (registers: IRegister[], yearFilter: string): string => {
-        let period = "Sem Turma Vinculada";
-
-        registers.forEach(register => {
-            if (register.ano === yearFilter) {
-                if (register.descricao_periodo_turma) period = register.descricao_periodo_turma;
-            }
-        });
-
-        return period;
-    }
+    // const getClassType = (registers: IRegister[], yearFilter: string): string => {
+    //     let classType = "Sem Turma Vinculada";
+    //
+    //     registers.forEach(register => {
+    //         if (register.ano === yearFilter) {
+    //             classType = register.ensino;
+    //         }
+    //     });
+    //
+    //     return classType;
+    // }
+    //
+    // const getPeriod = (registers: IRegister[], yearFilter: string): string => {
+    //     let period = "Sem Turma Vinculada";
+    //
+    //     registers.forEach(register => {
+    //         if (register.ano === yearFilter) {
+    //             if (register.descricao_periodo_turma) period = register.descricao_periodo_turma;
+    //         }
+    //     });
+    //
+    //     return period;
+    // }
 
     return (
         <S.Container>

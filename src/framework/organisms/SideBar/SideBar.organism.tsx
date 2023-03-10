@@ -23,7 +23,7 @@ export const SideBar: React.FC = () => {
     return (
         <S.SideBarSkeleton>
             <S.Container>
-                <div style={{"display":"inline", "cursor": "pointer"}} onClick={() => navigate("/")} >
+                <div style={{"display": "inline", "cursor": "pointer"}} onClick={() => navigate("/")} >
                     <S.SigeLogo src="/logo.svg" alt="Logo do SIGE" />
                 </div>
                 <Navigation />
