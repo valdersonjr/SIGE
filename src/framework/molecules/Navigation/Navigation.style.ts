@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const container = styled.menu`
-    background-color: red;
     width: 80%;
 
     display: flex;

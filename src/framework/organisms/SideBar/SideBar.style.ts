@@ -10,8 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  //background-color: ${theme.palette.light.tint};
-  background-color: cadetblue;
+  background-color: ${theme.palette.light.tint};
 `;
 
 export const SideBarSkeleton = styled.div`
