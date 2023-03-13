@@ -13,7 +13,7 @@ const ImagePermissionReportTable:React.FC<ImagePermissionReportTableProps> = ({ 
             <ReportsTableTitle titles={imagePermissionReportTableTitle} />
             {data && data.map((row:ImagePermissionReportTableDataType, index: number) => {
                 return (
-                    <ReportsTableRow index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome], [row.divulgacao_imagem_rede ? "Sim" : "Não"]]} />
+                    <ReportsTableRow key={row.aluno_id} index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome], [row.divulgacao_imagem_rede ? "Sim" : "Não"]]} />
                 )
             })}
         </S.Container>

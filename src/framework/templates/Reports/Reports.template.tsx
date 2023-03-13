@@ -42,6 +42,8 @@ import { BillsFilterDataModalContent } from './ReportsDataModalContent/BillsFilt
 import { BirthdayPhoneContactFilterDataModal } from './ReportsDataModalContent/BirthdayPhoneContactFilterContent/BirthdayPhoneContactFilterDataModal.content';
 import BirthdayPhoneContactFilter from '~/framework/organisms/Modals/Reports/BirthdayPhoneContactFilter/BirthdayPhoneContactFilter.organism';
 
+import { ReportsEndpoints } from "~/utils/enums";
+
 export const Reports: React.FC = () => {
     
     const [viewReportModalState, setViewReportModalState] = useState(false);    
@@ -99,6 +101,17 @@ export const Reports: React.FC = () => {
         setViewReportModalEndpoint(endpoint);
     }
 
+    const handleFilterReset = (endpoint:string) => {
+        if(endpoint === ReportsEndpoints.ALUNOS) setStudentsModalFilter({ name: '', year: '', class: ''});
+        else if(endpoint === ReportsEndpoints.ANIVERSARIOS) setBirthdaysModalFilter({ year: '', class: '', initialDate: '', finalDate: '', registerType: '' });
+        else if(endpoint === ReportsEndpoints.ATIVIDADES_EXTRA_CLASSE) setExtraClassActivitiesModalFilters({ year: '', class: '', studentName: '', activity: '' });
+        else if(endpoint === ReportsEndpoints.BOLETOS) setBillsModalFilters({ year: '', class: '', studentName: '' });
+        else if(endpoint === ReportsEndpoints.CONTATO_TELEFONICO) setPhoneContactFilters({ year: '', class: '', studentName: '', mothersName: '', fathersName: '' });
+        else if(endpoint === ReportsEndpoints.CONTATO_TELEFONICO_ANIVERSARIO) setBirthdayPhoneContactFilters({ year: '', class: '', studentsName: '', mothersName: '', fathersName: '' });
+        else if(endpoint === ReportsEndpoints.PERIODOS) setPeriodFilters({ year: '', classNPeriod: '', studentsName: '' });
+        else if(endpoint === ReportsEndpoints.PERMISSAO_IMAGEM) setImagePermissionFilters({ year: '', class: '', studentsName: '', allowedImageDisclosure: false });
+    }
+
     return (
         <S.Container>
             {viewReportModalState && <ViewReport 
@@ -147,7 +160,8 @@ export const Reports: React.FC = () => {
                                         onClick={() => handleFilterModal(it.key)}/>
                                 </S.ButtonBodyContainer>
                                 <S.ButtonBodyContainer>
-                                    <Button label="Limpar filtro" type="button" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT} />
+                                    <Button label="Limpar filtro" type="button" justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT}
+                                    onClick={() => handleFilterReset(it.endpoint)} />
                                 </S.ButtonBodyContainer>
                             </S.BlockBodyDivisor>
                             <S.BlockBodyDivisor>

@@ -23,7 +23,7 @@ const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, 
     useEffect(() => {
         getReportApiService(endpoint, nextPage, itemsPerPage).then((response:any) => {
             setCurrentPage(response.meta.current_page);
-            console.log(response.data);
+            // console.log(response.data);
             const filteredData = getFilteredData(endpoint, response.data, filters);
             setModalData(filteredData);
         })
@@ -45,7 +45,7 @@ const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, 
                     </S.ModalTextContainer>
                 </S.ModalHeader>
                 {endpoint === ReportsEndpoints.ALUNOS && modalData && <StudentsReportTable data={modalData} />}
-                {endpoint === ReportsEndpoints.ANIVERSARIOS && modalData && <BirthdaysReportTable data={modalData} />}
+                {endpoint === ReportsEndpoints.ANIVERSARIOS && modalData && <BirthdaysReportTable filter={filters.birthdaysFilters.registerType} data={modalData} />}
                 {endpoint === ReportsEndpoints.ATIVIDADES_EXTRA_CLASSE && modalData && <ExtraClassActivities data={modalData} />}
                 {endpoint === ReportsEndpoints.BOLETOS && modalData && <BillsReportTable data={modalData} />}
                 {endpoint === ReportsEndpoints.CONTATO_TELEFONICO && modalData && <PhoneContactRerportTable data={modalData} />}

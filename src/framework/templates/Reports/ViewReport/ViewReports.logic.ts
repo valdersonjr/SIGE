@@ -23,31 +23,33 @@ export const getFilteredData = (endpoint:string, data: any, filters: IReportsMod
     }
     else if(endpoint === ReportsEndpoints.ANIVERSARIOS && filteredData.length > 0){
         filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === filters.birthdaysFilters.year);
-        filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.birthdaysFilters.class);
-        filteredData = filteredData.filter((elem:{ aluno_data_nascimento:string }) => getIsDateInRange(elem.aluno_data_nascimento, filters.birthdaysFilters.initialDate, filters.birthdaysFilters.finalDate));
-        //filtro de tipo (mae, pai aluno) - pensar na logistica
+        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.birthdaysFilters.class);
+        filteredData = filteredData.filter((elem:{ aluno_data_nascimento:string }) => {
+            const studentFormatedBirthday = elem.aluno_data_nascimento.replaceAll("/", "-");
+            return getIsDateInRange(studentFormatedBirthday, convertDateFormat(filters.birthdaysFilters.initialDate), convertDateFormat(filters.birthdaysFilters.finalDate));
+        });
     }
     else if(endpoint === ReportsEndpoints.ATIVIDADES_EXTRA_CLASSE && filteredData.length > 0){
         filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === filters.extraClassAcitivitiesFilters.year);
-        filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.extraClassAcitivitiesFilters.class);
+        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.extraClassAcitivitiesFilters.class);
         filteredData = filteredData.filter((elem:{ aluno_nome:string }) => elem.aluno_nome.includes(filters.extraClassAcitivitiesFilters.studentName));
         filteredData = filteredData.filter((elem:{ atividades:string }) => elem.atividades.includes(filters.extraClassAcitivitiesFilters.activity));
     }
     else if(endpoint === ReportsEndpoints.BOLETOS && filteredData.length > 0){
         filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === filters.billsFilters.year);
-        filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.billsFilters.class);
+        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.billsFilters.class);
         filteredData = filteredData.filter((elem:{ aluno_nome:string }) => elem.aluno_nome.includes(filters.billsFilters.studentName));        
     }
     else if(endpoint === ReportsEndpoints.CONTATO_TELEFONICO && filteredData.length > 0){
         filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === filters.phoneContactFilters.year);
-        filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.phoneContactFilters.class);
+        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.phoneContactFilters.class);
         filteredData = filteredData.filter((elem:{ aluno_nome:string }) => elem.aluno_nome.includes(filters.phoneContactFilters.studentName));
         filteredData = filteredData.filter((elem:{ mae: { nome:string } }) => elem.mae.nome.includes(filters.phoneContactFilters.fathersName));
         filteredData = filteredData.filter((elem:{ pai: { nome:string } }) => elem.pai.nome.includes(filters.phoneContactFilters.mothersName));
     }
     else if(endpoint === ReportsEndpoints.CONTATO_TELEFONICO_ANIVERSARIO && filteredData.length > 0){
         filteredData = filteredData.filter((elem:{ ano:string }) => elem.ano === filters.birthdayPhoneContactFilters.year);
-        filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.birthdayPhoneContactFilters.class);
+        // filteredData = filteredData.filter((elem:{ turma_descricao:string }) => elem.turma_descricao === filters.birthdayPhoneContactFilters.class);
         filteredData = filteredData.filter((elem:{ aluno_nome:string }) => elem.aluno_nome.includes(filters.birthdayPhoneContactFilters.studentsName));
         filteredData = filteredData.filter((elem:{ mae: { nome:string } }) => elem.mae.nome.includes(filters.birthdayPhoneContactFilters.fathersName));
         filteredData = filteredData.filter((elem:{ pai: { nome:string } }) => elem.pai.nome.includes(filters.birthdayPhoneContactFilters.mothersName));
@@ -67,19 +69,23 @@ export const getFilteredData = (endpoint:string, data: any, filters: IReportsMod
     return filteredData;
 }
 
-export const getIsDateInRange = (date: string, initialDate: string, endDate: string): boolean => {
-    const dateFormat = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-    const dateParts = date.match(dateFormat);
-    const initialDateParts = initialDate.match(dateFormat);
-    const endDateParts = endDate.match(dateFormat);
+const convertDateFormat = (dateString: string): string => {
+    const [year, month, day] = dateString.split("-");
+    return `${day}-${month}-${year}`;
+}
+
+const getIsDateInRange = (targetDate: string, startDate: string, endDate: string): boolean => {
+    const [dateDay, dateMonth, dateYear] = targetDate.split("-");
+    const [initialDay, initialMonth, initialYear] = startDate.split("-");
+    const [endDay, endMonth, endYear] = endDate.split("-");
   
-    if (!dateParts || !initialDateParts || !endDateParts) {
-      throw new Error('Invalid date format. Please use the format dd/mm/yyyy.');
-    }
+    const target = new Date(`${dateYear}-${dateMonth}-${dateDay}`);
+    const start = new Date(`${initialYear}-${initialMonth}-${initialDay}`);
+    const end = new Date(`${endYear}-${endMonth}-${endDay}`);
+
+    const dateInRange = target >= start && target <= end;
+    console.log(dateInRange);
   
-    const parsedDate = new Date(parseInt(dateParts[3]), parseInt(dateParts[2]) - 1, parseInt(dateParts[1]));
-    const parsedInitialDate = new Date(parseInt(initialDateParts[3]), parseInt(initialDateParts[2]) - 1, parseInt(initialDateParts[1]));
-    const parsedEndDate = new Date(parseInt(endDateParts[3]), parseInt(endDateParts[2]) - 1, parseInt(endDateParts[1]));
+    return dateInRange;
+  }
   
-    return parsedDate >= parsedInitialDate && parsedDate <= parsedEndDate;
-  };
