@@ -9,12 +9,13 @@ export const InputSelectInLabel: React.FC<InputSelectInLabelProps> = ({
     options,
     disabled,
     onChange,
+    selectedValue
 }) => {
     const handleChange = (value: string) => {
         onChange(value);
     };
 
     return (
-        <SelectInLabel disabled={disabled} label={label} options={options} onChange={handleChange} />
+        <SelectInLabel selectedValue={selectedValue} disabled={disabled} label={label} options={options} onChange={handleChange} />
     );
 };

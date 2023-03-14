@@ -24,12 +24,12 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         if (row?.ativo) await setStudentInactiveApiService(row?.id)
             .then((res: any) => {
                 if (!!res?.message) return toast.error(res?.message);
-
                 setReload(!reload);
             }).catch(err => toast.error(err));
         else await setStudentActiveApiService(row?.id)
             .then((res: any) => {
                 if (!!res?.message) return toast.error(res?.message);
+
 
                 setReload(!reload);
             }).catch(err => toast.error(err));

@@ -18,7 +18,7 @@ export const Container = styled.div`
     top: 0;
     left: 0;
 `
-export const Modal = styled.div`
+export const Modal = styled.form`
     width: 40%;
     margin-top: 40px;
     padding-bottom: 10px;

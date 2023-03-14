@@ -5,12 +5,12 @@ import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {RegistrationsTable} from "@organisms/RegistrationsTable/RegistrationsTable.organism";
 import {useNavigate} from "react-router-dom";
 import {ViewRegistrationsProps} from "@templates/ViewRegistrations/ViewRegistrations.interface";
-import {anoOptions} from "@templates/NewRegistration/NewRegistration.logic";
 import {Loading} from "@organisms/Loading/Loading.organism";
 import ConfirmRemoveData from "@organisms/Modals/ConfirmRemove/ConfirmRemoveData.organism";
 import {ConfirmRemoveContent} from "@organisms/Modals/ConfirmRemove/ConfirmRemoveContent/ConfirmRemove.content";
 import {deleteRegistrationApiService} from "@service/api";
 import {toast} from "react-toastify";
+import { yearOptions } from '~/utils/yerarOptions';
 
 export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
                                                                         registrations,
@@ -75,7 +75,7 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
                                           onChange={value => handleFilterChange('nome', value)}/>
                             <SelectInLabel label="Ano de Ingresso" selectedValue={filters.ano}
                                            onChange={(v: any) => handleFilterChange('ano', v?.value)}
-                                           options={anoOptions}/>
+                                           options={yearOptions}/>
                             <SelectInLabel label="Turma" selectedValue={filters.turma}
                                            onChange={(v: any) => handleFilterChange('turma', v?.value)}
                                            options={classes}/>

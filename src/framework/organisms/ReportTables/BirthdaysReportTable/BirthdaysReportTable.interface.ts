@@ -15,4 +15,5 @@ export interface BirthdaysReportTableDataType {
 
 export interface BirthdaysReportTableProps {
     data: BirthdaysReportTableDataType[];
+    filter: string;
 }

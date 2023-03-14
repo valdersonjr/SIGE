@@ -13,7 +13,11 @@ const BirthdayPhoneContactRerportTable:React.FC<birthdayPhoneContactReportTableP
             <ReportsTableTitle titles={birthdayPhoneContactReportTabletitle} />
             {data && data.map((row:birthdayPhoneContactReportTableDataType, index: number) => {
                 return (
-                    <ReportsTableRow index={index} fields={[[row.turma_descricao], [row.aluno_nome], ["saber qm é o responsável"], ["idk"], ["idk"]]} />
+                    <ReportsTableRow key={row.aluno_id} index={index} fields={[[row.turma_descricao], 
+                                                            [row.aluno_nome], 
+                                                            [row.pai && "Pai: " + row.pai.nome, row.mae && "Mãe: " + row.mae.nome], 
+                                                            [row.pai && row.pai.telefone && "Pai: " + row.pai.telefone, row.mae && row.mae.telefone && "Mãe: " + row.mae.telefone ], 
+                                                            [row.pai && row.pai.telefone_celular && "Pai: " + row.pai.telefone_celular, row.mae && row.mae.telefone_celular && "Mãe: " + row.mae.telefone_celular ]]} />
                 )
             })}
         </S.Container>

@@ -5,3 +5,4 @@ export * from './AuthenticateUser.interface';
 export * from './RegisterUser.interface';
 export * from './GeneralApp.interface';
 export * from './DataMap.interface';
+export * from './filter/ReportsModalFilters.interface';

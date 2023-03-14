@@ -1,23 +1,30 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {InputInLabel} from "@molecules";
 import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
 import {Checkbox} from "@atoms";
+import { yearOptions } from '~/utils/yerarOptions';
+import { ImagePermissionsFilterDataModalProps } from './ImagePermissionsDataModal.interface';
+import { getPeriodsApiService } from '~/service/api';
 
-export const ImagePermissionsFilterDataModal: React.FC = () => {
-    const [imageAllowedCheck, setImageAllowedCheck] = useState(false);
+export const ImagePermissionsFilterDataModal: React.FC<ImagePermissionsFilterDataModalProps> = ({filters, setFilters}) => {
+    const [classesOptions, setClassesOptions] = useState<{value:string; label:string}[]>([{label:'teste', value: 'teste'}]);
+
+    useEffect(() => {
+        getPeriodsApiService().then(response => {
+            console.log(response.data);
+            let classesArray:{value:string; label:string}[] = [{label: 'Selecione uma turma', value: ''}];
+           response.data.forEach(element => classesArray.push({label: element.descricao, value: element.descricao}));
+           setClassesOptions(classesArray);
+        });
+    }, []);
 
     return (
         <React.Fragment>
-            <InputInLabel label="Aluno" onChange={() => {}} value="Junin" />
-            <InputSelectInLabel label="Ano" onChange={() => {}}
-                options={[{value: '2020', label: '2020'}, {value: '2021', label: '2021'}]}
-            />
-            <InputSelectInLabel label="Turma/Período" onChange={() => {}}
-                options={[{value: '2°A', label: '2°A'}, {value: '2°B', label: '2°B'}]}
-            />
-            <Checkbox label="Permitiram divulgação da imagem" checked={imageAllowedCheck}
-                onChange={() => setImageAllowedCheck(!imageAllowedCheck)} mt={10} />
+            <InputInLabel label="Aluno" onChange={(value) => setFilters({...filters, studentsName: value})} value={filters.studentsName} />
+            <InputSelectInLabel label="Ano" selectedValue={filters.year} onChange={(e:any) => setFilters({...filters, year: e.value})} options={yearOptions} />
+            <InputSelectInLabel label="Turma" selectedValue={filters.class} onChange={(e:any) => setFilters({...filters, class: e.value})} options={classesOptions} />
+            <Checkbox label="Permitiram divulgação da imagem" checked={filters && filters.allowedImageDisclosure ? true : false} onChange={() => setFilters({...filters, allowedImageDisclosure: !filters.allowedImageDisclosure})} mt={10} />
         </React.Fragment>
     )
 };

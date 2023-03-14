@@ -12,7 +12,7 @@ const StudentsReportTable:React.FC<StudentsReportTableProps> = ({ data }) => {
             <ReportsTableTitle titles={studentsReportTableTitle} />
             {data && data.map((row:IStudentsReportModal, index: number) => {
                 return (
-                    <ReportsTableRow index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome]]} />
+                    <ReportsTableRow key={row.aluno_id} index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome]]} />
                 )
             })}
         </S.Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { IPhoneContactReportsModalFilters } from '~/models/dataview';
 
 interface BackButtonProps {
     modalState?:boolean;
@@ -8,4 +9,5 @@ interface BackButtonProps {
 export interface PhoneContactFilterProps extends BackButtonProps {
     title: string;
     children: React.ReactNode;
+    setFilters: (filters: IPhoneContactReportsModalFilters) => void;
 }

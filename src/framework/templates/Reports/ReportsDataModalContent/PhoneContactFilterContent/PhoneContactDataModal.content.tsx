@@ -2,17 +2,15 @@ import React from 'react';
 
 import {InputInLabel} from "@molecules";
 import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
+import { yearOptions } from '~/utils/yerarOptions';
+import { PhoneContactFilterDataModalProps } from './PhoneContactDataModal.interface';
 
-export const PhoneContactFilterDataModal: React.FC = () => (
+export const PhoneContactFilterDataModal: React.FC<PhoneContactFilterDataModalProps> = ({filters, setFilters}) => (
     <React.Fragment>
-        <InputInLabel label="Aluno" onChange={() => {}} value="Junin" />
-        <InputInLabel label="Pai" onChange={() => {}} value="Junin" />
-        <InputInLabel label="Mãe" onChange={() => {}} value="Junin" />
-        <InputSelectInLabel label="Ano" onChange={() => {}}
-                            options={[{value: '2020', label: '2020'}, {value: '2021', label: '2021'}]}
-        />
-        <InputSelectInLabel label="Turma" onChange={() => {}}
-                            options={[{value: '2°A', label: '2°A'}, {value: '2°B', label: '2°B'}]}
-        />
+        <InputSelectInLabel label="Ano" selectedValue={filters && filters.year ? filters.year : ''} onChange={(e:any) => setFilters({...filters, year: e.value})} options={yearOptions} />
+        <InputSelectInLabel label="Turma" onChange={(e:any) => setFilters({...filters, class: e.value})} options={[]} />
+        <InputInLabel label="Aluno" onChange={(value) => setFilters({...filters, studentName: value})} value={filters.studentName} />
+        <InputInLabel label="Mãe"  onChange={(value) => setFilters({...filters, mothersName: value})} value={filters.mothersName} />
+        <InputInLabel label="Pai"  onChange={(value) => setFilters({...filters, fathersName: value})} value={filters.fathersName} />
     </React.Fragment>
 );

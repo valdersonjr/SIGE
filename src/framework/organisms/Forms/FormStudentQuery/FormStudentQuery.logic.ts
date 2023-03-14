@@ -13,8 +13,3 @@ export const statusOptions = [
     { value: 'Ativo', label: 'Ativo' },
     { value: 'Inativo', label: 'Inativo' },
 ]
-
-export const yearsOptions = [
-    { value: "2022", label: "2022" },
-    { value: "2023", label: "2023" },
-]

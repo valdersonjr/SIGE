@@ -13,7 +13,7 @@ const PeriodsReportTable:React.FC<PeriodsReportTableProps> = ({ data }) => {
             <ReportsTableTitle titles={periodsReportTableTitle} />
             {data && data.map((row:PeriodsReportTableDataType, index: number) => {
                 return (
-                    <ReportsTableRow index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.periodo_descricao], [row.aluno_nome],[row.periodo_horario_entrada], [row.periodo_horario_saida]]} />
+                    <ReportsTableRow key={row.aluno_id} index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.periodo_descricao], [row.aluno_nome],[row.periodo_horario_entrada], [row.periodo_horario_saida]]} />
                 )
             })}
         </S.Container>

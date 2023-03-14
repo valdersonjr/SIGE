@@ -14,7 +14,7 @@ const ExtraClassActivitiesReportTable:React.FC<ExtraClassActivitiesProps> = ({ d
             {data && data.map((row:ExtraClassActivitiesDataType, index: number) => {
                 let activityArray = row.atividades.split("-");
                 return (
-                    <ReportsTableRow index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome], activityArray]} />
+                    <ReportsTableRow key={row.aluno_id} index={index} fields={[[String(row.ano)], [row.turma_descricao], [row.aluno_nome], activityArray]} />
                 )
             })}
         </S.Container>
