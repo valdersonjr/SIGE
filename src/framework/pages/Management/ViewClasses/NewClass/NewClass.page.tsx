@@ -20,7 +20,7 @@ const NewClassPage: React.FC = () => {
                 success: 'Turma criada com sucesso!',
                 error: 'Falha ao tentar criar turma!'
             }
-        ).then(() => {}).catch(err => console.error('toast error:', err));
+        ).then(() => {}).catch(err => toast.error(err));
     }
 
     const handleSave = (data: createClassDataProps) => new Promise((resolve, reject) => {

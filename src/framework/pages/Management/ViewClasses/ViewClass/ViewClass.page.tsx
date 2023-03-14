@@ -24,7 +24,7 @@ const ViewClassPage: React.FC = () => {
             setRegistrationModalState(false);
             setFinanceModalState(false);
             setReload(!reload);
-        }).catch(err => console.error('toast error:', err));
+        }).catch(err => toast.error(err));
     }
 
     const handleSave = (data: any) => new Promise((resolve, reject) => {

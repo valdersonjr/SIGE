@@ -4,4 +4,4 @@ export * from './class.service';
 export * from './period.service';
 export * from './activity.service';
 export * from './registration.service';
-export * from './fetchStudents.service';
+export * from './student.service';

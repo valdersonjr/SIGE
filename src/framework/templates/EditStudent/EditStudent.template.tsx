@@ -1,14 +1,12 @@
-import React, {useState} from "react";
-import {Button, SelectInLabel, Title, VariantButtonEnum} from "~/framework/atoms";
-import { Header, InputInLabel } from "~/framework/molecules";
-import { RegisterStudentProps } from "./RegisterStudent.interface";
-import * as S from './RegisterStudent.style';
+import React, {useEffect, useState} from 'react';
+import {EditStudentProps} from "@templates/EditStudent/EditStudent.interface";
+import * as S from "@templates/RegisterStudent/RegisterStudent.style";
+import {Header, InputInLabel} from "@molecules";
+import {Button, SelectInLabel, Title, VariantButtonEnum} from "@atoms";
 import {InputDate} from "@atoms/InputDate/InputDate.atom";
-import moment from "moment";
+import moment from "moment/moment";
 
-export const RegisterStudent: React.FC<RegisterStudentProps> = ({handleSubmit}) => {
-    // const [studentImage, setStudentImage] = useState('');
-
+export const EditStudent: React.FC<EditStudentProps> = ({handleSubmit, data}) => {
     const [studentName, setStudentName] = useState('');
     const [birthdayDate, setBirthdayDate] = useState<Date>(new Date());
 
@@ -22,14 +20,14 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = ({handleSubmit}) 
 
     const [description, setDescription] = useState('');
 
-    // const handleChangeImage = (e: any) => {
-    //     setStudentImage(e.target.files[0]);
-    // };
+    useEffect(() => {
+        console.log('data', data);
+    }, []);
 
     return (
         <S.Container>
             <S.Header>
-                <Header title="Novo Aluno" />
+                <Header title="Editar Aluno" />
             </S.Header>
             <S.Body>
                 {/*<S.ImageInputContainer>*/}
@@ -47,9 +45,9 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = ({handleSubmit}) 
                     <Title>Dados Financeiros</Title>
                     <S.InputContainer>
                         <SelectInLabel options={[{label: 'Pai', value: 'pai'}, {label: 'Mãe', value: 'mae'}]} label="Responsável Financeiro"
-                                        onChange={(e) => setFinancialResponsible(e)} />
+                                       onChange={(e) => setFinancialResponsible(e)} />
                         <SelectInLabel options={[{label: 'Sim', value: 'TRUE'}, {label: 'Não', value: 'FALSE'}]} label="Pais Vivem Juntos"
-                                        onChange={(e) => setParentsTogether(e)} />
+                                       onChange={(e) => setParentsTogether(e)} />
                         <InputInLabel label="Nome da Mãe" value={mommyName} placeholder="Digite aqui" onChange={(e) => setMommyName(e)} />
                         <InputInLabel label="Nome do Pai" value={daddyName} placeholder="Digite aqui" onChange={(e) => setDaddyName(e)} />
                     </S.InputContainer>
@@ -71,19 +69,19 @@ export const RegisterStudent: React.FC<RegisterStudentProps> = ({handleSubmit}) 
                 </S.InputSection>
 
                 <Button label="Criar aluno" variant={VariantButtonEnum.SECONDARY} justifyText="center"
-                    onClick={(e) => handleSubmit(e, {
-                        nome: studentName,
-                        data_nascimento: moment(birthdayDate, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-                        responsavel_financeiro: financialResponsible,
-                        // @ts-ignore
-                        pais_juntos: parentsTogether?.value === "TRUE",
-                        nome_pai: daddyName,
-                        nome_mae: mommyName,
-                        nome_convenio_medico: medicalInsurance,
-                        nome_hospital_preferencia: preferredHospital,
-                        observacoes_medicas: description
-                    })} />
+                        onClick={(e) => handleSubmit(e, {
+                            nome: studentName,
+                            data_nascimento: moment(birthdayDate, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+                            responsavel_financeiro: financialResponsible,
+                            // @ts-ignore
+                            pais_juntos: parentsTogether?.value === "TRUE",
+                            nome_pai: daddyName,
+                            nome_mae: mommyName,
+                            nome_convenio_medico: medicalInsurance,
+                            nome_hospital_preferencia: preferredHospital,
+                            observacoes_medicas: description
+                        })} />
             </S.Body>
         </S.Container>
     );
-};
+}

@@ -6,7 +6,6 @@ export * from './Forms/FormLogin/FormLogin.organism';
 export * from './StudentTable/StudentTable.organism';
 export * from './Modals/EditClassData/EditClassData.organism';
 export * from './Forms/FormStudentQuery/FormStudentQuery.organism';
-export * from './Forms/FormUserQuery/FormUserQuery.organism';
 export * from './Modals/EditUserData/EditUserData.organism';
 export * from './Forms/FormRegister/FormRegister.organism';
 

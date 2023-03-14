@@ -41,7 +41,3 @@ export const ClearButton = styled.div`
   width: 60%;
   height: 48px;
 `
-export const SearchButton = styled.div`
-  width: 50%;
-  height: 48px;
-`

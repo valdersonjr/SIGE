@@ -42,14 +42,14 @@ export const ViewRegistrations: React.FC<ViewRegistrationsProps> = ({
                 setReload(!reload);
                 setConfirmRemoveModal(false);
                 setCanDelete(false);
-            }).catch(err => toast.error('toast error:', err));
+            }).catch(err => toast.error(err));
         }
     }, [canDelete]);
 
     const deleteRegistration = () => new Promise((resolve, reject) => {
         deleteRegistrationApiService(idToDelete)
-            .then((response: any) => {
-                if (!!response?.message) return reject("error removing registration");
+            .then((res: any) => {
+                if (!!res?.message) return reject(res?.message);
 
                 resolve(true);
             }).catch(err => toast.error(err));

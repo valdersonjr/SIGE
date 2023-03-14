@@ -19,7 +19,7 @@ const ViewActivityPage: React.FC = () => {
                 success: 'Atividade salva com sucesso!',
                 error: 'Falha ao tentar salvar atividade!'
             }
-        ).then(() => setReload(!reload)).catch(err => console.error('toast error:', err));
+        ).then(() => setReload(!reload)).catch(err => toast.error(err));
     }
 
     const handleSave = (data: any) => new Promise((resolve, reject) => {

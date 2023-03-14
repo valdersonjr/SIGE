@@ -25,6 +25,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({
                                                                   filtersLoading
                                                               }) => {
     const navigate = useNavigate();
+
     const [confirmRemoveModal, setConfirmRemoveModal] = useState(false);
     const [canDelete, setCanDelete] = useState(false);
     const [idToDelete, setIdToDelete] = useState<number>(-1);
@@ -42,7 +43,7 @@ export const ViewActivities: React.FC<ViewActivitiesProps> = ({
                 setReload(!reload);
                 setConfirmRemoveModal(false);
                 setCanDelete(false);
-            }).catch(err => toast.error('toast error:', err));
+            }).catch(err => toast.error(err));
         }
     }, [canDelete]);
 
