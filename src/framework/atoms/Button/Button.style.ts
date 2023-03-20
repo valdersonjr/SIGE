@@ -219,7 +219,7 @@ export const Button = styled.button<ButtonProps>`
     align-items: center;
     width: 100%;
     cursor: pointer;
-    //padding: 18px 40px;
+    padding: 12px 32px;
 
     &:disabled {
       cursor: not-allowed;
@@ -229,10 +229,9 @@ export const Button = styled.button<ButtonProps>`
 export const Label = styled.span`
   font-weight: 600;
   font-size: 15px;
+  margin: 0 8px 0 8px;
 `;
 export const LeftIconContainer = styled.span`
-  margin-right: 8px;
 `;
 export const RightIconContainer = styled.span`
-  margin-left: 8px;
 `;

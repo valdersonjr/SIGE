@@ -53,7 +53,7 @@ const StudentsPage: React.FC = () => {
     };
 
     return <Students students={students} reload={reload} setReload={setReload}
-                     setLoading={setLoading} loading={loading}
+                     setLoading={setLoading} loading={loading} filters={filters}
                      isAllReqDone={isAllReqDone} setIsAllReqDone={setIsAllReqDone}
                      clearFilters={clearFilters} handleFilterChange={handleFilterChange}
                      filtersLoading={filtersLoading} setFiltersLoading={setFiltersLoading}/>;
