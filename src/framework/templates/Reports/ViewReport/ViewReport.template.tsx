@@ -23,7 +23,6 @@ const ViewReport:React.FC<ViewReportProps> = ({ state, endpoint, setModalState, 
     useEffect(() => {
         getReportApiService(endpoint, nextPage, itemsPerPage).then((response:any) => {
             setCurrentPage(response.meta.current_page);
-            // console.log(response.data);
             const filteredData = getFilteredData(endpoint, response.data, filters);
             setModalData(filteredData);
         })
