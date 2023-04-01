@@ -10,8 +10,10 @@ import * as S from './ViewStudent.style';
 import {ChooseImage} from "@molecules/Inputs/ChooseImage/ChooseImage.molecule";
 import { ViewStudentProps } from './ViewStudent.interface';
 import {Loading} from "@organisms/Loading/Loading.organism";
+import {useNavigate} from "react-router-dom";
 
 const ViewStudent: React.FC<ViewStudentProps> = ({ student, loading }) => {
+    const navigate = useNavigate();
     const [studentImage, setStudentImage] = useState('');
 
     const handleChangeImage = (e: any) => {
@@ -21,7 +23,8 @@ const ViewStudent: React.FC<ViewStudentProps> = ({ student, loading }) => {
     return (
         <S.Container>
             <S.Header>
-                <Header title="Visualizar Aluno" buttonText="Editar dados do Aluno" onButtonClick={() => {}} />
+                <Header title="Visualizar Aluno" buttonText="Editar dados do Aluno"
+                        onButtonClick={() => navigate(`/alunos/editar-aluno/${student?.id}`)} />
             </S.Header>
             {!loading ? (
                 <React.Fragment>

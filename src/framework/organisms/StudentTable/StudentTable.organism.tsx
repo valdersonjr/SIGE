@@ -40,40 +40,13 @@ export const StudentTable: React.FC<StudentTableProps> = ({
         setIdToDelete(id);
     }
 
-    // const getClassType = (registers: IRegister[], yearFilter: string): string => {
-    //     let classType = "Sem Turma Vinculada";
-    //
-    //     registers.forEach(register => {
-    //         if (register.ano === yearFilter) {
-    //             classType = register.ensino;
-    //         }
-    //     });
-    //
-    //     return classType;
-    // }
-    //
-    // const getPeriod = (registers: IRegister[], yearFilter: string): string => {
-    //     let period = "Sem Turma Vinculada";
-    //
-    //     registers.forEach(register => {
-    //         if (register.ano === yearFilter) {
-    //             if (register.descricao_periodo_turma) period = register.descricao_periodo_turma;
-    //         }
-    //     });
-    //
-    //     return period;
-    // }
-
     return (
         <S.Container>
             <TableRowTitle titles={titleList}/>
             {!filtersLoading ? (data.length === 0 ? <NotFound description="Nenhum aluno encontrado..." /> :
             data.map((row, i) => (
                 <TableRow key={row?.id} index={i}
-                          fields={[{field: row?.nome, status: null}, {
-                              field: "getPeriod(row.matriculas, String(filters.year))",
-                              status: null
-                          }, {field: "getClassType(row.matriculas, String(filters.year))", status: null}]}
+                          fields={[{field: row?.nome, status: null}]}
                           status={row?.ativo ? "Ativo" : "Inativo"}
                           switchValue={row?.ativo}
                           onEyeClick={() => navigate(`/alunos/visualizar-aluno/${row?.id}`)}

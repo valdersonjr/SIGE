@@ -7,18 +7,18 @@ import {InputDate} from "@atoms/InputDate/InputDate.atom";
 import moment from "moment/moment";
 
 export const EditStudent: React.FC<EditStudentProps> = ({handleSubmit, data}) => {
-    const [studentName, setStudentName] = useState('');
-    const [birthdayDate, setBirthdayDate] = useState<Date>(new Date());
+    const [studentName, setStudentName] = useState(data?.nome);
+    const [birthdayDate, setBirthdayDate] = useState<Date>(new Date(data?.data_nascimento));
 
-    const [financialResponsible, setFinancialResponsible] = useState('pai');
-    const [parentsTogether, setParentsTogether] = useState('sim');
-    const [daddyName, setDaddyName] = useState('');
-    const [mommyName, setMommyName] = useState('');
+    const [financialResponsible, setFinancialResponsible] = useState(data?.responsavel_financeiro);
+    const [parentsTogether, setParentsTogether] = useState(data?.pais_juntos);
+    const [daddyName, setDaddyName] = useState(data?.pai?.nome);
+    const [mommyName, setMommyName] = useState(data?.mae?.nome);
 
-    const [medicalInsurance, setMedicalInsurance] = useState('');
-    const [preferredHospital, setPreferredHospital] = useState('');
+    const [medicalInsurance, setMedicalInsurance] = useState(data?.nome_convenio_medico);
+    const [preferredHospital, setPreferredHospital] = useState(data?.nome_hospital_preferencia);
 
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState(data?.observacoes_medicas);
 
     useEffect(() => {
         console.log('data', data);
@@ -45,9 +45,9 @@ export const EditStudent: React.FC<EditStudentProps> = ({handleSubmit, data}) =>
                     <Title>Dados Financeiros</Title>
                     <S.InputContainer>
                         <SelectInLabel options={[{label: 'Pai', value: 'pai'}, {label: 'Mãe', value: 'mae'}]} label="Responsável Financeiro"
-                                       onChange={(e) => setFinancialResponsible(e)} />
-                        <SelectInLabel options={[{label: 'Sim', value: 'TRUE'}, {label: 'Não', value: 'FALSE'}]} label="Pais Vivem Juntos"
-                                       onChange={(e) => setParentsTogether(e)} />
+                                       onChange={(e) => setFinancialResponsible(e)} selectedValue={financialResponsible} />
+                        <SelectInLabel options={[{label: 'Sim', value: true}, {label: 'Não', value: false}]} label="Pais Vivem Juntos"
+                                       onChange={(e) => setParentsTogether(e)} selectedValue={parentsTogether} />
                         <InputInLabel label="Nome da Mãe" value={mommyName} placeholder="Digite aqui" onChange={(e) => setMommyName(e)} />
                         <InputInLabel label="Nome do Pai" value={daddyName} placeholder="Digite aqui" onChange={(e) => setDaddyName(e)} />
                     </S.InputContainer>
@@ -73,7 +73,6 @@ export const EditStudent: React.FC<EditStudentProps> = ({handleSubmit, data}) =>
                             nome: studentName,
                             data_nascimento: moment(birthdayDate, 'DD/MM/YYYY').format('YYYY-MM-DD'),
                             responsavel_financeiro: financialResponsible,
-                            // @ts-ignore
                             pais_juntos: parentsTogether?.value === "TRUE",
                             nome_pai: daddyName,
                             nome_mae: mommyName,

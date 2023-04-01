@@ -13,6 +13,7 @@ import {toast} from "react-toastify";
 import {Button, Title, VariantButtonEnum} from "@atoms";
 import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
 import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
+import {booleanify} from "~/utils/booleanify";
 
 export const Students: React.FC<StudentsProps> = ({
                                                       students,
@@ -75,7 +76,7 @@ export const Students: React.FC<StudentsProps> = ({
                         <InputInLabel label="Aluno" value={filters?.nome} placeholder="Digite aqui..."
                                       onChange={v => handleFilterChange('nome', v)}/>
                         <InputSelectInLabel label="Situação" options={statusData}
-                                            onChange={(v: any) => handleFilterChange('situacao', v?.value)}/>
+                                            onChange={(v: any) => handleFilterChange('situacao', booleanify(v?.value))}/>
                         <S.ClearButton>
                             <Button label="Limpar filtro" type="reset" justifyText="center"
                                     onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT}/>

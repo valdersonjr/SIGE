@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, SelectInLabel, Title, VariantButtonEnum} from "~/framework/atoms";
+import {Button, Title, VariantButtonEnum} from "~/framework/atoms";
 import {Header, InputInLabel} from "~/framework/molecules";
 import {ClassesTable} from "~/framework/organisms";
 import {ViewClassesProps} from "./ViewClasses.interface";
@@ -11,6 +11,8 @@ import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
 import {Loading} from "@organisms/Loading/Loading.organism";
 import {toast} from "react-toastify";
 import {ConfirmRemoveContent} from "@organisms/Modals/ConfirmRemove/ConfirmRemoveContent/ConfirmRemove.content";
+import {booleanify} from "~/utils/booleanify";
+import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
 
 export const ViewClasses: React.FC<ViewClassesProps> = ({
                                                             classes,
@@ -72,9 +74,8 @@ export const ViewClasses: React.FC<ViewClassesProps> = ({
                         <S.FilterContainer>
                             <InputInLabel value={filters.descricao} label="Turma" placeholder="Digite aqui..."
                                            onChange={(v: any) => handleFilterChange('descricao', v)} />
-                            <SelectInLabel selectedValue={filters.situacao}
-                                           onChange={(v: any) => handleFilterChange('situacao', v?.value)}
-                                           options={statusData} label="Situação"/>
+                            <InputSelectInLabel label="Situação" options={statusData}
+                                                onChange={(v: any) => handleFilterChange('situacao', booleanify(v?.value))}/>
                             <S.ClearButton>
                                 <Button onClick={clearFilters} label="Limpar" type="reset"
                                         justifyText="center" variant={VariantButtonEnum.PRIMARY_TRANSPARENT}/>

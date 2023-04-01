@@ -5,14 +5,6 @@ export const titleList:DataMap[] = [{
     data: 'Aluno'
 },
 {
-    key: 1,
-    data: 'Período'
-},
-{
-    key: 2,
-    data: 'Ensino'
-},
-{
     key: 3,
     data: 'Situação'
 },
