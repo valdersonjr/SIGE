@@ -14,6 +14,7 @@ import {Button, Title, VariantButtonEnum} from "@atoms";
 import {InputSelectInLabel} from "@molecules/Inputs/InputSelectInLabel/InputSelectInLabel.molecule";
 import {profileOptions} from "@organisms/Forms/FormUserQuery/FormUserQuery.logic";
 import {statusData} from "@templates/ViewActivities/ViewActivities.logic";
+import {booleanify} from "~/utils/booleanify";
 
 export const Users: React.FC<UsersProps> = ({
                                                 users,
@@ -78,7 +79,7 @@ export const Users: React.FC<UsersProps> = ({
                                                 onChange={(v: any) => handleFilterChange("perfil", v?.value)}
                                                 options={profileOptions}/>
                             <InputSelectInLabel label="Situação" options={statusData}
-                                                onChange={(v: any) => handleFilterChange('situacao', v?.value)}/>
+                                                onChange={(v: any) => handleFilterChange('situacao', booleanify(v?.value))}/>
                             <S.ClearButton>
                                 <Button label="Limpar" type="reset" justifyText="center"
                                         onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT}/>

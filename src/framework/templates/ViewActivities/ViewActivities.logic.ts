@@ -1,6 +1,6 @@
 export const statusData = [
     {
-        value: "",
+        value: null,
         label: "Selecione a situação"
     },
     {

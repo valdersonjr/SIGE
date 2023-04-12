@@ -12,6 +12,25 @@ export const createStudentApiService = async (data: any): Promise<datacore.Fetch
     });
 };
 
+export const updateStudentApiService = async (id: number, data: any): Promise<any> => {
+    return callApiBaseAsync(`${endpoint}/${id}`, {
+        title: 'API - studentApiService',
+        method: 'PUT',
+        body: {
+            pai_id: 1,
+            mae_id: 1,
+            nome: data?.nome,
+            data_nascimento: data?.data_nascimento,
+            pais_juntos: data?.pais_juntos,
+            responsavel_financeiro: data?.responsavel_financeiro,
+            nome_convenio_medico: data?.nome_convenio_medico,
+            nome_hospital_preferencia: data?.nome_hospital_preferencia,
+            observacoes_medicas: data?.observacoes_medicas,
+            ativo: true
+        }
+    });
+};
+
 export const getAllStudentsApiService = async (): Promise<datacore.FetchResponse<datacore.ResponseStudent[]>> => {
     return callApiBaseAsync(endpoint, {
         title: 'STUDENT API - studentApiService',

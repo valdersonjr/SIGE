@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 const ViewClassesPage: React.FC = () => {
     const emptyFilters = {
         descricao: '',
-        situacao: ''
+        situacao: null
     };
 
     const [classes, setClasses] = useState<any>([]);
