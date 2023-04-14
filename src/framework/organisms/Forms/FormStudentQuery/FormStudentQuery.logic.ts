@@ -7,9 +7,3 @@ export const teachOptions = [
     {value: 'maternal2', label: 'Maternal II'},
     {value: 'minimaternal', label: 'Minimaternal'},
 ];
-
-export const statusOptions = [
-    { value: '', label: '' },
-    { value: 'Ativo', label: 'Ativo' },
-    { value: 'Inativo', label: 'Inativo' },
-]
