@@ -76,7 +76,7 @@ export const Students: React.FC<StudentsProps> = ({
                         <InputInLabel label="Aluno" value={filters?.nome} placeholder="Digite aqui..."
                                       onChange={v => handleFilterChange('nome', v)}/>
                         <InputSelectInLabel label="Situação" options={statusData}
-                                            onChange={(v: any) => handleFilterChange('situacao', booleanify(v?.value))}/>
+                                            onChange={(v: any) =>  handleFilterChange('situacao', booleanify(v?.value))}/>
                         <S.ClearButton>
                             <Button label="Limpar filtro" type="reset" justifyText="center"
                                     onClick={clearFilters} variant={VariantButtonEnum.PRIMARY_TRANSPARENT}/>

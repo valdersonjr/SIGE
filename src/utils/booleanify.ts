@@ -1,11 +1,17 @@
-export const booleanify = (value: string): boolean | string => {
-    if (value === "") return value;
-
+export const booleanify = (value: string): boolean | undefined => {
     const truthy: string[] = [
         'true',
         'True',
         '1'
     ];
 
-    return truthy.includes(value);
+    const falsey: string[] = [
+        'false',
+        'False',
+        '0'
+    ];
+
+    if (truthy.includes(value)) return true;
+    else if(falsey.includes(value)) return false;
+    else return undefined;
 }
